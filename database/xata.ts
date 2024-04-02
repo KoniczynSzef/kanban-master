@@ -8,19 +8,18 @@ import type {
 
 const tables = [
     {
-        name: "Project",
+        name: "project",
         columns: [
             {
                 name: "id",
-                type: "int",
+                type: "uuid",
                 notNull: true,
                 unique: true,
-                defaultValue:
-                    "nextval('bb_sltnmfhjf96et9tlk60f1k3ab0_1lvfh1.\"Project_id_seq\"'::regclass)",
+                defaultValue: "gen_random_uuid()",
             },
             {
                 name: "name",
-                type: "text",
+                type: "varchar",
                 notNull: true,
                 unique: false,
                 defaultValue: null,
@@ -30,13 +29,15 @@ const tables = [
 ] as const;
 
 export type SchemaTables = typeof tables;
+
+// @ts-ignore
 export type InferredTypes = SchemaInference<SchemaTables>;
 
-export type Project = InferredTypes["Project"];
+export type Project = InferredTypes["project"];
 export type ProjectRecord = Project & XataRecord;
 
 export type DatabaseSchema = {
-    Project: ProjectRecord;
+    project: ProjectRecord;
 };
 
 const DatabaseClient = buildClient();
@@ -47,6 +48,7 @@ const defaultOptions = {
 
 export class XataClient extends DatabaseClient<DatabaseSchema> {
     constructor(options?: BaseClientOptions) {
+        // @ts-ignore
         super({ ...defaultOptions, ...options }, tables);
     }
 }

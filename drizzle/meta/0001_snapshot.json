@@ -1,0 +1,38 @@
+{
+  "id": "89194aae-0482-436a-bcfd-00e5c87a67fd",
+  "prevId": "3d08fa35-2ca1-488b-aa59-b3c7551177ad",
+  "version": "5",
+  "dialect": "pg",
+  "tables": {
+    "Project": {
+      "name": "Project",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

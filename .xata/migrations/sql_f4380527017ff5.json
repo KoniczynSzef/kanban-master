@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_f4380527017ff5",
+    "operations": [
+      {
+        "sql": {
+          "up": "CREATE TABLE IF NOT EXISTS project (id uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL, name varchar NOT NULL)"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_f4380527017ff5",
+  "parent": "sql_d4777ae7646547",
+  "startedAt": "2024-04-02T20:39:22.573613Z"
+}

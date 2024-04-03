@@ -1,12 +1,34 @@
 import { Button } from "@/components/ui/button";
 import { db } from "@/database";
 import { projects } from "@/database/schema";
+import {
+    LogoutLink,
+    RegisterLink,
+    getKindeServerSession,
+} from "@kinde-oss/kinde-auth-nextjs/server";
 import React, { FC } from "react";
 
 interface Props {}
 
 const page: FC<Props> = async (props) => {
+    const { isAuthenticated, getUser } = getKindeServerSession();
+    const isLoggedIn = await isAuthenticated();
+
+    if (!isLoggedIn) {
+        return (
+            <div>
+                Not authenticated
+                <RegisterLink postLoginRedirectURL="/">
+                    <Button>Register</Button>
+                </RegisterLink>
+            </div>
+        );
+    }
+
     const newProjects = await db.query.projects.findMany();
+
+    const user = await getUser();
+    console.log(user);
 
     return (
         <div className="p-24">
@@ -15,7 +37,9 @@ const page: FC<Props> = async (props) => {
                 <p key={project.id}>{JSON.stringify(project, null, 2)}</p>
             ))}
 
-            <Button>Hello World</Button>
+            <LogoutLink postLogoutRedirectURL="/">
+                <Button variant={"destructive"}>Sign out</Button>
+            </LogoutLink>
         </div>
     );
 };

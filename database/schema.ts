@@ -10,4 +10,5 @@ export const users = pgTable("user", {
     name: varchar("name").notNull(),
     email: varchar("email").notNull(),
     picture: varchar("picture").notNull(),
+    kindeId: varchar("kinde_id").notNull(),
 });

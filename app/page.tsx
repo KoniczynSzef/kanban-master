@@ -18,7 +18,7 @@ const page: FC<Props> = async (props) => {
         return (
             <div>
                 Not authenticated
-                <RegisterLink postLoginRedirectURL="/">
+                <RegisterLink>
                     <Button>Register</Button>
                 </RegisterLink>
             </div>
@@ -26,9 +26,7 @@ const page: FC<Props> = async (props) => {
     }
 
     const newProjects = await db.query.projects.findMany();
-
     const user = await getUser();
-    console.log(user);
 
     return (
         <div className="p-24">
@@ -40,6 +38,8 @@ const page: FC<Props> = async (props) => {
             <LogoutLink postLogoutRedirectURL="/">
                 <Button variant={"destructive"}>Sign out</Button>
             </LogoutLink>
+
+            {JSON.stringify(user, null, 2)}
         </div>
     );
 };

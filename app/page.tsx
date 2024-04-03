@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { db } from "@/database";
 import { projects } from "@/database/schema";
 import React, { FC } from "react";
@@ -13,6 +14,8 @@ const page: FC<Props> = async (props) => {
             {newProjects.map((project) => (
                 <p key={project.id}>{JSON.stringify(project, null, 2)}</p>
             ))}
+
+            <Button>Hello World</Button>
         </div>
     );
 };

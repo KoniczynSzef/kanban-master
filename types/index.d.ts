@@ -21,3 +21,5 @@ declare global {
         interface ProcessEnv extends z.infer<typeof environmentVariables> {}
     }
 }
+
+environmentVariables.parse(process.env);

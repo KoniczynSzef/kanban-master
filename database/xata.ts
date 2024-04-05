@@ -26,29 +26,72 @@ const tables = [
             },
         ],
     },
+    {
+        name: "user",
+        columns: [
+            {
+                name: "email",
+                type: "varchar",
+                notNull: true,
+                unique: false,
+                defaultValue: null,
+            },
+            {
+                name: "id",
+                type: "uuid",
+                notNull: true,
+                unique: true,
+                defaultValue: "gen_random_uuid()",
+            },
+            {
+                name: "kinde_id",
+                type: "varchar",
+                notNull: true,
+                unique: false,
+                defaultValue: null,
+            },
+            {
+                name: "name",
+                type: "varchar",
+                notNull: true,
+                unique: false,
+                defaultValue: null,
+            },
+            {
+                name: "picture",
+                type: "varchar",
+                notNull: true,
+                unique: false,
+                defaultValue: null,
+            },
+        ],
+    },
 ] as const;
 
 export type SchemaTables = typeof tables;
-
-// @ts-ignore
+// @ts-expect-error - generated types
 export type InferredTypes = SchemaInference<SchemaTables>;
 
 export type Project = InferredTypes["project"];
 export type ProjectRecord = Project & XataRecord;
 
+export type User = InferredTypes["user"];
+export type UserRecord = User & XataRecord;
+
 export type DatabaseSchema = {
     project: ProjectRecord;
+    user: UserRecord;
 };
 
 const DatabaseClient = buildClient();
 
 const defaultOptions = {
-    databaseURL: process.env.XATA_DATABASE_URL as string,
+    databaseURL: process.env.XATA_DATABASE_URL,
 };
 
 export class XataClient extends DatabaseClient<DatabaseSchema> {
     constructor(options?: BaseClientOptions) {
-        // @ts-ignore
+        // @ts-expect-error - generated types
         super({ ...defaultOptions, ...options }, tables);
     }
 }

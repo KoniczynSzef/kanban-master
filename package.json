@@ -2,6 +2,7 @@
   "name": "kanmaster",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,17 +12,23 @@
     "push": "drizzle-kit push:pg"
   },
   "dependencies": {
+    "@kinde-oss/kinde-auth-nextjs": "^2.2.3",
     "@radix-ui/react-slot": "^1.0.2",
+    "@typescript-eslint/eslint-plugin": "^7.5.0",
+    "@typescript-eslint/parser": "^7.5.0",
     "@xata.io/client": "^0.29.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "drizzle-orm": "^0.30.6",
-    "next": "14.1.4",
+    "eslint-plugin-react": "^7.34.1",
+    "jwt-decode": "^4.0.0",
+    "next": "^14.1.4",
     "pg": "^8.11.4",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.2.2",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20",

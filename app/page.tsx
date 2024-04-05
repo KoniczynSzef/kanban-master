@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { db } from "@/database";
-import { projects } from "@/database/schema";
 import {
     LogoutLink,
     RegisterLink,
@@ -39,7 +38,9 @@ const page: FC<Props> = async (props) => {
                 <Button variant={"destructive"}>Sign out</Button>
             </LogoutLink>
 
-            {JSON.stringify(user, null, 2)}
+            <h1>{user?.given_name}</h1>
+
+            <p>{user?.email}</p>
         </div>
     );
 };

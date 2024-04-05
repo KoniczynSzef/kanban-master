@@ -9,8 +9,8 @@ import React, { FC } from "react";
 
 interface Props {}
 
-const page: FC<Props> = async (props) => {
-    const { isAuthenticated, getUser } = getKindeServerSession();
+const page: FC<Props> = async () => {
+    const { isAuthenticated } = getKindeServerSession();
     const isLoggedIn = await isAuthenticated();
 
     if (!isLoggedIn) {
@@ -25,7 +25,6 @@ const page: FC<Props> = async (props) => {
     }
 
     const newProjects = await db.query.projects.findMany();
-    const user = await getUser();
 
     return (
         <div className="p-24">
@@ -37,10 +36,6 @@ const page: FC<Props> = async (props) => {
             <LogoutLink postLogoutRedirectURL="/">
                 <Button variant={"destructive"}>Sign out</Button>
             </LogoutLink>
-
-            <h1>{user?.given_name}</h1>
-
-            <p>{user?.email}</p>
         </div>
     );
 };

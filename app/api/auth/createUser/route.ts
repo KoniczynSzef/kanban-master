@@ -1,11 +1,10 @@
-import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/database";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { users } from "@/database/schema";
 import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 
-export async function GET(req: NextRequest) {
+export async function GET() {
     const { getUser } = getKindeServerSession();
     const user = await getUser();
 

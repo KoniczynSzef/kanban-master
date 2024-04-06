@@ -10,7 +10,7 @@ import React, { FC } from "react";
 interface Props {}
 
 const page: FC<Props> = async () => {
-    const { isAuthenticated } = getKindeServerSession();
+    const { isAuthenticated, getUser } = getKindeServerSession();
     const isLoggedIn = await isAuthenticated();
 
     if (!isLoggedIn) {
@@ -25,6 +25,7 @@ const page: FC<Props> = async () => {
     }
 
     const newProjects = await db.query.projects.findMany();
+    const user = await getUser();
 
     return (
         <div className="p-24">
@@ -36,6 +37,8 @@ const page: FC<Props> = async () => {
             <LogoutLink postLogoutRedirectURL="/">
                 <Button variant={"destructive"}>Sign out</Button>
             </LogoutLink>
+
+            {JSON.stringify(user, null, 2)}
         </div>
     );
 };

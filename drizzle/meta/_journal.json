@@ -71,6 +71,13 @@
       "when": 1712519684919,
       "tag": "0009_polite_wiccan",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "5",
+      "when": 1712521667796,
+      "tag": "0010_last_tattoo",
+      "breakpoints": true
     }
   ]
 }

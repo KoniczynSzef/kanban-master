@@ -116,7 +116,7 @@ const tables = [
                 type: "varchar",
                 notNull: false,
                 unique: false,
-                defaultValue: "'description'::character varying",
+                defaultValue: "''::character varying",
             },
             {
                 name: "id",
@@ -130,7 +130,7 @@ const tables = [
                 type: "varchar",
                 notNull: false,
                 unique: false,
-                defaultValue: "'note'::character varying",
+                defaultValue: "''::character varying",
             },
             {
                 name: "priority",
@@ -170,7 +170,7 @@ const tables = [
                 type: "varchar",
                 notNull: false,
                 unique: false,
-                defaultValue: "'Description'::character varying",
+                defaultValue: "''::character varying",
             },
             {
                 name: "id",
@@ -217,7 +217,7 @@ const tables = [
                 type: "varchar",
                 notNull: false,
                 unique: false,
-                defaultValue: "'description'::character varying",
+                defaultValue: "''::character varying",
             },
             {
                 name: "id",
@@ -264,7 +264,7 @@ const tables = [
                 type: "varchar",
                 notNull: false,
                 unique: false,
-                defaultValue: "'test@gmail.com'::character varying",
+                defaultValue: "''::character varying",
             },
             {
                 name: "email",

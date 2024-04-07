@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_ae16f968571312",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE project ALTER COLUMN description SET DEFAULT ''"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_ae16f968571312",
+  "parent": "sql_0d7b0ed0fc7a97",
+  "startedAt": "2024-04-07T20:27:58.306774Z"
+}

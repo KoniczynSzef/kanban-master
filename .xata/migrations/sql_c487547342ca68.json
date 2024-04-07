@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_c487547342ca68",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE kanban_task ALTER COLUMN description SET DEFAULT ''"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_c487547342ca68",
+  "parent": "sql_77edacc45dcdbf",
+  "startedAt": "2024-04-07T20:27:58.088597Z"
+}

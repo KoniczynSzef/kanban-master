@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_77edacc45dcdbf",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE \"user\" ALTER COLUMN business_email SET DEFAULT ''"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_77edacc45dcdbf",
+  "parent": "sql_531d15332e6a14",
+  "startedAt": "2024-04-07T20:27:57.991422Z"
+}

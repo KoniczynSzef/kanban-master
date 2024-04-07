@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_0d7b0ed0fc7a97",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE team ALTER COLUMN description SET DEFAULT ''"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_0d7b0ed0fc7a97",
+  "parent": "sql_f3d09b1d1f30fb",
+  "startedAt": "2024-04-07T20:27:58.236143Z"
+}

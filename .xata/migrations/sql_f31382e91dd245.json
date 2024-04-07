@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_f31382e91dd245",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE project ADD COLUMN created_at timestamp DEFAULT now() NOT NULL"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_f31382e91dd245",
+  "parent": "sql_f0f1b6947597b6",
+  "startedAt": "2024-04-07T12:58:05.191371Z"
+}

@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_3bdfe4c17ff32f",
+    "operations": [
+      {
+        "sql": {
+          "up": "CREATE TABLE IF NOT EXISTS team (id uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL, name varchar NOT NULL, description varchar, owner_id uuid NOT NULL, created_at timestamp DEFAULT now() NOT NULL, updated_at timestamp DEFAULT now() NOT NULL)"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_3bdfe4c17ff32f",
+  "parent": "sql_36ab67c1cb3a9c",
+  "startedAt": "2024-04-07T12:58:04.916826Z"
+}

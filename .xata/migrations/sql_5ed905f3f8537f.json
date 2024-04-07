@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_5ed905f3f8537f",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE project ADD COLUMN description varchar"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_5ed905f3f8537f",
+  "parent": "sql_3bdfe4c17ff32f",
+  "startedAt": "2024-04-07T12:58:04.999417Z"
+}

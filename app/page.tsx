@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { db } from "@/database";
+import { users } from "@/database/schema";
 import {
     LogoutLink,
     RegisterLink,

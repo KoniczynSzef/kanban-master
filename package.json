@@ -8,8 +8,8 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "migrate": "drizzle-kit generate:pg",
-        "push": "drizzle-kit push:pg",
+        "db:migrate": "drizzle-kit generate:pg",
+        "db:push": "drizzle-kit push:pg",
         "test:browser": "playwright test"
     },
     "dependencies": {

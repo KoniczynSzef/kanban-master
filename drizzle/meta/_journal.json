@@ -1,48 +1,55 @@
 {
-    "version": "5",
-    "dialect": "pg",
-    "entries": [
-        {
-            "idx": 0,
-            "version": "5",
-            "when": 1712086719320,
-            "tag": "0000_young_lady_ursula",
-            "breakpoints": true
-        },
-        {
-            "idx": 1,
-            "version": "5",
-            "when": 1712088923764,
-            "tag": "0001_wandering_nextwave",
-            "breakpoints": true
-        },
-        {
-            "idx": 2,
-            "version": "5",
-            "when": 1712089828553,
-            "tag": "0002_chunky_wrecker",
-            "breakpoints": true
-        },
-        {
-            "idx": 3,
-            "version": "5",
-            "when": 1712090351769,
-            "tag": "0003_loving_captain_midlands",
-            "breakpoints": true
-        },
-        {
-            "idx": 4,
-            "version": "5",
-            "when": 1712164326614,
-            "tag": "0004_nosy_namorita",
-            "breakpoints": true
-        },
-        {
-            "idx": 5,
-            "version": "5",
-            "when": 1712165801883,
-            "tag": "0005_burly_thunderbolt_ross",
-            "breakpoints": true
-        }
-    ]
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1712086719320,
+      "tag": "0000_young_lady_ursula",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1712088923764,
+      "tag": "0001_wandering_nextwave",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1712089828553,
+      "tag": "0002_chunky_wrecker",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1712090351769,
+      "tag": "0003_loving_captain_midlands",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1712164326614,
+      "tag": "0004_nosy_namorita",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1712165801883,
+      "tag": "0005_burly_thunderbolt_ross",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1712494664199,
+      "tag": "0006_late_exodus",
+      "breakpoints": true
+    }
+  ]
 }

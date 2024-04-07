@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_6342003b7f6c17",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE \"user\" ALTER COLUMN business_email SET DEFAULT 'test@gmail.com'"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_6342003b7f6c17",
+  "parent": "sql_f6869b2fd571eb",
+  "startedAt": "2024-04-07T19:54:55.985531Z"
+}

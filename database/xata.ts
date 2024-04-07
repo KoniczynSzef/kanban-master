@@ -67,7 +67,7 @@ const tables = [
                 type: "uuid",
                 notNull: false,
                 unique: false,
-                defaultValue: null,
+                defaultValue: "gen_random_uuid()",
             },
             {
                 name: "board_id",
@@ -102,7 +102,7 @@ const tables = [
                 type: "uuid",
                 notNull: false,
                 unique: false,
-                defaultValue: null,
+                defaultValue: "gen_random_uuid()",
             },
             {
                 name: "deadline",
@@ -116,7 +116,7 @@ const tables = [
                 type: "varchar",
                 notNull: false,
                 unique: false,
-                defaultValue: null,
+                defaultValue: "'description'::character varying",
             },
             {
                 name: "id",
@@ -130,7 +130,7 @@ const tables = [
                 type: "varchar",
                 notNull: false,
                 unique: false,
-                defaultValue: null,
+                defaultValue: "'note'::character varying",
             },
             {
                 name: "priority",
@@ -170,7 +170,7 @@ const tables = [
                 type: "varchar",
                 notNull: false,
                 unique: false,
-                defaultValue: null,
+                defaultValue: "'Description'::character varying",
             },
             {
                 name: "id",
@@ -217,7 +217,7 @@ const tables = [
                 type: "varchar",
                 notNull: false,
                 unique: false,
-                defaultValue: null,
+                defaultValue: "'description'::character varying",
             },
             {
                 name: "id",
@@ -257,14 +257,14 @@ const tables = [
                 type: "varchar",
                 notNull: false,
                 unique: false,
-                defaultValue: null,
+                defaultValue: "''::character varying",
             },
             {
                 name: "business_email",
                 type: "varchar",
                 notNull: false,
                 unique: false,
-                defaultValue: null,
+                defaultValue: "'test@gmail.com'::character varying",
             },
             {
                 name: "email",
@@ -299,7 +299,7 @@ const tables = [
                 type: "varchar",
                 notNull: false,
                 unique: false,
-                defaultValue: null,
+                defaultValue: "''::character varying",
             },
             {
                 name: "picture",
@@ -313,7 +313,7 @@ const tables = [
                 type: "uuid",
                 notNull: false,
                 unique: false,
-                defaultValue: null,
+                defaultValue: "gen_random_uuid()",
             },
         ],
     },

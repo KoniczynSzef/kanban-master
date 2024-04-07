@@ -14,8 +14,7 @@ const page: FC<Props> = async (props) => {
         return redirect("/");
     }
 
-    const allUsers = await db.select().from(users);
-    console.log(allUsers);
+    console.log(user);
 
     return (
         <div>

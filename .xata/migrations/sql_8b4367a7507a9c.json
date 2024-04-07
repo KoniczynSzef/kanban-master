@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_8b4367a7507a9c",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE \"user\" ADD COLUMN business_email varchar"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_8b4367a7507a9c",
+  "parent": "sql_ce750a9eaa604e",
+  "startedAt": "2024-04-07T12:58:05.444239Z"
+}

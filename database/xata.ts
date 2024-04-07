@@ -8,8 +8,41 @@ import type {
 
 const tables = [
     {
-        name: "project",
+        name: "kanban_board",
         columns: [
+            {
+                name: "id",
+                type: "uuid",
+                notNull: true,
+                unique: true,
+                defaultValue: "gen_random_uuid()",
+            },
+            {
+                name: "name",
+                type: "varchar",
+                notNull: true,
+                unique: false,
+                defaultValue: null,
+            },
+            {
+                name: "project_id",
+                type: "uuid",
+                notNull: true,
+                unique: false,
+                defaultValue: null,
+            },
+        ],
+    },
+    {
+        name: "kanban_column",
+        columns: [
+            {
+                name: "board_id",
+                type: "uuid",
+                notNull: true,
+                unique: false,
+                defaultValue: null,
+            },
             {
                 name: "id",
                 type: "uuid",
@@ -27,8 +60,212 @@ const tables = [
         ],
     },
     {
+        name: "kanban_task",
+        columns: [
+            {
+                name: "assignee_id",
+                type: "uuid",
+                notNull: false,
+                unique: false,
+                defaultValue: null,
+            },
+            {
+                name: "board_id",
+                type: "uuid",
+                notNull: true,
+                unique: false,
+                defaultValue: null,
+            },
+            {
+                name: "column_id",
+                type: "uuid",
+                notNull: true,
+                unique: false,
+                defaultValue: null,
+            },
+            {
+                name: "column_index",
+                type: "int",
+                notNull: true,
+                unique: false,
+                defaultValue: null,
+            },
+            {
+                name: "created_at",
+                type: "timestamp without time zone",
+                notNull: true,
+                unique: false,
+                defaultValue: "now()",
+            },
+            {
+                name: "creator_id",
+                type: "uuid",
+                notNull: false,
+                unique: false,
+                defaultValue: null,
+            },
+            {
+                name: "deadline",
+                type: "timestamp without time zone",
+                notNull: false,
+                unique: false,
+                defaultValue: null,
+            },
+            {
+                name: "description",
+                type: "varchar",
+                notNull: false,
+                unique: false,
+                defaultValue: null,
+            },
+            {
+                name: "id",
+                type: "uuid",
+                notNull: true,
+                unique: true,
+                defaultValue: "gen_random_uuid()",
+            },
+            {
+                name: "note",
+                type: "varchar",
+                notNull: false,
+                unique: false,
+                defaultValue: null,
+            },
+            {
+                name: "priority",
+                type: "varchar",
+                notNull: false,
+                unique: false,
+                defaultValue: null,
+            },
+            {
+                name: "title",
+                type: "varchar",
+                notNull: true,
+                unique: false,
+                defaultValue: null,
+            },
+            {
+                name: "updated_at",
+                type: "timestamp without time zone",
+                notNull: true,
+                unique: false,
+                defaultValue: "now()",
+            },
+        ],
+    },
+    {
+        name: "project",
+        columns: [
+            {
+                name: "created_at",
+                type: "timestamp without time zone",
+                notNull: true,
+                unique: false,
+                defaultValue: "now()",
+            },
+            {
+                name: "description",
+                type: "varchar",
+                notNull: false,
+                unique: false,
+                defaultValue: null,
+            },
+            {
+                name: "id",
+                type: "uuid",
+                notNull: true,
+                unique: true,
+                defaultValue: "gen_random_uuid()",
+            },
+            {
+                name: "name",
+                type: "varchar",
+                notNull: true,
+                unique: false,
+                defaultValue: null,
+            },
+            {
+                name: "owner_id",
+                type: "uuid",
+                notNull: true,
+                unique: false,
+                defaultValue: null,
+            },
+            {
+                name: "updated_at",
+                type: "timestamp without time zone",
+                notNull: true,
+                unique: false,
+                defaultValue: "now()",
+            },
+        ],
+    },
+    {
+        name: "team",
+        columns: [
+            {
+                name: "created_at",
+                type: "timestamp without time zone",
+                notNull: true,
+                unique: false,
+                defaultValue: "now()",
+            },
+            {
+                name: "description",
+                type: "varchar",
+                notNull: false,
+                unique: false,
+                defaultValue: null,
+            },
+            {
+                name: "id",
+                type: "uuid",
+                notNull: true,
+                unique: true,
+                defaultValue: "gen_random_uuid()",
+            },
+            {
+                name: "name",
+                type: "varchar",
+                notNull: true,
+                unique: false,
+                defaultValue: null,
+            },
+            {
+                name: "owner_id",
+                type: "uuid",
+                notNull: true,
+                unique: false,
+                defaultValue: null,
+            },
+            {
+                name: "updated_at",
+                type: "timestamp without time zone",
+                notNull: true,
+                unique: false,
+                defaultValue: "now()",
+            },
+        ],
+    },
+    {
         name: "user",
         columns: [
+            {
+                name: "bio",
+                type: "varchar",
+                notNull: false,
+                unique: false,
+                defaultValue: null,
+            },
+            {
+                name: "business_email",
+                type: "varchar",
+                notNull: false,
+                unique: false,
+                defaultValue: null,
+            },
             {
                 name: "email",
                 type: "varchar",
@@ -58,9 +295,23 @@ const tables = [
                 defaultValue: null,
             },
             {
+                name: "nickname",
+                type: "varchar",
+                notNull: false,
+                unique: false,
+                defaultValue: null,
+            },
+            {
                 name: "picture",
                 type: "varchar",
                 notNull: true,
+                unique: false,
+                defaultValue: null,
+            },
+            {
+                name: "team_id",
+                type: "uuid",
+                notNull: false,
                 unique: false,
                 defaultValue: null,
             },
@@ -72,14 +323,30 @@ export type SchemaTables = typeof tables;
 // @ts-expect-error - generated types
 export type InferredTypes = SchemaInference<SchemaTables>;
 
+export type KanbanBoard = InferredTypes["kanban_board"];
+export type KanbanBoardRecord = KanbanBoard & XataRecord;
+
+export type KanbanColumn = InferredTypes["kanban_column"];
+export type KanbanColumnRecord = KanbanColumn & XataRecord;
+
+export type KanbanTask = InferredTypes["kanban_task"];
+export type KanbanTaskRecord = KanbanTask & XataRecord;
+
 export type Project = InferredTypes["project"];
 export type ProjectRecord = Project & XataRecord;
+
+export type Team = InferredTypes["team"];
+export type TeamRecord = Team & XataRecord;
 
 export type User = InferredTypes["user"];
 export type UserRecord = User & XataRecord;
 
 export type DatabaseSchema = {
+    kanban_board: KanbanBoardRecord;
+    kanban_column: KanbanColumnRecord;
+    kanban_task: KanbanTaskRecord;
     project: ProjectRecord;
+    team: TeamRecord;
     user: UserRecord;
 };
 

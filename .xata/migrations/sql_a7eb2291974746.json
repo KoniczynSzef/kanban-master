@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_a7eb2291974746",
+    "operations": [
+      {
+        "sql": {
+          "up": "CREATE TABLE IF NOT EXISTS kanban_column (id uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL, name varchar NOT NULL, board_id uuid NOT NULL)"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_a7eb2291974746",
+  "parent": "sql_b3e0f6f24483dd",
+  "startedAt": "2024-04-07T12:58:04.728764Z"
+}

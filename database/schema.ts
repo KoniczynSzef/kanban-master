@@ -9,7 +9,7 @@ import {
 export const projects = pgTable("project", {
     id: uuid("id").primaryKey().defaultRandom(),
     name: varchar("name").notNull(),
-    description: varchar("description"),
+    description: varchar("description").default(""),
     ownerId: uuid("owner_id").notNull(),
     createdAt: timestamp("created_at").notNull().defaultNow(),
     updatedAt: timestamp("updated_at").notNull().defaultNow(),
@@ -22,11 +22,11 @@ export const users = pgTable("user", {
     picture: varchar("picture").notNull(),
     kindeId: varchar("kinde_id").notNull(),
 
-    nickname: varchar("nickname"),
-    bio: varchar("bio"),
-    businessEmail: varchar("business_email"),
+    nickname: varchar("nickname").default(""),
+    bio: varchar("bio").default(""),
+    businessEmail: varchar("business_email").default(""),
 
-    teamId: uuid("team_id"),
+    teamId: uuid("team_id").defaultRandom(),
 });
 
 export const KanbanBoard = pgTable("kanban_board", {
@@ -53,8 +53,8 @@ export const KanbanTask = pgTable("kanban_task", {
     note: varchar("note"),
     columnIndex: integer("column_index").notNull(),
 
-    assigneeId: uuid("assignee_id"),
-    creatorId: uuid("creator_id"),
+    assigneeId: uuid("assignee_id").defaultRandom(),
+    creatorId: uuid("creator_id").defaultRandom(),
     createdAt: timestamp("created_at").notNull().defaultNow(),
     updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
@@ -62,7 +62,7 @@ export const KanbanTask = pgTable("kanban_task", {
 export const Team = pgTable("team", {
     id: uuid("id").primaryKey().defaultRandom(),
     name: varchar("name").notNull(),
-    description: varchar("description"),
+    description: varchar("description").default(""),
     ownerId: uuid("owner_id").notNull(),
     createdAt: timestamp("created_at").notNull().defaultNow(),
     updatedAt: timestamp("updated_at").notNull().defaultNow(),

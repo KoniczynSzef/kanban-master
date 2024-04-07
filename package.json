@@ -10,7 +10,8 @@
         "lint": "next lint",
         "db:migrate": "drizzle-kit generate:pg",
         "db:push": "drizzle-kit push:pg",
-        "test:browser": "playwright test"
+        "test:browser": "playwright test",
+        "studio": "drizzle-kit studio"
     },
     "dependencies": {
         "@kinde-oss/kinde-auth-nextjs": "^2.2.3",

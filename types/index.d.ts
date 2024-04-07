@@ -14,6 +14,9 @@ const environmentVariables = z.object({
     KINDE_SITE_URL: z.string(),
     KINDE_POST_LOGOUT_REDIRECT_URL: z.string(),
     KINDE_POST_LOGIN_REDIRECT_URL: z.string(),
+
+    // other environment variables
+    PAGE_URL: z.string(),
 });
 
 declare global {

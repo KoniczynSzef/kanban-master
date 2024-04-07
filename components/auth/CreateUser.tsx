@@ -1,13 +1,21 @@
-import React, { FC } from "react";
+"use client";
 
-interface Props {}
+import React, { FC } from "react";
+import { Button } from "../ui/button";
+import { users } from "@/database/schema";
+import { createUser } from "@/server/auth/createUser";
+
+interface Props {
+    user: typeof users.$inferInsert;
+}
 
 const CreateUser: FC<Props> = (props) => {
-    return (
-        <div>
-            <p></p>
-        </div>
-    );
+    const handleClick = async () => {
+        await createUser(props.user);
+        console.log("User created");
+    };
+
+    return <Button onClick={handleClick}>Create User</Button>;
 };
 
 export default CreateUser;

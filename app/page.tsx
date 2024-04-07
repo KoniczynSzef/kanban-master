@@ -5,6 +5,7 @@ import {
     LogoutLink,
     RegisterLink,
     getKindeServerSession,
+    LoginLink,
 } from "@kinde-oss/kinde-auth-nextjs/server";
 
 interface Props {}
@@ -17,19 +18,29 @@ const page: FC<Props> = async () => {
         return (
             <div>
                 Not authenticated
-                <RegisterLink>
+                <RegisterLink postLoginRedirectURL="/api/auth/check-for-account">
                     <Button>Register</Button>
                 </RegisterLink>
+                <LoginLink>
+                    <Button variant={"outline"}>Login</Button>
+                </LoginLink>
             </div>
         );
     }
 
-    // const newProjects = await db.query.projects.findMany();
+    const newProjects = await db.query.projects.findMany();
     const user = await getUser();
-    await db.query.projects.findMany();
 
     return (
         <div className="p-24">
+            <h1>Projects</h1>
+            <p>Here are the projects you have access to:</p>
+            <ul>
+                {newProjects.map((project) => (
+                    <li key={project.id}>{project.name}</li>
+                ))}
+            </ul>
+
             <LogoutLink postLogoutRedirectURL="/">
                 <Button variant={"destructive"}>Sign out</Button>
             </LogoutLink>

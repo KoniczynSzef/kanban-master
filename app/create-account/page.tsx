@@ -1,3 +1,5 @@
+import CreateUser from "@/components/auth/CreateUser";
+import { Button } from "@/components/ui/button";
 import { db } from "@/database";
 import { users } from "@/database/schema";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
@@ -14,13 +16,20 @@ const page: FC<Props> = async (props) => {
         return redirect("/");
     }
 
-    console.log(user);
+    const newUser: typeof users.$inferInsert = {
+        email: user.email || "",
+        name: user.given_name || "",
+        picture: user.picture || "",
+        kindeId: user.id,
+    };
 
     return (
         <div>
             <p>
                 {user.email} {user.id}
             </p>
+
+            <CreateUser user={newUser} />
         </div>
     );
 };

@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# KanMaster
+
+KanMaster is a a project management system proudly developed based on Kanban methodology. It's a simple and easy to use tool that helps you to manage your projects and tasks in a visual way.
+
+## Technologies
+
+-   [Next.js](https://nextjs.org/)
+-   [TypeScript](https://www.typescriptlang.org/)
+-   [Tailwind CSS](https://tailwindcss.com/)
+-   [Drizzle ORM](https://orm.drizzle.team/)
+-   [Kinde Auth](https://kinde.com/)
+-   [Vercel](https://vercel.com/)
+-   [Playwright](https://playwright.dev/)
+-   [Xata](https://xata.io/)
 
 ## Getting Started
 
-First, run the development server:
+You can run the project locally by following these steps:
+
+1. Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+git clone https://github.com/KoniczynSzef/kanban-master.git
+```
+
+2. Install the dependencies using `bun`:
+
+```bash
+bun install
+```
+
+3. Install [Xata](https://xata.io/) globally on your machine:
+
+```bash
+npm install -g xata
+```
+
+4. Create a database using [Xata](https://xata.io/) and run the migrations:
+
+```bash
+bun run db:push
+```
+
+This will apply the migrations to the database.
+
+5. Start the development server:
+
+```bash
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+6. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+> [!NOTE]
+> I'm planning to add `Docker` support in the future.
+> Hovewer, I haven't found a good way to implement containerizing the application with `Xata` and `Bun` yet.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Contributing
 
-## Learn More
+If you want to contribute to the project, you can follow these steps:
 
-To learn more about Next.js, take a look at the following resources:
+1. Fork the repository.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Create a new branch with the name of the feature you want to implement:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+git checkout -b feature/your-feature-name # Replace `your-feature-name` with the name of your feature
 
-## Deploy on Vercel
+# Or:
+git branch -c feature/your-feature-name
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+I assume at this point you have already cloned the repository and installed the dependencies.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+3. Make your changes and commit them:
+
+```bash
+git add .
+git commit -m "Your commit message"
+```
+
+4. Push your changes to your fork:
+
+```bash
+git push origin feature/your-feature-name
+```
+
+5. Create a pull request to the `main` branch of the original repository.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

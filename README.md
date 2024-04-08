@@ -2,7 +2,7 @@
 
 KanMaster is a a project management system proudly developed based on Kanban methodology. It's a simple and easy to use tool that helps you to manage your projects and tasks in a visual way.
 
-## Technologies
+## Technologies 💻
 
 -   [Next.js](https://nextjs.org/)
 -   [TypeScript](https://www.typescriptlang.org/)
@@ -13,7 +13,7 @@ KanMaster is a a project management system proudly developed based on Kanban met
 -   [Playwright](https://playwright.dev/)
 -   [Xata](https://xata.io/)
 
-## Getting Started
+## Getting Started 🏗️
 
 You can run the project locally by following these steps:
 
@@ -55,7 +55,13 @@ bun dev
 > I'm planning to add `Docker` support in the future.
 > Hovewer, I haven't found a good way to implement containerizing the application with `Xata` and `Bun` yet.
 
-## Contributing
+## Planned Features 📝
+
+-   [ ] Add Docker 🐋 support
+-   [ ] Add user authentication
+-   [ ] Add relations in the database
+
+## Contributing 🤝
 
 If you want to contribute to the project, you can follow these steps:
 
@@ -84,6 +90,6 @@ git push origin feature/your-feature-name
 
 5. Create a pull request to the `main` branch of the original repository.
 
-## License
+## License 📜
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

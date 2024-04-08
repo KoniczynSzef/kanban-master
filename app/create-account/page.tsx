@@ -1,3 +1,4 @@
+import CreateUser from "@/components/auth/CreateUser";
 import { db } from "@/database";
 import { users } from "@/database/schema";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
@@ -19,7 +20,9 @@ const page: FC<Props> = async () => {
         where: eq(users.kindeId, user.id),
     });
 
-    if (user) return <pre>{JSON.stringify(userFromDB, null, 2)}</pre>;
+    console.log(userFromDB);
+
+    return <CreateUser />;
 };
 
 export default page;

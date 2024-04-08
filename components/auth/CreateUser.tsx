@@ -2,22 +2,18 @@
 
 import React, { FC } from "react";
 import { Button } from "../ui/button";
-import { users } from "@/database/schema";
-import { createUser } from "@/server/auth/createUser";
 
-interface Props {
-    user: typeof users.$inferInsert;
-}
+interface Props {}
 
-const CreateUser: FC<Props> = (props) => {
+const CreateUser: FC<Props> = () => {
     const [loading, setLoading] = React.useState(false);
 
     const handleClick = async () => {
         setLoading(true);
 
-        setLoading(true);
-        await createUser(props.user);
-        setLoading(false);
+        setTimeout(() => {
+            setLoading(false);
+        }, 500);
     };
 
     return (

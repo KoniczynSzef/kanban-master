@@ -20,7 +20,7 @@ const page: FC<Props> = async () => {
         return (
             <div>
                 Not authenticated
-                <RegisterLink postLoginRedirectURL="/api/auth/create-user">
+                <RegisterLink postLoginRedirectURL="/api/auth/createUser">
                     <Button>Register</Button>
                 </RegisterLink>
                 <LoginLink postLoginRedirectURL="/api/auth/check-for-account">

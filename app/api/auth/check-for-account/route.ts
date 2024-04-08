@@ -15,10 +15,6 @@ export async function GET() {
         });
     }
 
-    console.log(user);
-
-    console.log(await db.query.users.findMany());
-
     const isUserInDB = await db.query.users.findFirst({
         where: eq(users.kindeId, user.id),
     });

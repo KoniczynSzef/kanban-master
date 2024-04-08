@@ -30,5 +30,5 @@ export async function GET() {
         await db.insert(users).values(newUser);
     }
 
-    return redirect("/");
+    return redirect("/create-account");
 }

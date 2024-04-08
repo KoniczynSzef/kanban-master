@@ -64,10 +64,7 @@ If you want to contribute to the project, you can follow these steps:
 2. Create a new branch with the name of the feature you want to implement:
 
 ```bash
-git checkout -b feature/your-feature-name # Replace `your-feature-name` with the name of your feature
-
-# Or:
-git branch -c feature/your-feature-name
+git branch -c feature/your-feature-name # Replace `your-feature-name` with the name of your feature
 ```
 
 I assume at this point you have already cloned the repository and installed the dependencies.

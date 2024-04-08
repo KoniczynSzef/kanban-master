@@ -1,51 +1,45 @@
 import React, { FC } from "react";
 import { Button } from "@/components/ui/button";
-import { db } from "@/database";
 import {
     LogoutLink,
     RegisterLink,
     getKindeServerSession,
     LoginLink,
 } from "@kinde-oss/kinde-auth-nextjs/server";
+import { getUserByKindeId } from "@/server/auth/getUserByKindeId";
 
 interface Props {}
 
 const page: FC<Props> = async () => {
     const { isAuthenticated, getUser } = getKindeServerSession();
-    const isLoggedIn = await isAuthenticated();
 
-    if (!isLoggedIn) {
+    const isLoggedIn = await isAuthenticated();
+    const kindeUser = await getUser();
+
+    if (!isLoggedIn || !kindeUser) {
         return (
             <div>
                 Not authenticated
-                <RegisterLink postLoginRedirectURL="/api/auth/check-for-account">
+                <RegisterLink postLoginRedirectURL="/api/auth/create-user">
                     <Button>Register</Button>
                 </RegisterLink>
-                <LoginLink>
+                <LoginLink postLoginRedirectURL="/api/auth/check-for-account">
                     <Button variant={"outline"}>Login</Button>
                 </LoginLink>
             </div>
         );
     }
 
-    const newProjects = await db.query.projects.findMany();
-    const user = await getUser();
+    const user = await getUserByKindeId(kindeUser.id);
 
     return (
         <div className="p-24">
-            <h1>Projects</h1>
-            <p>Here are the projects you have access to:</p>
-            <ul>
-                {newProjects.map((project) => (
-                    <li key={project.id}>{project.name}</li>
-                ))}
-            </ul>
-
+            <pre>{JSON.stringify(user, null, 2)}</pre>
             <LogoutLink postLogoutRedirectURL="/">
-                <Button variant={"destructive"}>Sign out</Button>
+                <Button variant={"destructive"} className="my-16">
+                    Sign out
+                </Button>
             </LogoutLink>
-
-            {JSON.stringify(user, null, 2)}
         </div>
     );
 };

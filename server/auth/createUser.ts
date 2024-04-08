@@ -11,28 +11,11 @@ export async function createUser(user: typeof users.$inferInsert) {
     });
 
     if (existingUser) {
-        console.log("User already exists", existingUser);
-
-        return {
-            success: false,
-            error: "User already exists",
-        };
+        return;
     }
 
-    try {
-        const newUser = await db.insert(users).values(user).returning();
-        revalidatePath("/");
+    const newUser = await db.insert(users).values(user).returning();
+    revalidatePath("/");
 
-        console.log("Created user", newUser);
-
-        return {
-            success: true,
-            user: newUser,
-        };
-    } catch (error) {
-        return {
-            success: false,
-            error: error instanceof Error ? error.message : error,
-        };
-    }
+    return newUser;
 }

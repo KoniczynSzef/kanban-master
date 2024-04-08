@@ -4,7 +4,6 @@ import React, { FC } from "react";
 import { Button } from "../ui/button";
 import { users } from "@/database/schema";
 import { createUser } from "@/server/auth/createUser";
-import { redirect } from "next/navigation";
 
 interface Props {
     user: typeof users.$inferInsert;

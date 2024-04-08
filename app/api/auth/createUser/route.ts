@@ -30,5 +30,5 @@ export async function GET() {
         await db.insert(users).values(newUser);
     }
 
-    return redirect(process.env.PAGE_URL as string);
+    return redirect("/");
 }

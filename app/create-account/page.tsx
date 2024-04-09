@@ -16,12 +16,12 @@ const page: FC<Props> = async () => {
         return redirect("/");
     }
 
-    const user = await getUserByKindeId(kindeUser.id);
+    const { data: user } = await getUserByKindeId(kindeUser.id);
 
     return (
         <>
             <pre>{JSON.stringify(user, null, 2)}</pre>
-            <CreateUser user={user} />
+            <CreateUser user={user} kindeUser={kindeUser} />
         </>
     );
 };

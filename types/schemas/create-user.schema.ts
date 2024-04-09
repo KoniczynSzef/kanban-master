@@ -1,3 +1,5 @@
+import { User } from "@/database/schema";
+import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import { z } from "zod";
 
 export const CreateUserSchema = z.object({
@@ -12,12 +14,24 @@ export const CreateUserSchema = z.object({
 
 export type CreateUserSchemaType = z.infer<typeof CreateUserSchema>;
 
-export const createUserDefaultValues: CreateUserSchemaType = {
-    name: "",
-    surname: "",
-    email: "",
-    nickname: "",
-    bio: "",
-    businessEmail: "",
-    picture: "",
-};
+/**
+ * ? Creates the default values for the create user form
+ */
+// prettier-ignore
+export const createUserDefaultValues = (user: typeof User.$inferSelect | null | undefined, kindeUser: KindeUser | null) => {
+    if(!kindeUser && !user) {
+        throw new Error("You must provide a user or kindeUser");
+    }    
+
+    const defaultValues: CreateUserSchemaType = {
+        name: user?.name || kindeUser?.given_name || "",
+        surname: user?.surname || kindeUser?.family_name || "",
+        email: user?.email || kindeUser?.email || "",
+        nickname: user?.nickname || "",
+        bio: user?.bio || "",
+        businessEmail: user?.businessEmail || "",
+        picture: user?.picture || kindeUser?.picture || "",
+    };
+
+    return defaultValues;
+}

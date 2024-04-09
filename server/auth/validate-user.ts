@@ -5,5 +5,5 @@ export async function validateUser(kindeId: string) {
 
     if (!user) return false;
 
-    return user.validated;
+    return user.data?.validated;
 }

@@ -22,7 +22,7 @@ const page: FC<Props> = async () => {
 
     return (
         <>
-            {JSON.stringify(user, null, 2)}
+            <pre>{JSON.stringify(user, null, 2)}</pre>
             <CreateUser user={user} />
         </>
     );

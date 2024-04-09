@@ -1,8 +1,6 @@
 import CreateUser from "@/components/auth/CreateUser";
-import { db } from "@/database";
-import { User } from "@/database/schema";
+import { getUserByKindeId } from "@/server/auth/get-user-by-kinde-id";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import React, { FC } from "react";
 
@@ -18,13 +16,9 @@ const page: FC<Props> = async () => {
         return redirect("/");
     }
 
-    const user = await db.query.User.findFirst({
-        where: eq(User.kindeId, kindeUser.id),
-    });
+    const user = await getUserByKindeId(kindeUser.id);
 
-    if (!user) {
-        return redirect("/");
-    }
+    if (!user) return redirect("/");
 
     return (
         <>

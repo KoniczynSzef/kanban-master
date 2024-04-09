@@ -3,7 +3,7 @@
 import React, { FC } from "react";
 import { Button } from "../ui/button";
 import { User } from "@/database/schema";
-import { isUserValidated } from "@/server/auth/get-user-by-kinde-id";
+import { isUserValidated } from "@/server/auth/is-user-validated";
 
 interface Props {
     user: typeof User.$inferSelect;

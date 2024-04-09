@@ -6,11 +6,9 @@ import {
     getKindeServerSession,
     LoginLink,
 } from "@kinde-oss/kinde-auth-nextjs/server";
-import {
-    getUserByKindeId,
-    isUserValidated,
-} from "@/server/auth/get-user-by-kinde-id";
+import { getUserByKindeId } from "@/server/auth/get-user-by-kinde-id";
 import { redirect } from "next/navigation";
+import { isUserValidated } from "@/server/auth/is-user-validated";
 
 interface Props {}
 

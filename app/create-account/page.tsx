@@ -10,9 +10,11 @@ interface Props {}
 
 const page: FC<Props> = async () => {
     const { isAuthenticated, getUser } = getKindeServerSession();
-    const user = await getUser();
 
-    if (!(await isAuthenticated()) || !user) {
+    const user = await getUser();
+    const isLoggedIn = await isAuthenticated();
+
+    if (!isLoggedIn || !user) {
         return redirect("/");
     }
 

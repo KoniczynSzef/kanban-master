@@ -22,11 +22,11 @@ export const users = pgTable("user", {
     picture: varchar("picture").notNull(),
     kindeId: varchar("kinde_id").notNull(),
 
-    nickname: varchar("nickname").default(""),
-    bio: varchar("bio").default(""),
-    businessEmail: varchar("business_email").default(""),
+    nickname: varchar("nickname"),
+    bio: varchar("bio"),
+    businessEmail: varchar("business_email"),
 
-    teamId: uuid("team_id").defaultRandom(),
+    teamId: uuid("team_id"),
 });
 
 export const KanbanBoard = pgTable("kanban_board", {
@@ -44,13 +44,13 @@ export const KanbanColumn = pgTable("kanban_column", {
 export const KanbanTask = pgTable("kanban_task", {
     id: uuid("id").primaryKey().defaultRandom(),
     title: varchar("title").notNull(),
-    description: varchar("description").default(""),
+    description: varchar("description"),
     columnId: uuid("column_id").notNull(),
     boardId: uuid("board_id").notNull(),
 
     deadline: timestamp("deadline"),
     priority: varchar("priority", { enum: ["low", "medium", "high"] }),
-    note: varchar("note").default(""),
+    note: varchar("note"),
     columnIndex: integer("column_index").notNull(),
 
     assigneeId: uuid("assignee_id").defaultRandom(),
@@ -62,7 +62,7 @@ export const KanbanTask = pgTable("kanban_task", {
 export const Team = pgTable("team", {
     id: uuid("id").primaryKey().defaultRandom(),
     name: varchar("name").notNull(),
-    description: varchar("description").default(""),
+    description: varchar("description"),
     ownerId: uuid("owner_id").notNull(),
     createdAt: timestamp("created_at").notNull().defaultNow(),
     updatedAt: timestamp("updated_at").notNull().defaultNow(),

@@ -1,5 +1,5 @@
 import { db } from "@/database";
-import { users } from "@/database/schema";
+import { User } from "@/database/schema";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
@@ -15,8 +15,8 @@ export async function GET() {
         });
     }
 
-    const isUserInDB = await db.query.users.findFirst({
-        where: eq(users.kindeId, user.id),
+    const isUserInDB = await db.query.User.findFirst({
+        where: eq(User.kindeId, user.id),
     });
 
     if (!isUserInDB) {

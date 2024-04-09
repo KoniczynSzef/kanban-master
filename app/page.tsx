@@ -9,7 +9,7 @@ import {
 import {
     getUserByKindeId,
     isUserValidated,
-} from "@/server/auth/getUserByKindeId";
+} from "@/server/auth/get-user-by-kinde-id";
 import { redirect } from "next/navigation";
 
 interface Props {}

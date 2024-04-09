@@ -13,11 +13,3 @@ export async function getUserByKindeId(kindeId: string) {
 
     return user;
 }
-
-export async function isUserValidated(kindeId: string) {
-    const user = await getUserByKindeId(kindeId);
-
-    if (!user) return false;
-
-    return user.validated;
-}

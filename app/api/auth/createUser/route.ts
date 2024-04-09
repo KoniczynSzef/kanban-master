@@ -1,6 +1,6 @@
 import { db } from "@/database";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { users } from "@/database/schema";
+import { User } from "@/database/schema";
 import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 
@@ -15,19 +15,19 @@ export async function GET() {
         });
     }
 
-    const userFromDB = await db.query.users.findFirst({
-        where: eq(users.kindeId, user.id),
+    const userFromDB = await db.query.User.findFirst({
+        where: eq(User.kindeId, user.id),
     });
 
     if (!userFromDB) {
-        const newUser: typeof users.$inferInsert = {
+        const newUser: typeof User.$inferInsert = {
             name: user.given_name || "user",
             email: user.email || "",
             picture: user.picture || "",
             kindeId: user.id,
         };
 
-        await db.insert(users).values(newUser);
+        await db.insert(User).values(newUser);
     }
 
     return redirect("/create-account");

@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_937314d95031ae",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE \"user\" ADD COLUMN validated boolean DEFAULT false NOT NULL"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_937314d95031ae",
+  "parent": "sql_fce7af31ca2ccd",
+  "startedAt": "2024-04-09T08:02:25.240507Z"
+}

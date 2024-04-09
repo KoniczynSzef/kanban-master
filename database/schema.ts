@@ -19,6 +19,7 @@ export const Project = pgTable("project", {
 export const User = pgTable("user", {
     id: uuid("id").primaryKey().defaultRandom(),
     name: varchar("name").notNull(),
+    surname: varchar("surname"),
     email: varchar("email").notNull(),
     picture: varchar("picture").notNull(),
     kindeId: varchar("kinde_id").notNull(),

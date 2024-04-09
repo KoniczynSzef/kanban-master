@@ -8,7 +8,7 @@ import {
 } from "@kinde-oss/kinde-auth-nextjs/server";
 import { getUserByKindeId } from "@/server/auth/get-user-by-kinde-id";
 import { redirect } from "next/navigation";
-import { isUserValidated } from "@/server/auth/is-user-validated";
+import { validateUser } from "@/server/auth/validate-user";
 
 interface Props {}
 
@@ -22,10 +22,10 @@ const page: FC<Props> = async () => {
         return (
             <div>
                 Not authenticated
-                <RegisterLink postLoginRedirectURL="/api/auth/createUser">
+                <RegisterLink>
                     <Button>Register</Button>
                 </RegisterLink>
-                <LoginLink postLoginRedirectURL="/api/auth/check-for-account">
+                <LoginLink>
                     <Button variant={"outline"}>Login</Button>
                 </LoginLink>
             </div>
@@ -34,7 +34,9 @@ const page: FC<Props> = async () => {
 
     const user = await getUserByKindeId(kindeUser.id);
 
-    if (!(await isUserValidated(kindeUser.id))) {
+    const isUserValidated = await validateUser(kindeUser.id);
+
+    if (!isUserValidated) {
         return redirect("/create-account");
     }
 

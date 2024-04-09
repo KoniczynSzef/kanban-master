@@ -15,7 +15,7 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 
 interface Props {
-    user: typeof User.$inferSelect;
+    user: typeof User.$inferSelect | null;
 }
 
 const CreateUser: FC<Props> = (props) => {

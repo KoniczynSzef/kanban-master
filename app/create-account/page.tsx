@@ -18,8 +18,6 @@ const page: FC<Props> = async () => {
 
     const user = await getUserByKindeId(kindeUser.id);
 
-    if (!user) return redirect("/");
-
     return (
         <>
             <pre>{JSON.stringify(user, null, 2)}</pre>

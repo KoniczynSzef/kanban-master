@@ -51,13 +51,22 @@ bun dev
 
 6. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-> [!NOTE]
-> I'm planning to add `Docker` support in the future.
-> Hovewer, I haven't found a good way to implement containerizing the application with `Xata` and `Bun` yet.
+> [!TIP]
+> You can also use `Docker` for running KanMaster
+
+Build the container using `docker compose`
+```bash
+docker compose build
+```
+
+Run the container
+```
+docker compose up
+```
 
 ## Planned Features 📝
 
--   [ ] Add Docker 🐋 support
+-   [x] Add Docker 🐋 support
 -   [ ] Add user authentication
 -   [ ] Add relations in the database
 

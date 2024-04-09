@@ -2,14 +2,20 @@
 
 import React, { FC } from "react";
 import { Button } from "../ui/button";
+import { User } from "@/database/schema";
+import { isUserValidated } from "@/server/auth/getUserByKindeId";
 
-interface Props {}
+interface Props {
+    user: typeof User.$inferSelect;
+}
 
-const CreateUser: FC<Props> = () => {
+const CreateUser: FC<Props> = (props) => {
     const [loading, setLoading] = React.useState(false);
 
     const handleClick = async () => {
         setLoading(true);
+
+        console.log(await isUserValidated(props.user.kindeId));
 
         setTimeout(() => {
             setLoading(false);

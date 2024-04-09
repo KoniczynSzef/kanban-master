@@ -11,23 +11,25 @@ interface Props {}
 const page: FC<Props> = async () => {
     const { isAuthenticated, getUser } = getKindeServerSession();
 
-    const user = await getUser();
+    const kindeUser = await getUser();
     const isLoggedIn = await isAuthenticated();
 
-    if (!isLoggedIn || !user) {
+    if (!isLoggedIn || !kindeUser) {
         return redirect("/");
     }
 
-    const userFromDB = await db.query.User.findFirst({
-        where: eq(User.kindeId, user.id),
+    const user = await db.query.User.findFirst({
+        where: eq(User.kindeId, kindeUser.id),
     });
 
-    console.log(userFromDB);
+    if (!user) {
+        return redirect("/");
+    }
 
     return (
         <>
-            {JSON.stringify(userFromDB, null, 2)}
-            <CreateUser />
+            {JSON.stringify(user, null, 2)}
+            <CreateUser user={user} />
         </>
     );
 };

@@ -4,9 +4,10 @@ import {
     varchar,
     timestamp,
     integer,
+    boolean,
 } from "drizzle-orm/pg-core";
 
-export const projects = pgTable("project", {
+export const Project = pgTable("project", {
     id: uuid("id").primaryKey().defaultRandom(),
     name: varchar("name").notNull(),
     description: varchar("description").default(""),
@@ -15,7 +16,7 @@ export const projects = pgTable("project", {
     updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
-export const users = pgTable("user", {
+export const User = pgTable("user", {
     id: uuid("id").primaryKey().defaultRandom(),
     name: varchar("name").notNull(),
     email: varchar("email").notNull(),
@@ -27,6 +28,7 @@ export const users = pgTable("user", {
     businessEmail: varchar("business_email"),
 
     teamId: uuid("team_id"),
+    validated: boolean("validated").notNull().default(false),
 });
 
 export const KanbanBoard = pgTable("kanban_board", {

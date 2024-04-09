@@ -1,6 +1,6 @@
 import CreateUser from "@/components/auth/CreateUser";
 import { db } from "@/database";
-import { users } from "@/database/schema";
+import { User } from "@/database/schema";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
@@ -18,13 +18,18 @@ const page: FC<Props> = async () => {
         return redirect("/");
     }
 
-    const userFromDB = await db.query.users.findFirst({
-        where: eq(users.kindeId, user.id),
+    const userFromDB = await db.query.User.findFirst({
+        where: eq(User.kindeId, user.id),
     });
 
     console.log(userFromDB);
 
-    return <CreateUser />;
+    return (
+        <>
+            {JSON.stringify(userFromDB, null, 2)}
+            <CreateUser />
+        </>
+    );
 };
 
 export default page;

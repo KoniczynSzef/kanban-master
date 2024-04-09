@@ -4,18 +4,19 @@ import {
     varchar,
     timestamp,
     integer,
+    boolean,
 } from "drizzle-orm/pg-core";
 
-export const projects = pgTable("project", {
+export const Project = pgTable("project", {
     id: uuid("id").primaryKey().defaultRandom(),
     name: varchar("name").notNull(),
-    description: varchar("description"),
+    description: varchar("description").default(""),
     ownerId: uuid("owner_id").notNull(),
     createdAt: timestamp("created_at").notNull().defaultNow(),
     updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
-export const users = pgTable("user", {
+export const User = pgTable("user", {
     id: uuid("id").primaryKey().defaultRandom(),
     name: varchar("name").notNull(),
     email: varchar("email").notNull(),
@@ -27,6 +28,7 @@ export const users = pgTable("user", {
     businessEmail: varchar("business_email"),
 
     teamId: uuid("team_id"),
+    validated: boolean("validated").notNull().default(false),
 });
 
 export const KanbanBoard = pgTable("kanban_board", {
@@ -53,8 +55,8 @@ export const KanbanTask = pgTable("kanban_task", {
     note: varchar("note"),
     columnIndex: integer("column_index").notNull(),
 
-    assigneeId: uuid("assignee_id"),
-    creatorId: uuid("creator_id"),
+    assigneeId: uuid("assignee_id").defaultRandom(),
+    creatorId: uuid("creator_id").defaultRandom(),
     createdAt: timestamp("created_at").notNull().defaultNow(),
     updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });

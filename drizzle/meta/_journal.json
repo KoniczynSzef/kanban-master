@@ -50,6 +50,48 @@
       "when": 1712494664199,
       "tag": "0006_late_exodus",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1712518854088,
+      "tag": "0007_boring_sunspot",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1712519069174,
+      "tag": "0008_broad_skreet",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1712519684919,
+      "tag": "0009_polite_wiccan",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "5",
+      "when": 1712521667796,
+      "tag": "0010_last_tattoo",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "5",
+      "when": 1712646317825,
+      "tag": "0011_woozy_mysterio",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "5",
+      "when": 1712649728747,
+      "tag": "0012_gray_triathlon",
+      "breakpoints": true
     }
   ]
 }

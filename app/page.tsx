@@ -1,45 +1,51 @@
+import React, { FC } from "react";
 import { Button } from "@/components/ui/button";
-import { db } from "@/database";
-import { users } from "@/database/schema";
 import {
     LogoutLink,
     RegisterLink,
     getKindeServerSession,
+    LoginLink,
 } from "@kinde-oss/kinde-auth-nextjs/server";
-import React, { FC } from "react";
+import { getUserByKindeId } from "@/server/auth/get-user-by-kinde-id";
+import { redirect } from "next/navigation";
+import { isUserValidated } from "@/server/auth/is-user-validated";
 
 interface Props {}
 
 const page: FC<Props> = async () => {
     const { isAuthenticated, getUser } = getKindeServerSession();
-    const isLoggedIn = await isAuthenticated();
 
-    if (!isLoggedIn) {
+    const isLoggedIn = await isAuthenticated();
+    const kindeUser = await getUser();
+
+    if (!isLoggedIn || !kindeUser) {
         return (
             <div>
                 Not authenticated
-                <RegisterLink>
+                <RegisterLink postLoginRedirectURL="/api/auth/createUser">
                     <Button>Register</Button>
                 </RegisterLink>
+                <LoginLink postLoginRedirectURL="/api/auth/check-for-account">
+                    <Button variant={"outline"}>Login</Button>
+                </LoginLink>
             </div>
         );
     }
 
-    const newProjects = await db.query.projects.findMany();
-    const user = await getUser();
+    const user = await getUserByKindeId(kindeUser.id);
+
+    if (!(await isUserValidated(kindeUser.id))) {
+        return redirect("/create-account");
+    }
 
     return (
         <div className="p-24">
-            <p className="text-3xl">Test</p>
-            {newProjects.map((project) => (
-                <p key={project.id}>{JSON.stringify(project, null, 2)}</p>
-            ))}
-
+            <pre>{JSON.stringify(user, null, 2)}</pre>
             <LogoutLink postLogoutRedirectURL="/">
-                <Button variant={"destructive"}>Sign out</Button>
+                <Button variant={"destructive"} className="my-16">
+                    Sign out
+                </Button>
             </LogoutLink>
-
-            {JSON.stringify(user, null, 2)}
         </div>
     );
 };

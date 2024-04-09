@@ -2,7 +2,7 @@
 
 KanMaster is a a project management system proudly developed based on Kanban methodology. It's a simple and easy to use tool that helps you to manage your projects and tasks in a visual way.
 
-## Technologies
+## Technologies 💻
 
 -   [Next.js](https://nextjs.org/)
 -   [TypeScript](https://www.typescriptlang.org/)
@@ -13,7 +13,7 @@ KanMaster is a a project management system proudly developed based on Kanban met
 -   [Playwright](https://playwright.dev/)
 -   [Xata](https://xata.io/)
 
-## Getting Started
+## Getting Started 🏗️
 
 You can run the project locally by following these steps:
 
@@ -51,11 +51,26 @@ bun dev
 
 6. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-> [!NOTE]
-> I'm planning to add `Docker` support in the future.
-> Hovewer, I haven't found a good way to implement containerizing the application with `Xata` and `Bun` yet.
+> [!TIP]
+> You can also use `Docker` for running KanMaster
 
-## Contributing
+Build the container using `docker compose`
+```bash
+docker compose build
+```
+
+Run the container
+```
+docker compose up
+```
+
+## Planned Features 📝
+
+-   [x] Add Docker 🐋 support
+-   [ ] Add user authentication
+-   [ ] Add relations in the database
+
+## Contributing 🤝
 
 If you want to contribute to the project, you can follow these steps:
 
@@ -64,10 +79,7 @@ If you want to contribute to the project, you can follow these steps:
 2. Create a new branch with the name of the feature you want to implement:
 
 ```bash
-git checkout -b feature/your-feature-name # Replace `your-feature-name` with the name of your feature
-
-# Or:
-git branch -c feature/your-feature-name
+git branch -c feature/your-feature-name # Replace `your-feature-name` with the name of your feature
 ```
 
 I assume at this point you have already cloned the repository and installed the dependencies.
@@ -87,6 +99,6 @@ git push origin feature/your-feature-name
 
 5. Create a pull request to the `main` branch of the original repository.
 
-## License
+## License 📜
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

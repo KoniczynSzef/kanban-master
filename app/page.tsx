@@ -8,7 +8,7 @@ import {
 } from "@kinde-oss/kinde-auth-nextjs/server";
 import { getUserByKindeId } from "@/server/auth/get-user-by-kinde-id";
 import { redirect } from "next/navigation";
-import { validateUser } from "@/server/auth/validate-user";
+import { checkUserValidation } from "@/server/auth/check-user-validation";
 
 interface Props {}
 
@@ -34,7 +34,7 @@ const page: FC<Props> = async () => {
 
     const user = await getUserByKindeId(kindeUser.id);
 
-    const isUserValidated = await validateUser(kindeUser.id);
+    const isUserValidated = await checkUserValidation(kindeUser.id);
 
     if (!isUserValidated) {
         return redirect("/create-account");

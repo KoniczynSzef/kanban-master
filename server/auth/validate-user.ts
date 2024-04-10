@@ -10,12 +10,12 @@ const schema = z.string();
 export const validateUser = safeAction(schema, async (kindeId) => {
     const user = await getUserByKindeId(kindeId);
 
-    if (!user) return false;
+    if (!user) return { success: false, user: null };
 
-    await db
-        .update(User)
-        .set({ validated: true })
-        .where(eq(User.kindeId, kindeId));
+    // await db
+    //     .update(User)
+    //     .set({ validated: true })
+    //     .where(eq(User.kindeId, kindeId));
 
-    return true;
+    return { success: true, user };
 });

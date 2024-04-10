@@ -2,14 +2,31 @@ import { User } from "@/database/schema";
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import { z } from "zod";
 
+const emailSchema = z.string().email();
+const urlSchema = z.string().url();
+
 export const CreateUserSchema = z.object({
     name: z.string().min(1).max(255),
-    surname: z.string().min(1).max(255).optional(),
+    surname: z.string().max(255).optional(),
     email: z.string().email(),
-    nickname: z.string().min(1).max(255).optional(),
-    bio: z.string().min(1).max(255).optional(),
-    businessEmail: z.string().email().optional(),
-    picture: z.string().url(),
+    nickname: z.string().max(255).optional(),
+    bio: z.string().max(255).optional(),
+    businessEmail: z
+        .string()
+        .optional()
+        .refine(
+            (value) =>
+                value?.length === 0 || emailSchema.safeParse(value).success,
+            { message: "Invalid email " }
+        ),
+    picture: z
+        .string()
+        .optional()
+        .refine(
+            (value) =>
+                value?.length === 0 || urlSchema.safeParse(value).success,
+            { message: "Invalid URL" }
+        ),
 });
 
 export type CreateUserSchemaType = z.infer<typeof CreateUserSchema>;
@@ -35,3 +52,13 @@ export const createUserDefaultValues = (user: typeof User.$inferSelect | null | 
 
     return defaultValues;
 }
+
+export const userProps: (keyof CreateUserSchemaType)[] = [
+    "name",
+    "surname",
+    "nickname",
+    "email",
+    "bio",
+    "businessEmail",
+    "picture",
+];

@@ -8,12 +8,16 @@ import {
     CreateUserSchema,
     CreateUserSchemaType,
     createUserDefaultValues,
+    userProps,
 } from "@/types/schemas/create-user.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form } from "../ui/form";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
+import * as Form from "../ui/form";
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
+import CreateFormField from "./CreateFormField";
+
+import { useAction } from "next-safe-action/hooks";
+import { validateUser } from "@/server/auth/validate-user";
+import { redirect } from "next/navigation";
 
 interface Props {
     user: typeof User.$inferSelect | null | undefined;
@@ -27,18 +31,34 @@ const CreateUser: FC<Props> = (props) => {
         defaultValues: createUserDefaultValues(props.user, props.kindeUser),
     });
 
-    const handleSubmit = async (data: CreateUserSchemaType) => {
-        console.log(data);
+    const { execute, status } = useAction(validateUser, {
+        onSuccess: (data) => {
+            console.log("User created");
+            console.log(data);
+            return redirect("/");
+        },
+    });
+
+    const handleSubmit = async () => {
+        execute(props.kindeUser.id);
     };
 
     return (
-        <Form {...form}>
-            <form action="" onSubmit={form.handleSubmit(handleSubmit)}>
-                <Label htmlFor="name">Name</Label>
-                <Input {...form.register("name")} />
-                <Button type="submit">Create Account</Button>
+        <Form.Form {...form}>
+            <form
+                action=""
+                onSubmit={form.handleSubmit(handleSubmit)}
+                className="max-w-xl border border-primary-foreground p-8 rounded-xl flex flex-col gap-4 mx-auto"
+            >
+                {userProps.map((prop, idx) => (
+                    <CreateFormField key={idx} prop={prop} form={form} />
+                ))}
+
+                <Button type="submit" disabled={status === "executing"}>
+                    Create Account
+                </Button>
             </form>
-        </Form>
+        </Form.Form>
     );
 };
 

@@ -1,6 +1,10 @@
 import CreateUser from "@/components/auth/CreateUser";
+import { Button } from "@/components/ui/button";
 import { getUserByKindeId } from "@/server/auth/get-user-by-kinde-id";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import {
+    LogoutLink,
+    getKindeServerSession,
+} from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import React, { FC } from "react";
 
@@ -20,8 +24,10 @@ const page: FC<Props> = async () => {
 
     return (
         <>
-            <pre>{JSON.stringify(user, null, 2)}</pre>
             <CreateUser user={user} kindeUser={kindeUser} />
+            <LogoutLink>
+                <Button variant={"destructive"}>Logout</Button>
+            </LogoutLink>
         </>
     );
 };

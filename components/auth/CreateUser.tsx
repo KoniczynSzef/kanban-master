@@ -17,6 +17,9 @@ import CreateFormField from "./CreateFormField";
 
 import { useAction } from "next-safe-action/hooks";
 import { validateUser } from "@/server/auth/validate-user";
+
+import { Loader } from "lucide-react";
+import { toast } from "sonner";
 import { redirect } from "next/navigation";
 
 interface Props {
@@ -33,9 +36,10 @@ const CreateUser: FC<Props> = (props) => {
 
     const { execute, status } = useAction(validateUser, {
         onSuccess: (data) => {
-            console.log("User created");
-            console.log(data);
-            return redirect("/");
+            if (data.success) {
+                toast.success("User created successfully");
+                redirect("/");
+            }
         },
     });
 
@@ -55,7 +59,11 @@ const CreateUser: FC<Props> = (props) => {
                 ))}
 
                 <Button type="submit" disabled={status === "executing"}>
-                    Create Account
+                    {status === "executing" ? (
+                        <Loader className="animate-spin" />
+                    ) : (
+                        "Create account"
+                    )}
                 </Button>
             </form>
         </Form.Form>

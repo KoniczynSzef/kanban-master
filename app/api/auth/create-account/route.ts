@@ -1,6 +1,6 @@
 import { db } from "@/database";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { User } from "@/database/schema";
+import { users } from "@/database/schema";
 import { eq } from "drizzle-orm";
 
 export async function POST() {
@@ -14,12 +14,12 @@ export async function POST() {
         });
     }
 
-    const userFromDB = await db.query.User.findFirst({
-        where: eq(User.kindeId, user.id),
+    const userFromDB = await db.query.users.findFirst({
+        where: eq(users.kindeId, user.id),
     });
 
     if (!userFromDB) {
-        const newUser: typeof User.$inferInsert = {
+        const newUser: typeof users.$inferInsert = {
             name: user.given_name || "user",
             email: user.email || "",
             picture: user.picture || "",
@@ -27,7 +27,8 @@ export async function POST() {
             validated: true,
         };
 
-        await db.insert(User).values(newUser);
+        await db.insert(users).values(newUser);
+        console.log("User created");
     }
 
     return new Response("Account created successfully", { status: 200 });

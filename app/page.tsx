@@ -34,7 +34,7 @@ const page: FC<Props> = async () => {
 
     const user = await getUserByKindeId(kindeUser.id);
 
-    const isUserValidated = await checkUserValidation(kindeUser.id);
+    const isUserValidated = await checkUserValidation();
 
     if (!isUserValidated) {
         return redirect("/create-account");

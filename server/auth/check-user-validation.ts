@@ -1,9 +1,9 @@
 import { getUserByKindeId } from "./get-user-by-kinde-id";
 
-export async function isUserValidated(kindeId: string) {
+export async function checkUserValidation(kindeId: string) {
     const user = await getUserByKindeId(kindeId);
 
     if (!user) return false;
 
-    return user.validated;
+    return user.data?.validated;
 }

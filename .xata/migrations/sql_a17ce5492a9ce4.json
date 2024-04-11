@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_a17ce5492a9ce4",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE \"user\" ADD COLUMN surname varchar"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_a17ce5492a9ce4",
+  "parent": "sql_937314d95031ae",
+  "startedAt": "2024-04-09T14:39:21.428756Z"
+}

@@ -116,7 +116,7 @@ const tables = [
                 type: "varchar",
                 notNull: false,
                 unique: false,
-                defaultValue: "''::character varying",
+                defaultValue: null,
             },
             {
                 name: "id",
@@ -130,7 +130,7 @@ const tables = [
                 type: "varchar",
                 notNull: false,
                 unique: false,
-                defaultValue: "''::character varying",
+                defaultValue: null,
             },
             {
                 name: "priority",
@@ -217,7 +217,7 @@ const tables = [
                 type: "varchar",
                 notNull: false,
                 unique: false,
-                defaultValue: "''::character varying",
+                defaultValue: null,
             },
             {
                 name: "id",
@@ -254,17 +254,17 @@ const tables = [
         columns: [
             {
                 name: "bio",
-                type: "varchar",
+                type: "text",
                 notNull: false,
                 unique: false,
-                defaultValue: "''::character varying",
+                defaultValue: null,
             },
             {
                 name: "business_email",
                 type: "varchar",
                 notNull: false,
                 unique: false,
-                defaultValue: "''::character varying",
+                defaultValue: null,
             },
             {
                 name: "email",
@@ -299,7 +299,7 @@ const tables = [
                 type: "varchar",
                 notNull: false,
                 unique: false,
-                defaultValue: "''::character varying",
+                defaultValue: null,
             },
             {
                 name: "picture",
@@ -309,11 +309,25 @@ const tables = [
                 defaultValue: null,
             },
             {
+                name: "surname",
+                type: "varchar",
+                notNull: false,
+                unique: false,
+                defaultValue: null,
+            },
+            {
                 name: "team_id",
                 type: "uuid",
                 notNull: false,
                 unique: false,
-                defaultValue: "gen_random_uuid()",
+                defaultValue: null,
+            },
+            {
+                name: "validated",
+                type: "bool",
+                notNull: true,
+                unique: false,
+                defaultValue: "false",
             },
         ],
     },

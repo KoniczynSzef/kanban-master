@@ -1,6 +1,10 @@
 import CreateUser from "@/components/auth/CreateUser";
+import { Button } from "@/components/ui/button";
 import { getUserByKindeId } from "@/server/auth/get-user-by-kinde-id";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import {
+    LogoutLink,
+    getKindeServerSession,
+} from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import React, { FC } from "react";
 
@@ -16,14 +20,18 @@ const page: FC<Props> = async () => {
         return redirect("/");
     }
 
-    const user = await getUserByKindeId(kindeUser.id);
+    const { data: user } = await getUserByKindeId(kindeUser.id);
 
-    if (!user) return redirect("/");
+    if (user?.validated) {
+        return redirect("/");
+    }
 
     return (
         <>
-            {JSON.stringify(user, null, 2)}
-            <CreateUser user={user} />
+            <CreateUser user={user} kindeUser={kindeUser} />
+            <LogoutLink>
+                <Button variant={"destructive"}>Logout</Button>
+            </LogoutLink>
         </>
     );
 };

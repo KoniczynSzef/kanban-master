@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_9622163f81731d",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE \"user\" ALTER COLUMN bio DROP DEFAULT"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_9622163f81731d",
+  "parent": "sql_6d7e87b320e0fc",
+  "startedAt": "2024-04-09T07:05:42.435436Z"
+}

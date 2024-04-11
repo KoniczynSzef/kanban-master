@@ -19,9 +19,17 @@ export async function GET() {
         where: eq(User.kindeId, user.id),
     });
 
-    if (!isUserInDB) {
-        return redirect("/create-account");
+    if (isUserInDB) {
+        return redirect("/");
     }
 
-    return redirect("/");
+    const newUser: typeof User.$inferInsert = {
+        name: user.given_name || "user",
+        email: user.email || "",
+        picture: user.picture || "",
+        kindeId: user.id,
+    };
+
+    await db.insert(User).values(newUser);
+    return redirect("/create-account");
 }

@@ -254,7 +254,7 @@ const tables = [
         columns: [
             {
                 name: "bio",
-                type: "varchar",
+                type: "text",
                 notNull: false,
                 unique: false,
                 defaultValue: null,

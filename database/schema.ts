@@ -5,6 +5,7 @@ import {
     timestamp,
     integer,
     boolean,
+    text,
 } from "drizzle-orm/pg-core";
 
 export const Project = pgTable("project", {
@@ -25,7 +26,7 @@ export const User = pgTable("user", {
     kindeId: varchar("kinde_id").notNull(),
 
     nickname: varchar("nickname"),
-    bio: varchar("bio"),
+    bio: text("bio"),
     businessEmail: varchar("business_email"),
 
     teamId: uuid("team_id"),

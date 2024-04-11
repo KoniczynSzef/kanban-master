@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_f265b485f72685",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE \"user\" ALTER COLUMN bio TYPE text"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_f265b485f72685",
+  "parent": "sql_a17ce5492a9ce4",
+  "startedAt": "2024-04-11T16:05:30.35152Z"
+}

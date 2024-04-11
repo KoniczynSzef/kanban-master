@@ -21,6 +21,7 @@ import { Loader } from "lucide-react";
 import { toast } from "sonner";
 import { redirect } from "next/navigation";
 import { inputFormFields } from "@/types/schemas/form-field";
+import { createUser } from "@/server/auth/create-user";
 
 interface Props {
     user: typeof User.$inferSelect | null | undefined;
@@ -35,10 +36,16 @@ const CreateUser: FC<Props> = (props) => {
     });
 
     const { execute, status } = useAction(validateUser, {
-        onSuccess: (data) => {
+        onSuccess: async (data) => {
             if (data.success) {
-                toast.success("User created successfully");
-                redirect("/");
+                const createdUser = await createUser({
+                    kindeId: props.kindeUser.id,
+                    user: form.getValues(),
+                });
+                if (createdUser) {
+                    toast.success("Account created successfully");
+                    redirect("/");
+                }
             }
         },
     });

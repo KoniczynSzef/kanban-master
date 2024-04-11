@@ -2,7 +2,6 @@ import { db } from "@/database";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { User } from "@/database/schema";
 import { eq } from "drizzle-orm";
-import { redirect } from "next/navigation";
 
 export async function POST() {
     const { getUser } = getKindeServerSession();
@@ -25,11 +24,11 @@ export async function POST() {
             email: user.email || "",
             picture: user.picture || "",
             kindeId: user.id,
+            validated: true,
         };
 
         await db.insert(User).values(newUser);
-        console.log("User created");
     }
 
-    return redirect("/create-account");
+    return new Response("Account created successfully", { status: 200 });
 }

@@ -19,7 +19,7 @@ import { validateUser } from "@/server/auth/validate-user";
 
 import { Loader } from "lucide-react";
 import { toast } from "sonner";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { inputFormFields } from "@/types/schemas/form-field";
 import { createUser } from "@/server/auth/create-user";
 
@@ -29,29 +29,34 @@ interface Props {
 }
 
 const CreateUser: FC<Props> = (props) => {
+    const router = useRouter();
     const form = useForm<CreateUserSchemaType>({
         mode: "onChange",
         resolver: zodResolver(CreateUserSchema),
         defaultValues: createUserDefaultValues(props.user, props.kindeUser),
     });
 
-    const { execute, status } = useAction(validateUser, {
-        onSuccess: async (data) => {
-            if (data.success) {
-                const createdUser = await createUser({
-                    kindeId: props.kindeUser.id,
-                    user: form.getValues(),
-                });
-                if (createdUser) {
-                    toast.success("Account created successfully");
-                    redirect("/");
-                }
-            }
-        },
-    });
+    // const { execute, status } = useAction(validateUser, {
+    //     onSuccess: async (data) => {
+    //         if (data.success) {
+    //             const createdUser = await createUser({
+    //                 kindeId: props.kindeUser.id,
+    //                 user: form.getValues(),
+    //             });
+    //             if (createdUser) {
+    //                 toast.success("Account created successfully");
+    //                 redirect("/");
+    //             }
+    //         }
+    //     },
+    // });
 
     const handleSubmit = async () => {
-        execute(props.kindeUser.id);
+        const res = await fetch("/api/auth/create-account", { method: "POST" });
+        if (res.ok) {
+            toast.success("Account created successfully");
+            router.push("/");
+        }
     };
 
     return (
@@ -69,13 +74,14 @@ const CreateUser: FC<Props> = (props) => {
                     />
                 ))}
 
-                <Button type="submit" disabled={status === "executing"}>
+                {/* <Button type="submit" disabled={status === "executing"}>
                     {status === "executing" ? (
                         <Loader className="animate-spin" />
                     ) : (
                         "Create account"
                     )}
-                </Button>
+                </Button> */}
+                <Button type="submit">Create account</Button>
             </form>
         </Form.Form>
     );

@@ -22,6 +22,10 @@ const page: FC<Props> = async () => {
 
     const { data: user } = await getUserByKindeId(kindeUser.id);
 
+    if (user?.validated) {
+        return redirect("/");
+    }
+
     return (
         <>
             <CreateUser user={user} kindeUser={kindeUser} />

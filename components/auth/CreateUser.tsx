@@ -14,14 +14,9 @@ import * as Form from "../ui/form";
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import CreateFormField from "./CreateFormField";
 
-import { useAction } from "next-safe-action/hooks";
-import { validateUser } from "@/server/auth/validate-user";
-
-import { Loader } from "lucide-react";
 import { toast } from "sonner";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { inputFormFields } from "@/types/schemas/form-field";
-import { createUser } from "@/server/auth/create-user";
 
 interface Props {
     user: typeof User.$inferSelect | null | undefined;

@@ -2,22 +2,12 @@ import { z } from "zod";
 import { createAccount, createAccountSchema } from "./auth/create-account";
 import { getUserByKindeId } from "./auth/get-user-by-kinde-id";
 import { publicProcedure, router } from "./trpc";
-import { db } from "@/database";
-import { eq } from "drizzle-orm";
-import { users } from "@/database/schema";
+import { checkUserValidation } from "./auth/check-user-validation";
 
 export const appRouter = router({
     checkUserValidation: publicProcedure
         .input(z.string())
-        .query(async (opts) => {
-            const user = await db.query.users.findFirst({
-                where: eq(users.kindeId, opts.input),
-            });
-
-            if (!user) return false;
-
-            return user.validated;
-        }),
+        .query(async ({ input }) => checkUserValidation(input)),
 
     createAccount: publicProcedure
         .input(createAccountSchema)

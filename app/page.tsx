@@ -6,9 +6,6 @@ import {
     getKindeServerSession,
     LoginLink,
 } from "@kinde-oss/kinde-auth-nextjs/server";
-import { getUserByKindeId } from "@/server/auth/get-user-by-kinde-id";
-import { redirect } from "next/navigation";
-import { checkUserValidation } from "@/server/auth/check-user-validation";
 
 interface Props {}
 
@@ -32,17 +29,16 @@ const page: FC<Props> = async () => {
         );
     }
 
-    const user = await getUserByKindeId(kindeUser.id);
+    // const user = await getUserByKindeId(kindeUser.id);
 
-    const isUserValidated = await checkUserValidation();
+    // const isUserValidated = await checkUserValidation();
 
-    if (!isUserValidated) {
-        return redirect("/create-account");
-    }
+    // if (!isUserValidated) {
+    //     return redirect("/create-account");
+    // }
 
     return (
         <div className="p-24">
-            <pre>{JSON.stringify(user, null, 2)}</pre>
             <LogoutLink postLogoutRedirectURL="/">
                 <Button variant={"destructive"} className="my-16">
                     Sign out

@@ -1,9 +1,9 @@
 import { trpc } from "@/app/_trpc/client";
 
-export const checkUserValidation = async (input: string) => {
-    const user = trpc.getUserByKindeId.useQuery(input);
+export const checkUserValidation = async (input: string): Promise<boolean> => {
+    const { data: user } = trpc.getUserByKindeId.useQuery(input);
 
     if (!user) return false;
 
-    return user;
+    return user?.validated;
 };

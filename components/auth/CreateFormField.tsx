@@ -3,22 +3,23 @@ import * as Form from "@/components/ui/form";
 import { CreateUserSchemaType } from "@/types/schemas/create-user.schema";
 import { UseFormReturn } from "react-hook-form";
 import { Input } from "../ui/input";
+import { InputFormFieldProps } from "@/types/schemas/form-field";
 
 interface Props {
     form: UseFormReturn<CreateUserSchemaType>;
-    prop: keyof CreateUserSchemaType;
+    inputProps: InputFormFieldProps;
 }
 
 const CreateFormField: FC<Props> = (props) => {
     return (
         <Form.FormField
             control={props.form.control}
-            name={props.prop}
+            name={props.inputProps.prop}
             render={({ field }) => (
                 <Form.FormItem>
-                    <Form.FormLabel htmlFor={props.prop}>
-                        {props.prop.slice(0, 1).toUpperCase() +
-                            props.prop.slice(1)}
+                    <Form.FormLabel htmlFor={props.inputProps.prop}>
+                        {props.inputProps.label.slice(0, 1).toUpperCase() +
+                            props.inputProps.label.slice(1)}
                     </Form.FormLabel>
                     <Form.FormControl>
                         <Input {...field} />

@@ -8,7 +8,6 @@ import {
     CreateUserSchema,
     CreateUserSchemaType,
     createUserDefaultValues,
-    userProps,
 } from "@/types/schemas/create-user.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as Form from "../ui/form";
@@ -21,6 +20,7 @@ import { validateUser } from "@/server/auth/validate-user";
 import { Loader } from "lucide-react";
 import { toast } from "sonner";
 import { redirect } from "next/navigation";
+import { inputFormFields } from "@/types/schemas/form-field";
 
 interface Props {
     user: typeof User.$inferSelect | null | undefined;
@@ -54,8 +54,12 @@ const CreateUser: FC<Props> = (props) => {
                 onSubmit={form.handleSubmit(handleSubmit)}
                 className="max-w-xl border border-primary-foreground p-8 rounded-xl flex flex-col gap-4 mx-auto"
             >
-                {userProps.map((prop, idx) => (
-                    <CreateFormField key={idx} prop={prop} form={form} />
+                {inputFormFields.map((inputProps, idx) => (
+                    <CreateFormField
+                        key={idx}
+                        inputProps={inputProps}
+                        form={form}
+                    />
                 ))}
 
                 <Button type="submit" disabled={status === "executing"}>

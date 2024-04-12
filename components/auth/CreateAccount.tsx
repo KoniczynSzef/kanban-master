@@ -2,7 +2,7 @@
 
 import React, { FC } from "react";
 import { Button } from "../ui/button";
-import { User } from "@/database/schema";
+import { users } from "@/database/schema";
 import { useForm } from "react-hook-form";
 import {
     CreateUserSchema,
@@ -15,11 +15,17 @@ import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import CreateFormField from "./CreateFormField";
 
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { inputFormFields } from "@/types/schemas/form-field";
+import { validateUser } from "@/server/auth/validate-user";
+
+import { useAction } from "next-safe-action/hooks";
+import { createAccount } from "@/server/auth/create-account";
+
+import { Loader } from "lucide-react";
 
 interface Props {
-    user: typeof User.$inferSelect | null | undefined;
+    user: typeof users.$inferSelect | null | undefined;
     kindeUser: KindeUser;
 }
 
@@ -31,20 +37,20 @@ const CreateUser: FC<Props> = (props) => {
         defaultValues: createUserDefaultValues(props.user, props.kindeUser),
     });
 
-    // const { execute, status } = useAction(validateUser, {
-    //     onSuccess: async (data) => {
-    //         if (data.success) {
-    //             const createdUser = await createUser({
-    //                 kindeId: props.kindeUser.id,
-    //                 user: form.getValues(),
-    //             });
-    //             if (createdUser) {
-    //                 toast.success("Account created successfully");
-    //                 redirect("/");
-    //             }
-    //         }
-    //     },
-    // });
+    const { execute, status } = useAction(validateUser, {
+        onSuccess: async (data) => {
+            if (data.success) {
+                const createdUser = await createAccount({
+                    kindeId: props.kindeUser.id,
+                    user: form.getValues(),
+                });
+                if (createdUser) {
+                    toast.success("Account created successfully");
+                    redirect("/");
+                }
+            }
+        },
+    });
 
     const handleSubmit = async () => {
         const res = await fetch("/api/auth/create-account", { method: "POST" });
@@ -69,14 +75,14 @@ const CreateUser: FC<Props> = (props) => {
                     />
                 ))}
 
-                {/* <Button type="submit" disabled={status === "executing"}>
+                <Button type="submit" disabled={status === "executing"}>
                     {status === "executing" ? (
                         <Loader className="animate-spin" />
                     ) : (
                         "Create account"
                     )}
-                </Button> */}
-                <Button type="submit">Create account</Button>
+                </Button>
+                {/* <Button type="submit">Create account</Button> */}
             </form>
         </Form.Form>
     );

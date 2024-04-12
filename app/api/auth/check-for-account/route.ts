@@ -8,8 +8,10 @@ export async function GET() {
     const { getUser } = getKindeServerSession();
     const user = await getUser();
 
+    console.log(user);
+
     if (!user) {
-        return new Response("Unauthorized", {
+        return new Response(JSON.stringify({ status: "Unathorized" }), {
             status: 401,
             statusText: "Unauthorized",
         });

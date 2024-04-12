@@ -1,4 +1,6 @@
-"use client";
+import Hydrate from "@/lib/HydrateClient";
+import { createSSRHelper } from "@/trpc/router";
+import { dehydrate } from "@tanstack/react-query";
 
 import React, { FC } from "react";
 import { Button } from "@/components/ui/button";
@@ -8,7 +10,7 @@ import {
     getKindeServerSession,
     LoginLink,
 } from "@kinde-oss/kinde-auth-nextjs/server";
-import { serverClient } from "./_trpc/server";
+import queryClient from "@/lib/query-client";
 
 interface Props {}
 
@@ -32,26 +34,19 @@ const page: FC<Props> = async () => {
         );
     }
 
-    // const user = await getUserByKindeId(kindeUser.id);
-
-    // const isUserValidated = await checkUserValidation();
-
-    // if (!isUserValidated) {
-    //     return redirect("/create-account");
-    // }
-
-    // const user = await serverClient.getUserByKindeId(kindeUser.id);
-
-    // console.log(user);
+    const helpers = createSSRHelper();
+    await helpers.fetchUsers.prefetch();
 
     return (
-        <div className="p-24">
-            <LogoutLink postLogoutRedirectURL="/">
-                <Button variant={"destructive"} className="my-16">
-                    Sign out
-                </Button>
-            </LogoutLink>
-        </div>
+        <Hydrate state={dehydrate(queryClient)}>
+            <div className="p-24">
+                <LogoutLink postLogoutRedirectURL="/">
+                    <Button variant={"destructive"} className="my-16">
+                        Sign out
+                    </Button>
+                </LogoutLink>
+            </div>
+        </Hydrate>
     );
 };
 

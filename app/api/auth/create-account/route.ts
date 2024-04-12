@@ -28,7 +28,6 @@ export async function POST() {
         };
 
         await db.insert(users).values(newUser);
-        console.log("User created");
     }
 
     return new Response("Account created successfully", { status: 200 });

@@ -10,7 +10,8 @@ import {
     getKindeServerSession,
     LoginLink,
 } from "@kinde-oss/kinde-auth-nextjs/server";
-import queryClient from "@/lib/query-client";
+import Account from "@/components/Account";
+import Users from "@/components/Users";
 
 interface Props {}
 
@@ -36,16 +37,20 @@ const page: FC<Props> = async () => {
 
     const helpers = createSSRHelper();
     await helpers.fetchUsers.prefetch();
+    await helpers.getUserByKindeId.prefetch(kindeUser.id);
 
     return (
-        <Hydrate state={dehydrate(queryClient)}>
+        <Hydrate state={dehydrate(helpers.queryClient)}>
             <div className="p-24">
+                <Account kindeUser={kindeUser} />
                 <LogoutLink postLogoutRedirectURL="/">
                     <Button variant={"destructive"} className="my-16">
                         Sign out
                     </Button>
                 </LogoutLink>
             </div>
+
+            <Users />
         </Hydrate>
     );
 };

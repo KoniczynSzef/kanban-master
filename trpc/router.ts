@@ -11,6 +11,23 @@ export const appRouter = router({
         return await db.select().from(users);
     }),
 
+    getUserByKindeId: publicProcedure
+        .input(z.string())
+        .query(async ({ input: kindeId }) => {
+            return await db.query.users.findFirst({
+                where: eq(users.kindeId, kindeId),
+            });
+        }),
+
+    validateAccount: publicProcedure
+        .input(z.string())
+        .mutation(async ({ input: kindeId }) => {
+            return await db
+                .update(users)
+                .set({ validated: true })
+                .where(eq(users.kindeId, kindeId));
+        }),
+
     createUser: publicProcedure
         .input(z.string())
         .mutation(async ({ input: kindeId }) => {

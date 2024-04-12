@@ -5,6 +5,8 @@ import { db } from "@/database";
 import { users } from "@/database/schema";
 import { z } from "zod";
 import { eq } from "drizzle-orm";
+import { getUserByKindeId } from "@/server/routes/auth/get-user-by-kinde-id";
+import { updateSurname } from "@/server/routes/auth/update-surname";
 
 export const appRouter = router({
     fetchUsers: publicProcedure.query(async () => {
@@ -14,9 +16,7 @@ export const appRouter = router({
     getUserByKindeId: publicProcedure
         .input(z.string())
         .query(async ({ input: kindeId }) => {
-            return await db.query.users.findFirst({
-                where: eq(users.kindeId, kindeId),
-            });
+            return getUserByKindeId(kindeId);
         }),
 
     validateAccount: publicProcedure
@@ -35,6 +35,17 @@ export const appRouter = router({
                 .update(users)
                 .set({ surname: "Kończyk" })
                 .where(eq(users.kindeId, kindeId));
+        }),
+
+    updateSurname: publicProcedure
+        .input(
+            z.object({
+                kindeId: z.string(),
+                surname: z.string().or(z.undefined()),
+            })
+        )
+        .mutation(async ({ input: { kindeId, surname } }) => {
+            return await updateSurname(kindeId, surname);
         }),
 });
 

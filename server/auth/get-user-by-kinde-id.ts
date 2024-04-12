@@ -1,5 +1,3 @@
-"use server";
-
 import { db } from "@/database";
 import { users } from "@/database/schema";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";

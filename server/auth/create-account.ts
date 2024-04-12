@@ -1,5 +1,3 @@
-"use server";
-
 import { db } from "@/database";
 import { users } from "@/database/schema";
 import { CreateUserSchema } from "@/types/schemas/create-user.schema";

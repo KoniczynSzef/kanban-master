@@ -1,3 +1,5 @@
+"use client";
+
 import React, { FC } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -6,6 +8,7 @@ import {
     getKindeServerSession,
     LoginLink,
 } from "@kinde-oss/kinde-auth-nextjs/server";
+import { serverClient } from "./_trpc/server";
 
 interface Props {}
 
@@ -36,6 +39,10 @@ const page: FC<Props> = async () => {
     // if (!isUserValidated) {
     //     return redirect("/create-account");
     // }
+
+    // const user = await serverClient.getUserByKindeId(kindeUser.id);
+
+    // console.log(user);
 
     return (
         <div className="p-24">

@@ -1,6 +1,6 @@
 "use client";
 
-import { trpc } from "@/trpc/trpc";
+import { trpc } from "@/server/trpc";
 import React, { FC } from "react";
 
 interface Props {}

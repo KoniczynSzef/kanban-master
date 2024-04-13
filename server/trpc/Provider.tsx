@@ -1,7 +1,7 @@
 "use client";
 
 import React, { FC, useState } from "react";
-import { trpc } from "./trpc";
+import { trpc } from ".";
 import { httpBatchLink } from "@trpc/client";
 import superjson from "superjson";
 import queryClient from "@/lib/query-client";

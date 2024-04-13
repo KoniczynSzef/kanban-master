@@ -1,5 +1,5 @@
 import Hydrate from "@/lib/HydrateClient";
-import { createSSRHelper } from "@/trpc/router";
+import { createSSRHelper } from "@/server/trpc/router";
 import { dehydrate } from "@tanstack/react-query";
 
 import React, { FC } from "react";

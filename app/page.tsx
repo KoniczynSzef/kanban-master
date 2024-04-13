@@ -1,3 +1,7 @@
+import Hydrate from "@/lib/HydrateClient";
+import { createSSRHelper } from "@/server/trpc/router";
+import { dehydrate } from "@tanstack/react-query";
+
 import React, { FC } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -6,11 +10,18 @@ import {
     getKindeServerSession,
     LoginLink,
 } from "@kinde-oss/kinde-auth-nextjs/server";
-import { getUserByKindeId } from "@/server/auth/get-user-by-kinde-id";
-import { redirect } from "next/navigation";
-import { checkUserValidation } from "@/server/auth/check-user-validation";
+import Account from "@/components/Account";
+import Users from "@/components/Users";
+import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 
 interface Props {}
+
+async function createHelpers(kindeUser: KindeUser) {
+    const helpers = createSSRHelper();
+    await helpers.fetchUsers.prefetch();
+    await helpers.getUserByKindeId.prefetch(kindeUser.id);
+    return helpers;
+}
 
 const page: FC<Props> = async () => {
     const { isAuthenticated, getUser } = getKindeServerSession();
@@ -32,23 +43,21 @@ const page: FC<Props> = async () => {
         );
     }
 
-    const user = await getUserByKindeId(kindeUser.id);
-
-    const isUserValidated = await checkUserValidation(kindeUser.id);
-
-    if (!isUserValidated) {
-        return redirect("/create-account");
-    }
+    const helpers = await createHelpers(kindeUser);
 
     return (
-        <div className="p-24">
-            <pre>{JSON.stringify(user, null, 2)}</pre>
-            <LogoutLink postLogoutRedirectURL="/">
-                <Button variant={"destructive"} className="my-16">
-                    Sign out
-                </Button>
-            </LogoutLink>
-        </div>
+        <Hydrate state={dehydrate(helpers.queryClient)}>
+            <div className="p-24">
+                <Account kindeUser={kindeUser} />
+                <LogoutLink postLogoutRedirectURL="/">
+                    <Button variant={"destructive"} className="my-16">
+                        Sign out
+                    </Button>
+                </LogoutLink>
+            </div>
+
+            <Users />
+        </Hydrate>
     );
 };
 

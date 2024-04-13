@@ -1,5 +1,6 @@
 import { db } from "@/database";
-import { User } from "@/database/schema";
+import { users } from "@/database/schema";
+import { UserInsert } from "@/types/models";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
@@ -9,27 +10,27 @@ export async function GET() {
     const user = await getUser();
 
     if (!user) {
-        return new Response("Unauthorized", {
+        return new Response(JSON.stringify({ status: "Unathorized" }), {
             status: 401,
             statusText: "Unauthorized",
         });
     }
 
-    const isUserInDB = await db.query.User.findFirst({
-        where: eq(User.kindeId, user.id),
+    const isUserInDB = await db.query.users.findFirst({
+        where: eq(users.kindeId, user.id),
     });
 
     if (isUserInDB) {
         return redirect("/");
     }
 
-    const newUser: typeof User.$inferInsert = {
+    const newUser: UserInsert = {
         name: user.given_name || "user",
         email: user.email || "",
         picture: user.picture || "",
         kindeId: user.id,
     };
 
-    await db.insert(User).values(newUser);
+    await db.insert(users).values(newUser);
     return redirect("/create-account");
 }

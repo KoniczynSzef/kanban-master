@@ -1,6 +1,6 @@
-import { User } from "@/database/schema";
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import { z } from "zod";
+import { User } from "../models";
 
 const emailSchema = z.string().email();
 const urlSchema = z.string().url();
@@ -35,7 +35,7 @@ export type CreateUserSchemaType = z.infer<typeof CreateUserSchema>;
  * ? Creates the default values for the create user form
  */
 // prettier-ignore
-export const createUserDefaultValues = (user: typeof User.$inferSelect | null | undefined, kindeUser: KindeUser | null) => {
+export const createUserDefaultValues = (user: User | null | undefined, kindeUser: KindeUser | null) => {
     if(!kindeUser && !user) {
         throw new Error("You must provide a user or kindeUser");
     }    

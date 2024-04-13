@@ -1,4 +1,4 @@
-import CreateUser from "@/components/auth/CreateUser";
+import CreateUser from "@/components/auth/CreateAccount";
 import { Button } from "@/components/ui/button";
 import { getUserByKindeId } from "@/server/auth/get-user-by-kinde-id";
 import {
@@ -20,11 +20,7 @@ const page: FC<Props> = async () => {
         return redirect("/");
     }
 
-    const { data: user } = await getUserByKindeId(kindeUser.id);
-
-    if (user?.validated) {
-        return redirect("/");
-    }
+    const user = await getUserByKindeId(kindeUser.id);
 
     return (
         <>

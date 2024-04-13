@@ -17,6 +17,7 @@ const environmentVariables = z.object({
 
     // other environment variables
     PAGE_URL: z.string(),
+    NEXT_PUBLIC_PAGE_URL: z.string(),
 });
 
 declare global {

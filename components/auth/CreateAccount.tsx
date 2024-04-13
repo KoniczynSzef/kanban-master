@@ -2,7 +2,6 @@
 
 import React, { FC } from "react";
 import { Button } from "../ui/button";
-import { User } from "@/database/schema";
 import { useForm } from "react-hook-form";
 import {
     CreateUserSchema,
@@ -14,44 +13,25 @@ import * as Form from "../ui/form";
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import CreateFormField from "./CreateFormField";
 
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 import { inputFormFields } from "@/types/schemas/form-field";
+import { toast } from "sonner";
+import { User } from "@/types/models";
 
 interface Props {
-    user: typeof User.$inferSelect | null | undefined;
+    user: User | null | undefined;
     kindeUser: KindeUser;
 }
 
 const CreateUser: FC<Props> = (props) => {
-    const router = useRouter();
     const form = useForm<CreateUserSchemaType>({
         mode: "onChange",
         resolver: zodResolver(CreateUserSchema),
         defaultValues: createUserDefaultValues(props.user, props.kindeUser),
     });
 
-    // const { execute, status } = useAction(validateUser, {
-    //     onSuccess: async (data) => {
-    //         if (data.success) {
-    //             const createdUser = await createUser({
-    //                 kindeId: props.kindeUser.id,
-    //                 user: form.getValues(),
-    //             });
-    //             if (createdUser) {
-    //                 toast.success("Account created successfully");
-    //                 redirect("/");
-    //             }
-    //         }
-    //     },
-    // });
-
-    const handleSubmit = async () => {
-        const res = await fetch("/api/auth/create-account", { method: "POST" });
-        if (res.ok) {
-            toast.success("Account created successfully");
-            router.push("/");
-        }
+    const handleSubmit = async (data: CreateUserSchemaType) => {
+        console.log("data", data);
+        toast.success("Account created successfully");
     };
 
     return (
@@ -69,13 +49,6 @@ const CreateUser: FC<Props> = (props) => {
                     />
                 ))}
 
-                {/* <Button type="submit" disabled={status === "executing"}>
-                    {status === "executing" ? (
-                        <Loader className="animate-spin" />
-                    ) : (
-                        "Create account"
-                    )}
-                </Button> */}
                 <Button type="submit">Create account</Button>
             </form>
         </Form.Form>

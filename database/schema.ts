@@ -8,7 +8,7 @@ import {
     text,
 } from "drizzle-orm/pg-core";
 
-export const Project = pgTable("project", {
+export const projects = pgTable("project", {
     id: uuid("id").primaryKey().defaultRandom(),
     name: varchar("name").notNull(),
     description: varchar("description").default(""),
@@ -17,7 +17,7 @@ export const Project = pgTable("project", {
     updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
-export const User = pgTable("user", {
+export const users = pgTable("user", {
     id: uuid("id").primaryKey().defaultRandom(),
     name: varchar("name").notNull(),
     surname: varchar("surname"),
@@ -33,19 +33,19 @@ export const User = pgTable("user", {
     validated: boolean("validated").notNull().default(false),
 });
 
-export const KanbanBoard = pgTable("kanban_board", {
+export const kanbanBoards = pgTable("kanban_board", {
     id: uuid("id").primaryKey().defaultRandom(),
     name: varchar("name").notNull(),
     projectId: uuid("project_id").notNull(),
 });
 
-export const KanbanColumn = pgTable("kanban_column", {
+export const kanbanColumns = pgTable("kanban_column", {
     id: uuid("id").primaryKey().defaultRandom(),
     name: varchar("name").notNull(),
     boardId: uuid("board_id").notNull(),
 });
 
-export const KanbanTask = pgTable("kanban_task", {
+export const kanbanTasks = pgTable("kanban_task", {
     id: uuid("id").primaryKey().defaultRandom(),
     title: varchar("title").notNull(),
     description: varchar("description"),
@@ -63,7 +63,7 @@ export const KanbanTask = pgTable("kanban_task", {
     updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
-export const Team = pgTable("team", {
+export const teams = pgTable("team", {
     id: uuid("id").primaryKey().defaultRandom(),
     name: varchar("name").notNull(),
     description: varchar("description"),

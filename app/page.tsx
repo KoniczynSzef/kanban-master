@@ -12,8 +12,16 @@ import {
 } from "@kinde-oss/kinde-auth-nextjs/server";
 import Account from "@/components/Account";
 import Users from "@/components/Users";
+import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 
 interface Props {}
+
+async function createHelpers(kindeUser: KindeUser) {
+    const helpers = createSSRHelper();
+    await helpers.fetchUsers.prefetch();
+    await helpers.getUserByKindeId.prefetch(kindeUser.id);
+    return helpers;
+}
 
 const page: FC<Props> = async () => {
     const { isAuthenticated, getUser } = getKindeServerSession();
@@ -35,9 +43,7 @@ const page: FC<Props> = async () => {
         );
     }
 
-    const helpers = createSSRHelper();
-    await helpers.fetchUsers.prefetch();
-    await helpers.getUserByKindeId.prefetch(kindeUser.id);
+    const helpers = await createHelpers(kindeUser);
 
     return (
         <Hydrate state={dehydrate(helpers.queryClient)}>

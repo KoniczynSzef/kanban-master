@@ -5,14 +5,12 @@ import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import React, { FC } from "react";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
-import { Input } from "./ui/input";
 
 interface Props {
     kindeUser: KindeUser;
 }
 
 const Account: FC<Props> = (props) => {
-    const inputRef = React.useRef<HTMLInputElement>(null);
     const getUserByKindeId = trpc.getUserByKindeId.useQuery(props.kindeUser.id);
     const { data: user } = getUserByKindeId;
 
@@ -22,19 +20,7 @@ const Account: FC<Props> = (props) => {
         },
 
         onSuccess: () => {
-            console.log(user);
-
             toast.success("Account validated");
-        },
-    });
-
-    const { mutate: updateSurname } = trpc.updateSurname.useMutation({
-        onSettled: async () => {
-            await getUserByKindeId.refetch();
-        },
-
-        onSuccess: () => {
-            toast.success("Surname updated");
         },
     });
 
@@ -52,18 +38,6 @@ const Account: FC<Props> = (props) => {
 
             <Button className="self-start" onClick={handleClick}>
                 Validate account
-            </Button>
-
-            <Input placeholder="Type your surname..." ref={inputRef} />
-            <Button
-                onClick={() =>
-                    updateSurname({
-                        kindeId: props.kindeUser.id,
-                        surname: inputRef.current?.value,
-                    })
-                }
-            >
-                Update surname
             </Button>
         </div>
     );

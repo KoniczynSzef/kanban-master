@@ -14,15 +14,8 @@ import * as Form from "../ui/form";
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import CreateFormField from "./CreateFormField";
 
-import { toast } from "sonner";
-import { redirect, useRouter } from "next/navigation";
 import { inputFormFields } from "@/types/schemas/form-field";
-import { validateUser } from "@/server/auth/validate-user";
-
-import { useAction } from "next-safe-action/hooks";
-import { createAccount } from "@/server/auth/create-account";
-
-import { Loader } from "lucide-react";
+import { toast } from "sonner";
 
 interface Props {
     user: typeof users.$inferSelect | null | undefined;
@@ -30,34 +23,15 @@ interface Props {
 }
 
 const CreateUser: FC<Props> = (props) => {
-    const router = useRouter();
     const form = useForm<CreateUserSchemaType>({
         mode: "onChange",
         resolver: zodResolver(CreateUserSchema),
         defaultValues: createUserDefaultValues(props.user, props.kindeUser),
     });
 
-    const { execute, status } = useAction(validateUser, {
-        onSuccess: async (data) => {
-            if (data.success) {
-                const createdUser = await createAccount({
-                    kindeId: props.kindeUser.id,
-                    user: form.getValues(),
-                });
-                if (createdUser) {
-                    toast.success("Account created successfully");
-                    redirect("/");
-                }
-            }
-        },
-    });
-
-    const handleSubmit = async () => {
-        const res = await fetch("/api/auth/create-account", { method: "POST" });
-        if (res.ok) {
-            toast.success("Account created successfully");
-            router.push("/");
-        }
+    const handleSubmit = async (data: CreateUserSchemaType) => {
+        console.log("data", data);
+        toast.success("Account created successfully");
     };
 
     return (
@@ -75,14 +49,7 @@ const CreateUser: FC<Props> = (props) => {
                     />
                 ))}
 
-                <Button type="submit" disabled={status === "executing"}>
-                    {status === "executing" ? (
-                        <Loader className="animate-spin" />
-                    ) : (
-                        "Create account"
-                    )}
-                </Button>
-                {/* <Button type="submit">Create account</Button> */}
+                <Button type="submit">Create account</Button>
             </form>
         </Form.Form>
     );

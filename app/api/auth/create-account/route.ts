@@ -2,6 +2,7 @@ import { db } from "@/database";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { users } from "@/database/schema";
 import { eq } from "drizzle-orm";
+import { UserInsert } from "@/types/models";
 
 export async function POST() {
     const { getUser } = getKindeServerSession();
@@ -19,7 +20,7 @@ export async function POST() {
     });
 
     if (!userFromDB) {
-        const newUser: typeof users.$inferInsert = {
+        const newUser: UserInsert = {
             name: user.given_name || "user",
             email: user.email || "",
             picture: user.picture || "",

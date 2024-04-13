@@ -2,7 +2,6 @@
 
 import React, { FC } from "react";
 import { Button } from "../ui/button";
-import { users } from "@/database/schema";
 import { useForm } from "react-hook-form";
 import {
     CreateUserSchema,
@@ -16,9 +15,10 @@ import CreateFormField from "./CreateFormField";
 
 import { inputFormFields } from "@/types/schemas/form-field";
 import { toast } from "sonner";
+import { User } from "@/types/models";
 
 interface Props {
-    user: typeof users.$inferSelect | null | undefined;
+    user: User | null | undefined;
     kindeUser: KindeUser;
 }
 

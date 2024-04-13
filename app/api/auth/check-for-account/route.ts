@@ -1,5 +1,6 @@
 import { db } from "@/database";
 import { users } from "@/database/schema";
+import { UserInsert } from "@/types/models";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
@@ -23,7 +24,7 @@ export async function GET() {
         return redirect("/");
     }
 
-    const newUser: typeof users.$inferInsert = {
+    const newUser: UserInsert = {
         name: user.given_name || "user",
         email: user.email || "",
         picture: user.picture || "",

@@ -4,8 +4,9 @@ import { createServerSideHelpers } from "@trpc/react-query/server";
 import { db } from "@/database";
 import { users } from "@/database/schema";
 import { z } from "zod";
-import { eq } from "drizzle-orm";
 import { getUserByKindeId } from "@/server/routes/auth/get-user-by-kinde-id";
+import { validateAccount } from "../routes/auth/validate-account";
+import { CreateUserSchema } from "@/types/schemas/create-user.schema";
 
 export const appRouter = router({
     fetchUsers: publicProcedure.query(async () => {
@@ -19,12 +20,14 @@ export const appRouter = router({
         }),
 
     validateAccount: publicProcedure
-        .input(z.string())
-        .mutation(async ({ input: kindeId }) => {
-            return await db
-                .update(users)
-                .set({ validated: true })
-                .where(eq(users.kindeId, kindeId));
+        .input(
+            z.object({
+                kindeId: z.string(),
+                data: CreateUserSchema,
+            })
+        )
+        .mutation(async ({ input: { kindeId, data } }) => {
+            return await validateAccount(kindeId, data);
         }),
 });
 

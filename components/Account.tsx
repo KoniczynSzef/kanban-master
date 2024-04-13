@@ -3,31 +3,13 @@
 import { trpc } from "@/server/trpc";
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import React, { FC } from "react";
-import { Button } from "./ui/button";
-import { toast } from "sonner";
 
 interface Props {
     kindeUser: KindeUser;
 }
 
 const Account: FC<Props> = (props) => {
-    const getUserByKindeId = trpc.getUserByKindeId.useQuery(props.kindeUser.id);
-    const { data: user } = getUserByKindeId;
-
-    const { mutate: validateAccount } = trpc.validateAccount.useMutation({
-        onSettled: async () => {
-            await getUserByKindeId.refetch();
-        },
-
-        onSuccess: () => {
-            toast.success("Account validated");
-        },
-    });
-
-    const handleClick = async () => {
-        validateAccount(props.kindeUser.id);
-        toast.info("Validating account...");
-    };
+    const { data: user } = trpc.getUserByKindeId.useQuery(props.kindeUser.id);
 
     if (!user) return null;
 
@@ -35,10 +17,6 @@ const Account: FC<Props> = (props) => {
         <div className="flex flex-col gap-8">
             <h1>Account</h1>
             <pre>{JSON.stringify(user, null, 2)}</pre>
-
-            <Button className="self-start" onClick={handleClick}>
-                Validate account
-            </Button>
         </div>
     );
 };

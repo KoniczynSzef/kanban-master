@@ -16,6 +16,10 @@ import CreateFormField from "./CreateFormField";
 import { inputFormFields } from "@/types/schemas/form-field";
 import { toast } from "sonner";
 import { User } from "@/types/models";
+import { trpc } from "@/server/trpc";
+import { useRouter } from "next/navigation";
+
+import { Loader } from "lucide-react";
 
 interface Props {
     user: User | null | undefined;
@@ -23,15 +27,26 @@ interface Props {
 }
 
 const CreateUser: FC<Props> = (props) => {
+    const router = useRouter();
     const form = useForm<CreateUserSchemaType>({
         mode: "onChange",
         resolver: zodResolver(CreateUserSchema),
         defaultValues: createUserDefaultValues(props.user, props.kindeUser),
     });
 
+    const { mutate: validateAccount, isLoading } =
+        trpc.validateAccount.useMutation({
+            onSuccess: () => {
+                toast.success("Account validated");
+                router.push("/");
+            },
+        });
+
     const handleSubmit = async (data: CreateUserSchemaType) => {
-        console.log("data", data);
-        toast.success("Account created successfully");
+        validateAccount({
+            kindeId: props.kindeUser.id,
+            data,
+        });
     };
 
     return (
@@ -49,7 +64,13 @@ const CreateUser: FC<Props> = (props) => {
                     />
                 ))}
 
-                <Button type="submit">Create account</Button>
+                <Button type="submit" disabled={isLoading}>
+                    {isLoading ? (
+                        <Loader className="animate-spin" />
+                    ) : (
+                        "Create Account"
+                    )}
+                </Button>
             </form>
         </Form.Form>
     );

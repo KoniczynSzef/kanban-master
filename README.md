@@ -7,6 +7,7 @@ KanMaster is a a project management system proudly developed based on Kanban met
 -   [Next.js](https://nextjs.org/)
 -   [TypeScript](https://www.typescriptlang.org/)
 -   [Tailwind CSS](https://tailwindcss.com/)
+-   [TRPC](https://trpc.io/)
 -   [Drizzle ORM](https://orm.drizzle.team/)
 -   [Kinde Auth](https://kinde.com/)
 -   [Vercel](https://vercel.com/)
@@ -67,7 +68,7 @@ docker compose up
 ## Planned Features 📝
 
 -   [x] Add Docker 🐋 support
--   [ ] Add user authentication
+-   [x] Add user authentication
 -   [ ] Add relations in the database
 
 ## Contributing 🤝

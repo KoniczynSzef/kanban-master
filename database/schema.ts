@@ -1,73 +1,91 @@
-import {
-    pgTable,
-    uuid,
-    varchar,
-    timestamp,
-    integer,
-    boolean,
-    text,
-} from "drizzle-orm/pg-core";
+import { int, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
-export const projects = pgTable("project", {
-    id: uuid("id").primaryKey().defaultRandom(),
-    name: varchar("name").notNull(),
-    description: varchar("description").default(""),
-    ownerId: uuid("owner_id").notNull(),
-    createdAt: timestamp("created_at").notNull().defaultNow(),
-    updatedAt: timestamp("updated_at").notNull().defaultNow(),
-});
+export const users = sqliteTable("user", {
+    id: text("id")
+        .primaryKey()
+        .$defaultFn(() => crypto.randomUUID()),
+    name: text("name").notNull(),
+    surname: text("surname"),
+    email: text("email").notNull(),
+    picture: text("picture").notNull(),
+    kindeId: text("kinde_id").notNull(),
 
-export const users = pgTable("user", {
-    id: uuid("id").primaryKey().defaultRandom(),
-    name: varchar("name").notNull(),
-    surname: varchar("surname"),
-    email: varchar("email").notNull(),
-    picture: varchar("picture").notNull(),
-    kindeId: varchar("kinde_id").notNull(),
-
-    nickname: varchar("nickname"),
+    nickname: text("nickname"),
     bio: text("bio"),
-    businessEmail: varchar("business_email"),
+    businessEmail: text("business_email"),
 
-    teamId: uuid("team_id"),
-    validated: boolean("validated").notNull().default(false),
+    validated: int("validated", { mode: "boolean" }).notNull().default(false),
 });
 
-export const kanbanBoards = pgTable("kanban_board", {
-    id: uuid("id").primaryKey().defaultRandom(),
-    name: varchar("name").notNull(),
-    projectId: uuid("project_id").notNull(),
+export const projects = sqliteTable("project", {
+    id: text("id")
+        .primaryKey()
+        .$defaultFn(() => crypto.randomUUID()),
+    name: text("name").notNull(),
+    description: text("description"),
+    ownerId: text("owner_id")
+        .notNull()
+        .references(() => users.id),
 });
 
-export const kanbanColumns = pgTable("kanban_column", {
-    id: uuid("id").primaryKey().defaultRandom(),
-    name: varchar("name").notNull(),
-    boardId: uuid("board_id").notNull(),
+export const kanbanBoards = sqliteTable("kanban_board", {
+    id: text("id")
+        .primaryKey()
+        .$defaultFn(() => crypto.randomUUID()),
+    name: text("name").notNull(),
+    projectId: text("project_id")
+        .notNull()
+        .references(() => projects.id),
 });
 
-export const kanbanTasks = pgTable("kanban_task", {
-    id: uuid("id").primaryKey().defaultRandom(),
-    title: varchar("title").notNull(),
-    description: varchar("description"),
-    columnId: uuid("column_id").notNull(),
-    boardId: uuid("board_id").notNull(),
-
-    deadline: timestamp("deadline"),
-    priority: varchar("priority", { enum: ["low", "medium", "high"] }),
-    note: varchar("note"),
-    columnIndex: integer("column_index").notNull(),
-
-    assigneeId: uuid("assignee_id").defaultRandom(),
-    creatorId: uuid("creator_id").defaultRandom(),
-    createdAt: timestamp("created_at").notNull().defaultNow(),
-    updatedAt: timestamp("updated_at").notNull().defaultNow(),
+export const kanbanColumns = sqliteTable("kanban_column", {
+    id: text("id")
+        .primaryKey()
+        .$defaultFn(() => crypto.randomUUID()),
+    name: text("name").notNull(),
+    boardId: text("board_id")
+        .notNull()
+        .references(() => kanbanBoards.id),
 });
 
-export const teams = pgTable("team", {
-    id: uuid("id").primaryKey().defaultRandom(),
-    name: varchar("name").notNull(),
-    description: varchar("description"),
-    ownerId: uuid("owner_id").notNull(),
-    createdAt: timestamp("created_at").notNull().defaultNow(),
-    updatedAt: timestamp("updated_at").notNull().defaultNow(),
+export const kanbanTasks = sqliteTable("kanban_task", {
+    id: text("id")
+        .primaryKey()
+        .$defaultFn(() => crypto.randomUUID()),
+    title: text("title").notNull(),
+    description: text("description"),
+    columnId: text("column_id")
+        .notNull()
+        .references(() => kanbanColumns.id),
+    boardId: text("board_id")
+        .notNull()
+        .references(() => kanbanBoards.id),
+
+    deadline: int("deadline", { mode: "timestamp_ms" }),
+    priority: text("priority", { enum: ["low", "medium", "high"] }),
+    note: text("note"),
+    columnIndex: int("column_index").notNull(),
+
+    assigneeId: text("assignee_id"),
+    creatorId: text("creator_id").references(() => users.id),
+});
+
+export const teams = sqliteTable("team", {
+    id: text("id")
+        .primaryKey()
+        .$defaultFn(() => crypto.randomUUID()),
+    name: text("name").notNull(),
+    description: text("description"),
+    ownerId: text("owner_id")
+        .notNull()
+        .references(() => users.id),
+});
+
+export const usersToTeams = sqliteTable("user_to_team", {
+    userId: text("user_id")
+        .notNull()
+        .references(() => users.id),
+    teamId: text("team_id")
+        .notNull()
+        .references(() => teams.id),
 });

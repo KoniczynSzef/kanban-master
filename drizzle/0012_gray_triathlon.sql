@@ -1,1 +1,0 @@
-ALTER TABLE "user" ADD COLUMN "validated" boolean DEFAULT false NOT NULL;

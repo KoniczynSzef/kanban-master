@@ -1,5 +1,4 @@
 import Hydrate from "@/lib/HydrateClient";
-import { createSSRHelper } from "@/server/trpc/router";
 import { dehydrate } from "@tanstack/react-query";
 
 import React, { FC } from "react";
@@ -12,16 +11,10 @@ import {
 } from "@kinde-oss/kinde-auth-nextjs/server";
 import Account from "@/components/Account";
 import Users from "@/components/Users";
-import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
+import { createHelpers } from "@/utils/helpers";
+import Project from "@/components/Project";
 
 interface Props {}
-
-async function createHelpers(kindeUser: KindeUser) {
-    const helpers = createSSRHelper();
-    await helpers.fetchUsers.prefetch();
-    await helpers.getUserByKindeId.prefetch(kindeUser.id);
-    return helpers;
-}
 
 const page: FC<Props> = async () => {
     const { isAuthenticated, getUser } = getKindeServerSession();
@@ -48,7 +41,10 @@ const page: FC<Props> = async () => {
     return (
         <Hydrate state={dehydrate(helpers.queryClient)}>
             <div className="p-24">
-                <Account kindeUser={kindeUser} />
+                <div className="flex">
+                    <Account kindeUser={kindeUser} />
+                    <Project />
+                </div>
                 <LogoutLink postLogoutRedirectURL="/">
                     <Button variant={"destructive"} className="my-16">
                         Sign out

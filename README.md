@@ -36,7 +36,7 @@ bun install
 bun run db:migrate
 ```
 
-4. Apply `drizzle` migrations to actual `Turbo` database by running:
+4. Apply `drizzle` migrations to actual `Turso` database by running:
 
 ```bash
 bun run db:push

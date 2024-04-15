@@ -12,7 +12,7 @@ KanMaster is a a project management system proudly developed based on Kanban met
 -   [Kinde Auth](https://kinde.com/)
 -   [Vercel](https://vercel.com/)
 -   [Playwright](https://playwright.dev/)
--   [Xata](https://xata.io/)
+-   [Turso](https://turso.tech)
 
 ## Getting Started 🏗️
 
@@ -28,21 +28,19 @@ git clone https://github.com/KoniczynSzef/kanban-master.git
 
 ```bash
 bun install
-```
+```
 
-3. Install [Xata](https://xata.io/) globally on your machine:
+3. Create a database using `Turso` and run the migrations:
 
 ```bash
-npm install -g xata
+bun run db:migrate
 ```
 
-4. Create a database using [Xata](https://xata.io/) and run the migrations:
+4. Apply `drizzle` migrations to actual `Turbo` database by running:
 
 ```bash
 bun run db:push
-```
-
-This will apply the migrations to the database.
+```
 
 5. Start the development server:
 

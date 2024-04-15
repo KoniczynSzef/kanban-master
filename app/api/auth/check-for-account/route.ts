@@ -1,6 +1,6 @@
 import { db } from "@/database";
 import { users } from "@/database/schema";
-import { UserInsert } from "@/types/models";
+import { UserInsert } from "@/types/models/User";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";

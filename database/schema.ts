@@ -26,6 +26,7 @@ export const projects = sqliteTable("project", {
     ownerId: text("owner_id")
         .notNull()
         .references(() => users.id),
+    teamId: text("team_id").references(() => teams.id),
 });
 
 export const kanbanBoards = sqliteTable("kanban_board", {

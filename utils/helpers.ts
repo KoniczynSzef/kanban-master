@@ -5,7 +5,7 @@ export async function createHelpers(kindeUser: KindeUser) {
     const helpers = createSSRHelper();
 
     await helpers.fetchUsers.prefetch();
-    await helpers.getUserByKindeId.prefetch(kindeUser.id);
+    await helpers.getUserAndTeams.prefetch(kindeUser.id);
 
     return helpers;
 }

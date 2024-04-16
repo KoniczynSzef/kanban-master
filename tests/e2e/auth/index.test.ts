@@ -3,8 +3,6 @@ import { expect, test } from "@playwright/test";
 import "dotenv/config";
 
 test("Click login button", async ({ page }) => {
-    console.log("AUTH_TEST_EMAIL", process.env.AUTH_TEST_EMAIL);
-
     if (!process.env.AUTH_TEST_EMAIL) {
         throw new Error("AUTH_TEST_EMAIL is not set");
     }

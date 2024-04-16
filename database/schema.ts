@@ -1,4 +1,4 @@
-import { int, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { int, primaryKey, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 export const users = sqliteTable("user", {
     id: text("id")
@@ -27,6 +27,8 @@ export const projects = sqliteTable("project", {
         .notNull()
         .references(() => users.id),
     teamId: text("team_id").references(() => teams.id),
+    createdAt: text("created_at").notNull().default(new Date().toISOString()),
+    updatedAt: text("updated_at").notNull().default(new Date().toISOString()),
 });
 
 export const kanbanBoards = sqliteTable("kanban_board", {
@@ -69,6 +71,8 @@ export const kanbanTasks = sqliteTable("kanban_task", {
 
     assigneeId: text("assignee_id"),
     creatorId: text("creator_id").references(() => users.id),
+    createdAt: text("created_at").notNull().default(new Date().toISOString()),
+    updatedAt: text("updated_at").notNull().default(new Date().toISOString()),
 });
 
 export const teams = sqliteTable("team", {
@@ -80,13 +84,21 @@ export const teams = sqliteTable("team", {
     ownerId: text("owner_id")
         .notNull()
         .references(() => users.id),
+    createdAt: text("created_at").notNull().default(new Date().toISOString()),
+    updatedAt: text("updated_at").notNull().default(new Date().toISOString()),
 });
 
-export const usersToTeams = sqliteTable("user_to_team", {
-    userId: text("user_id")
-        .notNull()
-        .references(() => users.id),
-    teamId: text("team_id")
-        .notNull()
-        .references(() => teams.id),
-});
+export const usersToTeams = sqliteTable(
+    "user_to_team",
+    {
+        userId: text("user_id")
+            .notNull()
+            .references(() => users.id),
+        teamId: text("team_id")
+            .notNull()
+            .references(() => teams.id),
+    },
+    (t) => ({
+        pk: primaryKey({ columns: [t.userId, t.teamId] }),
+    })
+);

@@ -9,12 +9,16 @@ import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
 import { Loader, Loader2 } from "lucide-react";
+import { Input } from "./ui/input";
 
 interface Props {
     kindeUser: KindeUser;
 }
 
 const Account: FC<Props> = (props) => {
+    const teamName = React.useRef<HTMLInputElement>(null);
+    const teamDescription = React.useRef<HTMLInputElement>(null);
+
     const userAndTeams = trpc.getUserAndTeams.useQuery(props.kindeUser.id);
 
     const { data, isLoading: userLoading } = userAndTeams;
@@ -34,6 +38,21 @@ const Account: FC<Props> = (props) => {
 
     const { user, teams } = data;
 
+    const handleCreateTeam = async () => {
+        if (!teamName.current?.value)
+            return toast.error("Team Name is required");
+        if (!teamDescription.current?.value)
+            return toast.error("Team Description is required");
+
+        createTeam({
+            userId: user.id,
+            data: {
+                name: teamName.current.value,
+                description: teamDescription.current.value,
+            },
+        });
+    };
+
     return (
         <div className="flex justify-between w-full p-4 rounded-lg border border-secondary">
             <motion.div
@@ -50,18 +69,13 @@ const Account: FC<Props> = (props) => {
                     </AvatarFallback>
                 </Avatar>
 
-                <Button
-                    onClick={() =>
-                        createTeam({
-                            userId: user.id,
-                            data: {
-                                name: "My Team" /** This is just a placeholder */,
-                                description: "My Team Description",
-                            },
-                        })
-                    }
-                    disabled={isLoading}
-                >
+                <Input placeholder="Team Name..." ref={teamName} />
+                <Input
+                    placeholder="Team Description..."
+                    ref={teamDescription}
+                />
+
+                <Button onClick={handleCreateTeam} disabled={isLoading}>
                     {isLoading ? (
                         <Loader className="animate-spin" />
                     ) : (

@@ -5,71 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1713042652737,
-      "tag": "0000_foamy_shatterstar",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1713043165478,
-      "tag": "0001_dear_fabian_cortez",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1713043397686,
-      "tag": "0002_clear_iron_monger",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1713043721969,
-      "tag": "0003_even_baron_zemo",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "5",
-      "when": 1713044268632,
-      "tag": "0004_clean_vulcan",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "5",
-      "when": 1713044459266,
-      "tag": "0005_slimy_kitty_pryde",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "5",
-      "when": 1713190609730,
-      "tag": "0006_gray_mentallo",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "5",
-      "when": 1713280060366,
-      "tag": "0007_youthful_spyke",
-      "breakpoints": true
-    },
-    {
-      "idx": 8,
-      "version": "5",
-      "when": 1713280531610,
-      "tag": "0008_sturdy_lyja",
-      "breakpoints": true
-    },
-    {
-      "idx": 9,
-      "version": "5",
-      "when": 1713280785024,
-      "tag": "0009_keen_violations",
+      "when": 1713339354355,
+      "tag": "0000_modern_blue_marvel",
       "breakpoints": true
     }
   ]

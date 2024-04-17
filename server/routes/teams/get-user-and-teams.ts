@@ -14,6 +14,8 @@ export async function getUserAndTeams(kindeId: string) {
         return null;
     }
 
+    if (data.usersToTeams.length === 0) return { user: data, teams: [] };
+
     const teams = await db.query.teams.findMany({
         where: (teams, { inArray }) =>
             inArray(

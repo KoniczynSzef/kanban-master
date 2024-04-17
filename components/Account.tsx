@@ -8,34 +8,39 @@ import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
-import { Loader } from "lucide-react";
+import { Loader, Loader2 } from "lucide-react";
 
 interface Props {
     kindeUser: KindeUser;
 }
 
 const Account: FC<Props> = (props) => {
-    const { data } = trpc.getUserAndTeams.useQuery(props.kindeUser.id);
+    const userAndTeams = trpc.getUserAndTeams.useQuery(props.kindeUser.id);
+
+    const { data, isLoading: userLoading } = userAndTeams;
 
     const { mutate: createTeam, isLoading } = trpc.createTeam.useMutation({
         onSettled: () => {},
 
-        onSuccess: (data) => {
+        onSuccess: async (data) => {
             toast.success(`Team "${data.name}" created!`);
+            await userAndTeams.refetch();
         },
     });
+
+    if (userLoading) return <Loader2 className="animate-spin" />;
 
     if (!data) return null;
 
     const { user, teams } = data;
 
     return (
-        <motion.div
-            className="flex justify-between w-full p-4 rounded-lg border border-secondary"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-        >
-            <div className="space-y-16">
+        <div className="flex justify-between w-full p-4 rounded-lg border border-secondary">
+            <motion.div
+                className="space-y-16"
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+            >
                 <pre>{JSON.stringify(user, null, 2)}</pre>
 
                 <Avatar>
@@ -63,12 +68,27 @@ const Account: FC<Props> = (props) => {
                         "Create Team"
                     )}
                 </Button>
-            </div>
+            </motion.div>
 
-            {teams.map((team) => (
-                <pre key={team.id}>{JSON.stringify(team, null, 2)}</pre>
+            {teams.map((team, index) => (
+                <motion.pre
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    key={team.id}
+                    transition={{ delay: 0.2 * index }}
+                    className="origin-center border border-secondary p-4 rounded-xl h-min"
+                >
+                    {JSON.stringify(
+                        {
+                            name: team.name,
+                            description: team.description,
+                        },
+                        null,
+                        2
+                    )}
+                </motion.pre>
             ))}
-        </motion.div>
+        </div>
     );
 };
 

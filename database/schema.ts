@@ -1,4 +1,10 @@
-import { int, primaryKey, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import {
+    int,
+    primaryKey,
+    real,
+    sqliteTable,
+    text,
+} from "drizzle-orm/sqlite-core";
 
 export const users = sqliteTable("user", {
     id: text("id")
@@ -23,10 +29,19 @@ export const projects = sqliteTable("project", {
         .$defaultFn(() => crypto.randomUUID()),
     name: text("name").notNull(),
     description: text("description"),
+
+    deadline: text("deadline"),
+    status: text("status", {
+        enum: ["active", "completed", "on hold", "canceled"],
+    }).$default(() => "active"),
+
+    budget: real("budget"),
     ownerId: text("owner_id")
         .notNull()
-        .references(() => users.id),
-    teamId: text("team_id").references(() => teams.id),
+        .references(() => users.id, { onDelete: "cascade" }),
+    teamId: text("team_id")
+        .notNull()
+        .references(() => teams.id),
     createdAt: text("created_at").notNull().default(new Date().toISOString()),
     updatedAt: text("updated_at").notNull().default(new Date().toISOString()),
 });
@@ -38,7 +53,7 @@ export const kanbanBoards = sqliteTable("kanban_board", {
     name: text("name").notNull(),
     projectId: text("project_id")
         .notNull()
-        .references(() => projects.id),
+        .references(() => projects.id, { onDelete: "cascade" }),
 });
 
 export const kanbanColumns = sqliteTable("kanban_column", {
@@ -48,7 +63,7 @@ export const kanbanColumns = sqliteTable("kanban_column", {
     name: text("name").notNull(),
     boardId: text("board_id")
         .notNull()
-        .references(() => kanbanBoards.id),
+        .references(() => kanbanBoards.id, { onDelete: "cascade" }),
 });
 
 export const kanbanTasks = sqliteTable("kanban_task", {
@@ -59,13 +74,15 @@ export const kanbanTasks = sqliteTable("kanban_task", {
     description: text("description"),
     columnId: text("column_id")
         .notNull()
-        .references(() => kanbanColumns.id),
+        .references(() => kanbanColumns.id, { onDelete: "cascade" }),
     boardId: text("board_id")
         .notNull()
-        .references(() => kanbanBoards.id),
+        .references(() => kanbanBoards.id, { onDelete: "cascade" }),
 
-    deadline: int("deadline", { mode: "timestamp_ms" }),
-    priority: text("priority", { enum: ["low", "medium", "high"] }),
+    deadline: text("deadline"),
+    priority: text("priority", { enum: ["low", "medium", "high"] }).$default(
+        () => "high"
+    ),
     note: text("note"),
     columnIndex: int("column_index").notNull(),
 
@@ -81,9 +98,10 @@ export const teams = sqliteTable("team", {
         .$defaultFn(() => crypto.randomUUID()),
     name: text("name").notNull(),
     description: text("description"),
+
     ownerId: text("owner_id")
         .notNull()
-        .references(() => users.id),
+        .references(() => users.id, { onDelete: "cascade" }),
     createdAt: text("created_at").notNull().default(new Date().toISOString()),
     updatedAt: text("updated_at").notNull().default(new Date().toISOString()),
 });
@@ -102,3 +120,23 @@ export const usersToTeams = sqliteTable(
         pk: primaryKey({ columns: [t.userId, t.teamId] }),
     })
 );
+
+export const milestones = sqliteTable("milestone", {
+    id: text("id")
+        .primaryKey()
+        .$defaultFn(() => crypto.randomUUID()),
+    name: text("name").notNull(),
+    description: text("description"),
+    priority: text("priority", { enum: ["low", "medium", "high"] }).$default(
+        () => "high"
+    ),
+    due: text("due").notNull().default(new Date().toISOString()),
+    authorId: text("author_id")
+        .notNull()
+        .references(() => users.id, { onDelete: "cascade" }),
+    projectId: text("project_id")
+        .notNull()
+        .references(() => projects.id, { onDelete: "cascade" }),
+    createdAt: text("created_at").notNull().default(new Date().toISOString()),
+    updatedAt: text("updated_at").notNull().default(new Date().toISOString()),
+});

@@ -24,11 +24,11 @@ CREATE TABLE `kanban_task` (
 	`column_index` integer NOT NULL,
 	`assignee_id` text,
 	`creator_id` text,
-	`created_at` text DEFAULT '2024-04-17T07:35:54.324Z' NOT NULL,
-	`updated_at` text DEFAULT '2024-04-17T07:35:54.324Z' NOT NULL,
+	`created_at` text DEFAULT '2024-04-17T10:17:00.043Z' NOT NULL,
+	`updated_at` text DEFAULT '2024-04-17T10:17:00.043Z' NOT NULL,
 	FOREIGN KEY (`column_id`) REFERENCES `kanban_column`(`id`) ON UPDATE no action ON DELETE cascade,
 	FOREIGN KEY (`board_id`) REFERENCES `kanban_board`(`id`) ON UPDATE no action ON DELETE cascade,
-	FOREIGN KEY (`creator_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE no action
+	FOREIGN KEY (`creator_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
 CREATE TABLE `milestone` (
@@ -36,11 +36,11 @@ CREATE TABLE `milestone` (
 	`name` text NOT NULL,
 	`description` text,
 	`priority` text,
-	`due` text DEFAULT '2024-04-17T07:35:54.325Z' NOT NULL,
+	`due` text DEFAULT '2024-04-17T10:17:00.044Z' NOT NULL,
 	`author_id` text NOT NULL,
 	`project_id` text NOT NULL,
-	`created_at` text DEFAULT '2024-04-17T07:35:54.325Z' NOT NULL,
-	`updated_at` text DEFAULT '2024-04-17T07:35:54.325Z' NOT NULL,
+	`created_at` text DEFAULT '2024-04-17T10:17:00.044Z' NOT NULL,
+	`updated_at` text DEFAULT '2024-04-17T10:17:00.044Z' NOT NULL,
 	FOREIGN KEY (`author_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade,
 	FOREIGN KEY (`project_id`) REFERENCES `project`(`id`) ON UPDATE no action ON DELETE cascade
 );
@@ -54,10 +54,17 @@ CREATE TABLE `project` (
 	`budget` real,
 	`owner_id` text NOT NULL,
 	`team_id` text NOT NULL,
-	`created_at` text DEFAULT '2024-04-17T07:35:54.320Z' NOT NULL,
-	`updated_at` text DEFAULT '2024-04-17T07:35:54.322Z' NOT NULL,
+	`created_at` text DEFAULT '2024-04-17T10:17:00.038Z' NOT NULL,
+	`updated_at` text DEFAULT '2024-04-17T10:17:00.040Z' NOT NULL,
 	FOREIGN KEY (`owner_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade,
 	FOREIGN KEY (`team_id`) REFERENCES `team`(`id`) ON UPDATE no action ON DELETE no action
+);
+--> statement-breakpoint
+CREATE TABLE `tag` (
+	`id` text PRIMARY KEY NOT NULL,
+	`name` text NOT NULL,
+	`project_id` text NOT NULL,
+	FOREIGN KEY (`project_id`) REFERENCES `project`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
 CREATE TABLE `team` (
@@ -65,8 +72,8 @@ CREATE TABLE `team` (
 	`name` text NOT NULL,
 	`description` text,
 	`owner_id` text NOT NULL,
-	`created_at` text DEFAULT '2024-04-17T07:35:54.324Z' NOT NULL,
-	`updated_at` text DEFAULT '2024-04-17T07:35:54.324Z' NOT NULL,
+	`created_at` text DEFAULT '2024-04-17T10:17:00.043Z' NOT NULL,
+	`updated_at` text DEFAULT '2024-04-17T10:17:00.043Z' NOT NULL,
 	FOREIGN KEY (`owner_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
@@ -87,6 +94,6 @@ CREATE TABLE `user_to_team` (
 	`user_id` text NOT NULL,
 	`team_id` text NOT NULL,
 	PRIMARY KEY(`team_id`, `user_id`),
-	FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE no action,
-	FOREIGN KEY (`team_id`) REFERENCES `team`(`id`) ON UPDATE no action ON DELETE no action
+	FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade,
+	FOREIGN KEY (`team_id`) REFERENCES `team`(`id`) ON UPDATE no action ON DELETE cascade
 );

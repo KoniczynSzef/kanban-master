@@ -87,7 +87,9 @@ export const kanbanTasks = sqliteTable("kanban_task", {
     columnIndex: int("column_index").notNull(),
 
     assigneeId: text("assignee_id"),
-    creatorId: text("creator_id").references(() => users.id),
+    creatorId: text("creator_id").references(() => users.id, {
+        onDelete: "cascade",
+    }),
     createdAt: text("created_at").notNull().default(new Date().toISOString()),
     updatedAt: text("updated_at").notNull().default(new Date().toISOString()),
 });
@@ -111,10 +113,10 @@ export const usersToTeams = sqliteTable(
     {
         userId: text("user_id")
             .notNull()
-            .references(() => users.id),
+            .references(() => users.id, { onDelete: "cascade" }),
         teamId: text("team_id")
             .notNull()
-            .references(() => teams.id),
+            .references(() => teams.id, { onDelete: "cascade" }),
     },
     (t) => ({
         pk: primaryKey({ columns: [t.userId, t.teamId] }),
@@ -139,4 +141,14 @@ export const milestones = sqliteTable("milestone", {
         .references(() => projects.id, { onDelete: "cascade" }),
     createdAt: text("created_at").notNull().default(new Date().toISOString()),
     updatedAt: text("updated_at").notNull().default(new Date().toISOString()),
+});
+
+export const tags = sqliteTable("tag", {
+    id: text("id")
+        .primaryKey()
+        .$defaultFn(() => crypto.randomUUID()),
+    name: text("name").notNull(),
+    projectId: text("project_id")
+        .notNull()
+        .references(() => projects.id, { onDelete: "cascade" }),
 });

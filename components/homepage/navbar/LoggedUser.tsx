@@ -14,8 +14,13 @@ const LoggedUser: FC<Props> = () => {
             >
                 Dashboard
             </Link>
-            <LogoutLink postLogoutRedirectURL="/">
-                <Button variant={"destructive"}>Sign out</Button>
+            <LogoutLink
+                postLogoutRedirectURL="/"
+                className="focus:ring-2 focus:ring-offset-4 focus:ring-destructive rounded-2xl focus:outline-0 transition duration-300"
+            >
+                <Button variant={"destructive"} tabIndex={-1}>
+                    Sign out
+                </Button>
             </LogoutLink>
         </>
     );

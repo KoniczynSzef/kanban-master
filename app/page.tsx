@@ -23,17 +23,7 @@ const page: FC<Props> = async () => {
     const kindeUser = await getUser();
 
     if (!isLoggedIn || !kindeUser) {
-        return (
-            <div>
-                Not authenticated
-                <RegisterLink>
-                    <Button>Register</Button>
-                </RegisterLink>
-                <LoginLink>
-                    <Button variant={"outline"}>Login</Button>
-                </LoginLink>
-            </div>
-        );
+        return <div>Not authenticated</div>;
     }
 
     const helpers = await createHelpers(kindeUser);
@@ -45,11 +35,6 @@ const page: FC<Props> = async () => {
                     <Account kindeUser={kindeUser} />
                     <Project />
                 </div>
-                <LogoutLink postLogoutRedirectURL="/">
-                    <Button variant={"destructive"} className="my-16">
-                        Sign out
-                    </Button>
-                </LogoutLink>
             </div>
 
             <Users />

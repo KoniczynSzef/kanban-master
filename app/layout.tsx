@@ -4,7 +4,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
-import Provider from "@/server/trpc/Provider";
+import ReactQueryProvider from "@/server/trpc/Provider";
+import Navbar from "@/components/homepage/navbar/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,13 +20,14 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body className={inter.className}>
-                <main className="relative p-24">
-                    <Provider>{children}</Provider>
-                </main>
-                <Toaster richColors />
-            </body>
-        </html>
+        <ReactQueryProvider>
+            <html lang="en">
+                <body className={`${inter.className} flex flex-col`}>
+                    <Navbar />
+                    <main className="relative p-24">{children}</main>
+                    <Toaster richColors />
+                </body>
+            </html>
+        </ReactQueryProvider>
     );
 }

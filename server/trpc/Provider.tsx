@@ -28,6 +28,7 @@ const Provider: FC<Props> = (props) => {
             transformer: superjson,
         });
     });
+
     return (
         <trpc.Provider client={trpcClient} queryClient={queryClient}>
             <QueryClientProvider client={queryClient}>

@@ -1,110 +1,19 @@
 {
   "version": "5",
-  "dialect": "pg",
+  "dialect": "sqlite",
   "entries": [
     {
       "idx": 0,
       "version": "5",
-      "when": 1712086719320,
-      "tag": "0000_young_lady_ursula",
+      "when": 1713349020083,
+      "tag": "0000_lame_captain_midlands",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "5",
-      "when": 1712088923764,
-      "tag": "0001_wandering_nextwave",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1712089828553,
-      "tag": "0002_chunky_wrecker",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1712090351769,
-      "tag": "0003_loving_captain_midlands",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "5",
-      "when": 1712164326614,
-      "tag": "0004_nosy_namorita",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "5",
-      "when": 1712165801883,
-      "tag": "0005_burly_thunderbolt_ross",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "5",
-      "when": 1712494664199,
-      "tag": "0006_late_exodus",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "5",
-      "when": 1712518854088,
-      "tag": "0007_boring_sunspot",
-      "breakpoints": true
-    },
-    {
-      "idx": 8,
-      "version": "5",
-      "when": 1712519069174,
-      "tag": "0008_broad_skreet",
-      "breakpoints": true
-    },
-    {
-      "idx": 9,
-      "version": "5",
-      "when": 1712519684919,
-      "tag": "0009_polite_wiccan",
-      "breakpoints": true
-    },
-    {
-      "idx": 10,
-      "version": "5",
-      "when": 1712521667796,
-      "tag": "0010_last_tattoo",
-      "breakpoints": true
-    },
-    {
-      "idx": 11,
-      "version": "5",
-      "when": 1712646317825,
-      "tag": "0011_woozy_mysterio",
-      "breakpoints": true
-    },
-    {
-      "idx": 12,
-      "version": "5",
-      "when": 1712649728747,
-      "tag": "0012_gray_triathlon",
-      "breakpoints": true
-    },
-    {
-      "idx": 13,
-      "version": "5",
-      "when": 1712673549862,
-      "tag": "0013_round_silver_samurai",
-      "breakpoints": true
-    },
-    {
-      "idx": 14,
-      "version": "5",
-      "when": 1712851517008,
-      "tag": "0014_volatile_radioactive_man",
+      "when": 1713349432218,
+      "tag": "0001_organic_rumiko_fujikawa",
       "breakpoints": true
     }
   ]

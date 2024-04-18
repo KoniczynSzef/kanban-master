@@ -6,11 +6,12 @@ dotenv.config();
 export default defineConfig({
     schema: "./database/schema.ts",
     out: "./drizzle",
-    driver: "pg",
+    driver: "turso",
     verbose: true,
     strict: true,
 
     dbCredentials: {
-        connectionString: process.env.XATA_POSTGRES_URL as string,
+        url: process.env.TURSO_DATABASE_URL as string,
+        authToken: process.env.TURSO_AUTH_TOKEN as string,
     },
 });

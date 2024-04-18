@@ -1,1 +1,0 @@
-ALTER TABLE "user" ALTER COLUMN "bio" SET DATA TYPE text;

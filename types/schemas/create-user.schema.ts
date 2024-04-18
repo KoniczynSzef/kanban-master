@@ -1,6 +1,6 @@
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import { z } from "zod";
-import { User } from "../models";
+import { User } from "../models/User";
 
 const emailSchema = z.string().email();
 const urlSchema = z.string().url();

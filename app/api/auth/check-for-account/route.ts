@@ -1,6 +1,6 @@
 import { db } from "@/database";
 import { users } from "@/database/schema";
-import { UserInsert } from "@/types/models";
+import { UserInsert } from "@/types/models/User";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
@@ -16,12 +16,12 @@ export async function GET() {
         });
     }
 
-    const isUserInDB = await db.query.users.findFirst({
+    const userFromDB = await db.query.users.findFirst({
         where: eq(users.kindeId, user.id),
     });
 
-    if (isUserInDB) {
-        return redirect("/");
+    if (userFromDB) {
+        return redirect(userFromDB.validated ? "/" : "/create-account");
     }
 
     const newUser: UserInsert = {

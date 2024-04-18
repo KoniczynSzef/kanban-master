@@ -4,8 +4,8 @@ import React, { FC } from "react";
 
 interface Props {}
 
-const NavigationMenu: FC<Props> = (props) => {
-    return <div>hello</div>;
+const NavigationMenu: FC<Props> = () => {
+    return <div>TODO: Expanded Navigation Menu</div>;
 };
 
 export default NavigationMenu;

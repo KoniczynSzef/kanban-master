@@ -1,28 +1,48 @@
 import { Button } from "@/components/ui/button";
+import Hydrate from "@/lib/HydrateClient";
+import { createHelpers } from "@/utils/helpers";
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
-import Link from "next/link";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
+import { dehydrate } from "@tanstack/react-query";
 import React, { FC } from "react";
+import LoggedUserAvatar from "./LoggedUserAvatar";
 
 interface Props {}
 
-const LoggedUser: FC<Props> = () => {
+async function prefetchQueries(kindeUser: KindeUser) {
+    const helpers = await createHelpers();
+
+    await helpers.fetchUsers.prefetch();
+    await helpers.getUserAndTeams.prefetch(kindeUser.id);
+
+    return helpers;
+}
+
+const LoggedUser: FC<Props> = async () => {
+    const { getUser } = getKindeServerSession();
+    const kindeUser = await getUser();
+
+    if (!kindeUser) {
+        return <div className="p-24">Not authenticated</div>;
+    }
+
+    const helpers = await prefetchQueries(kindeUser);
+
     return (
-        <>
-            <Link
-                href={"/dashboard"}
-                className="px-4 py-2 rounded-2xl hover:bg-purple-50 transition duration-300 focus:ring-2 focus:ring-primary focus:outline-0"
-            >
-                Dashboard
-            </Link>
-            <LogoutLink
-                postLogoutRedirectURL="/"
-                className="focus:ring-2 focus:ring-offset-4 focus:ring-destructive rounded-2xl focus:outline-0 transition duration-300"
-            >
-                <Button variant={"destructive"} tabIndex={-1}>
-                    Sign out
-                </Button>
-            </LogoutLink>
-        </>
+        <Hydrate state={dehydrate(helpers.queryClient)}>
+            <div className="flex items-center gap-4">
+                <LoggedUserAvatar kindeId={kindeUser.id} />
+                <LogoutLink
+                    postLogoutRedirectURL="/"
+                    className="focus:ring-2 focus:ring-offset-4 focus:ring-destructive rounded-2xl focus:outline-0 transition duration-300"
+                >
+                    <Button variant={"destructive"} tabIndex={-1}>
+                        Sign out
+                    </Button>
+                </LogoutLink>
+            </div>
+        </Hydrate>
     );
 };
 

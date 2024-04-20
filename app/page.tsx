@@ -20,7 +20,9 @@ const page: FC<Props> = async () => {
         return <div className="p-24">Not authenticated</div>;
     }
 
-    const helpers = await createHelpers(kindeUser);
+    const helpers = await createHelpers();
+    await helpers.fetchUsers.prefetch();
+    await helpers.getUserAndTeams.prefetch(kindeUser.id);
 
     return (
         <Hydrate state={dehydrate(helpers.queryClient)}>

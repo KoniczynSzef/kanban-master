@@ -18,7 +18,7 @@ const NavMenuItem: FC<Props> = (props) => {
                 {props.navItem.content.map((item) => (
                     <div
                         key={item.href}
-                        className="flex flex-col items-start gap-1"
+                        className="flex flex-col items-start gap-2"
                     >
                         <Link href={item.href}>
                             <NavigationMenu.NavigationMenuLink

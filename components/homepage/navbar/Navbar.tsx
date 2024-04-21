@@ -2,8 +2,8 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Link from "next/link";
 import React, { FC } from "react";
 import NavigationMenu from "./menu/NavigationMenuWrapper";
-import AuthButtons from "./AuthButtons";
-import LoggedUser from "./LoggedUser";
+import AuthButtons from "./auth-state/AuthButtons";
+import LoggedUser from "./auth-state/LoggedUser";
 
 interface Props {}
 

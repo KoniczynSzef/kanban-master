@@ -11,22 +11,19 @@ interface Props {}
 const NavigationMenuWrapper: FC<Props> = () => {
     return (
         <NavigationMenu.NavigationMenu>
-            <NavigationMenu.NavigationMenuList className="flex gap-4">
+            <NavigationMenu.NavigationMenuList className="flex gap-4 items-center">
                 {navMenuItems.map((navItem) => (
                     <NavMenuItem key={navItem.triggerTitle} navItem={navItem} />
                 ))}
                 <NavigationMenu.NavigationMenuItem>
-                    <a
+                    <NavigationMenu.NavigationMenuLink
                         href="https://github.com/KoniczynSzef"
+                        className={`${NavigationMenu.navigationMenuTriggerStyle()} flex gap-2`}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                     >
-                        <NavigationMenu.NavigationMenuLink
-                            className={`${NavigationMenu.navigationMenuTriggerStyle()} flex gap-2`}
-                        >
-                            <Github />
-                        </NavigationMenu.NavigationMenuLink>
-                    </a>
+                        <Github />
+                    </NavigationMenu.NavigationMenuLink>
                 </NavigationMenu.NavigationMenuItem>
             </NavigationMenu.NavigationMenuList>
             <NavigationMenu.NavigationMenuViewport />

@@ -54,54 +54,62 @@ const Account: FC<Props> = (props) => {
     };
 
     return (
-        <div className="flex justify-between w-full p-4 rounded-lg border border-secondary">
+        <div className="flex justify-between w-full p-4 rounded-lg">
             <motion.div
                 className="space-y-16"
                 initial={{ opacity: 0, y: -5 }}
                 animate={{ opacity: 1, y: 0 }}
             >
-                <pre>{JSON.stringify(user, null, 2)}</pre>
+                <div className="flex gap-4 items-center">
+                    <h3 className="text-xl font-semibold">
+                        {user.name} ({user.email})
+                    </h3>
 
-                <Avatar>
-                    <AvatarImage src={user.picture} />
-                    <AvatarFallback>
-                        {user.name.slice(0, 2).toLocaleUpperCase()}
-                    </AvatarFallback>
-                </Avatar>
+                    <Avatar>
+                        <AvatarImage src={user.picture} />
+                        <AvatarFallback>
+                            {user.name.slice(0, 2).toLocaleUpperCase()}
+                        </AvatarFallback>
+                    </Avatar>
+                </div>
 
-                <Input placeholder="Team Name..." ref={teamName} />
-                <Input
-                    placeholder="Team Description..."
-                    ref={teamDescription}
-                />
+                <form action="" className="space-y-2">
+                    <Input placeholder="Team Name..." ref={teamName} />
+                    <Input
+                        placeholder="Team Description..."
+                        ref={teamDescription}
+                    />
 
-                <Button onClick={handleCreateTeam} disabled={isLoading}>
-                    {isLoading ? (
-                        <Loader className="animate-spin" />
-                    ) : (
-                        "Create Team"
-                    )}
-                </Button>
+                    <Button onClick={handleCreateTeam} disabled={isLoading}>
+                        {isLoading ? (
+                            <Loader className="animate-spin" />
+                        ) : (
+                            "Create Team"
+                        )}
+                    </Button>
+                </form>
             </motion.div>
 
-            {teams.map((team, index) => (
-                <motion.pre
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    key={team.id}
-                    transition={{ delay: 0.2 * index }}
-                    className="origin-center border border-secondary p-4 rounded-xl h-min"
-                >
-                    {JSON.stringify(
-                        {
-                            name: team.name,
-                            description: team.description,
-                        },
-                        null,
-                        2
-                    )}
-                </motion.pre>
-            ))}
+            <div className="flex flex-col">
+                {teams.map((team, index) => (
+                    <motion.pre
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        key={team.id}
+                        transition={{ delay: 0.2 * index }}
+                        className="origin-center border border-secondary p-4 rounded-xl h-min"
+                    >
+                        {JSON.stringify(
+                            {
+                                name: team.name,
+                                description: team.description,
+                            },
+                            null,
+                            2
+                        )}
+                    </motion.pre>
+                ))}
+            </div>
         </div>
     );
 };

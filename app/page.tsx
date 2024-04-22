@@ -2,13 +2,7 @@ import Hydrate from "@/lib/HydrateClient";
 import { dehydrate } from "@tanstack/react-query";
 
 import React, { FC } from "react";
-import { Button } from "@/components/ui/button";
-import {
-    LogoutLink,
-    RegisterLink,
-    getKindeServerSession,
-    LoginLink,
-} from "@kinde-oss/kinde-auth-nextjs/server";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Account from "@/components/Account";
 import Users from "@/components/Users";
 import { createHelpers } from "@/utils/helpers";
@@ -23,20 +17,12 @@ const page: FC<Props> = async () => {
     const kindeUser = await getUser();
 
     if (!isLoggedIn || !kindeUser) {
-        return (
-            <div>
-                Not authenticated
-                <RegisterLink>
-                    <Button>Register</Button>
-                </RegisterLink>
-                <LoginLink>
-                    <Button variant={"outline"}>Login</Button>
-                </LoginLink>
-            </div>
-        );
+        return <div className="p-24">Not authenticated</div>;
     }
 
-    const helpers = await createHelpers(kindeUser);
+    const helpers = await createHelpers();
+    await helpers.fetchUsers.prefetch();
+    await helpers.getUserAndTeams.prefetch(kindeUser.id);
 
     return (
         <Hydrate state={dehydrate(helpers.queryClient)}>
@@ -45,11 +31,6 @@ const page: FC<Props> = async () => {
                     <Account kindeUser={kindeUser} />
                     <Project />
                 </div>
-                <LogoutLink postLogoutRedirectURL="/">
-                    <Button variant={"destructive"} className="my-16">
-                        Sign out
-                    </Button>
-                </LogoutLink>
             </div>
 
             <Users />

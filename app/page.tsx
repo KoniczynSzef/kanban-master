@@ -26,7 +26,7 @@ const page: FC<Props> = async () => {
 
     return (
         <Hydrate state={dehydrate(helpers.queryClient)}>
-            <div className="p-24">
+            <div>
                 <div className="flex">
                     <Account kindeUser={kindeUser} />
                     <Project />

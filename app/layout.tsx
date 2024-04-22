@@ -24,7 +24,9 @@ export default function RootLayout({
             <html lang="en">
                 <body className={`${inter.className} flex flex-col`}>
                     <Navbar />
-                    <main className="relative p-24">{children}</main>
+                    <main className="relative container mx-auto my-48">
+                        {children}
+                    </main>
                     <Toaster richColors />
                 </body>
             </html>

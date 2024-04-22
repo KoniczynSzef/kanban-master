@@ -1,8 +1,10 @@
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { trpc } from "@/server/trpc";
+import Link from "next/link";
 import React, { FC } from "react";
 
 interface Props {
@@ -17,7 +19,11 @@ const LoggedUserAvatar: FC<Props> = (props) => {
     }
 
     if (!data) {
-        return null;
+        return (
+            <Link href="/create-account">
+                <Button>Validate account</Button>
+            </Link>
+        );
     }
 
     return (

@@ -55,11 +55,7 @@ const Account: FC<Props> = (props) => {
 
     return (
         <div className="flex justify-between w-full p-4 rounded-lg">
-            <motion.div
-                className="space-y-16"
-                initial={{ opacity: 0, y: -5 }}
-                animate={{ opacity: 1, y: 0 }}
-            >
+            <div className="space-y-16">
                 <div className="flex gap-4 items-center">
                     <h3 className="text-xl font-semibold">
                         {user.name} ({user.email})
@@ -73,14 +69,21 @@ const Account: FC<Props> = (props) => {
                     </Avatar>
                 </div>
 
-                <form action="" className="space-y-2">
+                <form
+                    action=""
+                    className="space-y-2 border border-secondary p-4 rounded-2xl"
+                >
                     <Input placeholder="Team Name..." ref={teamName} />
                     <Input
                         placeholder="Team Description..."
                         ref={teamDescription}
                     />
 
-                    <Button onClick={handleCreateTeam} disabled={isLoading}>
+                    <Button
+                        onClick={handleCreateTeam}
+                        disabled={isLoading}
+                        className="w-full"
+                    >
                         {isLoading ? (
                             <Loader className="animate-spin" />
                         ) : (
@@ -88,9 +91,9 @@ const Account: FC<Props> = (props) => {
                         )}
                     </Button>
                 </form>
-            </motion.div>
+            </div>
 
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-2">
                 {teams.map((team, index) => (
                     <motion.pre
                         initial={{ opacity: 0, scale: 0 }}

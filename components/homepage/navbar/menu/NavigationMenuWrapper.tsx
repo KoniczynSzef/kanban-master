@@ -6,11 +6,11 @@ import NavMenuItem from "./NavMenuItem";
 import { navMenuItems } from "@/assets/nav-menu-items";
 import { Github } from "lucide-react";
 
-interface Props {}
+interface Props extends React.HTMLAttributes<HTMLElement> {}
 
-const NavigationMenuWrapper: FC<Props> = () => {
+const NavigationMenuWrapper: FC<Props> = (props) => {
     return (
-        <NavigationMenu.NavigationMenu>
+        <NavigationMenu.NavigationMenu className={props.className}>
             <NavigationMenu.NavigationMenuList className="flex gap-4 items-center">
                 {navMenuItems.map((navItem) => (
                     <NavMenuItem key={navItem.triggerTitle} navItem={navItem} />

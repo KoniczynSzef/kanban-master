@@ -1,10 +1,9 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import React, { FC } from "react";
 import NavigationMenu from "./menu/NavigationMenuWrapper";
-import AuthButtons from "./auth-state/AuthButtons";
-import LoggedUser from "./auth-state/LoggedUser";
 import HamburgerMenu from "./HamburgerMenu";
 import HomeLink from "./HomeLink";
+import AuthSection from "./auth-state/AuthSection";
 
 interface Props {}
 
@@ -19,9 +18,7 @@ const Navbar: FC<Props> = async () => {
 
             <NavigationMenu className="hidden md:block" />
 
-            <div className="hidden md:flex gap-8">
-                {isUserLoggedIn ? <LoggedUser /> : <AuthButtons />}
-            </div>
+            <AuthSection isUserLoggedIn={isUserLoggedIn} />
 
             <HamburgerMenu className="block md:hidden" />
         </header>

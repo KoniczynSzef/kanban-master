@@ -20,7 +20,7 @@ const Navbar: FC<Props> = async () => {
 
             <AuthSection
                 isUserLoggedIn={isUserLoggedIn}
-                className="hidden md:flex"
+                className="hidden md:flex gap-4"
             />
 
             <HamburgerMenu

@@ -1,14 +1,15 @@
 import React, { FC } from "react";
 import LoggedUser from "./LoggedUser";
 import AuthButtons from "./AuthButtons";
+import { cn } from "@/lib/utils";
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
     isUserLoggedIn: boolean;
 }
 
 const AuthSection: FC<Props> = (props) => {
     return (
-        <div className="mt-16 md:mt-0">
+        <div className={cn("mt-16 md:mt-0", props.className)}>
             {props.isUserLoggedIn ? <LoggedUser /> : <AuthButtons />}
         </div>
     );

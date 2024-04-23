@@ -18,7 +18,10 @@ const Navbar: FC<Props> = async () => {
 
             <NavigationMenu className="hidden md:block" />
 
-            <AuthSection isUserLoggedIn={isUserLoggedIn} />
+            <AuthSection
+                isUserLoggedIn={isUserLoggedIn}
+                className="hidden md:flex"
+            />
 
             <HamburgerMenu
                 className="block md:hidden"

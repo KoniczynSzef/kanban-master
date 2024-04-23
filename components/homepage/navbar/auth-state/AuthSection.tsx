@@ -8,7 +8,7 @@ interface Props {
 
 const AuthSection: FC<Props> = (props) => {
     return (
-        <div className="hidden md:flex gap-8">
+        <div className="mt-16 md:mt-0">
             {props.isUserLoggedIn ? <LoggedUser /> : <AuthButtons />}
         </div>
     );

@@ -20,7 +20,10 @@ const Navbar: FC<Props> = async () => {
 
             <AuthSection isUserLoggedIn={isUserLoggedIn} />
 
-            <HamburgerMenu className="block md:hidden" />
+            <HamburgerMenu
+                className="block md:hidden"
+                isUserLoggedIn={isUserLoggedIn}
+            />
         </header>
     );
 };

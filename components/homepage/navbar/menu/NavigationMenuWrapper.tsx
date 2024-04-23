@@ -11,7 +11,7 @@ interface Props extends React.HTMLAttributes<HTMLElement> {}
 const NavigationMenuWrapper: FC<Props> = (props) => {
     return (
         <NavigationMenu.NavigationMenu className={props.className}>
-            <NavigationMenu.NavigationMenuList className="flex gap-4 items-center">
+            <NavigationMenu.NavigationMenuList className="flex gap-4 items-center mx-auto">
                 {navMenuItems.map((navItem) => (
                     <NavMenuItem key={navItem.triggerTitle} navItem={navItem} />
                 ))}

@@ -23,7 +23,7 @@ const HamburgerMenu: FC<Props> = (props) => {
                 <Sheet.SheetContent className="">
                     <HomeLink className="" />
 
-                    <NavigationMenuWrapper className="mt-8" />
+                    <NavigationMenuWrapper className="mt-8 mx-auto" />
 
                     <AuthSection isUserLoggedIn={props.isUserLoggedIn} />
                 </Sheet.SheetContent>

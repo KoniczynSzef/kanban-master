@@ -54,8 +54,8 @@ const Account: FC<Props> = (props) => {
     };
 
     return (
-        <div className="flex justify-between w-full p-4 rounded-lg">
-            <div className="space-y-16">
+        <div className="flex gap-16 justify-between w-full p-4 rounded-lg flex-col md:flex-row">
+            <div className="flex flex-col gap-16">
                 <div className="flex gap-4 items-center">
                     <h3 className="text-xl font-semibold">
                         {user.name} ({user.email})

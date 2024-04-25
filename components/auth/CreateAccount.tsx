@@ -54,7 +54,7 @@ const CreateUser: FC<Props> = (props) => {
             <form
                 action=""
                 onSubmit={form.handleSubmit(handleSubmit)}
-                className="max-w-xl w-full border border-primary-foreground p-8 rounded-xl flex flex-col gap-4 mx-auto my-8"
+                className="max-w-xl w-full border border-muted p-8 rounded-xl flex flex-col gap-4 mx-auto my-8"
             >
                 {inputFormFields.map((inputProps, idx) => (
                     <CreateFormField

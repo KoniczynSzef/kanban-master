@@ -8,8 +8,9 @@ import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
-import { Loader, Loader2 } from "lucide-react";
+import { Loader } from "lucide-react";
 import { Input } from "./ui/input";
+import { redirect } from "next/navigation";
 
 interface Props {
     kindeUser: KindeUser;
@@ -19,24 +20,24 @@ const Account: FC<Props> = (props) => {
     const teamName = React.useRef<HTMLInputElement>(null);
     const teamDescription = React.useRef<HTMLInputElement>(null);
 
-    const userAndTeams = trpc.getUserAndTeams.useQuery(props.kindeUser.id);
-
-    const { data, isLoading: userLoading } = userAndTeams;
+    const { data, refetch } = trpc.getUserAndTeams.useQuery(props.kindeUser.id);
 
     const { mutate: createTeam, isLoading } = trpc.createTeam.useMutation({
         onSettled: () => {},
 
         onSuccess: async (data) => {
             toast.success(`Team "${data.name}" created!`);
-            await userAndTeams.refetch();
+            await refetch();
         },
     });
-
-    if (userLoading) return <Loader2 className="animate-spin" />;
 
     if (!data) return null;
 
     const { user, teams } = data;
+
+    if (!user.validated) {
+        return redirect("/create-account");
+    }
 
     const handleCreateTeam = async () => {
         if (!teamName.current?.value)

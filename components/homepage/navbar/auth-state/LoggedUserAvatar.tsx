@@ -18,7 +18,7 @@ const LoggedUserAvatar: FC<Props> = (props) => {
         return <Skeleton className="aspect-square rounded-full h-12" />;
     }
 
-    if (!data) {
+    if (!data || !data.user.validated) {
         return (
             <Link href="/create-account">
                 <Button>Validate account</Button>

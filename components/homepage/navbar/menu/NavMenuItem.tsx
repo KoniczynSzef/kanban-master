@@ -15,14 +15,13 @@ const NavMenuItem: FC<Props> = (props) => {
                 {props.navItem.triggerTitle}
             </NavigationMenu.NavigationMenuTrigger>
             <NavigationMenu.NavigationMenuContent className="p-4 py-6 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 md:w-[500px] lg:w-[600px]">
-                {props.navItem.content.map((item) => (
+                {props.navItem.content.map((item, index) => (
                     <div
-                        key={item.href}
+                        key={index}
                         className="flex flex-col items-start gap-2"
                     >
-                        <Link href={item.href}>
+                        <Link href={item.href} legacyBehavior passHref>
                             <NavigationMenu.NavigationMenuLink
-                                href={item.href}
                                 className={NavigationMenu.navigationMenuTriggerStyle()}
                             >
                                 {item.title}

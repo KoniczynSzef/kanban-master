@@ -1,10 +1,6 @@
-import CreateUser from "@/components/auth/CreateAccount";
-import { Button } from "@/components/ui/button";
+import CreateAccount from "@/components/auth/CreateAccount";
 import { getUserByKindeId } from "@/server/auth/get-user-by-kinde-id";
-import {
-    LogoutLink,
-    getKindeServerSession,
-} from "@kinde-oss/kinde-auth-nextjs/server";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import React, { FC } from "react";
 
@@ -22,13 +18,23 @@ const page: FC<Props> = async () => {
 
     const user = await getUserByKindeId(kindeUser.id);
 
+    if (user?.validated) {
+        return redirect("/");
+    }
+
     return (
-        <>
-            <CreateUser user={user} kindeUser={kindeUser} />
-            <LogoutLink>
-                <Button variant={"destructive"}>Logout</Button>
-            </LogoutLink>
-        </>
+        <section className="flex items-center flex-col">
+            <h3 className="text-xl font-semibold">
+                Let&apos;s start with creating an account
+            </h3>
+
+            <p className="text-muted-foreground mt-8">
+                You need to create an account before you can start using the
+                application.
+            </p>
+
+            <CreateAccount user={user} kindeUser={kindeUser} />
+        </section>
     );
 };
 

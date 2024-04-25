@@ -1,8 +1,10 @@
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { trpc } from "@/server/trpc";
+import Link from "next/link";
 import React, { FC } from "react";
 
 interface Props {
@@ -16,8 +18,12 @@ const LoggedUserAvatar: FC<Props> = (props) => {
         return <Skeleton className="aspect-square rounded-full h-12" />;
     }
 
-    if (!data) {
-        return null;
+    if (!data || !data.user.validated) {
+        return (
+            <Link href="/create-account">
+                <Button>Validate account</Button>
+            </Link>
+        );
     }
 
     return (

@@ -31,7 +31,7 @@ const LoggedUser: FC<Props> = async () => {
 
     return (
         <Hydrate state={dehydrate(helpers.queryClient)}>
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col md:flex-row items-center gap-8">
                 <LoggedUserAvatar kindeId={kindeUser.id} />
                 <LogoutLink
                     postLogoutRedirectURL="/"

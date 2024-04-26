@@ -21,7 +21,9 @@ export async function GET() {
     });
 
     if (userFromDB) {
-        return redirect(userFromDB.validated ? "/" : "/create-account");
+        return redirect(
+            userFromDB.validated ? "/dashboard" : "/create-account"
+        );
     }
 
     const newUser: UserInsert = {

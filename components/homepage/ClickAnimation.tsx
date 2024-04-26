@@ -16,7 +16,7 @@ const ClickAnimation: FC<Props> = (props) => {
                     initial={{ scale: 0, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0, opacity: 0 }}
-                    className="absolute -right-8 bg-purple-50 rounded-full top-4"
+                    className="absolute right-0 top-8 md:top-4 md:-right-8 bg-purple-50 rounded-full"
                 >
                     <Lottie
                         options={{

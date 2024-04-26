@@ -19,17 +19,19 @@ export async function POST() {
         where: eq(users.kindeId, user.id),
     });
 
-    if (!userFromDB) {
-        const newUser: UserInsert = {
-            name: user.given_name || "user",
-            email: user.email || "",
-            picture: user.picture || "",
-            kindeId: user.id,
-            validated: true,
-        };
-
-        await db.insert(users).values(newUser);
+    if (userFromDB) {
+        return new Response("Account already exists", { status: 200 });
     }
+
+    const newUser: UserInsert = {
+        name: user.given_name || "user",
+        email: user.email || "",
+        picture: user.picture || "",
+        kindeId: user.id,
+        validated: true,
+    };
+
+    await db.insert(users).values(newUser);
 
     return new Response("Account created successfully", { status: 200 });
 }

@@ -11,9 +11,6 @@ const HeroSection: FC<Props> = () => {
                 <h1 className="text-6xl font-extrabold uppercase">
                     Manage your workflow
                 </h1>
-                <h2 className="text-3xl font-medium text-primary">
-                    Organize everything in just few clicks
-                </h2>
             </AnimatedHeader>
 
             <AnimatedDescription />

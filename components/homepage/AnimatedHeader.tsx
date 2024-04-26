@@ -1,25 +1,30 @@
 "use client";
 
 import React, { FC } from "react";
-import { motion } from "framer-motion";
+import ClickAnimation from "./ClickAnimation";
 
 interface Props {
     children: React.ReactNode;
 }
 
 const AnimatedHeader: FC<Props> = (props) => {
+    const [hasLoaded, setHasLoaded] = React.useState(false);
+
+    React.useEffect(() => {
+        setTimeout(() => {
+            setHasLoaded(true);
+        }, 1000);
+    }, []);
+
     return (
         <div className="relative">
-            <motion.div
-                initial={{ y: 40, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{
-                    duration: 0.5,
-                }}
-                className="flex flex-col gap-4"
-            >
-                {props.children}
-            </motion.div>
+            {props.children}
+            <div className="flex justify-center relative mt-6">
+                <h2 className="text-3xl font-medium text-primary">
+                    Organize everything in just few clicks
+                </h2>
+                <ClickAnimation hasLoaded={hasLoaded} />
+            </div>
         </div>
     );
 };

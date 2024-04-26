@@ -18,6 +18,7 @@ const AnimatedDescription: FC<Props> = () => {
             transition={{ delay: 0.25 }}
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
+            layout
         >
             {paragraphs.map((paragraph, index) => (
                 <div className="relative" key={index}>
@@ -27,7 +28,7 @@ const AnimatedDescription: FC<Props> = () => {
                         className="absolute left-0 top-0 bottom-0 right-0 bg-primary rounded"
                         initial={{ left: 0 }}
                         animate={{ left: "100%" }}
-                        transition={{ duration: 0.75, delay: 0.2 * index }}
+                        transition={{ duration: 0.75, delay: 0.25 * index }}
                     />
                 </div>
             ))}

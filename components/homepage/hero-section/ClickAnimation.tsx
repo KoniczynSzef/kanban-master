@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import Lottie from "react-lottie";
-import animationData from "@/videos/mouse-click.json";
+import animationData from "@/images/mouse-click.json";
 
 import { AnimatePresence, motion } from "framer-motion";
 

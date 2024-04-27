@@ -9,6 +9,6 @@ export const features: Feature[] = [
             "Manage your team members, assign tasks and track their progress.",
         imageImport: teamwork as StaticImageData,
         imageAlt: "Image of a team working together",
-        featureBgColor: "bg-darkPrimary",
+        className: "bg-darkPrimary",
     },
 ];

@@ -1,24 +1,54 @@
-import { features } from "@/assets/features";
-import Image from "next/image";
 import React, { FC } from "react";
+import { features } from "@/assets/features";
+import { cn } from "@/lib/utils";
+import Image, { StaticImageData } from "next/image";
 
 interface Props {}
 
+interface FeatureCardProps {
+    title: string;
+    description: string;
+    imageImport: StaticImageData;
+    imageAlt: string;
+    className: string;
+
+    colSpan: string;
+}
+
+function FeatureCard(props: FeatureCardProps) {
+    return (
+        <div
+            className={cn(
+                `rounded-lg p-6 text-white flex flex-col gap-8 border border-muted hover:scale-95 transition duration-300`,
+                props.colSpan
+            )}
+        >
+            <Image
+                src={props.imageImport}
+                alt={props.imageAlt}
+                width={300}
+                height={300}
+            />
+            <div
+                className={cn(
+                    props.className,
+                    "p-4 rounded-2xl transition-all duration-300"
+                )}
+            >
+                <h3 className="text-lg font-medium mb-2">{props.title}</h3>
+                <p>{props.description}</p>
+            </div>
+        </div>
+    );
+}
+
 const FeaturesGrid: FC<Props> = () => {
     return (
-        <div className="grid grid-cols-12 gap-16">
-            {features.map((feature, index) => (
-                <div
-                    key={index}
-                    className={`col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 ${feature.featureBgColor} rounded-lg p-6`}
-                >
-                    <Image src={feature.imageImport} alt={feature.imageAlt} />
-                    <h3 className="text-lg font-medium mb-2">
-                        {feature.title}
-                    </h3>
-                    <p>{feature.description}</p>
-                </div>
-            ))}
+        <div className="grid grid-cols-12 gap-16 my-16">
+            {features.map((feature, index) => {
+                const span = index % 2 === 0 ? "col-span-4" : "col-span-8";
+                return <FeatureCard key={index} {...feature} colSpan={span} />;
+            })}
         </div>
     );
 };

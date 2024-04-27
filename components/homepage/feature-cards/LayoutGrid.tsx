@@ -9,7 +9,7 @@ interface Props {}
 
 const LayoutGrid: FC<Props> = () => {
     return (
-        <section>
+        <section className="flex flex-col gap-16">
             <div className="flex justify-evenly items-center">
                 <h2 className="text-3xl font-medium text-primary">
                     Explore power of Kanban

@@ -24,7 +24,7 @@ export default function RootLayout({
             <html lang="en">
                 <body className={`${inter.className} flex flex-col`}>
                     <Navbar />
-                    <main className="relative container mx-auto my-48">
+                    <main className="relative container mx-auto my-48 flex flex-col gap-48">
                         {children}
                     </main>
                     <Toaster richColors />

@@ -10,7 +10,7 @@ interface Props {}
 const AuthButtons: FC<Props> = () => {
     return (
         <>
-            <RegisterLink className="focus:ring-2 focus:ring-offset-4 focus:ring-primary rounded-2xl focus:outline-0 transition duration-300">
+            <RegisterLink className="linkWithButton">
                 <Button
                     aria-description="Button that users can see and click on to register. If you want to log in, go to the previous link"
                     tabIndex={-1}

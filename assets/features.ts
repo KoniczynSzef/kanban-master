@@ -1,35 +1,38 @@
 import { Feature } from "@/types/homepage/Feature";
 import teamwork from "@/images/teamwork.svg";
+import kanban from "@/images/kanban.svg";
+import integrations from "@/images/integrations.svg";
+import charts from "@/images/charts.svg";
 import { StaticImageData } from "next/image";
 
 export const features: Feature[] = [
     {
-        title: "Team Management",
-        description: "Manage your teams and collaborate with team members.",
+        title: "Work Management",
+        description: "Manage your projects and tasks in one place.",
         imageImport: teamwork as StaticImageData,
         imageAlt: "Image of a team working together",
     },
 
     {
-        title: "Task Management",
+        title: "Kanban Boards",
         description:
-            "Create, assign and track tasks to ensure everything is completed on time.",
-        imageImport: teamwork as StaticImageData,
+            "Organize your tasks on Kanban boards to visualize your progress.",
+        imageImport: kanban as StaticImageData,
         imageAlt: "Image of a team working together",
     },
 
     {
-        title: "Project Management",
-        description: "Create projects, assign tasks and track their progress.",
-        imageImport: teamwork as StaticImageData,
-        imageAlt: "Image of a team working together",
-    },
-
-    {
-        title: "Time Tracking",
+        title: "Integrations",
         description:
-            "Track the time spent on tasks to ensure accurate billing.",
-        imageImport: teamwork as StaticImageData,
+            "Integrate with your favorite tools to streamline your workflow.",
+        imageImport: integrations as StaticImageData,
+        imageAlt: "Image of a team working together",
+    },
+
+    {
+        title: "Charts and Reports",
+        description: "View detailed stats to analyze working processes.",
+        imageImport: charts as StaticImageData,
         imageAlt: "Image of a team working together",
     },
 ];

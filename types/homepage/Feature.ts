@@ -5,5 +5,4 @@ export type Feature = {
     description: string;
     imageImport: StaticImageData;
     imageAlt: string;
-    className: string;
 };

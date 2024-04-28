@@ -9,6 +9,7 @@ export async function GET() {
     const { getUser } = getKindeServerSession();
     const user = await getUser();
 
+    // If the Kinde authorization fails, return an unauthorized response
     if (!user) {
         return new Response(JSON.stringify({ status: "Unathorized" }), {
             status: 401,
@@ -21,9 +22,10 @@ export async function GET() {
     });
 
     if (userFromDB) {
-        return redirect(
-            userFromDB.validated ? "/dashboard" : "/create-account"
-        );
+        // If the user is already in the database, redirect to the dashboard if the account is validated or to the create account page if it's not
+
+        // prettier-ignore
+        return redirect(userFromDB.validated ? "/dashboard" : "/create-account");
     }
 
     const newUser: UserInsert = {

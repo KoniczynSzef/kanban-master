@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { features } from "@/assets/features";
 import { cn } from "@/lib/utils";
 import Image, { StaticImageData } from "next/image";
-import { getColSpan } from "@/utils/get-col-span";
+import { shouldSpanCard } from "@/utils/should-span-card";
 
 interface Props {}
 
@@ -19,17 +19,15 @@ interface FeatureCardProps {
     imageImport: StaticImageData;
     imageAlt: string;
 
-    colSpan: string;
+    shouldSpanCard: boolean;
     index: number;
 }
 
 function FeatureCard(props: FeatureCardProps) {
+    const colSpan = props.shouldSpanCard ? "lg:col-span-7" : "lg:col-span-5";
     return (
         <div
-            className={cn(
-                `rounded-lg p-6 flex flex-col gap-8 border border-muted text-neutral-50 justify-between`,
-                props.colSpan
-            )}
+            className={`rounded-lg p-6 flex flex-col gap-8 border border-muted text-neutral-50 justify-between ${colSpan}`}
         >
             <Image
                 src={props.imageImport}
@@ -54,14 +52,16 @@ function FeatureCard(props: FeatureCardProps) {
 const FeaturesGrid: FC<Props> = () => {
     return (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 my-16">
-            {features.map((feature, index) => (
-                <FeatureCard
-                    key={index}
-                    {...feature}
-                    colSpan={getColSpan(index)}
-                    index={index}
-                />
-            ))}
+            {features.map((feature, index) => {
+                return (
+                    <FeatureCard
+                        key={index}
+                        {...feature}
+                        shouldSpanCard={shouldSpanCard(index)}
+                        index={index}
+                    />
+                );
+            })}
         </div>
     );
 };

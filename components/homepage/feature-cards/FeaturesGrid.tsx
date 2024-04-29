@@ -25,9 +25,12 @@ interface FeatureCardProps {
 
 function FeatureCard(props: FeatureCardProps) {
     const colSpan = props.shouldSpanCard ? "lg:col-span-7" : "lg:col-span-5";
+
+    const shouldTranslate = props.index % 2 === 1 ? "md:translate-y-16" : "";
+
     return (
         <div
-            className={`rounded-lg p-6 flex flex-col gap-8 border border-muted text-neutral-50 justify-between ${colSpan}`}
+            className={`rounded-lg p-6 flex flex-col gap-8 border border-muted text-neutral-50 justify-between ${colSpan} ${shouldTranslate} trat-1/`}
         >
             <Image
                 src={props.imageImport}
@@ -51,7 +54,7 @@ function FeatureCard(props: FeatureCardProps) {
 
 const FeaturesGrid: FC<Props> = () => {
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 my-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-y-16 lg:gap-y-32 gap-16 my-16">
             {features.map((feature, index) => {
                 return (
                     <FeatureCard

@@ -1,4 +1,4 @@
-import { ProjectInsert } from "@/types/models/Project";
+import { ProjectInsert } from "@/types/models/project-model";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { getUserByKindeId } from "../auth/get-user-by-kinde-id";
 import { db } from "@/database";

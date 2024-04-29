@@ -15,7 +15,7 @@ import CreateFormField from "./CreateFormField";
 
 import { inputFormFields } from "@/types/schemas/form-field";
 import { toast } from "sonner";
-import { User } from "@/types/models/User";
+import { User } from "@/types/models/user-model";
 import { trpc } from "@/server/trpc";
 import { useRouter } from "next/navigation";
 

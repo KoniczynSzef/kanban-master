@@ -1,6 +1,6 @@
 import { db } from "@/database";
 import { users } from "@/database/schema";
-import { UserInsert } from "@/types/models/User";
+import { UserInsert } from "@/types/models/user-model";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
@@ -9,6 +9,7 @@ export async function GET() {
     const { getUser } = getKindeServerSession();
     const user = await getUser();
 
+    // If the Kinde authorization fails, return an unauthorized response
     if (!user) {
         return new Response(JSON.stringify({ status: "Unathorized" }), {
             status: 401,
@@ -21,7 +22,10 @@ export async function GET() {
     });
 
     if (userFromDB) {
-        return redirect(userFromDB.validated ? "/" : "/create-account");
+        // If the user is already in the database, redirect to the dashboard if the account is validated or to the create account page if it's not
+
+        // prettier-ignore
+        return redirect(userFromDB.validated ? "/dashboard" : "/create-account");
     }
 
     const newUser: UserInsert = {

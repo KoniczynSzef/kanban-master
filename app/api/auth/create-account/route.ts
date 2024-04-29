@@ -2,7 +2,7 @@ import { db } from "@/database";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { users } from "@/database/schema";
 import { eq } from "drizzle-orm";
-import { UserInsert } from "@/types/models/user";
+import { UserInsert } from "@/types/models/user-model";
 
 export async function POST() {
     const { getUser } = getKindeServerSession();

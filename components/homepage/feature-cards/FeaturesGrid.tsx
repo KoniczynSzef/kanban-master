@@ -8,8 +8,8 @@ interface Props {}
 
 const bgColors = [
     "bg-darkPrimary",
-    "bg-secondary-foreground",
-    "bg-[#252329]",
+    "bg-gradient-to-br from-[#141E30] to-[#243B55]",
+    "bg-gradient-to-br from-primary to-sky-700",
     "bg-[#e0142f]",
 ];
 
@@ -30,7 +30,7 @@ function FeatureCard(props: FeatureCardProps) {
 
     return (
         <div
-            className={`rounded-lg p-6 flex flex-col gap-8 border border-muted text-neutral-50 justify-between ${colSpan} ${shouldTranslate} trat-1/`}
+            className={`rounded-lg p-6 flex flex-col gap-8 border border-muted text-neutral-50 justify-between ${colSpan} ${shouldTranslate}`}
         >
             <Image
                 src={props.imageImport}

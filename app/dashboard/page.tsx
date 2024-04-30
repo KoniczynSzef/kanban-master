@@ -1,12 +1,32 @@
+import Info from "@/components/dashboard/Info";
+import Hydrate from "@/lib/HydrateClient";
+import { createHelpers } from "@/utils/helpers";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { dehydrate } from "@tanstack/react-query";
+import { redirect } from "next/navigation";
 import React, { FC } from "react";
 
 interface Props {}
 
-const page: FC<Props> = () => {
+const page: FC<Props> = async () => {
+    const { isAuthenticated, getUser } = getKindeServerSession();
+    const isAuth = await isAuthenticated();
+    const user = await getUser();
+
+    if (!isAuth || !user) {
+        return redirect("/");
+    }
+
+    const helpers = await createHelpers();
+
+    await helpers.getUserByKindeId.prefetch(user.id);
+    await helpers.getUserAndTeams.prefetch(user.id);
+
     return (
-        <div>
+        <Hydrate state={dehydrate(helpers.queryClient)}>
             <p>This is the dashboard page</p>
-        </div>
+            <Info kindeUser={user} />
+        </Hydrate>
     );
 };
 

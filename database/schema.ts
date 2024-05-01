@@ -21,6 +21,9 @@ export const users = sqliteTable("user", {
     businessEmail: text("business_email"),
 
     validated: int("validated", { mode: "boolean" }).notNull().default(false),
+    visitedDashboard: int("visited_dashboard", { mode: "boolean" })
+        .notNull()
+        .default(false),
 });
 
 export const projects = sqliteTable("project", {

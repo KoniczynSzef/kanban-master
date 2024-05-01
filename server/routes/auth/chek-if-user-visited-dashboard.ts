@@ -3,13 +3,22 @@ import { getUserByKindeId } from "./get-user-by-kinde-id";
 import { db } from "@/database";
 import { users } from "@/database/schema";
 import { eq } from "drizzle-orm";
-import { CreateUserSchemaType } from "@/types/schemas/create-user.schema";
-import { revalidatePath } from "next/cache";
 
-export async function validateAccount(
-    kindeId: string,
-    data: CreateUserSchemaType
-) {
+export async function checkIfUserVisitedDashboard(kindeId: string) {
+    if (!(await getKindeServerSession().isAuthenticated())) {
+        throw new Error("Unauthorized");
+    }
+
+    const user = await getUserByKindeId(kindeId);
+
+    if (!user) {
+        throw new Error("User not found");
+    }
+
+    return user.visitedDashboard;
+}
+
+export async function visitDashboard(kindeId: string) {
     if (!(await getKindeServerSession().isAuthenticated())) {
         throw new Error("Unauthorized");
     }
@@ -22,10 +31,8 @@ export async function validateAccount(
 
     await db
         .update(users)
-        .set({ ...data, validated: true })
+        .set({ visitedDashboard: true })
         .where(eq(users.kindeId, kindeId));
-
-    revalidatePath("/");
 
     return { success: true };
 }

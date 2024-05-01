@@ -15,6 +15,13 @@
       "when": 1713805012727,
       "tag": "0001_bright_ghost_rider",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1714549875389,
+      "tag": "0002_clean_marauders",
+      "breakpoints": true
     }
   ]
 }

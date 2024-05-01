@@ -12,13 +12,15 @@ interface Props {
 }
 
 const LoggedUserAvatar: FC<Props> = (props) => {
-    const { data, isLoading } = trpc.getUserAndTeams.useQuery(props.kindeId);
+    const { data: user, isLoading } = trpc.getUserByKindeId.useQuery(
+        props.kindeId
+    );
 
     if (isLoading) {
         return <Skeleton className="aspect-square rounded-full h-12" />;
     }
 
-    if (!data || !data.user.validated) {
+    if (!user || !user.validated) {
         return (
             <Link href="/create-account">
                 <Button>Validate account</Button>
@@ -28,10 +30,8 @@ const LoggedUserAvatar: FC<Props> = (props) => {
 
     return (
         <Avatar className="border border-secondary">
-            <AvatarFallback>
-                {data.user.name[0].toLocaleUpperCase()}
-            </AvatarFallback>
-            <AvatarImage src={data.user.picture} alt={data.user.name} />
+            <AvatarFallback>{user.name[0].toLocaleUpperCase()}</AvatarFallback>
+            <AvatarImage src={user.picture} alt={user.name} />
         </Avatar>
     );
 };

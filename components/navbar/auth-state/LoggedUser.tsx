@@ -13,7 +13,6 @@ interface Props {}
 async function prefetchQueries(kindeUser: KindeUser) {
     const helpers = await createHelpers();
 
-    await helpers.fetchUsers.prefetch();
     await helpers.getUserAndTeams.prefetch(kindeUser.id);
 
     return helpers;

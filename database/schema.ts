@@ -1,12 +1,13 @@
 import {
-    int,
+    boolean,
+    date,
+    pgTable,
     primaryKey,
     real,
-    sqliteTable,
     text,
-} from "drizzle-orm/sqlite-core";
+} from "drizzle-orm/pg-core";
 
-export const users = sqliteTable("user", {
+export const users = pgTable("user", {
     id: text("id")
         .primaryKey()
         .$defaultFn(() => crypto.randomUUID()),
@@ -32,20 +33,21 @@ export const users = sqliteTable("user", {
         ],
     }),
 
-    validated: int("validated", { mode: "boolean" }).notNull().default(false),
-    visitedDashboard: int("visited_dashboard", { mode: "boolean" })
-        .notNull()
-        .default(false),
+    validated: boolean("validated").notNull().default(false),
+    visitedDashboard: boolean("visited_dashboard").notNull().default(false),
+
+    createdAt: date("created_at").notNull().default(new Date().toISOString()),
+    updatedAt: date("updated_at").notNull().default(new Date().toISOString()),
 });
 
-export const projects = sqliteTable("project", {
+export const projects = pgTable("project", {
     id: text("id")
         .primaryKey()
         .$defaultFn(() => crypto.randomUUID()),
     name: text("name").notNull(),
     description: text("description"),
 
-    deadline: text("deadline"),
+    deadline: date("deadline"),
     status: text("status", {
         enum: ["active", "completed", "on hold", "canceled"],
     }).$default(() => "active"),
@@ -57,11 +59,11 @@ export const projects = sqliteTable("project", {
     teamId: text("team_id")
         .notNull()
         .references(() => teams.id),
-    createdAt: text("created_at").notNull().default(new Date().toISOString()),
-    updatedAt: text("updated_at").notNull().default(new Date().toISOString()),
+    createdAt: date("created_at").notNull().default(new Date().toISOString()),
+    updatedAt: date("updated_at").notNull().default(new Date().toISOString()),
 });
 
-export const kanbanBoards = sqliteTable("kanban_board", {
+export const kanbanBoards = pgTable("kanban_board", {
     id: text("id")
         .primaryKey()
         .$defaultFn(() => crypto.randomUUID()),
@@ -71,7 +73,7 @@ export const kanbanBoards = sqliteTable("kanban_board", {
         .references(() => projects.id, { onDelete: "cascade" }),
 });
 
-export const kanbanColumns = sqliteTable("kanban_column", {
+export const kanbanColumns = pgTable("kanban_column", {
     id: text("id")
         .primaryKey()
         .$defaultFn(() => crypto.randomUUID()),
@@ -81,7 +83,7 @@ export const kanbanColumns = sqliteTable("kanban_column", {
         .references(() => kanbanBoards.id, { onDelete: "cascade" }),
 });
 
-export const kanbanTasks = sqliteTable("kanban_task", {
+export const kanbanTasks = pgTable("kanban_task", {
     id: text("id")
         .primaryKey()
         .$defaultFn(() => crypto.randomUUID()),
@@ -94,22 +96,52 @@ export const kanbanTasks = sqliteTable("kanban_task", {
         .notNull()
         .references(() => kanbanBoards.id, { onDelete: "cascade" }),
 
-    deadline: text("deadline"),
+    deadline: date("deadline"),
     priority: text("priority", { enum: ["low", "medium", "high"] }).$default(
         () => "high"
     ),
     note: text("note"),
-    columnIndex: int("column_index").notNull(),
+    columnIndex: real("column_index").notNull(),
 
     assigneeId: text("assignee_id"),
     creatorId: text("creator_id").references(() => users.id, {
         onDelete: "cascade",
     }),
-    createdAt: text("created_at").notNull().default(new Date().toISOString()),
-    updatedAt: text("updated_at").notNull().default(new Date().toISOString()),
+    createdAt: date("created_at").notNull().default(new Date().toISOString()),
+    updatedAt: date("updated_at").notNull().default(new Date().toISOString()),
 });
 
-export const teams = sqliteTable("team", {
+export const milestones = pgTable("milestone", {
+    id: text("id")
+        .primaryKey()
+        .$defaultFn(() => crypto.randomUUID()),
+    name: text("name").notNull(),
+    description: text("description"),
+    priority: text("priority", { enum: ["low", "medium", "high"] }).$default(
+        () => "high"
+    ),
+    due: date("due").notNull().default(new Date().toISOString()),
+    authorId: text("author_id")
+        .notNull()
+        .references(() => users.id, { onDelete: "cascade" }),
+    projectId: text("project_id")
+        .notNull()
+        .references(() => projects.id, { onDelete: "cascade" }),
+    createdAt: date("created_at").notNull().default(new Date().toISOString()),
+    updatedAt: date("updated_at").notNull().default(new Date().toISOString()),
+});
+
+export const tags = pgTable("tag", {
+    id: text("id")
+        .primaryKey()
+        .$defaultFn(() => crypto.randomUUID()),
+    name: text("name").notNull(),
+    projectId: text("project_id")
+        .notNull()
+        .references(() => projects.id, { onDelete: "cascade" }),
+});
+
+export const teams = pgTable("team", {
     id: text("id")
         .primaryKey()
         .$defaultFn(() => crypto.randomUUID()),
@@ -119,11 +151,11 @@ export const teams = sqliteTable("team", {
     ownerId: text("owner_id")
         .notNull()
         .references(() => users.id, { onDelete: "cascade" }),
-    createdAt: text("created_at").notNull().default(new Date().toISOString()),
-    updatedAt: text("updated_at").notNull().default(new Date().toISOString()),
+    createdAt: date("created_at").notNull().default(new Date().toISOString()),
+    updatedAt: date("updated_at").notNull().default(new Date().toISOString()),
 });
 
-export const usersToTeams = sqliteTable(
+export const usersToTeams = pgTable(
     "user_to_team",
     {
         userId: text("user_id")
@@ -137,33 +169,3 @@ export const usersToTeams = sqliteTable(
         pk: primaryKey({ columns: [t.userId, t.teamId] }),
     })
 );
-
-export const milestones = sqliteTable("milestone", {
-    id: text("id")
-        .primaryKey()
-        .$defaultFn(() => crypto.randomUUID()),
-    name: text("name").notNull(),
-    description: text("description"),
-    priority: text("priority", { enum: ["low", "medium", "high"] }).$default(
-        () => "high"
-    ),
-    due: text("due").notNull().default(new Date().toISOString()),
-    authorId: text("author_id")
-        .notNull()
-        .references(() => users.id, { onDelete: "cascade" }),
-    projectId: text("project_id")
-        .notNull()
-        .references(() => projects.id, { onDelete: "cascade" }),
-    createdAt: text("created_at").notNull().default(new Date().toISOString()),
-    updatedAt: text("updated_at").notNull().default(new Date().toISOString()),
-});
-
-export const tags = sqliteTable("tag", {
-    id: text("id")
-        .primaryKey()
-        .$defaultFn(() => crypto.randomUUID()),
-    name: text("name").notNull(),
-    projectId: text("project_id")
-        .notNull()
-        .references(() => projects.id, { onDelete: "cascade" }),
-});

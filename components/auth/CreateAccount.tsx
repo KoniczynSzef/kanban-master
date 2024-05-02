@@ -39,6 +39,7 @@ const CreateUser: FC<Props> = (props) => {
             onSuccess: () => {
                 toast.success("Account validated");
                 router.push("/");
+                window.location.reload();
             },
         });
 

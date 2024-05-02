@@ -1,5 +1,5 @@
 {
-  "id": "d4342b69-7e7b-4ae2-a13e-8d7cd5012bfe",
+  "id": "565837aa-3640-41b5-980d-60832a72ecb9",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -163,14 +163,14 @@
           "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "default": "'2024-05-02T10:43:12.789Z'"
+          "default": "'2024-05-02T17:48:34.959Z'"
         },
         "updated_at": {
           "name": "updated_at",
           "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "default": "'2024-05-02T10:43:12.789Z'"
+          "default": "'2024-05-02T17:48:34.959Z'"
         }
       },
       "indexes": {},
@@ -251,7 +251,7 @@
           "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "default": "'2024-05-02T10:43:12.789Z'"
+          "default": "'2024-05-02T17:48:34.959Z'"
         },
         "author_id": {
           "name": "author_id",
@@ -270,14 +270,14 @@
           "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "default": "'2024-05-02T10:43:12.789Z'"
+          "default": "'2024-05-02T17:48:34.959Z'"
         },
         "updated_at": {
           "name": "updated_at",
           "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "default": "'2024-05-02T10:43:12.789Z'"
+          "default": "'2024-05-02T17:48:34.959Z'"
         }
       },
       "indexes": {},
@@ -369,14 +369,14 @@
           "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "default": "'2024-05-02T10:43:12.787Z'"
+          "default": "'2024-05-02T17:48:34.958Z'"
         },
         "updated_at": {
           "name": "updated_at",
           "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "default": "'2024-05-02T10:43:12.787Z'"
+          "default": "'2024-05-02T17:48:34.958Z'"
         }
       },
       "indexes": {},
@@ -486,14 +486,14 @@
           "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "default": "'2024-05-02T10:43:12.790Z'"
+          "default": "'2024-05-02T17:48:34.960Z'"
         },
         "updated_at": {
           "name": "updated_at",
           "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "default": "'2024-05-02T10:43:12.790Z'"
+          "default": "'2024-05-02T17:48:34.960Z'"
         }
       },
       "indexes": {},
@@ -598,14 +598,14 @@
           "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "default": "'2024-05-02T10:43:12.782Z'"
+          "default": "'2024-05-02T17:48:34.952Z'"
         },
         "updated_at": {
           "name": "updated_at",
           "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "default": "'2024-05-02T10:43:12.783Z'"
+          "default": "'2024-05-02T17:48:34.956Z'"
         }
       },
       "indexes": {},

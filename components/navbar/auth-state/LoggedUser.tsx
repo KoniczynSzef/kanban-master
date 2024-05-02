@@ -10,7 +10,7 @@ import LoggedUserAvatar from "./LoggedUserAvatar";
 
 interface Props {}
 
-async function prefetchQueries(kindeUser: KindeUser) {
+export async function prefetchQueries(kindeUser: KindeUser) {
     const helpers = await createHelpers();
 
     await helpers.getUserAndTeams.prefetch(kindeUser.id);

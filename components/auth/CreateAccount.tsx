@@ -61,6 +61,9 @@ const CreateUser: FC<Props> = (props) => {
                         key={idx}
                         inputProps={inputProps}
                         form={form}
+                        fieldType={
+                            inputProps.prop === "bio" ? "textarea" : "input"
+                        }
                     />
                 ))}
 

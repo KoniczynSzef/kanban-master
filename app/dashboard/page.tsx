@@ -10,6 +10,7 @@ interface Props {}
 
 const page: FC<Props> = async () => {
     const { isAuthenticated, getUser } = getKindeServerSession();
+
     const isAuth = await isAuthenticated();
     const user = await getUser();
 
@@ -24,7 +25,6 @@ const page: FC<Props> = async () => {
 
     return (
         <Hydrate state={dehydrate(helpers.queryClient)}>
-            <p>This is the dashboard page</p>
             <Info kindeUser={user} />
         </Hydrate>
     );

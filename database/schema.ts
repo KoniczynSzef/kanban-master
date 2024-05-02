@@ -20,6 +20,18 @@ export const users = sqliteTable("user", {
     bio: text("bio"),
     businessEmail: text("business_email"),
 
+    teamRole: text("team_role", {
+        enum: [
+            "Project Manager",
+            "Frontend Developer",
+            "Backend Developer",
+            "QA Tester",
+            "Marketing Specialist",
+            "Customer Support",
+            "Data Analyst",
+        ],
+    }),
+
     validated: int("validated", { mode: "boolean" }).notNull().default(false),
     visitedDashboard: int("visited_dashboard", { mode: "boolean" })
         .notNull()

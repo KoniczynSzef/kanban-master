@@ -22,8 +22,8 @@ CREATE TABLE IF NOT EXISTS "kanban_task" (
 	"column_index" real NOT NULL,
 	"assignee_id" text,
 	"creator_id" text,
-	"created_at" date DEFAULT '2024-05-02T09:24:37.968Z' NOT NULL,
-	"updated_at" date DEFAULT '2024-05-02T09:24:37.968Z' NOT NULL
+	"created_at" date DEFAULT '2024-05-02T10:43:12.789Z' NOT NULL,
+	"updated_at" date DEFAULT '2024-05-02T10:43:12.789Z' NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "milestone" (
@@ -31,11 +31,11 @@ CREATE TABLE IF NOT EXISTS "milestone" (
 	"name" text NOT NULL,
 	"description" text,
 	"priority" text,
-	"due" date DEFAULT '2024-05-02T09:24:37.968Z' NOT NULL,
+	"due" date DEFAULT '2024-05-02T10:43:12.789Z' NOT NULL,
 	"author_id" text NOT NULL,
 	"project_id" text NOT NULL,
-	"created_at" date DEFAULT '2024-05-02T09:24:37.969Z' NOT NULL,
-	"updated_at" date DEFAULT '2024-05-02T09:24:37.969Z' NOT NULL
+	"created_at" date DEFAULT '2024-05-02T10:43:12.789Z' NOT NULL,
+	"updated_at" date DEFAULT '2024-05-02T10:43:12.789Z' NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "project" (
@@ -47,8 +47,8 @@ CREATE TABLE IF NOT EXISTS "project" (
 	"budget" real,
 	"owner_id" text NOT NULL,
 	"team_id" text NOT NULL,
-	"created_at" date DEFAULT '2024-05-02T09:24:37.967Z' NOT NULL,
-	"updated_at" date DEFAULT '2024-05-02T09:24:37.967Z' NOT NULL
+	"created_at" date DEFAULT '2024-05-02T10:43:12.787Z' NOT NULL,
+	"updated_at" date DEFAULT '2024-05-02T10:43:12.787Z' NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "tag" (
@@ -62,8 +62,8 @@ CREATE TABLE IF NOT EXISTS "team" (
 	"name" text NOT NULL,
 	"description" text,
 	"owner_id" text NOT NULL,
-	"created_at" date DEFAULT '2024-05-02T09:24:37.969Z' NOT NULL,
-	"updated_at" date DEFAULT '2024-05-02T09:24:37.969Z' NOT NULL
+	"created_at" date DEFAULT '2024-05-02T10:43:12.790Z' NOT NULL,
+	"updated_at" date DEFAULT '2024-05-02T10:43:12.790Z' NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "user" (
@@ -79,8 +79,8 @@ CREATE TABLE IF NOT EXISTS "user" (
 	"team_role" text,
 	"validated" boolean DEFAULT false NOT NULL,
 	"visited_dashboard" boolean DEFAULT false NOT NULL,
-	"created_at" date DEFAULT '2024-05-02T09:24:37.952Z' NOT NULL,
-	"updated_at" date DEFAULT '2024-05-02T09:24:37.965Z' NOT NULL
+	"created_at" date DEFAULT '2024-05-02T10:43:12.782Z' NOT NULL,
+	"updated_at" date DEFAULT '2024-05-02T10:43:12.783Z' NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "user_to_team" (

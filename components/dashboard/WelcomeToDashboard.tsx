@@ -1,5 +1,6 @@
 import { User } from "@/types/models/user-model";
 import React, { FC } from "react";
+import SelectRole from "./SelectRole";
 
 interface Props {
     user: User;
@@ -7,11 +8,15 @@ interface Props {
 
 const WelcomeToDashboard: FC<Props> = (props) => {
     return (
-        <section>
-            <h1 className="text-2xl font-semibold">
+        <section className="text-center">
+            <h1 className="text-3xl font-semibold text-primary">
                 Welcome to the dashboard, {props.user.name}
             </h1>
-            <p className="text-lg">Get started by creating a team</p>
+            <p className="text-muted-foreground mt-2">
+                Tell us more about yourself by adding your common role
+            </p>
+
+            <SelectRole />
         </section>
     );
 };

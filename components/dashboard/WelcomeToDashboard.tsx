@@ -16,7 +16,7 @@ const WelcomeToDashboard: FC<Props> = (props) => {
                 Tell us more about yourself by adding your common role
             </p>
 
-            <SelectRole />
+            <SelectRole user={props.user} />
         </section>
     );
 };

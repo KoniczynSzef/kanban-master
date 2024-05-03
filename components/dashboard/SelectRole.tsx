@@ -4,27 +4,42 @@ import React, { FC } from "react";
 import { Form, FormField } from "../ui/form";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { dashboardRoleSchema, userRoles } from "@/types/models/user-model";
+import {
+    User,
+    dashboardRoleSchema,
+    userRoles,
+} from "@/types/models/user-model";
 import { zodResolver } from "@hookform/resolvers/zod";
 import SelectRoleField from "./SelectRoleField";
 import { Button } from "../ui/button";
 
 import { Loader } from "lucide-react";
 import { toast } from "sonner";
+import { trpc } from "@/server/trpc";
+import { revalidatePath } from "next/cache";
 
-interface Props {}
+interface Props {
+    user: User;
+}
 
-const SelectRole: FC<Props> = () => {
+const SelectRole: FC<Props> = (props) => {
+    const { mutate, isLoading } = trpc.addRoleToUser.useMutation({
+        onSettled: () => {
+            toast.success("Role saved successfully");
+            revalidatePath("/dashboard");
+        },
+    });
+
     const form = useForm<z.infer<typeof dashboardRoleSchema>>({
         resolver: zodResolver(dashboardRoleSchema),
         mode: "onChange",
     });
 
     const handleSubmit = form.handleSubmit(async (data) => {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-        console.log(data);
-
-        toast.success("Role saved successfully");
+        mutate({
+            kindeId: props.user.kindeId,
+            role: data.userRole,
+        });
     });
 
     return (
@@ -43,7 +58,7 @@ const SelectRole: FC<Props> = () => {
                     control={form.control}
                     name="userRole"
                     render={() => (
-                        <div className="grid grid-cols-2 justify-items-center items-center gap-8 text-left mt-8">
+                        <div className="grid grid-cols-2 justify-items-center items-center gap-8 text-left mt-4">
                             {userRoles.map((role) => (
                                 <SelectRoleField
                                     key={role}
@@ -57,14 +72,14 @@ const SelectRole: FC<Props> = () => {
 
                 <Button
                     className="self-center w-32"
-                    disabled={form.formState.isSubmitting}
+                    disabled={isLoading}
                     onClick={() => {
                         if (!form.getValues().userRole) {
                             toast.error("Please select a role");
                         }
                     }}
                 >
-                    {form.formState.isSubmitting ? (
+                    {isLoading ? (
                         <Loader className="animate-spin" />
                     ) : (
                         "Save Role"

@@ -11,11 +11,14 @@ interface Props {
 
 const SelectRoleField: FC<Props> = (props) => {
     const { form, role } = props;
+
     return (
         <Button
-            variant={form.getValues().userRole === role ? "default" : "outline"}
             type="button"
-            className="w-48"
+            variant={
+                form.getValues().userRole === role ? "secondary" : "outline"
+            }
+            className={`w-48 py-6`}
             key={role}
             onClick={() => {
                 form.setValue("userRole", role);

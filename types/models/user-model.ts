@@ -20,17 +20,19 @@ export const userRoles: UserRole[] = [
     "DevOps Engineer",
 ];
 
+export const roleEnum = z.enum([
+    "Backend Developer",
+    "Frontend Developer",
+    "Customer Support",
+    "Data Analyst",
+    "QA Tester",
+    "Marketing Specialist",
+    "Project Manager",
+    "UI Designer",
+    "UX Designer",
+    "DevOps Engineer",
+]);
+
 export const dashboardRoleSchema = z.object({
-    userRole: z.enum([
-        "Backend Developer",
-        "Frontend Developer",
-        "Customer Support",
-        "Data Analyst",
-        "QA Tester",
-        "Marketing Specialist",
-        "Project Manager",
-        "UI Designer",
-        "UX Designer",
-        "DevOps Engineer",
-    ]),
+    userRole: roleEnum,
 });

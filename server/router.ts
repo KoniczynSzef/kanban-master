@@ -6,6 +6,7 @@ import { getUserAndTeams } from "./routes/teams/get-user-and-teams";
 import { createTeamSchema } from "@/types/schemas/teams/create-team-schema";
 import { createTeam } from "./routes/teams/create-team";
 import { authRouter } from "./routes/auth/auth-router";
+import { userRouter } from "./routes/user/user-router";
 
 const teamRouter = router({
     getUserAndTeams: publicProcedure
@@ -26,7 +27,7 @@ const teamRouter = router({
         }),
 });
 
-export const appRouter = mergeRouters(authRouter, teamRouter);
+export const appRouter = mergeRouters(authRouter, teamRouter, userRouter);
 
 export const createSSRHelper = () => {
     return createServerSideHelpers({

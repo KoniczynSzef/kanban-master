@@ -30,6 +30,9 @@ export const users = pgTable("user", {
             "Marketing Specialist",
             "Customer Support",
             "Data Analyst",
+            "UI Designer",
+            "UX Designer",
+            "DevOps Engineer",
         ],
     }),
 

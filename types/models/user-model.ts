@@ -15,6 +15,9 @@ export const userRoles: UserRole[] = [
     "QA Tester",
     "Marketing Specialist",
     "Project Manager",
+    "UI Designer",
+    "UX Designer",
+    "DevOps Engineer",
 ];
 
 export const dashboardRoleSchema = z.object({
@@ -26,5 +29,8 @@ export const dashboardRoleSchema = z.object({
         "QA Tester",
         "Marketing Specialist",
         "Project Manager",
+        "UI Designer",
+        "UX Designer",
+        "DevOps Engineer",
     ]),
 });

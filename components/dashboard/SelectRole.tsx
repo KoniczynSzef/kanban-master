@@ -43,7 +43,7 @@ const SelectRole: FC<Props> = (props) => {
         onSettled: () => {
             toast.success("Role saved successfully");
             router.push("/dashboard");
-            props.setStep(1);
+            props.setStep((currentStep) => currentStep + 1);
         },
     });
 

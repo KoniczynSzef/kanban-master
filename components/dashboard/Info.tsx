@@ -11,6 +11,9 @@ interface Props {
 }
 
 const Info: FC<Props> = (props) => {
+    const { data: user, refetch } = trpc.getUserByKindeId.useQuery(
+        props.kindeUser.id
+    );
     const { data, isLoading } = trpc.getUserAndTeams.useQuery(
         props.kindeUser.id
     );
@@ -19,12 +22,18 @@ const Info: FC<Props> = (props) => {
         return <div>Loading...</div>;
     }
 
-    if (!data) {
+    if (!data || !user) {
         return <div>No data</div>;
     }
 
-    if (!data.user.visitedDashboard) {
-        return <WelcomeToDashboard user={data.user} />;
+    if (user.teamRole) {
+        return <div>Role: {data.user.teamRole}</div>;
+    }
+
+    if (!user.visitedDashboard) {
+        // ! I don't know how to provide the right type for refetch
+        // @ts-expect-error Description is provided above
+        return <WelcomeToDashboard user={data.user} refetch={refetch} />;
     }
 
     if (data.teams.length === 0) {

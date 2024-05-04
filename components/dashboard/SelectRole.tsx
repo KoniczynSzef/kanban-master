@@ -16,17 +16,31 @@ import { Button } from "../ui/button";
 import { Loader } from "lucide-react";
 import { toast } from "sonner";
 import { trpc } from "@/server/trpc";
-import { revalidatePath } from "next/cache";
+import { useRouter } from "next/navigation";
+import {
+    QueryObserverResult,
+    RefetchOptions,
+    RefetchQueryFilters,
+} from "@tanstack/react-query";
 
 interface Props {
     user: User;
+    refetch: <TPageData>(
+        options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
+    ) => Promise<
+        QueryObserverResult<{
+            user: User[];
+        } | null>
+    >;
 }
 
 const SelectRole: FC<Props> = (props) => {
+    const router = useRouter();
+
     const { mutate, isLoading } = trpc.addRoleToUser.useMutation({
         onSettled: () => {
             toast.success("Role saved successfully");
-            revalidatePath("/dashboard");
+            router.push("/dashboard");
         },
     });
 

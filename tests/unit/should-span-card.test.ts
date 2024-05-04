@@ -6,11 +6,11 @@ describe("shouldSpanCard", () => {
         expect(shouldSpanCard(0)).toBe(false);
     });
 
-    test("should return true if the index is 2", () => {
+    test("should return true if the index is 1", () => {
         expect(shouldSpanCard(1)).toBe(true);
     });
 
-    test("should return true if the index is 3", () => {
+    test("should return true if the index is 2", () => {
         expect(shouldSpanCard(2)).toBe(true);
     });
 

@@ -1,9 +1,21 @@
 import { User } from "@/types/models/user-model";
 import React, { FC } from "react";
 import SelectRole from "./SelectRole";
+import {
+    QueryObserverResult,
+    RefetchOptions,
+    RefetchQueryFilters,
+} from "@tanstack/react-query";
 
 interface Props {
     user: User;
+    refetch: <TPageData>(
+        options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
+    ) => Promise<
+        QueryObserverResult<{
+            user: User[];
+        } | null>
+    >;
 }
 
 const WelcomeToDashboard: FC<Props> = (props) => {
@@ -16,7 +28,7 @@ const WelcomeToDashboard: FC<Props> = (props) => {
                 Tell us more about yourself by adding your common role
             </p>
 
-            <SelectRole user={props.user} />
+            <SelectRole user={props.user} refetch={props.refetch} />
         </section>
     );
 };

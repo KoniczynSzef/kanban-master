@@ -6,6 +6,7 @@ import {
     RefetchOptions,
     RefetchQueryFilters,
 } from "@tanstack/react-query";
+import Steps from "./Steps";
 
 interface Props {
     user: User;
@@ -19,6 +20,8 @@ interface Props {
 }
 
 const WelcomeToDashboard: FC<Props> = (props) => {
+    const [step, setStep] = React.useState(0);
+
     return (
         <section className="text-center">
             <h1 className="text-3xl font-semibold text-primary">
@@ -28,7 +31,14 @@ const WelcomeToDashboard: FC<Props> = (props) => {
                 Tell us more about yourself by adding your common role
             </p>
 
-            <SelectRole user={props.user} refetch={props.refetch} />
+            <section className="border border-muted rounded-2xl p-8 mt-16 max-w-3xl mx-auto flex flex-col gap-8">
+                <Steps step={step} />
+                <SelectRole
+                    user={props.user}
+                    refetch={props.refetch}
+                    setStep={setStep}
+                />
+            </section>
         </section>
     );
 };

@@ -32,6 +32,8 @@ interface Props {
             user: User[];
         } | null>
     >;
+
+    setStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const SelectRole: FC<Props> = (props) => {
@@ -41,6 +43,7 @@ const SelectRole: FC<Props> = (props) => {
         onSettled: () => {
             toast.success("Role saved successfully");
             router.push("/dashboard");
+            props.setStep(1);
         },
     });
 
@@ -60,7 +63,7 @@ const SelectRole: FC<Props> = (props) => {
         <Form {...form}>
             <form
                 action=""
-                className="border border-muted rounded-2xl p-8 mt-16 max-w-3xl mx-auto flex flex-col gap-8"
+                className="flex flex-col gap-8"
                 onSubmit={handleSubmit}
             >
                 <h4 className="text-xl font-semibold">

@@ -39,6 +39,7 @@ const CreateUser: FC<Props> = (props) => {
             onSuccess: () => {
                 toast.success("Account validated");
                 router.push("/");
+                window.location.reload();
             },
         });
 
@@ -61,6 +62,9 @@ const CreateUser: FC<Props> = (props) => {
                         key={idx}
                         inputProps={inputProps}
                         form={form}
+                        fieldType={
+                            inputProps.prop === "bio" ? "textarea" : "input"
+                        }
                     />
                 ))}
 

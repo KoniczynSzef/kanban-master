@@ -4,10 +4,14 @@ import { CreateUserSchemaType } from "@/types/schemas/create-user.schema";
 import { UseFormReturn } from "react-hook-form";
 import { Input } from "../ui/input";
 import { InputFormFieldProps } from "@/types/schemas/form-field";
+import { Textarea } from "../ui/textarea";
+
+type FieldType = "input" | "select" | "textarea";
 
 interface Props {
     form: UseFormReturn<CreateUserSchemaType>;
     inputProps: InputFormFieldProps;
+    fieldType: FieldType;
 }
 
 const CreateFormField: FC<Props> = (props) => {
@@ -22,7 +26,17 @@ const CreateFormField: FC<Props> = (props) => {
                             props.inputProps.label.slice(1)}
                     </Form.FormLabel>
                     <Form.FormControl>
-                        <Input {...field} />
+                        {props.fieldType === "textarea" ? (
+                            <Textarea
+                                {...field}
+                                placeholder={props.inputProps.description}
+                            />
+                        ) : (
+                            <Input
+                                {...field}
+                                placeholder={props.inputProps.description}
+                            />
+                        )}
                     </Form.FormControl>
                     <Form.FormMessage />
                 </Form.FormItem>

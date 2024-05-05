@@ -34,13 +34,13 @@ export const navMenuItems: TNavMenuItem[] = [
         triggerTitle: "Manage",
         content: [
             {
-                href: "/projects",
+                href: "/dashboard",
                 title: "Dashboard",
                 itemDescription:
                     "View all projects, tasks, and members in one place. Full power of Kanban is here 🚀",
             },
             {
-                href: "/projects/new",
+                href: "/dashboard/projects/new",
                 title: "New Project",
                 itemDescription:
                     "Create a new project and invite your team members. Start working together and get things done 🎉",

@@ -1,32 +1,30 @@
 {
+  "id": "b5702507-9ac2-403d-8e2d-a8896bfeeb30",
+  "prevId": "565837aa-3640-41b5-980d-60832a72ecb9",
   "version": "5",
-  "dialect": "sqlite",
-  "id": "7ad58bd5-8700-4e40-bdda-24f2c6715250",
-  "prevId": "9475af2f-6822-4610-ad75-fcf98fb50127",
+  "dialect": "pg",
   "tables": {
     "kanban_board": {
       "name": "kanban_board",
+      "schema": "",
       "columns": {
         "id": {
           "name": "id",
           "type": "text",
           "primaryKey": true,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "name": {
           "name": "name",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "project_id": {
           "name": "project_id",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         }
       },
       "indexes": {},
@@ -50,27 +48,25 @@
     },
     "kanban_column": {
       "name": "kanban_column",
+      "schema": "",
       "columns": {
         "id": {
           "name": "id",
           "type": "text",
           "primaryKey": true,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "name": {
           "name": "name",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "board_id": {
           "name": "board_id",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         }
       },
       "indexes": {},
@@ -94,99 +90,87 @@
     },
     "kanban_task": {
       "name": "kanban_task",
+      "schema": "",
       "columns": {
         "id": {
           "name": "id",
           "type": "text",
           "primaryKey": true,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "title": {
           "name": "title",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "description": {
           "name": "description",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "notNull": false
         },
         "column_id": {
           "name": "column_id",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "board_id": {
           "name": "board_id",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "deadline": {
           "name": "deadline",
-          "type": "text",
+          "type": "date",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "notNull": false
         },
         "priority": {
           "name": "priority",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "notNull": false
         },
         "note": {
           "name": "note",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "notNull": false
         },
         "column_index": {
           "name": "column_index",
-          "type": "integer",
+          "type": "real",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "assignee_id": {
           "name": "assignee_id",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "notNull": false
         },
         "creator_id": {
           "name": "creator_id",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "notNull": false
         },
         "created_at": {
           "name": "created_at",
-          "type": "text",
+          "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false,
-          "default": "'2024-04-22T16:56:39.286Z'"
+          "default": "'2024-05-03T12:40:04.229Z'"
         },
         "updated_at": {
           "name": "updated_at",
-          "type": "text",
+          "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false,
-          "default": "'2024-04-22T16:56:39.286Z'"
+          "default": "'2024-05-03T12:40:04.229Z'"
         }
       },
       "indexes": {},
@@ -236,72 +220,64 @@
     },
     "milestone": {
       "name": "milestone",
+      "schema": "",
       "columns": {
         "id": {
           "name": "id",
           "type": "text",
           "primaryKey": true,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "name": {
           "name": "name",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "description": {
           "name": "description",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "notNull": false
         },
         "priority": {
           "name": "priority",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "notNull": false
         },
         "due": {
           "name": "due",
-          "type": "text",
+          "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false,
-          "default": "'2024-04-22T16:56:39.287Z'"
+          "default": "'2024-05-03T12:40:04.229Z'"
         },
         "author_id": {
           "name": "author_id",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "project_id": {
           "name": "project_id",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "created_at": {
           "name": "created_at",
-          "type": "text",
+          "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false,
-          "default": "'2024-04-22T16:56:39.287Z'"
+          "default": "'2024-05-03T12:40:04.229Z'"
         },
         "updated_at": {
           "name": "updated_at",
-          "type": "text",
+          "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false,
-          "default": "'2024-04-22T16:56:39.287Z'"
+          "default": "'2024-05-03T12:40:04.229Z'"
         }
       },
       "indexes": {},
@@ -338,78 +314,69 @@
     },
     "project": {
       "name": "project",
+      "schema": "",
       "columns": {
         "id": {
           "name": "id",
           "type": "text",
           "primaryKey": true,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "name": {
           "name": "name",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "description": {
           "name": "description",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "notNull": false
         },
         "deadline": {
           "name": "deadline",
-          "type": "text",
+          "type": "date",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "notNull": false
         },
         "status": {
           "name": "status",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "notNull": false
         },
         "budget": {
           "name": "budget",
           "type": "real",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "notNull": false
         },
         "owner_id": {
           "name": "owner_id",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "team_id": {
           "name": "team_id",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "created_at": {
           "name": "created_at",
-          "type": "text",
+          "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false,
-          "default": "'2024-04-22T16:56:39.280Z'"
+          "default": "'2024-05-03T12:40:04.228Z'"
         },
         "updated_at": {
           "name": "updated_at",
-          "type": "text",
+          "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false,
-          "default": "'2024-04-22T16:56:39.286Z'"
+          "default": "'2024-05-03T12:40:04.228Z'"
         }
       },
       "indexes": {},
@@ -446,27 +413,25 @@
     },
     "tag": {
       "name": "tag",
+      "schema": "",
       "columns": {
         "id": {
           "name": "id",
           "type": "text",
           "primaryKey": true,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "name": {
           "name": "name",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "project_id": {
           "name": "project_id",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         }
       },
       "indexes": {},
@@ -490,50 +455,45 @@
     },
     "team": {
       "name": "team",
+      "schema": "",
       "columns": {
         "id": {
           "name": "id",
           "type": "text",
           "primaryKey": true,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "name": {
           "name": "name",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "description": {
           "name": "description",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "notNull": false
         },
         "owner_id": {
           "name": "owner_id",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "created_at": {
           "name": "created_at",
-          "type": "text",
+          "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false,
-          "default": "'2024-04-22T16:56:39.286Z'"
+          "default": "'2024-05-03T12:40:04.229Z'"
         },
         "updated_at": {
           "name": "updated_at",
-          "type": "text",
+          "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false,
-          "default": "'2024-04-22T16:56:39.286Z'"
+          "default": "'2024-05-03T12:40:04.229Z'"
         }
       },
       "indexes": {},
@@ -557,77 +517,95 @@
     },
     "user": {
       "name": "user",
+      "schema": "",
       "columns": {
         "id": {
           "name": "id",
           "type": "text",
           "primaryKey": true,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "name": {
           "name": "name",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "surname": {
           "name": "surname",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "notNull": false
         },
         "email": {
           "name": "email",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "picture": {
           "name": "picture",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "kinde_id": {
           "name": "kinde_id",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "nickname": {
           "name": "nickname",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "notNull": false
         },
         "bio": {
           "name": "bio",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "notNull": false
         },
         "business_email": {
           "name": "business_email",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "notNull": false
+        },
+        "team_role": {
+          "name": "team_role",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
         },
         "validated": {
           "name": "validated",
-          "type": "integer",
+          "type": "boolean",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false,
           "default": false
+        },
+        "visited_dashboard": {
+          "name": "visited_dashboard",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'2024-05-03T12:40:04.226Z'"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'2024-05-03T12:40:04.227Z'"
         }
       },
       "indexes": {},
@@ -637,20 +615,19 @@
     },
     "user_to_team": {
       "name": "user_to_team",
+      "schema": "",
       "columns": {
         "user_id": {
           "name": "user_id",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "team_id": {
           "name": "team_id",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         }
       },
       "indexes": {},
@@ -684,20 +661,21 @@
       },
       "compositePrimaryKeys": {
         "user_to_team_user_id_team_id_pk": {
+          "name": "user_to_team_user_id_team_id_pk",
           "columns": [
-            "team_id",
-            "user_id"
-          ],
-          "name": "user_to_team_user_id_team_id_pk"
+            "user_id",
+            "team_id"
+          ]
         }
       },
       "uniqueConstraints": {}
     }
   },
   "enums": {},
+  "schemas": {},
   "_meta": {
+    "columns": {},
     "schemas": {},
-    "tables": {},
-    "columns": {}
+    "tables": {}
   }
 }

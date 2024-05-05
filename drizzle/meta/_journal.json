@@ -1,19 +1,19 @@
 {
   "version": "5",
-  "dialect": "sqlite",
+  "dialect": "pg",
   "entries": [
     {
       "idx": 0,
       "version": "5",
-      "when": 1713804961649,
-      "tag": "0000_neat_network",
+      "when": 1714672114975,
+      "tag": "0000_first_senator_kelly",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "5",
-      "when": 1713805012727,
-      "tag": "0001_bright_ghost_rider",
+      "when": 1714740004248,
+      "tag": "0001_long_jazinda",
       "breakpoints": true
     }
   ]

@@ -10,6 +10,16 @@ import {
 } from "@tanstack/react-query";
 import Steps from "./Steps";
 import CreateFirstTeam from "./CreateFirstTeam";
+import { displayHeader } from "@/assets/first-team-headers";
+import { useForm } from "react-hook-form";
+import {
+    CreateTeamSchema,
+    createTeamSchema,
+} from "@/types/schemas/teams/create-team-schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Form } from "../ui/form";
+import { Button } from "../ui/button";
+import { toast } from "sonner";
 
 interface Props {
     user: User;
@@ -25,6 +35,31 @@ interface Props {
 const WelcomeToDashboard: FC<Props> = (props) => {
     const [step, setStep] = React.useState(0);
 
+    const headers = displayHeader(step, props.user.name);
+
+    const form = useForm<CreateTeamSchema>({
+        resolver: zodResolver(createTeamSchema),
+        mode: "onChange",
+    });
+
+    const handleSubmit = form.handleSubmit(async (data) => {
+        console.log(data);
+    });
+
+    const handleGoToNextStep = (prop: keyof CreateTeamSchema) => {
+        if (prop === "teamRole" && !form.getValues().teamRole) {
+            toast.error("Please select a role");
+            return;
+        }
+
+        if (!form.getValues()[prop]) {
+            toast.error("Please fill in all fields");
+            return;
+        }
+
+        setStep((prev) => prev + 1);
+    };
+
     return (
         <motion.section
             className="text-center"
@@ -32,25 +67,36 @@ const WelcomeToDashboard: FC<Props> = (props) => {
             animate={{ opacity: 1, y: 0 }}
         >
             <h1 className="text-3xl font-semibold text-primary">
-                Welcome to the dashboard, {props.user.name}
+                {headers.title}
             </h1>
-            <p className="text-muted-foreground mt-2">
-                Tell us more about yourself by adding your common role
-            </p>
 
-            <section className="border border-muted rounded-2xl p-8 mt-16 max-w-3xl mx-auto flex flex-col gap-8">
-                <Steps step={step} />
+            <p className="text-muted-foreground mt-2">{headers.description}</p>
 
-                {step === 0 && (
-                    <SelectRole
-                        user={props.user}
-                        refetch={props.refetch}
-                        setStep={setStep}
-                    />
-                )}
+            <Form {...form}>
+                <form
+                    action=""
+                    className="border border-muted rounded-2xl p-8 mt-16 max-w-3xl mx-auto flex flex-col gap-8"
+                    onSubmit={handleSubmit}
+                >
+                    <Steps step={step} setStep={setStep} />
+                    {step === 0 && (
+                        <SelectRole
+                            user={props.user}
+                            refetch={props.refetch}
+                            setStep={setStep}
+                            form={form}
+                        />
+                    )}
+                    {step === 1 && <CreateFirstTeam />}
 
-                {step === 1 && <CreateFirstTeam />}
-            </section>
+                    <Button
+                        className="self-center w-32"
+                        onClick={() => handleGoToNextStep("teamRole")}
+                    >
+                        {headers.buttonText}
+                    </Button>
+                </form>
+            </Form>
         </motion.section>
     );
 };

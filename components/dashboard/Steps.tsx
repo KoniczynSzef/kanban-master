@@ -1,7 +1,9 @@
 import React, { FC } from "react";
+import { Button } from "../ui/button";
 
 interface Props {
     step: number;
+    setStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Steps: FC<Props> = (props) => {
@@ -16,13 +18,15 @@ const Steps: FC<Props> = (props) => {
                     className="flex items-center"
                     aria-description="Step component combining circle and bar"
                 >
-                    <div
-                        className={`rounded-full h-12 w-12 border border-muted grid place-content-center transition duration-300 text-muted-foreground ${
-                            props.step === index ? "bg-primary text-white" : ""
+                    <Button
+                        variant={`${
+                            index === props.step ? "default" : "outline"
                         }`}
+                        className="h-12 w-12 rounded-full"
+                        disabled={index >= props.step}
                     >
                         {index + 1}
-                    </div>
+                    </Button>
 
                     {index !== 3 && <div className="w-24 h-1 bg-muted ml-6" />}
                 </div>

@@ -1,14 +1,6 @@
 import React, { FC } from "react";
-import { z } from "zod";
 
 interface Props {}
-
-const createTeamSchema = z.object({
-    name: z.string(),
-    description: z.string(),
-    teamChatLink: z.string().url(),
-    teamColor: z.string(),
-});
 
 const CreateFirstTeam: FC<Props> = () => {
     return (

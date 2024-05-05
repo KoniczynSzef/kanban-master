@@ -1,4 +1,4 @@
-import { animate, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 import { User } from "@/types/models/user-model";
 import React, { FC } from "react";
@@ -41,17 +41,15 @@ const WelcomeToDashboard: FC<Props> = (props) => {
             <section className="border border-muted rounded-2xl p-8 mt-16 max-w-3xl mx-auto flex flex-col gap-8">
                 <Steps step={step} />
 
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                    {step === 0 && (
-                        <SelectRole
-                            user={props.user}
-                            refetch={props.refetch}
-                            setStep={setStep}
-                        />
-                    )}
+                {step === 0 && (
+                    <SelectRole
+                        user={props.user}
+                        refetch={props.refetch}
+                        setStep={setStep}
+                    />
+                )}
 
-                    {step === 1 && <CreateFirstTeam />}
-                </motion.div>
+                {step === 1 && <CreateFirstTeam />}
             </section>
         </motion.section>
     );

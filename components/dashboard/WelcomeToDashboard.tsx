@@ -20,6 +20,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "../ui/form";
 import { Button } from "../ui/button";
 import { toast } from "sonner";
+import { createProperToastMessage } from "@/utils/create-proper-toast-message";
 
 interface Props {
     user: User;
@@ -47,17 +48,15 @@ const WelcomeToDashboard: FC<Props> = (props) => {
     });
 
     const handleGoToNextStep = (prop: keyof CreateTeamSchema) => {
-        if (prop === "teamRole" && !form.getValues().teamRole) {
-            toast.error("Please select a role");
-            return;
-        }
+        const { message, toastType } = createProperToastMessage(prop, form);
 
-        if (!form.getValues()[prop]) {
-            toast.error("Please fill in all fields");
-            return;
+        if (toastType === "error") {
+            return toast.error(message);
         }
 
         setStep((prev) => prev + 1);
+
+        toast.success(message);
     };
 
     return (

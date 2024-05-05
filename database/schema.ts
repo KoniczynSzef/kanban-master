@@ -150,6 +150,13 @@ export const teams = pgTable("team", {
         .$defaultFn(() => crypto.randomUUID()),
     name: text("name").notNull(),
     description: text("description"),
+    teamStatus: text("team_status", {
+        enum: ["active", "inactive", "archived"],
+    }).$default(() => "active"),
+    teamChatLink: text("team_chat_link"),
+    teamProductivityScore: real("team_productivity_score").notNull().default(0),
+
+    teamColor: text("team_color"),
 
     ownerId: text("owner_id")
         .notNull()

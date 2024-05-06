@@ -20,7 +20,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "../ui/form";
 import { Button } from "../ui/button";
 import { toast } from "sonner";
-import { createProperToastMessage } from "@/utils/create-proper-toast-message";
+import { createProperToastMessage } from "@/utils/dashboard/create-proper-toast-message";
 
 interface Props {
     user: User;
@@ -35,6 +35,7 @@ interface Props {
 
 const WelcomeToDashboard: FC<Props> = (props) => {
     const [step, setStep] = React.useState(0);
+    const maxVisitedStep = React.useRef(0);
 
     const headers = displayHeader(step, props.user.name);
 
@@ -55,6 +56,9 @@ const WelcomeToDashboard: FC<Props> = (props) => {
         }
 
         setStep((prev) => prev + 1);
+        maxVisitedStep.current = step + 1;
+
+        console.log(maxVisitedStep);
 
         toast.success(message);
     };
@@ -77,7 +81,12 @@ const WelcomeToDashboard: FC<Props> = (props) => {
                     className="border border-muted rounded-2xl p-8 mt-16 max-w-3xl mx-auto flex flex-col gap-8"
                     onSubmit={handleSubmit}
                 >
-                    <Steps step={step} setStep={setStep} />
+                    <Steps
+                        step={step}
+                        setStep={setStep}
+                        form={form}
+                        maxVisitedStep={maxVisitedStep.current}
+                    />
                     {step === 0 && (
                         <SelectRole
                             user={props.user}

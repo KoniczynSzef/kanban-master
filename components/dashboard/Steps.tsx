@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import { Button } from "../ui/button";
-// import { resetFormDataByStep } from "@/utils/dashboard/reset-form-data-by-step";
 import { UseFormReturn } from "react-hook-form";
 import { CreateTeamSchema } from "@/types/schemas/teams/create-team-schema";
 
@@ -12,10 +11,7 @@ interface Props {
 }
 
 const Steps: FC<Props> = (props) => {
-    console.log(props.step);
-
     const handleClick = (index: number) => {
-        // resetFormDataByStep(props.form, index, props.setStep);
         props.setStep(index);
     };
 

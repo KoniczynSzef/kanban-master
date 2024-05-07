@@ -29,28 +29,21 @@ interface Props {
 
 const SelectRole: FC<Props> = (props) => {
     return (
-        <>
-            <h4 className="text-xl font-semibold">
-                Select your role in the team{" "}
-                <span className="text-red-500">*</span>
-            </h4>
-
-            <FormField
-                control={props.form.control}
-                name="teamRole"
-                render={() => (
-                    <div className="grid grid-cols-2 justify-items-center items-center gap-8 text-left mt-4">
-                        {userRoles.map((role) => (
-                            <SelectRoleField
-                                key={role}
-                                form={props.form}
-                                role={role}
-                            />
-                        ))}
-                    </div>
-                )}
-            />
-        </>
+        <FormField
+            control={props.form.control}
+            name="teamRole"
+            render={() => (
+                <div className="grid grid-cols-2 justify-items-center items-center gap-8 text-left mt-4">
+                    {userRoles.map((role) => (
+                        <SelectRoleField
+                            key={role}
+                            form={props.form}
+                            role={role}
+                        />
+                    ))}
+                </div>
+            )}
+        />
     );
 };
 

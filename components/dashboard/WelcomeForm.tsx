@@ -11,7 +11,9 @@ import {
     RefetchQueryFilters,
 } from "@tanstack/react-query";
 import Steps from "./Steps";
-import CreateFirstTeam from "./CreateFirstTeam";
+import AddTeamChatLink from "./AddTeamChatLink";
+import FormHeader from "./FormHeader";
+import { Header } from "@/assets/first-team-headers";
 
 interface Props {
     form: UseFormReturn<CreateTeamSchema>;
@@ -22,11 +24,7 @@ interface Props {
         e?: React.BaseSyntheticEvent<object> | undefined
     ) => Promise<void>;
     handleGoToNextStep: (prop: keyof CreateTeamSchema) => void;
-    headers: {
-        title: string;
-        description: string;
-        buttonText: string;
-    };
+    headers: Header;
     user: User;
     refetch: <TPageData>(
         options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
@@ -52,6 +50,11 @@ const WelcomeForm: FC<Props> = (props) => {
                     maxVisitedStep={props.maxVisitedStep.current}
                 />
 
+                <FormHeader
+                    desc={props.headers.formFieldText}
+                    required={props.headers.required}
+                />
+
                 {props.step === 0 && (
                     <SelectRole
                         user={props.user}
@@ -60,7 +63,7 @@ const WelcomeForm: FC<Props> = (props) => {
                         form={props.form}
                     />
                 )}
-                {props.step === 1 && <CreateFirstTeam form={props.form} />}
+                {props.step === 1 && <AddTeamChatLink form={props.form} />}
 
                 <Button
                     className="self-center w-32"

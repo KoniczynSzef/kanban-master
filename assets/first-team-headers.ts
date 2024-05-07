@@ -17,7 +17,7 @@ const firstTeamHeaders: Header[] = [
     {
         title: "Add team chat link",
         description:
-            "Add team chat link to get started with your projects and sync up with your team",
+            "Add a link to your team chat like Slack, Discord, etc. to keep your team in sync and navigate to it easily from the dashboard",
         buttonText: "Add Link",
         required: false,
         formFieldText: "Add link to team chat like Slack, Discord, etc.",

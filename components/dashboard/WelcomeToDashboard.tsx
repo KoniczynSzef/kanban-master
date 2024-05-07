@@ -44,7 +44,16 @@ const WelcomeToDashboard: FC<Props> = (props) => {
         console.log(data);
     });
 
-    const handleGoToNextStep = (prop: keyof CreateTeamSchema) => {
+    const handleGoToNextStep = (
+        skipped: boolean,
+        prop: keyof CreateTeamSchema
+    ) => {
+        if (skipped) {
+            setStep((prev) => prev + 1);
+            maxVisitedStep.current = step + 1;
+            return;
+        }
+
         const { message, toastType } = createProperToastMessage(prop, form);
 
         if (toastType === "error") {

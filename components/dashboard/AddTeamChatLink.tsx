@@ -16,7 +16,10 @@ const CreateFirstTeam: FC<Props> = (props) => {
             render={({ field }) => (
                 <FormItem>
                     <FormControl>
-                        <Input placeholder="Team chat link" {...field} />
+                        <Input
+                            placeholder="https://teams.microsoft.com/"
+                            {...field}
+                        />
                     </FormControl>
                 </FormItem>
             )}

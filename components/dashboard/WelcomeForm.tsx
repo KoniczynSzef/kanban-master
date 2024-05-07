@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import { Form } from "../ui/form";
 import { UseFormReturn } from "react-hook-form";
 import { CreateTeamSchema } from "@/types/schemas/teams/create-team-schema";
-import { Button } from "../ui/button";
 import SelectRole from "./SelectRole";
 import { User } from "@/types/models/user-model";
 import {
@@ -14,6 +13,7 @@ import Steps from "./Steps";
 import AddTeamChatLink from "./AddTeamChatLink";
 import FormHeader from "./FormHeader";
 import { Header } from "@/assets/first-team-headers";
+import NavigationButtons from "./NavigationButtons";
 
 interface Props {
     form: UseFormReturn<CreateTeamSchema>;
@@ -23,7 +23,10 @@ interface Props {
     handleSubmit: (
         e?: React.BaseSyntheticEvent<object> | undefined
     ) => Promise<void>;
-    handleGoToNextStep: (prop: keyof CreateTeamSchema) => void;
+    handleGoToNextStep: (
+        skipped: boolean,
+        prop: keyof CreateTeamSchema
+    ) => void;
     headers: Header;
     user: User;
     refetch: <TPageData>(
@@ -65,12 +68,10 @@ const WelcomeForm: FC<Props> = (props) => {
                 )}
                 {props.step === 1 && <AddTeamChatLink form={props.form} />}
 
-                <Button
-                    className="self-center w-32"
-                    onClick={() => props.handleGoToNextStep("teamRole")}
-                >
-                    {props.headers.buttonText}
-                </Button>
+                <NavigationButtons
+                    headers={props.headers}
+                    handleGoToNextStep={props.handleGoToNextStep}
+                />
             </form>
         </Form>
     );

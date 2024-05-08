@@ -3,12 +3,6 @@ import { Form } from "../ui/form";
 import { UseFormReturn } from "react-hook-form";
 import { CreateTeamSchema } from "@/types/schemas/teams/create-team-schema";
 import SelectRole from "./SelectRole";
-import { User } from "@/types/models/user-model";
-import {
-    QueryObserverResult,
-    RefetchOptions,
-    RefetchQueryFilters,
-} from "@tanstack/react-query";
 import Steps from "./Steps";
 import AddTeamChatLink from "./AddTeamChatLink";
 import FormHeader from "./FormHeader";
@@ -21,6 +15,7 @@ interface Props {
     step: number;
     setStep: React.Dispatch<React.SetStateAction<number>>;
     maxVisitedStep: React.MutableRefObject<number>;
+
     handleSubmit: (
         e?: React.BaseSyntheticEvent<object> | undefined
     ) => Promise<void>;
@@ -28,15 +23,8 @@ interface Props {
         skipped: boolean,
         prop: keyof CreateTeamSchema | Array<keyof CreateTeamSchema>
     ) => void;
+
     headers: Header;
-    user: User;
-    refetch: <TPageData>(
-        options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
-    ) => Promise<
-        QueryObserverResult<{
-            user: User[];
-        } | null>
-    >;
 }
 
 const WelcomeForm: FC<Props> = (props) => {

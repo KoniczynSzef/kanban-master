@@ -2,11 +2,6 @@ import { motion } from "framer-motion";
 
 import { User } from "@/types/models/user-model";
 import React, { FC } from "react";
-import {
-    QueryObserverResult,
-    RefetchOptions,
-    RefetchQueryFilters,
-} from "@tanstack/react-query";
 import { displayHeader } from "@/assets/first-team-headers";
 import { useForm } from "react-hook-form";
 import {
@@ -20,13 +15,6 @@ import WelcomeForm from "./WelcomeForm";
 
 interface Props {
     user: User;
-    refetch: <TPageData>(
-        options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
-    ) => Promise<
-        QueryObserverResult<{
-            user: User[];
-        } | null>
-    >;
 }
 
 const WelcomeToDashboard: FC<Props> = (props) => {
@@ -42,6 +30,9 @@ const WelcomeToDashboard: FC<Props> = (props) => {
 
     const handleSubmit = form.handleSubmit(async (data) => {
         console.log(data);
+
+        // TODO: Handle form submission
+        // ! Here there will be a backend tRPC call to create a team using the data
     });
 
     const handleGoToNextStep = (
@@ -88,8 +79,6 @@ const WelcomeToDashboard: FC<Props> = (props) => {
                     handleSubmit,
                     handleGoToNextStep,
                     headers,
-                    user: props.user,
-                    refetch: props.refetch,
                 }}
             />
         </motion.section>

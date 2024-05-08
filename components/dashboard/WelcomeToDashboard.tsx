@@ -46,7 +46,7 @@ const WelcomeToDashboard: FC<Props> = (props) => {
 
     const handleGoToNextStep = (
         skipped: boolean,
-        prop: keyof CreateTeamSchema
+        prop: keyof CreateTeamSchema | Array<keyof CreateTeamSchema>
     ) => {
         if (skipped) {
             setStep((prev) => prev + 1);

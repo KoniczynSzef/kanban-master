@@ -2,10 +2,25 @@ import { CreateTeamSchema } from "@/types/schemas/teams/create-team-schema";
 import { UseFormReturn } from "react-hook-form";
 
 export function createProperToastMessage(
-    prop: keyof CreateTeamSchema,
+    prop: keyof CreateTeamSchema | Array<keyof CreateTeamSchema>,
     form: UseFormReturn<CreateTeamSchema>
 ) {
     let message = "";
+
+    if (typeof prop === "object") {
+        for (let i = 0; i < prop.length; i++) {
+            if (!form.getValues()[prop[i]]) {
+                message = `Please provide a ${prop[i]}!`;
+                break;
+            }
+        }
+
+        return {
+            message: message ?? "All fields provided successfully!",
+            toastType: message ? "error" : "success",
+        };
+    }
+
     if (prop === "teamRole") {
         message = !form.getValues().teamRole
             ? "Please select a role!"

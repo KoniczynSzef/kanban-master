@@ -23,12 +23,13 @@ const firstTeamHeaders: Header[] = [
         formFieldText: "Add link to team chat like Slack, Discord, etc.",
     },
     {
-        title: "Create your first team to get started with your projects",
-        description: "Create your first team to get started with your projects",
+        title: "Name and describe your team",
+        description:
+            "Create a team to start collaborating with your team members",
         buttonText: "Create Team",
         required: true,
         formFieldText:
-            "Provide a descriptive name and description for your team",
+            "Describe your team to help team members understand its purpose",
     },
 ];
 

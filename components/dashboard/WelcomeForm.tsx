@@ -14,6 +14,7 @@ import AddTeamChatLink from "./AddTeamChatLink";
 import FormHeader from "./FormHeader";
 import { Header } from "@/assets/first-team-headers";
 import NavigationButtons from "./NavigationButtons";
+import DescribeYourTeam from "./DescribeYourTeam";
 
 interface Props {
     form: UseFormReturn<CreateTeamSchema>;
@@ -25,7 +26,7 @@ interface Props {
     ) => Promise<void>;
     handleGoToNextStep: (
         skipped: boolean,
-        prop: keyof CreateTeamSchema
+        prop: keyof CreateTeamSchema | Array<keyof CreateTeamSchema>
     ) => void;
     headers: Header;
     user: User;
@@ -58,19 +59,16 @@ const WelcomeForm: FC<Props> = (props) => {
                     required={props.headers.required}
                 />
 
-                {props.step === 0 && (
-                    <SelectRole
-                        user={props.user}
-                        refetch={props.refetch}
-                        setStep={props.setStep}
-                        form={props.form}
-                    />
-                )}
-                {props.step === 1 && <AddTeamChatLink form={props.form} />}
+                <div className="my-8 flex flex-col gap-4">
+                    {props.step === 0 && <SelectRole form={props.form} />}
+                    {props.step === 1 && <AddTeamChatLink form={props.form} />}
+                    {props.step === 2 && <DescribeYourTeam form={props.form} />}
+                </div>
 
                 <NavigationButtons
                     headers={props.headers}
                     handleGoToNextStep={props.handleGoToNextStep}
+                    step={props.step}
                 />
             </form>
         </Form>

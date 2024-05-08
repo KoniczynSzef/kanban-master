@@ -3,27 +3,12 @@
 import React, { FC } from "react";
 import { FormField } from "../ui/form";
 import { UseFormReturn } from "react-hook-form";
-import { User, userRoles } from "@/types/models/user-model";
+import { userRoles } from "@/types/models/user-model";
 import SelectRoleField from "./SelectRoleField";
 
-import {
-    QueryObserverResult,
-    RefetchOptions,
-    RefetchQueryFilters,
-} from "@tanstack/react-query";
 import { CreateTeamSchema } from "@/types/schemas/teams/create-team-schema";
 
 interface Props {
-    user: User;
-    refetch: <TPageData>(
-        options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
-    ) => Promise<
-        QueryObserverResult<{
-            user: User[];
-        } | null>
-    >;
-
-    setStep: React.Dispatch<React.SetStateAction<number>>;
     form: UseFormReturn<CreateTeamSchema>;
 }
 

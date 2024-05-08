@@ -59,7 +59,7 @@ const WelcomeForm: FC<Props> = (props) => {
                     required={props.headers.required}
                 />
 
-                <div className="my-8 flex flex-col gap-4">
+                <div className="my-8 flex flex-col gap-6">
                     {props.step === 0 && <SelectRole form={props.form} />}
                     {props.step === 1 && <AddTeamChatLink form={props.form} />}
                     {props.step === 2 && <DescribeYourTeam form={props.form} />}

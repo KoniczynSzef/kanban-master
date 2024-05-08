@@ -16,8 +16,8 @@ export function createProperToastMessage(
         }
 
         return {
-            message: message ?? "All fields provided successfully!",
-            toastType: message ? "error" : "success",
+            message: message.length > 0 ? message : "Beautiful description!",
+            toastType: message.length > 0 ? "error" : "success",
         };
     }
 

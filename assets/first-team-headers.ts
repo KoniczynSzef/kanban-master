@@ -25,11 +25,18 @@ const firstTeamHeaders: Header[] = [
     {
         title: "Name and describe your team",
         description:
-            "Create a team to start collaborating with your team members",
-        buttonText: "Create Team",
+            "Give your team a name and describe it to help team members understand its purpose",
+        buttonText: "Save info",
         required: true,
-        formFieldText:
-            "Describe your team to help team members understand its purpose",
+        formFieldText: "Describe your team and provide a name for it",
+    },
+    {
+        title: "Select your team color",
+        description:
+            "Choose a color that represents your team and helps you easily identify it",
+        buttonText: "Select Color",
+        required: true,
+        formFieldText: "Select a color for your team",
     },
 ];
 

@@ -60,3 +60,8 @@
         @apply bg-background text-foreground;
     }
 }
+
+.color__input::-webkit-color-swatch {
+    border: none;
+    border-radius: 1rem;
+}

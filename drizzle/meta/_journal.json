@@ -22,6 +22,20 @@
       "when": 1714919642074,
       "tag": "0002_chubby_omega_sentinel",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1715285613918,
+      "tag": "0003_mushy_vanisher",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1715287808600,
+      "tag": "0004_violet_exiles",
+      "breakpoints": true
     }
   ]
 }

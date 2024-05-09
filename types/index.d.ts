@@ -2,10 +2,8 @@ import { z } from "zod";
 
 const environmentVariables = z.object({
     // database environment variables
-    XATA_DATABASE_URL: z.string(),
-    XATA_POSTGRES_URL: z.string(),
-    XATA_BRANCH: z.string(),
-    XATA_API_KEY: z.string(),
+    DATABASE_URL: z.string(),
+    DB_URL: z.string(),
 
     // kinde authentication environment variables
     KINDE_CLIENT_ID: z.string(),

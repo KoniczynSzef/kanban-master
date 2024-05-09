@@ -9,6 +9,7 @@ import FormHeader from "./FormHeader";
 import { Header } from "@/assets/first-team-headers";
 import NavigationButtons from "./NavigationButtons";
 import DescribeYourTeam from "./DescribeYourTeam";
+import PickColor from "./PickColor";
 
 interface Props {
     form: UseFormReturn<CreateTeamSchema>;
@@ -49,8 +50,12 @@ const WelcomeForm: FC<Props> = (props) => {
 
                 <div className="my-8 flex flex-col gap-6">
                     {props.step === 0 && <SelectRole form={props.form} />}
+
                     {props.step === 1 && <AddTeamChatLink form={props.form} />}
+
                     {props.step === 2 && <DescribeYourTeam form={props.form} />}
+
+                    {props.step === 3 && <PickColor form={props.form} />}
                 </div>
 
                 <NavigationButtons

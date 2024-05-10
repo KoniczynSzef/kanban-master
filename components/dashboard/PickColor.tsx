@@ -16,18 +16,18 @@ interface Props {
 type ColorCodeVariant = "rgb" | "hex";
 
 function CopyColorCode(props: { variant: ColorCodeVariant; value: string }) {
-    console.log(props.variant, props.value);
+    const value = React.useMemo(() => {
+        if (props.variant === "rgb") {
+            return hexToRgb(props.value);
+        }
 
-    // if (props.variant === "rgb") {
-    //     // props.value = hexToRgb(props.value);
-    //     const val = hexToRgb(props.value);
-    //     console.log(val);
-    // }
+        return props.value;
+    }, [props.value, props.variant]);
 
     const copyToClipboard = () => {
-        navigator.clipboard.writeText(props.variant);
+        navigator.clipboard.writeText(value);
         toast.success(
-            `Copied ${props.variant.toLocaleUpperCase()} to clipboard`
+            `Copied ${props.variant.toLocaleUpperCase()} value to clipboard`
         );
     };
 

@@ -10,6 +10,8 @@ import { Header } from "@/assets/first-team-headers";
 import NavigationButtons from "./NavigationButtons";
 import DescribeYourTeam from "./DescribeYourTeam";
 import PickColor from "./PickColor";
+import { AMOUNT_OF_STEPS } from "@/constants/amount-of-steps";
+import { Button } from "../ui/button";
 
 interface Props {
     form: UseFormReturn<CreateTeamSchema>;
@@ -58,11 +60,15 @@ const WelcomeForm: FC<Props> = (props) => {
                     {props.step === 3 && <PickColor form={props.form} />}
                 </div>
 
-                <NavigationButtons
-                    headers={props.headers}
-                    handleGoToNextStep={props.handleGoToNextStep}
-                    step={props.step}
-                />
+                {props.step < AMOUNT_OF_STEPS - 1 ? (
+                    <NavigationButtons
+                        headers={props.headers}
+                        handleGoToNextStep={props.handleGoToNextStep}
+                        step={props.step}
+                    />
+                ) : (
+                    <Button type="submit">Create Team</Button>
+                )}
             </form>
         </Form>
     );

@@ -63,7 +63,6 @@ const PickColor: FC<Props> = (props) => {
                         <CopyColorCode variant="hex" value={field.value} />
                         <CopyColorCode variant="rgb" value={field.value} />
                     </div>
-                    {field.value}
                 </FormItem>
             )}
         />

@@ -12,12 +12,21 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { createProperToastMessage } from "@/utils/dashboard/create-proper-toast-message";
 import WelcomeForm from "./WelcomeForm";
+import { trpc } from "@/server/trpc";
+import { revalidatePath } from "next/cache";
 
 interface Props {
     user: User;
 }
 
 const WelcomeToDashboard: FC<Props> = (props) => {
+    const { mutate, isLoading } = trpc.createTeam.useMutation({
+        onSettled: () => {
+            toast.success("Team created successfully");
+            revalidatePath("/dashboard");
+        },
+    });
+
     const [step, setStep] = React.useState(0);
     const maxVisitedStep = React.useRef(0);
 
@@ -32,8 +41,10 @@ const WelcomeToDashboard: FC<Props> = (props) => {
     });
 
     const handleSubmit = form.handleSubmit(async (data) => {
-        console.log(data);
-
+        mutate({
+            kindeId: props.user.kindeId,
+            data: data,
+        });
         // TODO: Handle form submission
         // ! Here there will be a backend tRPC call to create a team using the data
     });

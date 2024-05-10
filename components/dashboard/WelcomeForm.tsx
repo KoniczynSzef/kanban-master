@@ -13,11 +13,14 @@ import PickColor from "./PickColor";
 import { AMOUNT_OF_STEPS } from "@/constants/amount-of-steps";
 import { Button } from "../ui/button";
 
+import { Loader } from "lucide-react";
+
 interface Props {
     form: UseFormReturn<CreateTeamSchema>;
     step: number;
     setStep: React.Dispatch<React.SetStateAction<number>>;
     maxVisitedStep: React.MutableRefObject<number>;
+    isLoading: boolean;
 
     handleSubmit: (
         e?: React.BaseSyntheticEvent<object> | undefined
@@ -67,7 +70,13 @@ const WelcomeForm: FC<Props> = (props) => {
                         step={props.step}
                     />
                 ) : (
-                    <Button type="submit">Create Team</Button>
+                    <Button type="submit" disabled={props.isLoading}>
+                        {props.isLoading ? (
+                            <Loader className="animate-spin" />
+                        ) : (
+                            "Create Team"
+                        )}
+                    </Button>
                 )}
             </form>
         </Form>

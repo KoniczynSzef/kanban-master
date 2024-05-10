@@ -6,6 +6,8 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Copy } from "lucide-react";
+import { toast } from "sonner";
+import { hexToRgb } from "@/utils/dashboard/hex-to-rgb";
 
 interface Props {
     form: UseFormReturn<CreateTeamSchema>;
@@ -13,9 +15,29 @@ interface Props {
 
 type ColorCodeVariant = "rgb" | "hex";
 
-function CopyColorCode(props: { variant: ColorCodeVariant }) {
+function CopyColorCode(props: { variant: ColorCodeVariant; value: string }) {
+    console.log(props.variant, props.value);
+
+    // if (props.variant === "rgb") {
+    //     // props.value = hexToRgb(props.value);
+    //     const val = hexToRgb(props.value);
+    //     console.log(val);
+    // }
+
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText(props.variant);
+        toast.success(
+            `Copied ${props.variant.toLocaleUpperCase()} to clipboard`
+        );
+    };
+
     return (
-        <Button>
+        <Button
+            className="uppercase flex gap-2"
+            variant={"outline"}
+            onClick={copyToClipboard}
+        >
+            {props.variant}
             <Copy />
         </Button>
     );
@@ -27,7 +49,7 @@ const PickColor: FC<Props> = (props) => {
             control={props.form.control}
             name="teamColor"
             render={({ field }) => (
-                <FormItem className="space-y-2">
+                <FormItem className="flex flex-col gap-4">
                     <Label htmlFor="teamColor">Team Color</Label>
                     <FormControl>
                         <Input
@@ -37,8 +59,11 @@ const PickColor: FC<Props> = (props) => {
                         />
                     </FormControl>
 
-                    <CopyColorCode variant="hex" />
-                    <CopyColorCode variant="rgb" />
+                    <div className="flex justify-center gap-8">
+                        <CopyColorCode variant="hex" value={field.value} />
+                        <CopyColorCode variant="rgb" value={field.value} />
+                    </div>
+                    {field.value}
                 </FormItem>
             )}
         />

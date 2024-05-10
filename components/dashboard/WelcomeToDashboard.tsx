@@ -26,6 +26,9 @@ const WelcomeToDashboard: FC<Props> = (props) => {
     const form = useForm<CreateTeamSchema>({
         resolver: zodResolver(createTeamSchema),
         mode: "onChange",
+        defaultValues: {
+            teamColor: "#000000",
+        },
     });
 
     const handleSubmit = form.handleSubmit(async (data) => {

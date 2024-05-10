@@ -1,8 +1,8 @@
 import { drizzle as vercelDrizzle } from "drizzle-orm/vercel-postgres";
-import { drizzle as devDrizzle } from "drizzle-orm/node-postgres";
+import { drizzle as devDrizzle } from "drizzle-orm/postgres-js";
 import { sql } from "@vercel/postgres";
 
-import { Client } from "pg";
+import postgres from "postgres";
 
 import * as schema from "./schema";
 import * as relations from "./relations";
@@ -18,16 +18,11 @@ export const vercelDb = vercelDrizzle(sql, {
     },
 });
 
-export const devDb = devDrizzle(
-    new Client({
-        connectionString: process.env.DATABASE_URL,
-    }),
-    {
-        schema: {
-            ...schema,
-            ...relations,
-        },
-    }
-);
+export const devDb = devDrizzle(postgres(process.env.DATABASE_URL), {
+    schema: {
+        ...schema,
+        ...relations,
+    },
+});
 
 export const db = process.env.NODE_ENV === "production" ? vercelDb : devDb;

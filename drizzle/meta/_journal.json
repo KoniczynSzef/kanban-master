@@ -36,6 +36,13 @@
       "when": 1715287808600,
       "tag": "0004_violet_exiles",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1715348767809,
+      "tag": "0005_complex_silver_samurai",
+      "breakpoints": true
     }
   ]
 }

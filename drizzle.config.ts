@@ -10,8 +10,8 @@ if (!process.env.DATABASE_URL || !process.env.DB_URL) {
 export default defineConfig({
     schema: "./database/schema.ts",
     out: "./drizzle",
-    driver: "pg",
+    dialect: "postgresql",
     dbCredentials: {
-        connectionString: process.env.DATABASE_URL, // DB_URL in prod
+        url: process.env.DATABASE_URL,
     },
 });

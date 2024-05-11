@@ -20,8 +20,10 @@ interface Props {
 }
 
 const WelcomeToDashboard: FC<Props> = (props) => {
-    const { mutate, isLoading } = trpc.createTeam.useMutation({
+    const visitDashboard = trpc.visitDashboard.useMutation();
+    const createTeam = trpc.createTeam.useMutation({
         onSettled: () => {
+            visitDashboard.mutate(props.user.kindeId);
             toast.success("Team created successfully");
             revalidatePath("/dashboard");
         },
@@ -41,12 +43,10 @@ const WelcomeToDashboard: FC<Props> = (props) => {
     });
 
     const handleSubmit = form.handleSubmit(async (data) => {
-        mutate({
+        createTeam.mutate({
             kindeId: props.user.kindeId,
             data: data,
         });
-        // TODO: Handle form submission
-        // ! Here there will be a backend tRPC call to create a team using the data
     });
 
     const handleGoToNextStep = (
@@ -93,6 +93,7 @@ const WelcomeToDashboard: FC<Props> = (props) => {
                     handleSubmit,
                     handleGoToNextStep,
                     headers,
+                    isLoading: createTeam.isLoading,
                 }}
             />
         </motion.section>

@@ -36,6 +36,7 @@ function CopyColorCode(props: { variant: ColorCodeVariant; value: string }) {
             className="uppercase flex gap-2"
             variant={"outline"}
             onClick={copyToClipboard}
+            type="button"
         >
             {props.variant}
             <Copy />

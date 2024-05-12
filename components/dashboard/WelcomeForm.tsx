@@ -14,32 +14,47 @@ import { AMOUNT_OF_STEPS } from "@/constants/amount-of-steps";
 import { Button } from "../ui/button";
 
 import { Loader } from "lucide-react";
+import { trpc } from "@/server/trpc";
+import { User } from "@/types/models/user-model";
+import { toast } from "sonner";
 
 interface Props {
     form: UseFormReturn<CreateTeamSchema>;
     step: number;
     setStep: React.Dispatch<React.SetStateAction<number>>;
     maxVisitedStep: React.MutableRefObject<number>;
-    isLoading: boolean;
-
-    handleSubmit: (
-        e?: React.BaseSyntheticEvent<object> | undefined
-    ) => Promise<void>;
-    handleGoToNextStep: (
-        skipped: boolean,
-        prop: keyof CreateTeamSchema | Array<keyof CreateTeamSchema>
-    ) => void;
 
     headers: Header;
+    user: User;
 }
 
 const WelcomeForm: FC<Props> = (props) => {
+    const visitDashboard = trpc.visitDashboard.useMutation({
+        onSettled: () => {
+            // window.location.reload();
+        },
+    });
+
+    const createTeam = trpc.createTeam.useMutation({
+        onSettled: () => {
+            toast.success("Team created successfully");
+        },
+    });
+
+    const handleSubmit = props.form.handleSubmit(async (data) => {
+        createTeam.mutate({
+            kindeId: props.user.kindeId,
+            data: data,
+        });
+
+        // visitDashboard.mutate(props.user.kindeId);
+    });
     return (
         <Form {...props.form}>
             <form
                 action=""
                 className="border border-muted rounded-2xl p-8 mt-16 max-w-3xl mx-auto flex flex-col gap-8"
-                onSubmit={props.handleSubmit}
+                onSubmit={handleSubmit}
             >
                 <Steps
                     step={props.step}
@@ -66,12 +81,14 @@ const WelcomeForm: FC<Props> = (props) => {
                 {props.step < AMOUNT_OF_STEPS - 1 ? (
                     <NavigationButtons
                         headers={props.headers}
-                        handleGoToNextStep={props.handleGoToNextStep}
                         step={props.step}
+                        maxVisitedStep={props.maxVisitedStep}
+                        setStep={props.setStep}
+                        form={props.form}
                     />
                 ) : (
-                    <Button type="submit" disabled={props.isLoading}>
-                        {props.isLoading ? (
+                    <Button type="submit" disabled={createTeam.isLoading}>
+                        {createTeam.isLoading ? (
                             <Loader className="animate-spin" />
                         ) : (
                             "Create Team"

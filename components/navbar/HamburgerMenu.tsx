@@ -5,9 +5,10 @@ import { Menu } from "lucide-react";
 import NavigationMenuWrapper from "./menu/NavigationMenuWrapper";
 import HomeLink from "./HomeLink";
 import AuthSection from "./auth-state/AuthSection";
+import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
-    isUserLoggedIn: boolean;
+    user: KindeUser | null;
 }
 
 const HamburgerMenu: FC<Props> = (props) => {
@@ -25,7 +26,7 @@ const HamburgerMenu: FC<Props> = (props) => {
 
                     <NavigationMenuWrapper className="mt-8 mx-auto" />
 
-                    <AuthSection isUserLoggedIn={props.isUserLoggedIn} />
+                    <AuthSection user={props.user} />
                 </Sheet.SheetContent>
             </Sheet.Sheet>
         </div>

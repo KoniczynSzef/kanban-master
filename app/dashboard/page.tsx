@@ -9,12 +9,11 @@ import React, { FC } from "react";
 interface Props {}
 
 const page: FC<Props> = async () => {
-    const { isAuthenticated, getUser } = getKindeServerSession();
+    const { getUser } = getKindeServerSession();
 
-    const isAuth = await isAuthenticated();
     const user = await getUser();
 
-    if (!isAuth || !user) {
+    if (!user) {
         return redirect("/");
     }
 

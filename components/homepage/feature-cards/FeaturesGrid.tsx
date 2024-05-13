@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { features } from "@/assets/features";
 import { cn } from "@/lib/utils";
 import Image, { StaticImageData } from "next/image";
-import { shouldSpanCard } from "@/utils/should-span-card";
+import { shouldSpanCard } from "@/utils/home/should-span-card";
 
 interface Props {}
 

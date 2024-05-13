@@ -28,7 +28,7 @@ const NavigationButtons: FC<Props> = (props) => {
 
         const { message, toastType } = createProperToastMessage(
             prop,
-            props.form
+            props.form.getValues()
         );
 
         if (toastType === "error") {

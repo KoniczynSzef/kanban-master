@@ -1,4 +1,4 @@
-import { shouldSpanCard } from "@/utils/should-span-card";
+import { shouldSpanCard } from "@/utils/home/should-span-card";
 import { test, expect, describe } from "bun:test";
 
 describe("shouldSpanCard", () => {

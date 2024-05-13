@@ -31,24 +31,24 @@ interface Props {
 const WelcomeForm: FC<Props> = (props) => {
     const visitDashboard = trpc.visitDashboard.useMutation({
         onSettled: () => {
-            // window.location.reload();
+            window.location.reload();
         },
     });
 
     const createTeam = trpc.createTeam.useMutation({
         onSettled: () => {
             toast.success("Team created successfully");
+            visitDashboard.mutate(props.user.kindeId);
         },
     });
 
     const handleSubmit = props.form.handleSubmit(async (data) => {
         createTeam.mutate({
-            kindeId: props.user.kindeId,
+            userId: props.user.id,
             data: data,
         });
-
-        // visitDashboard.mutate(props.user.kindeId);
     });
+
     return (
         <Form {...props.form}>
             <form

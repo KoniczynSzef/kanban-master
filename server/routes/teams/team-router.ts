@@ -14,11 +14,11 @@ export const teamRouter = router({
     createTeam: publicProcedure
         .input(
             z.object({
-                kindeId: z.string(),
+                userId: z.string(),
                 data: createTeamSchema,
             })
         )
-        .mutation(async ({ input: { kindeId, data } }) => {
-            return await createTeam(kindeId, data);
+        .mutation(async ({ input: { userId, data } }) => {
+            return await createTeam(userId, data);
         }),
 });

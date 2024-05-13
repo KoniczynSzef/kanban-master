@@ -10,23 +10,15 @@ interface Props {
     kindeUser: KindeUser;
 }
 
-const Info: FC<Props> = (props) => {
-    const { data, isLoading, refetch } = trpc.getUserAndTeams.useQuery(
-        props.kindeUser.id
-    );
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
+const Dashboard: FC<Props> = (props) => {
+    const { data } = trpc.getUserAndTeams.useQuery(props.kindeUser.id);
 
     if (!data) {
         return <div>No data</div>;
     }
 
     if (!data.user.visitedDashboard) {
-        // ! I don't know how to provide the right type for refetch
-        // @ts-expect-error Description is provided above
-        return <WelcomeToDashboard user={data.user} refetch={refetch} />;
+        return <WelcomeToDashboard user={data.user} />;
     }
 
     if (data.teams.length === 0) {
@@ -41,4 +33,4 @@ const Info: FC<Props> = (props) => {
     return <pre>{JSON.stringify(data, null, 2)}</pre>;
 };
 
-export default Info;
+export default Dashboard;

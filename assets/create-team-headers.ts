@@ -6,7 +6,7 @@ export type Header = {
     formFieldText: string;
 };
 
-const firstTeamHeaders: Header[] = [
+const createTeamHeaders: Header[] = [
     {
         title: ``,
         description: "",
@@ -26,7 +26,7 @@ const firstTeamHeaders: Header[] = [
         title: "Name and describe your team",
         description:
             "Give your team a name and describe it to help team members understand its purpose",
-        buttonText: "Save info",
+        buttonText: "Continue",
         required: true,
         formFieldText: "Describe your team and provide a name for it",
     },
@@ -67,5 +67,5 @@ export function displayHeader(
         };
     }
 
-    return firstTeamHeaders[index];
+    return createTeamHeaders[index];
 }

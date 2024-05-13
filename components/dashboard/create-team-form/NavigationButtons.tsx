@@ -1,7 +1,7 @@
-import { Header } from "@/assets/first-team-headers";
+import { Header } from "@/assets/create-team-headers";
 import { CreateTeamSchema } from "@/types/schemas/teams/create-team-schema";
 import React, { FC } from "react";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import { getPropsByStep } from "@/utils/dashboard/get-props-by-step";
 import { toast } from "sonner";
 import { createProperToastMessage } from "@/utils/dashboard/create-proper-toast-message";
@@ -47,6 +47,7 @@ const NavigationButtons: FC<Props> = (props) => {
                 <Button
                     variant={"secondary"}
                     onClick={() => handleGoToNextStep(true, "teamRole")}
+                    type="button"
                 >
                     Skip this for now
                 </Button>
@@ -57,6 +58,7 @@ const NavigationButtons: FC<Props> = (props) => {
                 onClick={() =>
                     handleGoToNextStep(false, getPropsByStep(props.step))
                 }
+                type="button"
             >
                 {props.headers.buttonText}
             </Button>

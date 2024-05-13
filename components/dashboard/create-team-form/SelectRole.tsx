@@ -1,7 +1,7 @@
 "use client";
 
 import React, { FC } from "react";
-import { FormField } from "../ui/form";
+import { FormField } from "../../ui/form";
 import { UseFormReturn } from "react-hook-form";
 import { userRoles } from "@/types/models/user-model";
 import SelectRoleField from "./SelectRoleField";

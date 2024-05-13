@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import { UseFormReturn } from "react-hook-form";
 import { UserRole } from "@/types/models/user-model";
 import { CreateTeamSchema } from "@/types/schemas/teams/create-team-schema";

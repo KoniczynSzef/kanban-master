@@ -1,10 +1,10 @@
 import React, { FC } from "react";
-import { FormControl, FormField, FormItem } from "../ui/form";
+import { FormControl, FormField, FormItem } from "../../ui/form";
 import { UseFormReturn } from "react-hook-form";
 import { CreateTeamSchema } from "@/types/schemas/teams/create-team-schema";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
-import { Textarea } from "../ui/textarea";
+import { Input } from "../../ui/input";
+import { Label } from "../../ui/label";
+import { Textarea } from "../../ui/textarea";
 
 interface Props {
     form: UseFormReturn<CreateTeamSchema>;

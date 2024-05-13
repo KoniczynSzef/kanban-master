@@ -2,14 +2,14 @@ import { motion } from "framer-motion";
 
 import { User } from "@/types/models/user-model";
 import React, { FC } from "react";
-import { displayHeader } from "@/assets/first-team-headers";
+import { displayHeader } from "@/assets/create-team-headers";
 import { useForm } from "react-hook-form";
 import {
     CreateTeamSchema,
     createTeamSchema,
 } from "@/types/schemas/teams/create-team-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import WelcomeForm from "../WelcomeForm";
+import WelcomeForm from "../create-team-form/WelcomeForm";
 
 interface Props {
     user: User;

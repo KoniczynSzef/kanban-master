@@ -1,22 +1,22 @@
 import React, { FC } from "react";
-import { Form } from "../ui/form";
+import { Form } from "../../ui/form";
 import { UseFormReturn } from "react-hook-form";
 import { CreateTeamSchema } from "@/types/schemas/teams/create-team-schema";
 import SelectRole from "./SelectRole";
 import Steps from "./Steps";
-import AddTeamChatLink from "./AddTeamChatLink";
 import FormHeader from "./FormHeader";
-import { Header } from "@/assets/first-team-headers";
+import { Header } from "@/assets/create-team-headers";
 import NavigationButtons from "./NavigationButtons";
 import DescribeYourTeam from "./DescribeYourTeam";
 import PickColor from "./PickColor";
 import { AMOUNT_OF_STEPS } from "@/constants/amount-of-steps";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 
 import { Loader } from "lucide-react";
 import { trpc } from "@/server/trpc";
 import { User } from "@/types/models/user-model";
 import { toast } from "sonner";
+import AddTeamChatLink from "./AddTeamChatLink";
 
 interface Props {
     form: UseFormReturn<CreateTeamSchema>;

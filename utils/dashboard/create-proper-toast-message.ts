@@ -9,7 +9,7 @@ export function createProperToastMessage(
     if (typeof prop === "object") {
         for (let i = 0; i < prop.length; i++) {
             if (!form[prop[i]]) {
-                message = `Please provide a ${prop[i]}!`;
+                message = `Please provide a ${prop[i]} for team!`;
                 break;
             }
         }

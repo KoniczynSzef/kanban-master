@@ -1,4 +1,6 @@
 {
+  "id": "762ece88-1c6c-4431-a3b1-481ae4617277",
+  "prevId": "72d626d0-30af-430f-9929-dc77ae19228f",
   "version": "6",
   "dialect": "postgresql",
   "tables": {
@@ -30,15 +32,15 @@
         "kanban_board_project_id_project_id_fk": {
           "name": "kanban_board_project_id_project_id_fk",
           "tableFrom": "kanban_board",
+          "tableTo": "project",
           "columnsFrom": [
             "project_id"
           ],
-          "tableTo": "project",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "cascade"
+          "onDelete": "cascade",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -72,15 +74,15 @@
         "kanban_column_board_id_kanban_board_id_fk": {
           "name": "kanban_column_board_id_kanban_board_id_fk",
           "tableFrom": "kanban_column",
+          "tableTo": "kanban_board",
           "columnsFrom": [
             "board_id"
           ],
-          "tableTo": "kanban_board",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "cascade"
+          "onDelete": "cascade",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -161,14 +163,14 @@
           "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "default": "'2024-05-09T20:13:33.900Z'"
+          "default": "'2024-05-13T08:24:28.998Z'"
         },
         "updated_at": {
           "name": "updated_at",
           "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "default": "'2024-05-09T20:13:33.900Z'"
+          "default": "'2024-05-13T08:24:28.998Z'"
         }
       },
       "indexes": {},
@@ -176,41 +178,41 @@
         "kanban_task_column_id_kanban_column_id_fk": {
           "name": "kanban_task_column_id_kanban_column_id_fk",
           "tableFrom": "kanban_task",
+          "tableTo": "kanban_column",
           "columnsFrom": [
             "column_id"
           ],
-          "tableTo": "kanban_column",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "cascade"
+          "onDelete": "cascade",
+          "onUpdate": "no action"
         },
         "kanban_task_board_id_kanban_board_id_fk": {
           "name": "kanban_task_board_id_kanban_board_id_fk",
           "tableFrom": "kanban_task",
+          "tableTo": "kanban_board",
           "columnsFrom": [
             "board_id"
           ],
-          "tableTo": "kanban_board",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "cascade"
+          "onDelete": "cascade",
+          "onUpdate": "no action"
         },
         "kanban_task_creator_id_user_id_fk": {
           "name": "kanban_task_creator_id_user_id_fk",
           "tableFrom": "kanban_task",
+          "tableTo": "user",
           "columnsFrom": [
             "creator_id"
           ],
-          "tableTo": "user",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "cascade"
+          "onDelete": "cascade",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -249,7 +251,7 @@
           "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "default": "'2024-05-09T20:13:33.900Z'"
+          "default": "'2024-05-13T08:24:28.999Z'"
         },
         "author_id": {
           "name": "author_id",
@@ -268,14 +270,14 @@
           "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "default": "'2024-05-09T20:13:33.900Z'"
+          "default": "'2024-05-13T08:24:28.999Z'"
         },
         "updated_at": {
           "name": "updated_at",
           "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "default": "'2024-05-09T20:13:33.900Z'"
+          "default": "'2024-05-13T08:24:28.999Z'"
         }
       },
       "indexes": {},
@@ -283,28 +285,28 @@
         "milestone_author_id_user_id_fk": {
           "name": "milestone_author_id_user_id_fk",
           "tableFrom": "milestone",
+          "tableTo": "user",
           "columnsFrom": [
             "author_id"
           ],
-          "tableTo": "user",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "cascade"
+          "onDelete": "cascade",
+          "onUpdate": "no action"
         },
         "milestone_project_id_project_id_fk": {
           "name": "milestone_project_id_project_id_fk",
           "tableFrom": "milestone",
+          "tableTo": "project",
           "columnsFrom": [
             "project_id"
           ],
-          "tableTo": "project",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "cascade"
+          "onDelete": "cascade",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -367,14 +369,14 @@
           "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "default": "'2024-05-09T20:13:33.899Z'"
+          "default": "'2024-05-13T08:24:28.998Z'"
         },
         "updated_at": {
           "name": "updated_at",
           "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "default": "'2024-05-09T20:13:33.899Z'"
+          "default": "'2024-05-13T08:24:28.998Z'"
         }
       },
       "indexes": {},
@@ -382,28 +384,28 @@
         "project_owner_id_user_id_fk": {
           "name": "project_owner_id_user_id_fk",
           "tableFrom": "project",
+          "tableTo": "user",
           "columnsFrom": [
             "owner_id"
           ],
-          "tableTo": "user",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "cascade"
+          "onDelete": "cascade",
+          "onUpdate": "no action"
         },
         "project_team_id_team_id_fk": {
           "name": "project_team_id_team_id_fk",
           "tableFrom": "project",
+          "tableTo": "team",
           "columnsFrom": [
             "team_id"
           ],
-          "tableTo": "team",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
+          "onDelete": "no action",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -437,15 +439,15 @@
         "tag_project_id_project_id_fk": {
           "name": "tag_project_id_project_id_fk",
           "tableFrom": "tag",
+          "tableTo": "project",
           "columnsFrom": [
             "project_id"
           ],
-          "tableTo": "project",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "cascade"
+          "onDelete": "cascade",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -509,14 +511,14 @@
           "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "default": "'2024-05-09T20:13:33.900Z'"
+          "default": "'2024-05-13T08:24:28.999Z'"
         },
         "updated_at": {
           "name": "updated_at",
           "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "default": "'2024-05-09T20:13:33.900Z'"
+          "default": "'2024-05-13T08:24:28.999Z'"
         }
       },
       "indexes": {},
@@ -524,15 +526,15 @@
         "team_owner_id_user_id_fk": {
           "name": "team_owner_id_user_id_fk",
           "tableFrom": "team",
+          "tableTo": "user",
           "columnsFrom": [
             "owner_id"
           ],
-          "tableTo": "user",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "cascade"
+          "onDelete": "cascade",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -621,14 +623,14 @@
           "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "default": "'2024-05-09T20:13:33.896Z'"
+          "default": "'2024-05-13T08:24:28.996Z'"
         },
         "updated_at": {
           "name": "updated_at",
           "type": "date",
           "primaryKey": false,
           "notNull": true,
-          "default": "'2024-05-09T20:13:33.897Z'"
+          "default": "'2024-05-13T08:24:28.997Z'"
         }
       },
       "indexes": {},
@@ -658,28 +660,28 @@
         "user_to_team_user_id_user_id_fk": {
           "name": "user_to_team_user_id_user_id_fk",
           "tableFrom": "user_to_team",
+          "tableTo": "user",
           "columnsFrom": [
             "user_id"
           ],
-          "tableTo": "user",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "cascade"
+          "onDelete": "cascade",
+          "onUpdate": "no action"
         },
         "user_to_team_team_id_team_id_fk": {
           "name": "user_to_team_team_id_team_id_fk",
           "tableFrom": "user_to_team",
+          "tableTo": "team",
           "columnsFrom": [
             "team_id"
           ],
-          "tableTo": "team",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "cascade"
+          "onDelete": "cascade",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {
@@ -697,10 +699,8 @@
   "enums": {},
   "schemas": {},
   "_meta": {
+    "columns": {},
     "schemas": {},
-    "tables": {},
-    "columns": {}
-  },
-  "id": "01faa3b7-6d41-4ff2-9a2d-a86307254607",
-  "prevId": "dd248a24-ef6a-4968-99e1-b31e75bfe0ba"
+    "tables": {}
+  }
 }

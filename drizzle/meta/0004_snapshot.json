@@ -1,10 +1,8 @@
 {
-  "id": "7e19bcd2-8fba-4834-9f30-6a73e3acc153",
-  "prevId": "01faa3b7-6d41-4ff2-9a2d-a86307254607",
-  "version": "5",
-  "dialect": "pg",
+  "version": "6",
+  "dialect": "postgresql",
   "tables": {
-    "kanban_board": {
+    "public.kanban_board": {
       "name": "kanban_board",
       "schema": "",
       "columns": {
@@ -32,21 +30,21 @@
         "kanban_board_project_id_project_id_fk": {
           "name": "kanban_board_project_id_project_id_fk",
           "tableFrom": "kanban_board",
-          "tableTo": "project",
           "columnsFrom": [
             "project_id"
           ],
+          "tableTo": "project",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "kanban_column": {
+    "public.kanban_column": {
       "name": "kanban_column",
       "schema": "",
       "columns": {
@@ -74,21 +72,21 @@
         "kanban_column_board_id_kanban_board_id_fk": {
           "name": "kanban_column_board_id_kanban_board_id_fk",
           "tableFrom": "kanban_column",
-          "tableTo": "kanban_board",
           "columnsFrom": [
             "board_id"
           ],
+          "tableTo": "kanban_board",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "kanban_task": {
+    "public.kanban_task": {
       "name": "kanban_task",
       "schema": "",
       "columns": {
@@ -178,47 +176,47 @@
         "kanban_task_column_id_kanban_column_id_fk": {
           "name": "kanban_task_column_id_kanban_column_id_fk",
           "tableFrom": "kanban_task",
-          "tableTo": "kanban_column",
           "columnsFrom": [
             "column_id"
           ],
+          "tableTo": "kanban_column",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         },
         "kanban_task_board_id_kanban_board_id_fk": {
           "name": "kanban_task_board_id_kanban_board_id_fk",
           "tableFrom": "kanban_task",
-          "tableTo": "kanban_board",
           "columnsFrom": [
             "board_id"
           ],
+          "tableTo": "kanban_board",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         },
         "kanban_task_creator_id_user_id_fk": {
           "name": "kanban_task_creator_id_user_id_fk",
           "tableFrom": "kanban_task",
-          "tableTo": "user",
           "columnsFrom": [
             "creator_id"
           ],
+          "tableTo": "user",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "milestone": {
+    "public.milestone": {
       "name": "milestone",
       "schema": "",
       "columns": {
@@ -285,34 +283,34 @@
         "milestone_author_id_user_id_fk": {
           "name": "milestone_author_id_user_id_fk",
           "tableFrom": "milestone",
-          "tableTo": "user",
           "columnsFrom": [
             "author_id"
           ],
+          "tableTo": "user",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         },
         "milestone_project_id_project_id_fk": {
           "name": "milestone_project_id_project_id_fk",
           "tableFrom": "milestone",
-          "tableTo": "project",
           "columnsFrom": [
             "project_id"
           ],
+          "tableTo": "project",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "project": {
+    "public.project": {
       "name": "project",
       "schema": "",
       "columns": {
@@ -384,34 +382,34 @@
         "project_owner_id_user_id_fk": {
           "name": "project_owner_id_user_id_fk",
           "tableFrom": "project",
-          "tableTo": "user",
           "columnsFrom": [
             "owner_id"
           ],
+          "tableTo": "user",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         },
         "project_team_id_team_id_fk": {
           "name": "project_team_id_team_id_fk",
           "tableFrom": "project",
-          "tableTo": "team",
           "columnsFrom": [
             "team_id"
           ],
+          "tableTo": "team",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "tag": {
+    "public.tag": {
       "name": "tag",
       "schema": "",
       "columns": {
@@ -439,21 +437,21 @@
         "tag_project_id_project_id_fk": {
           "name": "tag_project_id_project_id_fk",
           "tableFrom": "tag",
-          "tableTo": "project",
           "columnsFrom": [
             "project_id"
           ],
+          "tableTo": "project",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "team": {
+    "public.team": {
       "name": "team",
       "schema": "",
       "columns": {
@@ -526,21 +524,21 @@
         "team_owner_id_user_id_fk": {
           "name": "team_owner_id_user_id_fk",
           "tableFrom": "team",
-          "tableTo": "user",
           "columnsFrom": [
             "owner_id"
           ],
+          "tableTo": "user",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "user": {
+    "public.user": {
       "name": "user",
       "schema": "",
       "columns": {
@@ -638,7 +636,7 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "user_to_team": {
+    "public.user_to_team": {
       "name": "user_to_team",
       "schema": "",
       "columns": {
@@ -660,28 +658,28 @@
         "user_to_team_user_id_user_id_fk": {
           "name": "user_to_team_user_id_user_id_fk",
           "tableFrom": "user_to_team",
-          "tableTo": "user",
           "columnsFrom": [
             "user_id"
           ],
+          "tableTo": "user",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         },
         "user_to_team_team_id_team_id_fk": {
           "name": "user_to_team_team_id_team_id_fk",
           "tableFrom": "user_to_team",
-          "tableTo": "team",
           "columnsFrom": [
             "team_id"
           ],
+          "tableTo": "team",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {
@@ -699,8 +697,10 @@
   "enums": {},
   "schemas": {},
   "_meta": {
-    "columns": {},
     "schemas": {},
-    "tables": {}
-  }
+    "tables": {},
+    "columns": {}
+  },
+  "id": "7e19bcd2-8fba-4834-9f30-6a73e3acc153",
+  "prevId": "01faa3b7-6d41-4ff2-9a2d-a86307254607"
 }

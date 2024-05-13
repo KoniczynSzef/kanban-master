@@ -20,10 +20,7 @@ const Navbar: FC<Props> = () => {
 
             <AuthSection user={user} className="hidden md:flex gap-4" />
 
-            <HamburgerMenu
-                className="block md:hidden"
-                isUserLoggedIn={!!user}
-            />
+            <HamburgerMenu className="block md:hidden" user={user} />
         </header>
     );
 };

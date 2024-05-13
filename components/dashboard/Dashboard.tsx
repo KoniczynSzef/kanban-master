@@ -4,7 +4,7 @@ import { trpc } from "@/server/trpc";
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import React, { FC } from "react";
 import { Button } from "../ui/button";
-import WelcomeToDashboard from "./WelcomeToDashboard";
+import WelcomeToDashboard from "./welcome-to-dashboard/WelcomeToDashboard";
 
 interface Props {
     kindeUser: KindeUser;

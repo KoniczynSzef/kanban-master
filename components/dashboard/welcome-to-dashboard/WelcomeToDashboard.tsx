@@ -9,7 +9,7 @@ import {
     createTeamSchema,
 } from "@/types/schemas/teams/create-team-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import WelcomeForm from "./WelcomeForm";
+import WelcomeForm from "../WelcomeForm";
 
 interface Props {
     user: User;
@@ -19,7 +19,7 @@ const WelcomeToDashboard: FC<Props> = (props) => {
     const [step, setStep] = React.useState(0);
     const maxVisitedStep = React.useRef(0);
 
-    const headers = displayHeader(step, props.user.name);
+    const headers = displayHeader(true, step, props.user.name);
 
     const form = useForm<CreateTeamSchema>({
         resolver: zodResolver(createTeamSchema),

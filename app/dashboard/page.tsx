@@ -1,4 +1,4 @@
-import Info from "@/components/dashboard/Info";
+import Dashboard from "@/components/dashboard/Dashboard";
 import Hydrate from "@/lib/HydrateClient";
 import { createHelpers } from "@/utils/helpers";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
@@ -25,7 +25,7 @@ const page: FC<Props> = async () => {
 
     return (
         <Hydrate state={dehydrate(helpers.queryClient)}>
-            <Info kindeUser={user} />
+            <Dashboard kindeUser={user} />
         </Hydrate>
     );
 };

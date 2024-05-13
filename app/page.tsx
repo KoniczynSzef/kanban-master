@@ -4,7 +4,7 @@ import React, { FC } from "react";
 
 interface Props {}
 
-const page: FC<Props> = () => {
+const page: FC<Props> = async () => {
     return (
         <>
             <HeroSection />

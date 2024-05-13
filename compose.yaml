@@ -1,10 +1,7 @@
 services:
-    server:
-        build:
-            context: .
-            dockerfile: Dockerfile
-        env_file:
-            - .env.local
-            - .env
+    db:
+        image: postgres
+        environment:
+            POSTGRES_PASSWORD: example
         ports:
-            - "3000:3000"
+            - "5432:5432"

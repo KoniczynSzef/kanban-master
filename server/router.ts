@@ -1,31 +1,9 @@
 import SuperJSON from "superjson";
-import { publicProcedure, router, mergeRouters } from "./trpc/server";
+import { mergeRouters } from "./trpc/server";
 import { createServerSideHelpers } from "@trpc/react-query/server";
-import { z } from "zod";
-import { getUserAndTeams } from "./routes/teams/get-user-and-teams";
-import { createTeamSchema } from "@/types/schemas/teams/create-team-schema";
-import { createTeam } from "./routes/teams/create-team";
 import { authRouter } from "./routes/auth/auth-router";
 import { userRouter } from "./routes/user/user-router";
-
-const teamRouter = router({
-    getUserAndTeams: publicProcedure
-        .input(z.string())
-        .query(async ({ input }) => {
-            return await getUserAndTeams(input);
-        }),
-
-    createTeam: publicProcedure
-        .input(
-            z.object({
-                userId: z.string(),
-                data: createTeamSchema,
-            })
-        )
-        .mutation(async ({ input: { userId, data } }) => {
-            return await createTeam(userId, data);
-        }),
-});
+import { teamRouter } from "./routes/teams/team-router";
 
 export const appRouter = mergeRouters(authRouter, teamRouter, userRouter);
 

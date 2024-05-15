@@ -1,13 +1,12 @@
 import { db } from "@/database";
 import { users } from "@/database/schema";
+import { getKindeUser } from "@/lib/auth/get-kinde-user";
 import { UserInsert } from "@/types/models/user-model";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 
 export async function GET() {
-    const { getUser } = getKindeServerSession();
-    const user = await getUser();
+    const user = await getKindeUser();
 
     // If the Kinde authorization fails, return an unauthorized response
     if (!user) {

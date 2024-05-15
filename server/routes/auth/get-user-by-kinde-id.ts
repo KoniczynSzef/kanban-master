@@ -1,10 +1,10 @@
 import { db } from "@/database";
 import { users } from "@/database/schema";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { getKindeUser } from "@/lib/auth/get-kinde-user";
 import { eq } from "drizzle-orm";
 
 export const getUserByKindeId = async (input: string) => {
-    const currentUser = await getKindeServerSession().getUser();
+    const currentUser = await getKindeUser();
 
     if (!currentUser) return null;
 

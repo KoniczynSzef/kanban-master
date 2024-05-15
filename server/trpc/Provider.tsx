@@ -4,7 +4,7 @@ import React, { FC, useState } from "react";
 import { trpc } from ".";
 import { httpBatchLink } from "@trpc/client";
 import superjson from "superjson";
-import queryClient from "@/lib/query-client";
+import queryClient from "@/lib/query/query-client";
 import { QueryClientProvider } from "@tanstack/react-query";
 
 interface Props {

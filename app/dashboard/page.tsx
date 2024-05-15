@@ -1,7 +1,7 @@
 import Dashboard from "@/components/dashboard/Dashboard";
-import Hydrate from "@/lib/HydrateClient";
+import { getKindeUser } from "@/lib/auth/get-kinde-user";
+import Hydrate from "@/lib/query/HydrateClient";
 import { createHelpers } from "@/utils/helpers";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { dehydrate } from "@tanstack/react-query";
 import { redirect } from "next/navigation";
 import React, { FC } from "react";
@@ -9,9 +9,7 @@ import React, { FC } from "react";
 interface Props {}
 
 const page: FC<Props> = async () => {
-    const { getUser } = getKindeServerSession();
-
-    const user = await getUser();
+    const user = await getKindeUser();
 
     if (!user) {
         return redirect("/");

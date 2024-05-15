@@ -11,7 +11,8 @@ export default async function middleware(req: NextRequest) {
         );
     }
 
-    console.log("User is authenticated");
+    // * User is authenticated and can access protected routes and actions
+    return NextResponse.next();
 }
 
 export const config = {

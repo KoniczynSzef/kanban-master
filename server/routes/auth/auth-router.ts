@@ -4,9 +4,9 @@ import { z } from "zod";
 import { CreateUserSchema } from "@/types/schemas/create-user.schema";
 import { validateAccount } from "./validate-account";
 import {
-    checkIfUserVisitedDashboard,
-    visitDashboard,
-} from "./chek-if-user-visited-dashboard";
+    hasVisitedDashboard
+} from "./has-visited-dashboard";
+import { visitDashboard } from "./visit-dashboard";
 
 export const authRouter = router({
     getUserByKindeId: publicProcedure
@@ -26,10 +26,10 @@ export const authRouter = router({
             return await validateAccount(kindeId, data);
         }),
 
-    checkIfUserVisitedDashboard: publicProcedure
+    hasVisitedDashboard: publicProcedure
         .input(z.string())
         .query(async ({ input: kindeId }) => {
-            return await checkIfUserVisitedDashboard(kindeId);
+            return await hasVisitedDashboard(kindeId);
         }),
 
     visitDashboard: publicProcedure

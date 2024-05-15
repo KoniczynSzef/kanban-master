@@ -1,18 +1,15 @@
 import CreateAccount from "@/components/auth/CreateAccount";
+import { getKindeUser } from "@/lib/auth/get-kinde-user";
 import { getUserByKindeId } from "@/server/routes/auth/get-user-by-kinde-id";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import React, { FC } from "react";
 
 interface Props {}
 
 const page: FC<Props> = async () => {
-    const { isAuthenticated, getUser } = getKindeServerSession();
+    const kindeUser = await getKindeUser();
 
-    const kindeUser = await getUser();
-    const isLoggedIn = await isAuthenticated();
-
-    if (!isLoggedIn || !kindeUser) {
+    if (!kindeUser) {
         return redirect("/");
     }
 

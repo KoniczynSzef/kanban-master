@@ -16,5 +16,11 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const config = {
-    matcher: ["/dashboard"],
+    matcher: [
+        "/dashboard",
+        "/api/trpc/[trpc]",
+        "/create-account",
+        "/api/auth/check-for-account",
+        "/api/auth/create-account",
+    ],
 };

@@ -13,13 +13,14 @@ import { displayHeader } from "@/utils/dashboard/display-header";
 
 interface Props {
     user: User;
+    isWelcomePage: boolean;
 }
 
 const WelcomeToDashboard: FC<Props> = (props) => {
     const [step, setStep] = React.useState(0);
     const maxVisitedStep = React.useRef(0);
 
-    const headers = displayHeader(true, step, props.user.name);
+    const headers = displayHeader(props.isWelcomePage, step, props.user.name);
 
     const form = useForm<CreateTeamSchema>({
         resolver: zodResolver(createTeamSchema),

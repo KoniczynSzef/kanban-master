@@ -20,7 +20,7 @@ const Dashboard: FC<Props> = (props) => {
     }
 
     if (!data.user.visitedDashboard) {
-        return <WelcomeToDashboard user={data.user} />;
+        return <WelcomeToDashboard user={data.user} isWelcomePage />;
     }
 
     const { user, teams } = data;

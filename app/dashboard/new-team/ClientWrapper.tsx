@@ -16,7 +16,7 @@ const ClientWrapper: FC<Props> = (props) => {
         return <div>No data</div>;
     }
 
-    return <WelcomeToDashboard user={data.user} />;
+    return <WelcomeToDashboard user={data.user} isWelcomePage={false} />;
 };
 
 export default ClientWrapper;

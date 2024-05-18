@@ -17,6 +17,7 @@ import { trpc } from "@/server/trpc";
 import { User } from "@/types/models/user-model";
 import { toast } from "sonner";
 import AddTeamChatLink from "./AddTeamChatLink";
+import { useRouter } from "next/navigation";
 
 interface Props {
     form: UseFormReturn<CreateTeamSchema>;
@@ -29,9 +30,11 @@ interface Props {
 }
 
 const WelcomeForm: FC<Props> = (props) => {
+    const router = useRouter();
+
     const visitDashboard = trpc.visitDashboard.useMutation({
         onSettled: () => {
-            window.location.reload();
+            router.push("/dashboard");
         },
     });
 

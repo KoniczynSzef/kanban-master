@@ -8,11 +8,9 @@ interface Props {
 }
 
 export const Teams: React.FC<Props> = (props) => {
-    console.log(props.user);
-
     return (
         <div>
-            <p></p>
+            <p>{JSON.stringify(props.user)}</p>
         </div>
     );
 };

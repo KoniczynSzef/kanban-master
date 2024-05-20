@@ -7,6 +7,7 @@ import { Button } from "../ui/button";
 import WelcomeToDashboard from "./welcome-to-dashboard/WelcomeToDashboard";
 import Link from "next/link";
 import { linkStyle } from "@/lib/link-style";
+import { Teams } from "./teams/Teams";
 
 interface Props {
     kindeUser: KindeUser;
@@ -39,7 +40,7 @@ const Dashboard: FC<Props> = (props) => {
             <h1>Dashboard</h1>
             <p>Welcome {user.name}</p>
 
-            <div className="grid gap-8 my-16">
+            {/* <div className="grid gap-8 my-16">
                 {teams.map((team) => (
                     <div
                         key={team.id}
@@ -48,7 +49,9 @@ const Dashboard: FC<Props> = (props) => {
                         {team.name}
                     </div>
                 ))}
-            </div>
+            </div> */}
+
+            <Teams user={user} />
 
             <Link href="/dashboard/new-team" className={linkStyle}>
                 <Button className="self-start" tabIndex={-1}>

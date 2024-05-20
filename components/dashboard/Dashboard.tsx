@@ -37,20 +37,6 @@ const Dashboard: FC<Props> = (props) => {
 
     return (
         <div className="text-center">
-            <h1>Dashboard</h1>
-            <p>Welcome {user.name}</p>
-
-            {/* <div className="grid gap-8 my-16">
-                {teams.map((team) => (
-                    <div
-                        key={team.id}
-                        className="p-4 border rounded-3xl self-center mx-auto"
-                    >
-                        {team.name}
-                    </div>
-                ))}
-            </div> */}
-
             <Teams user={user} teams={teams} />
 
             <Link href="/dashboard/new-team" className={linkStyle}>

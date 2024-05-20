@@ -51,7 +51,7 @@ const Dashboard: FC<Props> = (props) => {
                 ))}
             </div> */}
 
-            <Teams user={user} />
+            <Teams user={user} teams={teams} />
 
             <Link href="/dashboard/new-team" className={linkStyle}>
                 <Button className="self-start" tabIndex={-1}>

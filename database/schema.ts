@@ -36,6 +36,10 @@ export const users = pgTable("user", {
         ],
     }),
 
+    plan: text("plan", { enum: ["free", "pro", "enterprise"] }).$default(
+        () => "free"
+    ),
+
     validated: boolean("validated").notNull().default(false),
     visitedDashboard: boolean("visited_dashboard").notNull().default(false),
 

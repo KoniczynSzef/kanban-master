@@ -10,9 +10,13 @@ interface Props {
 
 export const Teams: React.FC<Props> = (props) => {
     return (
-        <section className="grid grid-cols-4 gap-16">
+        <section className="grid grid-cols-2 gap-16 place-items-center">
             {props.teams.map((team) => (
-                <TeamThumbnail key={team.id} team={team} />
+                <TeamThumbnail
+                    key={team.id}
+                    team={team}
+                    usersToTeams={props.user.usersToTeams}
+                />
             ))}
         </section>
     );

@@ -1,6 +1,7 @@
-import { users, usersToTeams } from "@/database/schema";
+import { users } from "@/database/schema";
 import { InferInsertModel, InferSelectModel } from "drizzle-orm";
 import { z } from "zod";
+import { UsersToTeams } from "./users-to-teams-model";
 
 export type User = InferSelectModel<typeof users>;
 export type UserInsert = InferInsertModel<typeof users>;
@@ -38,5 +39,5 @@ export const dashboardRoleSchema = z.object({
 });
 
 export type UserWithUsersToTeams = User & {
-    usersToTeams: InferSelectModel<typeof usersToTeams>[];
+    usersToTeams: UsersToTeams[];
 };

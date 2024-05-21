@@ -1,14 +1,14 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import * as Card from "@/components/ui/card";
 import { Team } from "@/types/models/team-model";
-import { UsersToTeams } from "@/types/models/users-to-teams-model";
-import { Activity, Archive, User, X } from "lucide-react";
+import { User } from "@/types/models/user-model";
+import { Activity, Archive, User as UserIcon, X } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
 interface Props {
     team: Team;
-    usersToTeams: UsersToTeams[];
+    user: User;
 }
 
 function ThumbnailCorner(props: { color: string | null }) {
@@ -38,9 +38,9 @@ export const TeamThumbnail: React.FC<Props> = (props) => {
                     </Card.CardDescription>
                 </Card.CardContent>
 
-                <Card.CardFooter>
+                <Card.CardFooter className="flex items-center justify-evenly">
                     <div>
-                        <User className="text-muted-foreground" />
+                        <UserIcon className="text-muted-foreground" />
                         {/* 
                     /*
                         TODO: Add team members length

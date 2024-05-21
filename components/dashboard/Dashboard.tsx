@@ -7,6 +7,7 @@ import { Button } from "../ui/button";
 import WelcomeToDashboard from "./welcome-to-dashboard/WelcomeToDashboard";
 import Link from "next/link";
 import { linkStyle } from "@/lib/link-style";
+import { Teams } from "./teams/Teams";
 
 interface Props {
     kindeUser: KindeUser;
@@ -20,7 +21,7 @@ const Dashboard: FC<Props> = (props) => {
     }
 
     if (!data.user.visitedDashboard) {
-        return <WelcomeToDashboard user={data.user} />;
+        return <WelcomeToDashboard user={data.user} isWelcomePage />;
     }
 
     const { user, teams } = data;
@@ -36,19 +37,7 @@ const Dashboard: FC<Props> = (props) => {
 
     return (
         <div className="text-center">
-            <h1>Dashboard</h1>
-            <p>Welcome {user.name}</p>
-
-            <div className="grid gap-8 my-16">
-                {teams.map((team) => (
-                    <div
-                        key={team.id}
-                        className="p-4 border rounded-3xl self-center mx-auto"
-                    >
-                        {team.name}
-                    </div>
-                ))}
-            </div>
+            <Teams user={user} teams={teams} />
 
             <Link href="/dashboard/new-team" className={linkStyle}>
                 <Button className="self-start" tabIndex={-1}>

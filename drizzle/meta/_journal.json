@@ -50,6 +50,13 @@
       "when": 1715588669017,
       "tag": "0006_lonely_cobalt_man",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1716214042476,
+      "tag": "0007_groovy_kinsey_walden",
+      "breakpoints": true
     }
   ]
 }

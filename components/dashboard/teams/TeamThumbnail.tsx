@@ -5,19 +5,11 @@ import { User } from "@/types/models/user-model";
 import { Activity, Archive, User as UserIcon, X } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import { ThumbnailCorner, ThumbnailBadge } from "./ThumbnailDecorations";
 
 interface Props {
     team: Team;
     user: User;
-}
-
-function ThumbnailCorner(props: { color: string | null }) {
-    return (
-        <div
-            className="absolute w-3 h-full rounded-2xl"
-            style={{ backgroundColor: props.color ?? "" }}
-        />
-    );
 }
 
 export const TeamThumbnail: React.FC<Props> = (props) => {
@@ -27,6 +19,7 @@ export const TeamThumbnail: React.FC<Props> = (props) => {
             className="focus-visible:ring focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:outline-none rounded-2xl transition duration-300 group"
         >
             <Card.Card className="relative group-hover:bg-secondary transition duration-300 w-[36rem]">
+                <ThumbnailBadge user={props.user} team={props.team} />
                 <ThumbnailCorner color={props.team.teamColor} />
                 <Card.CardHeader>
                     <Card.CardTitle>{props.team.name}</Card.CardTitle>

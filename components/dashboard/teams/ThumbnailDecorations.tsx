@@ -23,9 +23,15 @@ export function ThumbnailCorner(props: ThumbnailCornerProps) {
 }
 
 export function ThumbnailBadge(props: ThumbnailBadgeProps) {
+    const isOwner = props.team.ownerId === props.user.id;
+
     return (
-        <div className="absolute right-6 top-8 bg-secondary-foreground px-4 py-2 text-white rounded-2xl">
-            {props.team.ownerId === props.user.id ? "Owner" : "Not owner"}
+        <div
+            className={`absolute right-6 top-8 px-4 py-2 rounded-2xl text-white ${
+                isOwner ? "bg-secondary-foreground" : "bg-muted-foreground"
+            }`}
+        >
+            {isOwner ? "Owner" : "Not owner"}
         </div>
     );
 }

@@ -19,8 +19,8 @@ export const TeamThumbnail: React.FC<Props> = (props) => {
             className="focus-visible:ring focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:outline-none rounded-2xl transition duration-300 group"
         >
             <Card.Card className="relative group-hover:bg-secondary transition duration-300 w-[36rem]">
-                <ThumbnailBadge user={props.user} team={props.team} />
                 <ThumbnailCorner color={props.team.teamColor} />
+                <ThumbnailBadge user={props.user} team={props.team} />
                 <div className="wrapper relative my-4">
                     <Card.CardHeader>
                         <Card.CardTitle>{props.team.name}</Card.CardTitle>
@@ -34,7 +34,11 @@ export const TeamThumbnail: React.FC<Props> = (props) => {
 
                     <Card.CardFooter className="flex items-center justify-evenly">
                         <div>
-                            <UserIcon className="text-muted-foreground" />
+                            <Avatar>
+                                <AvatarFallback className="border">
+                                    <UserIcon className="text-muted-foreground" />
+                                </AvatarFallback>
+                            </Avatar>
                             {/* 
                     /*
                         TODO: Add team members length

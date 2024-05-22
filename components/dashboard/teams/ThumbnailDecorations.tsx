@@ -13,16 +13,18 @@ interface ThumbnailBadgeProps {
 
 export function ThumbnailCorner(props: ThumbnailCornerProps) {
     return (
-        <div
-            className="absolute w-4 h-full rounded-2xl rounded-r-none"
-            style={{ backgroundColor: props.color ?? "" }}
-        />
+        <>
+            <div
+                className="absolute h-3 w-full rounded-2xl rounded-bl-none rounded-br-none"
+                style={{ backgroundColor: props.color ?? "" }}
+            />
+        </>
     );
 }
 
 export function ThumbnailBadge(props: ThumbnailBadgeProps) {
     return (
-        <div className="absolute right-4 top-4">
+        <div className="absolute right-6 top-8 bg-secondary-foreground px-4 py-2 text-white rounded-2xl">
             {props.team.ownerId === props.user.id ? "Owner" : "Not owner"}
         </div>
     );

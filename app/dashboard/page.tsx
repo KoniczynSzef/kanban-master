@@ -17,12 +17,12 @@ const page: FC<Props> = async () => {
 
     const helpers = await createHelpers();
 
-    await helpers.getUserByKindeId.prefetch(user.id);
-    await helpers.getUserAndTeams.prefetch(user.id);
+    await helpers.getUserByKindeId.fetch(user.id);
+    const userAndTeams = await helpers.getUserAndTeams.fetch(user.id);
 
     return (
         <Hydrate state={dehydrate(helpers.queryClient)}>
-            <Dashboard kindeUser={user} />
+            <Dashboard kindeUser={user} initialData={userAndTeams} />
         </Hydrate>
     );
 };

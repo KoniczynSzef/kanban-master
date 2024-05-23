@@ -8,16 +8,23 @@ import WelcomeToDashboard from "./welcome-to-dashboard/WelcomeToDashboard";
 import Link from "next/link";
 import { linkStyle } from "@/lib/link-style";
 import { Teams } from "./teams/Teams";
+import { Team } from "@/types/models/team-model";
+import { UserWithUsersToTeams } from "@/types/models/user-model";
 
 interface Props {
     kindeUser: KindeUser;
+    initialData: {
+        user: UserWithUsersToTeams;
+        teams: Team[];
+    } | null;
 }
 
 const Dashboard: FC<Props> = (props) => {
-    const { data } = trpc.getUserAndTeams.useQuery(props.kindeUser.id);
+    const { data = props.initialData, isFetching } =
+        trpc.getUserAndTeams.useQuery(props.kindeUser.id);
 
-    if (!data) {
-        return <div>No data</div>;
+    if (!data || isFetching) {
+        return <div>Loading...</div>;
     }
 
     if (!data.user.visitedDashboard) {

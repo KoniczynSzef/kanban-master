@@ -1,0 +1,1 @@
+ALTER TABLE "user_to_team" ADD COLUMN "favourite" boolean DEFAULT false NOT NULL;

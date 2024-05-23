@@ -4,6 +4,7 @@ import { createTeam } from "./create-team";
 import { createTeamSchema } from "@/types/schemas/teams/create-team-schema";
 import { getUserAndTeams } from "./get-user-and-teams";
 import { getMembersLength } from "./get-members-length";
+import { getTeam } from "./get-team";
 
 export const teamRouter = router({
     getUserAndTeams: publicProcedure
@@ -26,6 +27,10 @@ export const teamRouter = router({
     getMembersLength: publicProcedure
         .input(z.string())
         .query(async ({ input }) => {
-            return await getMembersLength(input);
+            return (await getMembersLength(input)).length;
         }),
+
+    getTeam: publicProcedure.input(z.string()).query(async ({ input }) => {
+        return await getTeam(input);
+    }),
 });

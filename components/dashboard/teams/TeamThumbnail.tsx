@@ -8,9 +8,12 @@ import { trpc } from "@/server/trpc";
 import { UsersToTeams } from "@/types/models/users-to-teams-model";
 import { Skeleton } from "@/components/ui/skeleton";
 
+import { motion } from "framer-motion";
+
 interface Props {
     usersToTeams: UsersToTeams;
     user: User;
+    index: number;
 }
 
 export const TeamThumbnail: React.FC<Props> = (props) => {
@@ -26,7 +29,10 @@ export const TeamThumbnail: React.FC<Props> = (props) => {
             href={`/dashboard/teams/${team.id}`}
             className="focus-visible:ring focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:outline-none rounded-2xl transition duration-300 group"
         >
-            <div
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.25, delay: props.index * 0.1 }}
                 className={`p-2 bg-white rounded-2xl group-hover:bg-secondary transition duration-500 ${
                     team.teamStatus === "inactive" ? "opacity-50" : ""
                 }`}
@@ -53,7 +59,7 @@ export const TeamThumbnail: React.FC<Props> = (props) => {
                         </Card.CardFooter>
                     </div>
                 </Card.Card>
-            </div>
+            </motion.div>
         </Link>
     );
 };

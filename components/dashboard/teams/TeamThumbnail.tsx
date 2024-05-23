@@ -4,6 +4,7 @@ import { User } from "@/types/models/user-model";
 import Link from "next/link";
 import React from "react";
 import { ThumbnailCorner, ThumbnailBadge } from "./ThumbnailDecorations";
+import { ThumbnailFooter } from "./ThumbnailFooter";
 
 interface Props {
     team: Team;
@@ -16,7 +17,11 @@ export const TeamThumbnail: React.FC<Props> = (props) => {
             href={`/dashboard/teams/${props.team.id}`}
             className="focus-visible:ring focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:outline-none rounded-2xl transition duration-300 group"
         >
-            <div className="p-2 bg-white rounded-2xl group-hover:bg-primary transition duration-500">
+            <div
+                className={`p-2 bg-white rounded-2xl group-hover:bg-secondary transition duration-500 ${
+                    props.team.teamStatus === "inactive" ? "opacity-50" : ""
+                }`}
+            >
                 <Card.Card className="relative w-[36rem]">
                     <ThumbnailCorner color={props.team.teamColor} />
                     <ThumbnailBadge user={props.user} team={props.team} />
@@ -31,7 +36,9 @@ export const TeamThumbnail: React.FC<Props> = (props) => {
                             </Card.CardDescription>
                         </Card.CardContent>
 
-                        <Card.CardFooter className="flex items-center justify-evenly"></Card.CardFooter>
+                        <Card.CardFooter className="flex items-center justify-evenly">
+                            <ThumbnailFooter team={props.team} />
+                        </Card.CardFooter>
                     </div>
                 </Card.Card>
             </div>

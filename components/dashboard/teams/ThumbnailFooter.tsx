@@ -1,8 +1,11 @@
 import { Team } from "@/types/models/team-model";
+import { Loader, User } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 interface Props {
     team: Team;
+    membersLength: number | undefined;
 }
 
 export const ThumbnailFooter: React.FC<Props> = (props) => {
@@ -20,6 +23,23 @@ export const ThumbnailFooter: React.FC<Props> = (props) => {
             >
                 {props.team.teamStatus}
             </div>
+
+            <div className="flex items-center gap-3">
+                <User className="text-muted-foreground" />
+                <span>
+                    {props.membersLength ?? <Loader className="animate-spin" />}
+                </span>
+            </div>
+
+            {props.team.teamChatLink ? (
+                <Link
+                    href={props.team.teamChatLink}
+                    className="text-muted-foreground hover:text-black transition duration-300"
+                    aria-description="Link to team chat"
+                >
+                    {props.team.teamChatLink}
+                </Link>
+            ) : null}
         </>
     );
 };

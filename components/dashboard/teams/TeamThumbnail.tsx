@@ -5,6 +5,7 @@ import Link from "next/link";
 import React from "react";
 import { ThumbnailCorner, ThumbnailBadge } from "./ThumbnailDecorations";
 import { ThumbnailFooter } from "./ThumbnailFooter";
+import { trpc } from "@/server/trpc";
 
 interface Props {
     team: Team;
@@ -12,6 +13,10 @@ interface Props {
 }
 
 export const TeamThumbnail: React.FC<Props> = (props) => {
+    const { data: membersLength } = trpc.getMembersLength.useQuery(
+        props.team.id
+    );
+
     return (
         <Link
             href={`/dashboard/teams/${props.team.id}`}
@@ -37,7 +42,10 @@ export const TeamThumbnail: React.FC<Props> = (props) => {
                         </Card.CardContent>
 
                         <Card.CardFooter className="flex items-center justify-evenly">
-                            <ThumbnailFooter team={props.team} />
+                            <ThumbnailFooter
+                                team={props.team}
+                                membersLength={membersLength}
+                            />
                         </Card.CardFooter>
                     </div>
                 </Card.Card>

@@ -14,11 +14,12 @@ export const Teams: React.FC<Props> = (props) => {
             <h2 className="text-3xl font-bold text-left">My Teams: </h2>
 
             <div className="grid grid-cols-2 gap-16 place-items-center my-16">
-                {props.teams.map((team) => (
+                {props.user.usersToTeams.map((usersToTeams, index) => (
                     <TeamThumbnail
-                        key={team.id}
-                        team={team}
+                        key={crypto.randomUUID()}
+                        usersToTeams={usersToTeams}
                         user={props.user}
+                        index={index}
                     />
                 ))}
             </div>

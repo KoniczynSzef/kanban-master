@@ -8,20 +8,19 @@ import WelcomeToDashboard from "./welcome-to-dashboard/WelcomeToDashboard";
 import Link from "next/link";
 import { linkStyle } from "@/lib/link-style";
 import { Teams } from "./teams/Teams";
-import { Team } from "@/types/models/team-model";
 import { UserWithUsersToTeams } from "@/types/models/user-model";
 
 interface Props {
     kindeUser: KindeUser;
     initialData: {
         user: UserWithUsersToTeams;
-        teams: Team[];
     } | null;
 }
 
 const Dashboard: FC<Props> = (props) => {
-    const { data = props.initialData, isFetching } =
-        trpc.getUserAndTeams.useQuery(props.kindeUser.id);
+    const { data, isFetching } = trpc.getUserAndTeams.useQuery(
+        props.kindeUser.id
+    );
 
     if (!data || isFetching) {
         return <div>Loading...</div>;
@@ -31,9 +30,7 @@ const Dashboard: FC<Props> = (props) => {
         return <WelcomeToDashboard user={data.user} isWelcomePage />;
     }
 
-    const { user, teams } = data;
-
-    if (teams.length === 0) {
+    if (data.user.usersToTeams.length === 0) {
         return (
             <div className="border border-muted flex flex-col p-8 rounded-2xl gap-4">
                 Create a team to get started
@@ -43,15 +40,17 @@ const Dashboard: FC<Props> = (props) => {
     }
 
     return (
-        <div className="text-center">
-            <Teams user={user} teams={teams} />
+        <section>
+            <h2 className="text-3xl font-bold text-left">My Teams: </h2>
+
+            <Teams user={data.user} />
 
             <Link href="/dashboard/new-team" className={linkStyle}>
                 <Button className="self-start" tabIndex={-1}>
                     Create a team
                 </Button>
             </Link>
-        </div>
+        </section>
     );
 };
 

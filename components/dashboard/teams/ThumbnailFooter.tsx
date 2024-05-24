@@ -1,5 +1,5 @@
 import { Team } from "@/types/models/team-model";
-import { Loader, User } from "lucide-react";
+import { Link2, Loader, User } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -34,12 +34,16 @@ export const ThumbnailFooter: React.FC<Props> = (props) => {
             {props.team.teamChatLink ? (
                 <Link
                     href={props.team.teamChatLink}
-                    className="text-muted-foreground hover:text-black transition duration-300"
+                    className="text-muted-foreground hover:text-black transition duration-300 rounded-2xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus:outline-none p-1"
                     aria-description="Link to team chat"
                 >
                     {props.team.teamChatLink}
                 </Link>
-            ) : null}
+            ) : (
+                <span className="text-destructive flex items-center gap-3">
+                    No chat link <Link2 />
+                </span>
+            )}
         </>
     );
 };

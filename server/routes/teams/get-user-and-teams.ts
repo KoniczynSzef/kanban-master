@@ -14,9 +14,5 @@ export async function getUserAndTeams(kindeId: string) {
         return null;
     }
 
-    if (data.usersToTeams.length === 0) return { user: data };
-
-    return {
-        user: data,
-    };
+    return data;
 }

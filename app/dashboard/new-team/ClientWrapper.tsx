@@ -10,13 +10,13 @@ interface Props {
 }
 
 const ClientWrapper: FC<Props> = (props) => {
-    const { data } = trpc.getUserAndTeams.useQuery(props.kindeUser.id);
+    const { data: user } = trpc.getUserAndTeams.useQuery(props.kindeUser.id);
 
-    if (!data) {
-        return <div>No data</div>;
+    if (!user) {
+        return <div>No user found</div>;
     }
 
-    return <WelcomeToDashboard user={data.user} isWelcomePage={false} />;
+    return <WelcomeToDashboard user={user} isWelcomePage={false} />;
 };
 
 export default ClientWrapper;

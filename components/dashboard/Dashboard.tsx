@@ -10,11 +10,13 @@ import { linkStyle } from "@/lib/link-style";
 import { Teams } from "./teams/Teams";
 import { UserWithUsersToTeams } from "@/types/models/user-model";
 import { Team } from "@/types/models/team-model";
+import { Searchbar } from "./searchbar/Searchbar";
 
 interface Props {
     kindeUser: KindeUser;
     initialData: UserWithUsersToTeams | null;
     teams: Team[];
+    setTeams: React.Dispatch<React.SetStateAction<Team[]>>;
 }
 
 const Dashboard: FC<Props> = (props) => {
@@ -42,6 +44,7 @@ const Dashboard: FC<Props> = (props) => {
     return (
         <section>
             <h2 className="text-3xl font-bold text-left">My Teams: </h2>
+            <Searchbar teams={props.teams} setTeams={props.setTeams} />
 
             <Teams user={user} teams={props.teams} />
 

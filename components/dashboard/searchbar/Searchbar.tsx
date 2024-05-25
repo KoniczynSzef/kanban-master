@@ -1,11 +1,20 @@
+import { Button } from "@/components/ui/button";
+import { Team } from "@/types/models/team-model";
 import React from "react";
 
-interface Props {}
+interface Props {
+    teams: Team[];
+    setTeams: React.Dispatch<React.SetStateAction<Team[]>>;
+}
 
-export const Searchbar: React.FC<Props> = () => {
+export const Searchbar: React.FC<Props> = (props) => {
+    const resetTeams = () => {
+        props.setTeams([]);
+    };
+
     return (
         <div>
-            <p></p>
+            <Button onClick={resetTeams}>Reset teams</Button>
         </div>
     );
 };

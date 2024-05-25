@@ -1,4 +1,4 @@
-import { TeamContextProvider } from "@/context/TeamContext";
+import { TeamContextProvider } from "@/context/TeamContextProvider";
 import { getKindeUser } from "@/lib/auth/get-kinde-user";
 import Hydrate from "@/lib/query/HydrateClient";
 import { Team } from "@/types/models/team-model";
@@ -27,6 +27,7 @@ const page: FC<Props> = async () => {
     if (usersToTeams && usersToTeams.length > 0) {
         for (const team of usersToTeams) {
             const t = await helpers.getTeam.fetch(team.teamId);
+
             if (t) {
                 teams.push(t);
             }

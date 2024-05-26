@@ -43,7 +43,6 @@ const Dashboard: FC<Props> = (props) => {
 
     return (
         <section>
-            <h2 className="text-3xl font-bold text-left">My Teams: </h2>
             <Searchbar teams={props.teams} setTeams={props.setTeams} />
 
             <Teams user={user} teams={props.teams} />

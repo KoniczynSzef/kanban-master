@@ -30,6 +30,10 @@ export const Searchbar: React.FC<Props> = (props) => {
         props.setTeams([]);
     };
 
+    React.useEffect(() => {
+        console.log(form.getValues());
+    }, [form.getValues()]);
+
     return (
         <>
             <Form {...form}>

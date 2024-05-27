@@ -5,22 +5,20 @@ import React from "react";
 import { ThumbnailCorner, ThumbnailBadge } from "./ThumbnailDecorations";
 import { ThumbnailFooter } from "./ThumbnailFooter";
 import { trpc } from "@/server/trpc";
-import { UsersToTeams } from "@/types/models/users-to-teams-model";
 import { Skeleton } from "@/components/ui/skeleton";
 
 import { motion } from "framer-motion";
+import { Team } from "@/types/models/team-model";
 
 interface Props {
-    usersToTeams: UsersToTeams;
+    team: Team;
     user: User;
     index: number;
 }
 
 export const TeamThumbnail: React.FC<Props> = (props) => {
-    const { data: team } = trpc.getTeam.useQuery(props.usersToTeams.teamId);
-    const { data: membersLength } = trpc.getMembersLength.useQuery(
-        props.usersToTeams.teamId
-    );
+    const { team } = props;
+    const { data: membersLength } = trpc.getMembersLength.useQuery(team.id);
 
     if (!team || !membersLength) return <Skeleton className="w-[36rem] h-48" />;
 
@@ -37,10 +35,11 @@ export const TeamThumbnail: React.FC<Props> = (props) => {
                     team.teamStatus === "inactive" ? "opacity-50" : ""
                 }`}
             >
-                <Card.Card className="relative w-[36rem]">
+                <Card.Card className="relative w-[36rem] h-56">
                     <ThumbnailCorner color={team.teamColor} />
                     <ThumbnailBadge user={props.user} team={team} />
-                    <div className="padding__wrapper my-4">
+
+                    <div className="padding__wrapper m-8">
                         <Card.CardHeader>
                             <Card.CardTitle>{team.name}</Card.CardTitle>
                         </Card.CardHeader>
@@ -51,7 +50,7 @@ export const TeamThumbnail: React.FC<Props> = (props) => {
                             </Card.CardDescription>
                         </Card.CardContent>
 
-                        <Card.CardFooter className="flex items-center justify-evenly">
+                        <Card.CardFooter className="flex items-center justify-between">
                             <ThumbnailFooter
                                 team={team}
                                 membersLength={membersLength}

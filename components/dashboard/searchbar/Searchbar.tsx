@@ -30,15 +30,11 @@ export const Searchbar: React.FC<Props> = (props) => {
         props.setTeams([]);
     };
 
-    React.useEffect(() => {
-        console.log(form.getValues());
-    }, [form.getValues()]);
-
     return (
         <>
             <Form {...form}>
                 <form action="">
-                    <SearchbarField form={form} />
+                    <SearchbarField form={form} {...props} />
                 </form>
             </Form>
             <div>

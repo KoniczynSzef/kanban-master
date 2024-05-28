@@ -8,15 +8,14 @@ import WelcomeToDashboard from "./welcome-to-dashboard/WelcomeToDashboard";
 import Link from "next/link";
 import { linkStyle } from "@/lib/link-style";
 import { Teams } from "./teams/Teams";
-import { UserWithUsersToTeams } from "@/types/models/user-model";
 import { Team } from "@/types/models/team-model";
 import { Searchbar } from "./searchbar/Searchbar";
 
 interface Props {
     kindeUser: KindeUser;
-    initialData: UserWithUsersToTeams | null;
     teams: Team[];
     setTeams: React.Dispatch<React.SetStateAction<Team[]>>;
+    initialTeams: Team[];
 }
 
 const Dashboard: FC<Props> = (props) => {

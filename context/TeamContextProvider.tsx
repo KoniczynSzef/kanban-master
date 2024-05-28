@@ -15,10 +15,16 @@ interface Props {
 
 export const TeamContextProvider: React.FC<Props> = (props) => {
     const [teams, setTeams] = React.useState(props.teams);
+    const initialTeams = props.teams;
 
     return (
         <TeamContext.Provider value={teams}>
-            <Dashboard {...props} setTeams={setTeams} teams={teams} />
+            <Dashboard
+                {...props}
+                setTeams={setTeams}
+                teams={teams}
+                initialTeams={initialTeams}
+            />
         </TeamContext.Provider>
     );
 };

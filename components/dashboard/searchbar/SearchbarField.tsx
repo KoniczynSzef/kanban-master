@@ -5,14 +5,25 @@ import React from "react";
 import { UseFormReturn } from "react-hook-form";
 
 import { Loader, Search } from "lucide-react";
+import { queryTeams } from "@/server/routes/teams/query-teams";
+import { Team } from "@/types/models/team-model";
 
 interface Props {
     form: UseFormReturn<SearchbarSchema>;
+    teams: Team[];
+    setTeams: React.Dispatch<React.SetStateAction<Team[]>>;
 }
 
 export const SearchbarField: React.FC<Props> = (props) => {
     const [isTyping, setIsTyping] = React.useState(false);
     const [input, setInput] = React.useState("");
+
+    React.useEffect(() => {
+        if (input.length !== 0) {
+            const teams = queryTeams(props.teams, input);
+            props.setTeams(teams);
+        }
+    }, [input]);
 
     return (
         <FormField

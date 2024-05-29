@@ -8,17 +8,15 @@ import WelcomeToDashboard from "./welcome-to-dashboard/WelcomeToDashboard";
 import Link from "next/link";
 import { linkStyle } from "@/lib/link-style";
 import { Teams } from "./teams/Teams";
-import { Team } from "@/types/models/team-model";
 import { Searchbar } from "./searchbar/Searchbar";
+import { TeamContext } from "@/context/team-context";
 
 interface Props {
     kindeUser: KindeUser;
-    teams: Team[];
-    setTeams: React.Dispatch<React.SetStateAction<Team[]>>;
-    initialTeams: Team[];
 }
 
 const Dashboard: FC<Props> = (props) => {
+    const { initialTeams, teams, setTeams } = React.useContext(TeamContext);
     const { data: user, isFetching } = trpc.getUserByKindeId.useQuery(
         props.kindeUser.id
     );
@@ -31,7 +29,7 @@ const Dashboard: FC<Props> = (props) => {
         return <WelcomeToDashboard user={user} isWelcomePage />;
     }
 
-    if (props.teams.length === 0) {
+    if (teams.length === 0) {
         return (
             <div className="border border-muted flex flex-col p-8 rounded-2xl gap-4">
                 Create a team to get started

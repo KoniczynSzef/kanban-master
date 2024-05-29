@@ -18,7 +18,13 @@ export const TeamContextProvider: React.FC<Props> = (props) => {
     const initialTeams = props.teams;
 
     return (
-        <TeamContext.Provider value={teams}>
+        <TeamContext.Provider
+            value={{
+                initialTeams,
+                teams,
+                setTeams,
+            }}
+        >
             <Dashboard
                 {...props}
                 setTeams={setTeams}

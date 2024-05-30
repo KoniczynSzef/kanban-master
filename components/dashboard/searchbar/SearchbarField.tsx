@@ -4,7 +4,6 @@ import { SearchbarSchema } from "@/types/schemas/searchbar-schema";
 import React from "react";
 import { UseFormReturn } from "react-hook-form";
 
-import { Loader, Search } from "lucide-react";
 import { queryTeams } from "@/server/routes/teams/query-teams";
 import { TeamContext } from "@/context/team-context";
 
@@ -13,49 +12,32 @@ interface Props {
 }
 
 export const SearchbarField: React.FC<Props> = (props) => {
-    const [isTyping, setIsTyping] = React.useState(false);
-    const [input, setInput] = React.useState("");
-
     const { setTeams, initialTeams } = React.useContext(TeamContext);
+    const inputRef = React.useRef<HTMLInputElement>(null);
 
     React.useEffect(() => {
-        if (input.length === 0) {
+        if (inputRef.current?.value.length === 0 || !inputRef.current?.value) {
             setTeams(initialTeams);
             return;
         }
 
-        const teams = queryTeams(initialTeams, input);
+        const teams = queryTeams(initialTeams, inputRef.current?.value);
         console.log(teams);
 
         setTeams(teams);
-    }, [input]);
+    }, [inputRef.current?.value]);
 
     return (
         <FormField
             control={props.form.control}
             name="input"
             render={({ field }) => (
-                <FormItem className="relative">
-                    <div className="absolute z-40 ml-4 mt-2 text-muted-foreground">
-                        {isTyping ? (
-                            <Loader className="animate-spin" />
-                        ) : (
-                            <Search />
-                        )}
-                    </div>
-                    <FormControl className="relative">
+                <FormItem className="w-full">
+                    <FormControl>
                         <Input
                             {...field}
-                            value={input}
                             placeholder="Search teams..."
-                            className="px-16"
-                            onChange={(e) => {
-                                setInput(e.target.value);
-                                setIsTyping(true);
-                                setTimeout(() => {
-                                    setIsTyping(false);
-                                }, 1000);
-                            }}
+                            className="w-full"
                         />
                     </FormControl>
                 </FormItem>

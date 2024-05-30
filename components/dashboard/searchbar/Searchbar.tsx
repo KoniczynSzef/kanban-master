@@ -9,10 +9,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { SearchbarField } from "./SearchbarField";
 import { TeamContext } from "@/context/team-context";
+import { SortTeams } from "./SortTeams";
 
 interface Props {}
 
-export const Searchbar: React.FC<Props> = (props) => {
+export const Searchbar: React.FC<Props> = () => {
     const { setTeams, initialTeams } = React.useContext(TeamContext);
     const form = useForm<SearchbarSchema>({
         defaultValues: {
@@ -31,8 +32,12 @@ export const Searchbar: React.FC<Props> = (props) => {
     return (
         <>
             <Form {...form}>
-                <form action="">
-                    <SearchbarField form={form} {...props} />
+                <form
+                    action=""
+                    className="flex items-center gap-8 justify-between"
+                >
+                    <SearchbarField form={form} />
+                    <SortTeams form={form} />
                 </form>
             </Form>
             <div>

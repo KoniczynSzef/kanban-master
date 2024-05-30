@@ -36,11 +36,7 @@ const page: FC<Props> = async () => {
 
     return (
         <Hydrate state={dehydrate(helpers.queryClient)}>
-            <TeamContextProvider
-                initialData={data}
-                kindeUser={user}
-                teams={teams}
-            />
+            <TeamContextProvider kindeUser={user} teams={teams} />
         </Hydrate>
     );
 };

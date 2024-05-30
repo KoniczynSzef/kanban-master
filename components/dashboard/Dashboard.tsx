@@ -16,7 +16,7 @@ interface Props {
 }
 
 const Dashboard: FC<Props> = (props) => {
-    const { initialTeams, teams, setTeams } = React.useContext(TeamContext);
+    const { teams } = React.useContext(TeamContext);
     const { data: user, isFetching } = trpc.getUserByKindeId.useQuery(
         props.kindeUser.id
     );
@@ -40,9 +40,9 @@ const Dashboard: FC<Props> = (props) => {
 
     return (
         <section>
-            <Searchbar teams={props.teams} setTeams={props.setTeams} />
+            <Searchbar />
 
-            <Teams user={user} teams={props.teams} />
+            <Teams user={user} />
 
             <Link href="/dashboard/new-team" className={linkStyle}>
                 <Button className="self-start" tabIndex={-1}>

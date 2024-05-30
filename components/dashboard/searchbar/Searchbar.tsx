@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { Team } from "@/types/models/team-model";
 import {
     SearchbarSchema,
     searchbarSchema,
@@ -9,13 +8,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { SearchbarField } from "./SearchbarField";
+import { TeamContext } from "@/context/team-context";
 
-interface Props {
-    teams: Team[];
-    setTeams: React.Dispatch<React.SetStateAction<Team[]>>;
-}
+interface Props {}
 
 export const Searchbar: React.FC<Props> = (props) => {
+    const { setTeams, initialTeams } = React.useContext(TeamContext);
     const form = useForm<SearchbarSchema>({
         defaultValues: {
             input: "",
@@ -27,7 +25,7 @@ export const Searchbar: React.FC<Props> = (props) => {
     });
 
     const resetTeams = () => {
-        props.setTeams([]);
+        setTeams(initialTeams);
     };
 
     return (

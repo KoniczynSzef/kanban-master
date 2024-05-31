@@ -23,10 +23,10 @@ export const SortTeams: React.FC<Props> = (props) => {
                 <FormItem>
                     <Select
                         onValueChange={field.onChange}
-                        defaultValue={"Sorting"}
+                        defaultValue={"Sort by name"}
                     >
                         <FormControl>
-                            <SelectTrigger>
+                            <SelectTrigger className="mr-16">
                                 <SelectValue placeholder="Sort your teams" />
                             </SelectTrigger>
                         </FormControl>
@@ -34,8 +34,8 @@ export const SortTeams: React.FC<Props> = (props) => {
                             <SelectItem value="Sort by name">
                                 Sort by name
                             </SelectItem>
-                            <SelectItem value="Sort by activity">
-                                Sort by activity
+                            <SelectItem value="Sort by date">
+                                Sort by date
                             </SelectItem>
                         </SelectContent>
                     </Select>

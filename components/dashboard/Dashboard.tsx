@@ -5,8 +5,6 @@ import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import React, { FC } from "react";
 import { Button } from "../ui/button";
 import WelcomeToDashboard from "./welcome-to-dashboard/WelcomeToDashboard";
-import Link from "next/link";
-import { linkStyle } from "@/lib/link-style";
 import { Teams } from "./teams/Teams";
 import { Searchbar } from "./searchbar/Searchbar";
 import { TeamContext } from "@/context/team-context";
@@ -43,12 +41,6 @@ const Dashboard: FC<Props> = (props) => {
             <Searchbar />
 
             <Teams user={user} />
-
-            <Link href="/dashboard/new-team" className={linkStyle}>
-                <Button className="self-start" tabIndex={-1}>
-                    Create a team
-                </Button>
-            </Link>
         </section>
     );
 };

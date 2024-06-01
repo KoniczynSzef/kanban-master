@@ -20,6 +20,9 @@ export const SortTeams: React.FC<Props> = (props) => {
     const { setTeams, initialTeams } = React.useContext(TeamContext);
 
     const handleChange = (value: string) => {
+        const query = props.form.getValues();
+        console.log(query);
+
         // prettier-ignore
         setTeams(filterTeams(initialTeams, props.form.getValues("input"), value === "Sort by name"));
     };

@@ -14,16 +14,12 @@ interface Props {
 export const SearchbarField: React.FC<Props> = (props) => {
     const { setTeams, initialTeams } = React.useContext(TeamContext);
 
-    const [inputValue, setInputValue] = React.useState("");
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const query = e.target.value;
+    React.useEffect(() => {
+        const query = props.form.getValues().input;
 
         // prettier-ignore
         setTeams(filterTeams(initialTeams, query, props.form.getValues().sortByName === "Sort by name"));
-
-        setInputValue(query);
-    };
+    }, [props.form.getValues().input]);
 
     return (
         <FormField
@@ -34,10 +30,8 @@ export const SearchbarField: React.FC<Props> = (props) => {
                     <FormControl>
                         <Input
                             {...field}
-                            value={inputValue}
                             placeholder="Search teams..."
                             className="w-full"
-                            onChange={handleChange}
                         />
                     </FormControl>
                 </FormItem>

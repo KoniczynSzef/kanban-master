@@ -8,7 +8,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { SearchbarField } from "./SearchbarField";
-import { TeamContext } from "@/context/team-context";
 import { SortTeams } from "./SortTeams";
 import Link from "next/link";
 import { linkStyle } from "@/lib/link-style";
@@ -16,20 +15,15 @@ import { linkStyle } from "@/lib/link-style";
 interface Props {}
 
 export const Searchbar: React.FC<Props> = () => {
-    const { setTeams, initialTeams } = React.useContext(TeamContext);
     const form = useForm<SearchbarSchema>({
         defaultValues: {
             input: "",
-            sortByActivity: false,
+            sortByName: "Sort by name",
         },
 
         mode: "onChange",
         resolver: zodResolver(searchbarSchema),
     });
-
-    const resetTeams = () => {
-        setTeams(initialTeams);
-    };
 
     return (
         <>
@@ -48,9 +42,6 @@ export const Searchbar: React.FC<Props> = () => {
                     </Link>
                 </form>
             </Form>
-            <div>
-                <Button onClick={resetTeams}>Reset teams</Button>
-            </div>
         </>
     );
 };

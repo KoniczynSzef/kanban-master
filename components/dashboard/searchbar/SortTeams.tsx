@@ -18,7 +18,7 @@ export const SortTeams: React.FC<Props> = (props) => {
     return (
         <FormField
             control={props.form.control}
-            name="sortByActivity"
+            name="sortByName"
             render={({ field }) => (
                 <FormItem>
                     <Select

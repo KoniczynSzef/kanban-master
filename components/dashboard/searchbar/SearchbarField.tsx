@@ -4,8 +4,8 @@ import { SearchbarSchema } from "@/types/schemas/searchbar-schema";
 import React from "react";
 import { UseFormReturn } from "react-hook-form";
 
-import { queryTeams } from "@/server/routes/teams/query-teams";
 import { TeamContext } from "@/context/team-context";
+import { filterTeams } from "@/utils/dashboard/filter-teams";
 
 interface Props {
     form: UseFormReturn<SearchbarSchema>;
@@ -13,19 +13,17 @@ interface Props {
 
 export const SearchbarField: React.FC<Props> = (props) => {
     const { setTeams, initialTeams } = React.useContext(TeamContext);
-    const inputRef = React.useRef<HTMLInputElement>(null);
 
-    React.useEffect(() => {
-        if (inputRef.current?.value.length === 0 || !inputRef.current?.value) {
-            setTeams(initialTeams);
-            return;
-        }
+    const [inputValue, setInputValue] = React.useState("");
 
-        const teams = queryTeams(initialTeams, inputRef.current?.value);
-        console.log(teams);
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const query = e.target.value;
 
-        setTeams(teams);
-    }, [inputRef.current?.value]);
+        // prettier-ignore
+        setTeams(filterTeams(initialTeams, query, props.form.getValues().sortByName === "Sort by name"));
+
+        setInputValue(query);
+    };
 
     return (
         <FormField
@@ -36,8 +34,10 @@ export const SearchbarField: React.FC<Props> = (props) => {
                     <FormControl>
                         <Input
                             {...field}
+                            value={inputValue}
                             placeholder="Search teams..."
                             className="w-full"
+                            onChange={handleChange}
                         />
                     </FormControl>
                 </FormItem>

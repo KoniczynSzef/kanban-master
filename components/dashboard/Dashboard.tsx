@@ -27,6 +27,8 @@ const Dashboard: FC<Props> = (props) => {
         return <WelcomeToDashboard user={user} isWelcomePage />;
     }
 
+    // ! Add a check for if something is typed in the search bar, because currently after typing "+" it will show a div below
+
     if (teams.length === 0) {
         return (
             <div className="border border-muted flex flex-col p-8 rounded-2xl gap-4">

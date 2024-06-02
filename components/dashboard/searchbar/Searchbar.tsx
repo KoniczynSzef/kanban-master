@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { Team } from "@/types/models/team-model";
 import {
     SearchbarSchema,
     searchbarSchema,
@@ -9,41 +8,40 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { SearchbarField } from "./SearchbarField";
+import { SortTeams } from "./SortTeams";
+import Link from "next/link";
+import { linkStyle } from "@/lib/link-style";
 
-interface Props {
-    teams: Team[];
-    setTeams: React.Dispatch<React.SetStateAction<Team[]>>;
-}
+interface Props {}
 
-export const Searchbar: React.FC<Props> = (props) => {
+export const Searchbar: React.FC<Props> = () => {
     const form = useForm<SearchbarSchema>({
         defaultValues: {
             input: "",
-            sortByActivity: false,
+            sortByName: "Sort by name",
         },
 
         mode: "onChange",
         resolver: zodResolver(searchbarSchema),
     });
 
-    const resetTeams = () => {
-        props.setTeams([]);
-    };
-
-    React.useEffect(() => {
-        console.log(form.getValues());
-    }, [form.getValues()]);
-
     return (
         <>
             <Form {...form}>
-                <form action="">
+                <form
+                    action=""
+                    className="flex items-center gap-8 justify-between"
+                >
                     <SearchbarField form={form} />
+                    <SortTeams form={form} />
+
+                    <Link href="/dashboard/new-team" className={linkStyle}>
+                        <Button className="self-start" tabIndex={-1}>
+                            Create a team
+                        </Button>
+                    </Link>
                 </form>
             </Form>
-            <div>
-                <Button onClick={resetTeams}>Reset teams</Button>
-            </div>
         </>
     );
 };

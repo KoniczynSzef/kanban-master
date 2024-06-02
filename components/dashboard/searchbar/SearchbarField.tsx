@@ -4,42 +4,34 @@ import { SearchbarSchema } from "@/types/schemas/searchbar-schema";
 import React from "react";
 import { UseFormReturn } from "react-hook-form";
 
-import { Loader, Search } from "lucide-react";
+import { TeamContext } from "@/context/team-context";
+import { filterTeams } from "@/utils/dashboard/filter-teams";
 
 interface Props {
     form: UseFormReturn<SearchbarSchema>;
 }
 
 export const SearchbarField: React.FC<Props> = (props) => {
-    const [isTyping, setIsTyping] = React.useState(false);
-    const [input, setInput] = React.useState("");
+    const { setTeams, initialTeams } = React.useContext(TeamContext);
+
+    React.useEffect(() => {
+        const query = props.form.getValues().input;
+
+        // prettier-ignore
+        setTeams(filterTeams(initialTeams, query, props.form.getValues().sortByName === "Sort by name"));
+    }, [props.form.getValues().input]);
 
     return (
         <FormField
             control={props.form.control}
             name="input"
             render={({ field }) => (
-                <FormItem className="relative">
-                    <div className="absolute z-40 ml-4 mt-2 text-muted-foreground">
-                        {isTyping ? (
-                            <Loader className="animate-spin" />
-                        ) : (
-                            <Search />
-                        )}
-                    </div>
-                    <FormControl className="relative">
+                <FormItem className="w-full">
+                    <FormControl>
                         <Input
                             {...field}
-                            value={input}
                             placeholder="Search teams..."
-                            className="px-16"
-                            onChange={(e) => {
-                                setInput(e.target.value);
-                                setIsTyping(true);
-                                setTimeout(() => {
-                                    setIsTyping(false);
-                                }, 1000);
-                            }}
+                            className="w-full"
                         />
                     </FormControl>
                 </FormItem>

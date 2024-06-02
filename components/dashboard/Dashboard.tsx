@@ -5,21 +5,16 @@ import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import React, { FC } from "react";
 import { Button } from "../ui/button";
 import WelcomeToDashboard from "./welcome-to-dashboard/WelcomeToDashboard";
-import Link from "next/link";
-import { linkStyle } from "@/lib/link-style";
 import { Teams } from "./teams/Teams";
-import { UserWithUsersToTeams } from "@/types/models/user-model";
-import { Team } from "@/types/models/team-model";
 import { Searchbar } from "./searchbar/Searchbar";
+import { TeamContext } from "@/context/team-context";
 
 interface Props {
     kindeUser: KindeUser;
-    initialData: UserWithUsersToTeams | null;
-    teams: Team[];
-    setTeams: React.Dispatch<React.SetStateAction<Team[]>>;
 }
 
 const Dashboard: FC<Props> = (props) => {
+    const { teams } = React.useContext(TeamContext);
     const { data: user, isFetching } = trpc.getUserByKindeId.useQuery(
         props.kindeUser.id
     );
@@ -32,7 +27,9 @@ const Dashboard: FC<Props> = (props) => {
         return <WelcomeToDashboard user={user} isWelcomePage />;
     }
 
-    if (props.teams.length === 0) {
+    // ! Add a check for if something is typed in the search bar, because currently after typing "+" it will show a div below
+
+    if (teams.length === 0) {
         return (
             <div className="border border-muted flex flex-col p-8 rounded-2xl gap-4">
                 Create a team to get started
@@ -43,15 +40,9 @@ const Dashboard: FC<Props> = (props) => {
 
     return (
         <section>
-            <Searchbar teams={props.teams} setTeams={props.setTeams} />
+            <Searchbar />
 
-            <Teams user={user} teams={props.teams} />
-
-            <Link href="/dashboard/new-team" className={linkStyle}>
-                <Button className="self-start" tabIndex={-1}>
-                    Create a team
-                </Button>
-            </Link>
+            <Teams user={user} />
         </section>
     );
 };

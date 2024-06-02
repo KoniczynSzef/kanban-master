@@ -7,7 +7,7 @@ import { Button } from "../ui/button";
 import WelcomeToDashboard from "./welcome-to-dashboard/WelcomeToDashboard";
 import { Teams } from "./teams/Teams";
 import { Searchbar } from "./searchbar/Searchbar";
-import { TeamContext } from "@/context/context";
+import { SearchContext, TeamContext } from "@/context/context";
 
 interface Props {
     kindeUser: KindeUser;
@@ -15,6 +15,7 @@ interface Props {
 
 const Dashboard: FC<Props> = (props) => {
     const { teams } = React.useContext(TeamContext);
+    const { typedValue } = React.useContext(SearchContext);
     const { data: user, isFetching } = trpc.getUserByKindeId.useQuery(
         props.kindeUser.id
     );
@@ -27,13 +28,17 @@ const Dashboard: FC<Props> = (props) => {
         return <WelcomeToDashboard user={user} isWelcomePage />;
     }
 
-    // ! Add a check for if something is typed in the search bar, because currently after typing "+" it will show a div below
-
-    if (teams.length === 0) {
+    if (teams.length === 0 && !typedValue) {
         return (
             <div className="border border-muted flex flex-col p-8 rounded-2xl gap-4">
-                Create a team to get started
-                <Button className="self-start">Create a team</Button>
+                Create your first team and invite your friends or colleagues to
+                join!
+                <Button
+                    className="self-center"
+                    onClick={() => console.log("Create team")}
+                >
+                    Create team
+                </Button>
             </div>
         );
     }
@@ -42,7 +47,11 @@ const Dashboard: FC<Props> = (props) => {
         <section>
             <Searchbar />
 
-            <Teams user={user} />
+            {teams.length > 0 ? (
+                <Teams user={user} />
+            ) : (
+                <div>No teams found</div>
+            )}
         </section>
     );
 };

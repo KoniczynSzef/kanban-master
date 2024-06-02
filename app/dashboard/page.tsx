@@ -1,4 +1,4 @@
-import { TeamContextProvider } from "@/context/TeamContextProvider";
+import { ContextProvider } from "@/context/ContextProvider";
 import { getKindeUser } from "@/lib/auth/get-kinde-user";
 import Hydrate from "@/lib/query/HydrateClient";
 import { Team } from "@/types/models/team-model";
@@ -36,7 +36,7 @@ const page: FC<Props> = async () => {
 
     return (
         <Hydrate state={dehydrate(helpers.queryClient)}>
-            <TeamContextProvider kindeUser={user} teams={teams} />
+            <ContextProvider kindeUser={user} teams={teams} />
         </Hydrate>
     );
 };

@@ -6,7 +6,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { TeamContext } from "@/context/team-context";
+import { TeamContext } from "@/context/context";
 import { SearchbarSchema } from "@/types/schemas/searchbar-schema";
 import { filterTeams } from "@/utils/dashboard/filter-teams";
 import React from "react";

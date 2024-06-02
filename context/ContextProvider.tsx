@@ -11,7 +11,7 @@ interface Props {
     teams: Team[];
 }
 
-export const TeamContextProvider: React.FC<Props> = (props) => {
+export const ContextProvider: React.FC<Props> = (props) => {
     const [teams, setTeams] = React.useState(props.teams);
 
     const [typedValue, setTypedValue] = React.useState("");

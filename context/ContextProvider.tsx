@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { TeamContext } from "./team-context";
+import { SearchContext, TeamContext } from "./context";
 import Dashboard from "@/components/dashboard/Dashboard";
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import { Team } from "@/types/models/team-model";
@@ -13,6 +13,9 @@ interface Props {
 
 export const TeamContextProvider: React.FC<Props> = (props) => {
     const [teams, setTeams] = React.useState(props.teams);
+
+    const [typedValue, setTypedValue] = React.useState("");
+
     const initialTeams = props.teams;
 
     return (
@@ -23,7 +26,14 @@ export const TeamContextProvider: React.FC<Props> = (props) => {
                 setTeams,
             }}
         >
-            <Dashboard kindeUser={props.kindeUser} />
+            <SearchContext.Provider
+                value={{
+                    typedValue,
+                    setTypedValue,
+                }}
+            >
+                <Dashboard kindeUser={props.kindeUser} />
+            </SearchContext.Provider>
         </TeamContext.Provider>
     );
 };

@@ -9,8 +9,18 @@ type TeamContext = {
     setTeams: React.Dispatch<React.SetStateAction<Team[]>>;
 };
 
+type SearchContext = {
+    typedValue: string;
+    setTypedValue: React.Dispatch<React.SetStateAction<string>>;
+};
+
 export const TeamContext = React.createContext<TeamContext>({
     initialTeams: [],
     teams: [],
     setTeams: () => [],
+});
+
+export const SearchContext = React.createContext<SearchContext>({
+    typedValue: "",
+    setTypedValue: () => "",
 });

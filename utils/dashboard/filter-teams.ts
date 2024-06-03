@@ -42,7 +42,9 @@ function compareTeamsArrays(teams: Team[], newTeams: Team[]) {
 // prettier-ignore
 export function filterTeams(teams: Team[], query: string, sortingStrategy: SortingStrategy, currentTeams: Team[]) {
     if (!query) {
-        const newTeams = sortTeams(teams, sortingStrategy);     
+        const newTeams = sortTeams(teams, sortingStrategy);   
+        
+        console.log("newTeams", newTeams, sortingStrategy);        
 
         return {
             teams: newTeams,
@@ -50,10 +52,10 @@ export function filterTeams(teams: Team[], query: string, sortingStrategy: Sorti
         }
     }
 
-    const filteredTeams = filterByQuery(teams, query);
+    const filteredAndSortedTeams = sortTeams(filterByQuery(teams, query), sortingStrategy)
 
     return {
-        teams: sortTeams(filteredTeams, sortingStrategy),
-        hasChanged: compareTeamsArrays(currentTeams, filteredTeams),
+        teams: filteredAndSortedTeams,
+        hasChanged: compareTeamsArrays(currentTeams, filteredAndSortedTeams),
     } 
 }

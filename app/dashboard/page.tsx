@@ -6,8 +6,14 @@ import { createHelpers } from "@/utils/helpers";
 import { dehydrate } from "@tanstack/react-query";
 import { redirect } from "next/navigation";
 import React, { FC } from "react";
+import { type Metadata } from "next";
 
 interface Props {}
+
+export const metadata: Metadata = {
+    title: "Dashboard | KanMaster",
+    description: "Dashboard page for KanMaster.",
+};
 
 const page: FC<Props> = async () => {
     const user = await getKindeUser();

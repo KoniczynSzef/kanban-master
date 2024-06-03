@@ -11,12 +11,15 @@ import { SearchbarField } from "./SearchbarField";
 import { SortTeams } from "./SortTeams";
 import Link from "next/link";
 import { linkStyle } from "@/lib/link-style";
+import { filterTeams } from "@/utils/dashboard/filter-teams";
+import { TeamContext } from "@/context/context";
 
 interface Props {
     typedValueRef: React.MutableRefObject<string>;
 }
 
 export const Searchbar: React.FC<Props> = (props) => {
+    const { initialTeams, teams, setTeams } = React.useContext(TeamContext);
     const form = useForm<SearchbarSchema>({
         defaultValues: {
             input: "",
@@ -26,6 +29,17 @@ export const Searchbar: React.FC<Props> = (props) => {
         mode: "onChange",
         resolver: zodResolver(searchbarSchema),
     });
+
+    React.useEffect(() => {
+        // prettier-ignore
+        const { hasChanged, teams: newTeams } = filterTeams(initialTeams, form.getValues("input"), form.getValues().sortingStrategy, teams);
+
+        if (hasChanged) {
+            setTeams(newTeams);
+        }
+
+        props.typedValueRef.current = form.getValues().input;
+    }, [form.getValues().input, form.getValues().sortingStrategy]);
 
     return (
         <>

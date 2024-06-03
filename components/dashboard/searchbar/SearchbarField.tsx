@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const SearchbarField: React.FC<Props> = (props) => {
-    const { setTeams, initialTeams } = React.useContext(TeamContext);
+    const { setTeams, initialTeams, teams } = React.useContext(TeamContext);
     const { setTypedValue } = React.useContext(SearchContext);
 
     React.useEffect(() => {
@@ -20,7 +20,11 @@ export const SearchbarField: React.FC<Props> = (props) => {
         setTypedValue(query);
 
         // prettier-ignore
-        setTeams(filterTeams(initialTeams, query, props.form.getValues().sortingStrategy));
+        const { hasChanged, teams: newTeams } = filterTeams(initialTeams, query, props.form.getValues().sortingStrategy, teams);
+
+        if (hasChanged) {
+            setTeams(newTeams);
+        }
     }, [props.form.getValues().input]);
 
     return (

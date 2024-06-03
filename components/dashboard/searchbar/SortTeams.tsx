@@ -20,14 +20,18 @@ interface Props {
 }
 
 export const SortTeams: React.FC<Props> = (props) => {
-    const { setTeams, initialTeams } = React.useContext(TeamContext);
+    const { setTeams, initialTeams, teams } = React.useContext(TeamContext);
 
     const handleChange = (value: SortingStrategy) => {
         const query = props.form.getValues();
         console.log(query);
 
         // prettier-ignore
-        setTeams(filterTeams(initialTeams, props.form.getValues("input"), value));
+        const { hasChanged, teams: newTeams } = filterTeams(initialTeams, props.form.getValues("input"), value, teams);
+
+        if (hasChanged) {
+            setTeams(newTeams);
+        }
     };
 
     return (

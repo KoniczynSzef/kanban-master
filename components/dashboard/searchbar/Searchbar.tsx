@@ -12,9 +12,11 @@ import { SortTeams } from "./SortTeams";
 import Link from "next/link";
 import { linkStyle } from "@/lib/link-style";
 
-interface Props {}
+interface Props {
+    typedValueRef: React.MutableRefObject<string>;
+}
 
-export const Searchbar: React.FC<Props> = () => {
+export const Searchbar: React.FC<Props> = (props) => {
     const form = useForm<SearchbarSchema>({
         defaultValues: {
             input: "",
@@ -32,7 +34,7 @@ export const Searchbar: React.FC<Props> = () => {
                     action=""
                     className="flex items-center gap-8 justify-between"
                 >
-                    <SearchbarField form={form} />
+                    <SearchbarField form={form} {...props} />
                     <SortTeams form={form} />
 
                     <Link href="/dashboard/new-team" className={linkStyle}>

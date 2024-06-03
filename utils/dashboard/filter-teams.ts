@@ -17,6 +17,8 @@ function sortTeams(teams: Team[], sortingStrategy: SortingStrategy) {
 }
 
 function filterByQuery(teams: Team[], query: string) {
+    if (!query) return teams;
+
     return teams.filter((team) =>
         team.name.toLowerCase().includes(query.toLowerCase())
     );
@@ -29,7 +31,7 @@ function compareTeamsArrays(teams: Team[], newTeams: Team[]) {
     const highestLength = teams.length > newTeams.length ? teams.length : newTeams.length;
 
     for (let i = 0; i < highestLength; i++) {
-        if (teams[i] !== newTeams[i]) {
+        if (teams[i].id !== newTeams[i].id) {
             return true;
         }
     }
@@ -40,17 +42,15 @@ function compareTeamsArrays(teams: Team[], newTeams: Team[]) {
 // prettier-ignore
 export function filterTeams(teams: Team[], query: string, sortingStrategy: SortingStrategy, currentTeams: Team[]) {
     if (!query) {
-        const newTeams = sortTeams(teams, sortingStrategy);
+        const newTeams = sortTeams(teams, sortingStrategy);     
 
         return {
             teams: newTeams,
-            hasChanged: compareTeamsArrays(teams, newTeams),
+            hasChanged: compareTeamsArrays(newTeams, currentTeams),
         }
     }
 
     const filteredTeams = filterByQuery(teams, query);
-
-    console.log(filteredTeams, currentTeams);    
 
     return {
         teams: sortTeams(filteredTeams, sortingStrategy),

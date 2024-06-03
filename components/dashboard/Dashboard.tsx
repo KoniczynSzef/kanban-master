@@ -7,7 +7,7 @@ import { Button } from "../ui/button";
 import WelcomeToDashboard from "./welcome-to-dashboard/WelcomeToDashboard";
 import { Teams } from "./teams/Teams";
 import { Searchbar } from "./searchbar/Searchbar";
-import { SearchContext, TeamContext } from "@/context/context";
+import { TeamContext } from "@/context/context";
 
 interface Props {
     kindeUser: KindeUser;
@@ -15,10 +15,11 @@ interface Props {
 
 const Dashboard: FC<Props> = (props) => {
     const { teams } = React.useContext(TeamContext);
-    const { typedValue } = React.useContext(SearchContext);
     const { data: user, isFetching } = trpc.getUserByKindeId.useQuery(
         props.kindeUser.id
     );
+
+    const typedValueRef = React.useRef("");
 
     if (!user || isFetching) {
         return <div>Loading...</div>;
@@ -28,7 +29,7 @@ const Dashboard: FC<Props> = (props) => {
         return <WelcomeToDashboard user={user} isWelcomePage />;
     }
 
-    if (teams.length === 0 && !typedValue) {
+    if (teams.length === 0 && !typedValueRef.current) {
         return (
             <div className="border border-muted flex flex-col p-8 rounded-2xl gap-4">
                 Create your first team and invite your friends or colleagues to
@@ -45,7 +46,7 @@ const Dashboard: FC<Props> = (props) => {
 
     return (
         <section>
-            <Searchbar />
+            <Searchbar typedValueRef={typedValueRef} />
 
             {teams.length > 0 ? (
                 <Teams user={user} />

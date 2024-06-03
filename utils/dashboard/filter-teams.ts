@@ -1,29 +1,42 @@
 import { Team } from "@/types/models/team-model";
+import { SortingStrategy } from "@/types/schemas/searchbar-schema";
 
 export function filterTeams(
     teams: Team[],
     query: string,
-    shouldSortByName: boolean
+    sortingStrategy: SortingStrategy
 ) {
     if (!query) {
-        return teams.toSorted((a, b) =>
-            shouldSortByName
-                ? a.name.localeCompare(b.name)
-                : a.createdAt.localeCompare(b.createdAt)
-        );
+        switch (sortingStrategy) {
+            case "Sort by name":
+                return teams.toSorted((a, b) => a.name.localeCompare(b.name));
+            case "Sort by date":
+                return teams.toSorted((a, b) =>
+                    a.createdAt.localeCompare(b.createdAt)
+                );
+            default:
+                return teams;
+        }
     }
 
     const lowerQuery = query.toLowerCase();
 
-    return teams
-        .filter((team) => {
-            const lowerName = team.name.toLowerCase();
+    const filteredTeams = teams.filter((team) => {
+        const lowerName = team.name.toLowerCase();
 
-            return lowerName.includes(lowerQuery);
-        })
-        .toSorted((a, b) =>
-            shouldSortByName
-                ? a.name.localeCompare(b.name)
-                : a.createdAt.localeCompare(b.createdAt)
-        );
+        return lowerName.includes(lowerQuery);
+    });
+
+    switch (sortingStrategy) {
+        case "Sort by name":
+            return filteredTeams.toSorted((a, b) =>
+                a.name.localeCompare(b.name)
+            );
+        case "Sort by date":
+            return filteredTeams.toSorted((a, b) =>
+                a.createdAt.localeCompare(b.createdAt)
+            );
+        default:
+            return filteredTeams;
+    }
 }

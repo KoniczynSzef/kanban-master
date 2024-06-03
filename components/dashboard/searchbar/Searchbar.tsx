@@ -18,7 +18,7 @@ export const Searchbar: React.FC<Props> = () => {
     const form = useForm<SearchbarSchema>({
         defaultValues: {
             input: "",
-            sortByName: "Sort by name",
+            sortingStrategy: "Default",
         },
 
         mode: "onChange",

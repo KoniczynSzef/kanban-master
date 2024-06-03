@@ -20,7 +20,7 @@ export const SearchbarField: React.FC<Props> = (props) => {
         setTypedValue(query);
 
         // prettier-ignore
-        setTeams(filterTeams(initialTeams, query, props.form.getValues().sortByName === "Sort by name"));
+        setTeams(filterTeams(initialTeams, query, props.form.getValues().sortingStrategy));
     }, [props.form.getValues().input]);
 
     return (

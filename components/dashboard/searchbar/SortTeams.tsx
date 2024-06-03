@@ -6,9 +6,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { TeamContext } from "@/context/team-context";
 import { SearchbarSchema } from "@/types/schemas/searchbar-schema";
-import { filterTeams } from "@/utils/dashboard/filter-teams";
 import React from "react";
 import { UseFormReturn } from "react-hook-form";
 
@@ -17,26 +15,13 @@ interface Props {
 }
 
 export const SortTeams: React.FC<Props> = (props) => {
-    const { setTeams, initialTeams } = React.useContext(TeamContext);
-
-    const handleChange = (value: string) => {
-        const query = props.form.getValues();
-        console.log(query);
-
-        // prettier-ignore
-        setTeams(filterTeams(initialTeams, props.form.getValues("input"), value === "Sort by name"));
-    };
-
     return (
         <FormField
             control={props.form.control}
-            name="sortByName"
-            render={() => (
+            name="sortingStrategy"
+            render={({ field }) => (
                 <FormItem>
-                    <Select
-                        onValueChange={handleChange}
-                        defaultValue={"Sort by name"}
-                    >
+                    <Select onValueChange={field.onChange}>
                         <FormControl>
                             <SelectTrigger className="mr-16">
                                 <SelectValue placeholder="Sort your teams" />
@@ -49,6 +34,7 @@ export const SortTeams: React.FC<Props> = (props) => {
                             <SelectItem value="Sort by date">
                                 Sort by date
                             </SelectItem>
+                            <SelectItem value="Default">Default</SelectItem>
                         </SelectContent>
                     </Select>
                 </FormItem>

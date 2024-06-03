@@ -9,6 +9,12 @@ interface Props {
 }
 
 const NavMenuItem: FC<Props> = (props) => {
+    const handleDashboardLoading = (href: string) => {
+        if (href === "/dashboard") {
+            document.title = "Loading Dashboard...";
+        }
+    };
+
     return (
         <NavigationMenu.NavigationMenuItem>
             <NavigationMenu.NavigationMenuTrigger>
@@ -23,6 +29,9 @@ const NavMenuItem: FC<Props> = (props) => {
                         <Link href={item.href} legacyBehavior passHref>
                             <NavigationMenu.NavigationMenuLink
                                 className={NavigationMenu.navigationMenuTriggerStyle()}
+                                onClick={() =>
+                                    handleDashboardLoading(item.href)
+                                }
                             >
                                 {item.title}
                             </NavigationMenu.NavigationMenuLink>

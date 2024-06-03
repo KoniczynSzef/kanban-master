@@ -4,23 +4,11 @@ import { SearchbarSchema } from "@/types/schemas/searchbar-schema";
 import React from "react";
 import { UseFormReturn } from "react-hook-form";
 
-import { TeamContext } from "@/context/team-context";
-import { filterTeams } from "@/utils/dashboard/filter-teams";
-
 interface Props {
     form: UseFormReturn<SearchbarSchema>;
 }
 
 export const SearchbarField: React.FC<Props> = (props) => {
-    const { setTeams, initialTeams } = React.useContext(TeamContext);
-
-    React.useEffect(() => {
-        const query = props.form.getValues().input;
-
-        // prettier-ignore
-        setTeams(filterTeams(initialTeams, query, props.form.getValues().sortByName === "Sort by name"));
-    }, [props.form.getValues().input]);
-
     return (
         <FormField
             control={props.form.control}

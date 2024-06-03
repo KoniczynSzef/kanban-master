@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { TeamContext } from "./team-context";
+import { TeamContext } from "./context";
 import Dashboard from "@/components/dashboard/Dashboard";
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import { Team } from "@/types/models/team-model";
@@ -11,8 +11,9 @@ interface Props {
     teams: Team[];
 }
 
-export const TeamContextProvider: React.FC<Props> = (props) => {
+export const ContextProvider: React.FC<Props> = (props) => {
     const [teams, setTeams] = React.useState(props.teams);
+
     const initialTeams = props.teams;
 
     return (

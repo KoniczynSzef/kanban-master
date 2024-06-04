@@ -22,9 +22,10 @@ function MainCard(props: MainCardProps) {
             </Card.CardHeader>
 
             <Card.CardContent>
-                <div className="flex items-center gap-4">
-                    <div className="text-gray-500">{props.icon}</div>
-                    <div className="font-bold">{props.value}</div>
+                <div className="flex items-center gap-4 text-muted-foreground">
+                    <span>{props.icon}</span>
+
+                    <span className="font-semibold">{props.value}</span>
                 </div>
             </Card.CardContent>
         </Card.Card>

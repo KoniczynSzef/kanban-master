@@ -5,6 +5,7 @@ import { TeamContext } from "./context";
 import Dashboard from "@/components/dashboard/Dashboard";
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import { Team } from "@/types/models/team-model";
+import { MainCards } from "@/components/dashboard/main-dashboard-page/MainCards";
 
 interface Props {
     kindeUser: KindeUser;
@@ -24,6 +25,11 @@ export const ContextProvider: React.FC<Props> = (props) => {
                 setTeams,
             }}
         >
+            <MainCards
+                teamsLength={initialTeams.length}
+                projectsLength={10}
+                activeTasksLength={4}
+            />
             <Dashboard kindeUser={props.kindeUser} />
         </TeamContext.Provider>
     );

@@ -3,6 +3,7 @@ import React, { FC } from "react";
 
 import * as NavigationMenu from "@/components/ui/navigation-menu";
 import Link from "next/link";
+import { toast } from "sonner";
 
 interface Props {
     navItem: TNavMenuItem;
@@ -12,6 +13,7 @@ const NavMenuItem: FC<Props> = (props) => {
     const handleDashboardLoading = (href: string) => {
         if (href === "/dashboard") {
             document.title = "Loading Dashboard...";
+            toast.info("Loading Dashboard...");
         }
     };
 

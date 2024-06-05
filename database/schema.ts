@@ -184,3 +184,19 @@ export const usersToTeams = pgTable(
         pk: primaryKey({ columns: [t.userId, t.teamId] }),
     })
 );
+
+export const usersToProjects = pgTable(
+    "user_to_project",
+    {
+        userId: text("user_id")
+            .notNull()
+            .references(() => users.id, { onDelete: "cascade" }),
+        projectId: text("project_id")
+            .notNull()
+            .references(() => projects.id, { onDelete: "cascade" }),
+        favourite: boolean("favourite").notNull().default(false),
+    },
+    (t) => ({
+        pk: primaryKey({ columns: [t.userId, t.projectId] }),
+    })
+);

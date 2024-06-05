@@ -200,3 +200,18 @@ export const usersToProjects = pgTable(
         pk: primaryKey({ columns: [t.userId, t.projectId] }),
     })
 );
+
+export const usersToTasks = pgTable(
+    "user_to_task",
+    {
+        userId: text("user_id")
+            .notNull()
+            .references(() => users.id, { onDelete: "cascade" }),
+        taskId: text("task_id")
+            .notNull()
+            .references(() => kanbanTasks.id, { onDelete: "cascade" }),
+    },
+    (t) => ({
+        pk: primaryKey({ columns: [t.userId, t.taskId] }),
+    })
+);

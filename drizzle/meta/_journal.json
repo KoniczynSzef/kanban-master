@@ -71,6 +71,13 @@
       "when": 1717615932222,
       "tag": "0009_wandering_doctor_octopus",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "6",
+      "when": 1717616446982,
+      "tag": "0010_wealthy_callisto",
+      "breakpoints": true
     }
   ]
 }

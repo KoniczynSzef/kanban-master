@@ -12,7 +12,7 @@ KanMaster is a a project management system proudly developed based on Kanban met
 -   [Kinde Auth](https://kinde.com/)
 -   [Vercel](https://vercel.com/)
 -   [Playwright](https://playwright.dev/)
--   [Turso](https://turso.tech)
+-   [Docker](https://www.docker.com/)
 
 ## Getting Started 🏗️
 
@@ -28,19 +28,19 @@ git clone https://github.com/KoniczynSzef/kanban-master.git
 
 ```bash
 bun install
-```
+```
 
-3. Create a database using `Turso` and run the migrations:
+3. Create a PostgreSQL database using `Docker` and run the migrations:
 
 ```bash
 bun run db:migrate
 ```
 
-4. Apply `drizzle` migrations to actual `Turso` database by running:
+4. Apply `drizzle` migrations to database by running:
 
 ```bash
 bun run db:push
-```
+```
 
 5. Start the development server:
 
@@ -49,19 +49,6 @@ bun dev
 ```
 
 6. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-> [!TIP]
-> You can also use `Docker` for running KanMaster
-
-Build the container using `docker compose`
-```bash
-docker compose build
-```
-
-Run the container
-```
-docker compose up
-```
 
 ## Planned Features 📝
 

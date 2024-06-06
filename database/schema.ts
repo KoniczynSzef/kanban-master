@@ -103,8 +103,8 @@ export const kanbanTasks = pgTable("kanban_task", {
         .notNull()
         .references(() => kanbanBoards.id, { onDelete: "cascade" }),
     status: text("status", {
-        enum: ["active", "completed", "on hold", "canceled"], 
-}),
+        enum: ["active", "completed", "on hold", "canceled"],
+    }),
 
     deadline: date("deadline"),
     priority: text("priority", { enum: ["low", "medium", "high"] }).$default(

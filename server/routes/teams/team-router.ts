@@ -5,6 +5,7 @@ import { createTeamSchema } from "@/types/schemas/teams/create-team-schema";
 import { getUserAndTeams } from "./get-user-and-teams";
 import { getMembersLength } from "./get-members-length";
 import { getTeam } from "./get-team";
+import { removeTeam } from "./remove-team";
 
 export const teamRouter = router({
     getUserAndTeams: publicProcedure
@@ -33,4 +34,10 @@ export const teamRouter = router({
     getTeam: publicProcedure.input(z.string()).query(async ({ input }) => {
         return await getTeam(input);
     }),
+
+    removeTeam: publicProcedure
+        .input(z.object({ userId: z.string(), teamId: z.string() }))
+        .mutation(async ({ input }) => {
+            await removeTeam(input.userId, input.teamId);
+        }),
 });

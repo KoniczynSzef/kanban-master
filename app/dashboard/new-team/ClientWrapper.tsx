@@ -10,7 +10,7 @@ interface Props {
 }
 
 const ClientWrapper: FC<Props> = (props) => {
-    const { data: user } = trpc.getUserAndTeams.useQuery(props.kindeUser.id);
+    const { data: user } = trpc.getUserByKindeId.useQuery(props.kindeUser.id);
 
     if (!user) {
         return <div>No user found</div>;

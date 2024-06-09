@@ -6,6 +6,9 @@ import { dehydrate } from "@tanstack/react-query";
 import { redirect } from "next/navigation";
 import React, { FC } from "react";
 import { type Metadata } from "next";
+import { MainCards } from "@/components/dashboard/main-dashboard-page/MainCards";
+import { LineChart } from "@/components/dashboard/main-dashboard-page/LineChart";
+import Dashboard from "@/components/dashboard/Dashboard";
 
 interface Props {}
 
@@ -28,7 +31,15 @@ const page: FC<Props> = async () => {
 
     return (
         <Hydrate state={dehydrate(helpers.queryClient)}>
-            <ContextProvider kindeUser={user} teams={teams} />
+            <ContextProvider kindeUser={user} teams={teams}>
+                <MainCards
+                    teamsLength={teams.length}
+                    projectsLength={10}
+                    activeTasksLength={4}
+                />
+                <LineChart />
+                <Dashboard kindeUser={user} />
+            </ContextProvider>
         </Hydrate>
     );
 };

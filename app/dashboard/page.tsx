@@ -27,15 +27,25 @@ const page: FC<Props> = async () => {
     const helpers = await createHelpers();
 
     await helpers.getUserByKindeId.fetch(user.id);
+    await helpers.getAllTeams.fetch(user.id);
+    await helpers.getAllProjects.fetch(user.id);
+    await helpers.getAllTasks.fetch(user.id);
+
     const teams = (await helpers.getAllTeams.fetch(user.id)) ?? [];
+    const projects = (await helpers.getAllProjects.fetch(user.id)) ?? [];
+    const tasks =
+        (await helpers.getTasksByStatus.fetch({
+            userId: user.id,
+            status: "active",
+        })) ?? [];
 
     return (
         <Hydrate state={dehydrate(helpers.queryClient)}>
             <ContextProvider kindeUser={user} teams={teams}>
                 <MainCards
                     teamsLength={teams.length}
-                    projectsLength={10}
-                    activeTasksLength={4}
+                    projectsLength={projects.length}
+                    activeTasksLength={tasks.length}
                 />
                 <LineChart />
                 <Dashboard kindeUser={user} />

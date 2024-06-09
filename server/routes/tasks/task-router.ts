@@ -1,15 +1,16 @@
 import { publicProcedure, router } from "@/server/trpc/server";
 import { z } from "zod";
 import { getAllTasks } from "./get-all-tasks";
+import { getTasksByStatus } from "./get-tasks-by-status";
 
-export const teamRouter = router({
+export const taskRouter = router({
     getAllTasks: publicProcedure
         .input(z.string())
         .query(async ({ input: userId }) => {
             return getAllTasks(userId);
         }),
 
-    getTaskByStatus: publicProcedure
+    getTasksByStatus: publicProcedure
         .input(
             z.object({
                 userId: z.string(),
@@ -17,7 +18,6 @@ export const teamRouter = router({
             })
         )
         .query(async ({ input }) => {
-            const tasks = await getAllTasks(input.userId);
-            return tasks.filter((task) => task.status === input.status);
+            return getTasksByStatus(input.userId, input.status);
         }),
 });

@@ -10,6 +10,10 @@ export async function getTasksByStatus(
         where: eq(usersToTasks.userId, userId),
     });
 
+    if (res.length === 0) {
+        return [];
+    }
+
     const taskIds = res.map((r) => r.taskId);
 
     const taskArr = db

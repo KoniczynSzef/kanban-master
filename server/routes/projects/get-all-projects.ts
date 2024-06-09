@@ -7,6 +7,10 @@ export async function getAllProjects(userId: string) {
         where: eq(usersToProjects.userId, userId),
     });
 
+    if (res.length === 0) {
+        return [];
+    }
+
     const projectIds = res.map((r) => r.projectId);
 
     const projectArr = await db.query.projects.findMany({

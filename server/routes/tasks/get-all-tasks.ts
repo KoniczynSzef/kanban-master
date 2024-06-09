@@ -7,6 +7,10 @@ export async function getAllTasks(userId: string) {
         where: eq(usersToTasks.userId, userId),
     });
 
+    if (res.length === 0) {
+        return [];
+    }
+
     const taskIds = res.map((r) => r.taskId);
 
     const taskArr = await db.query.kanbanTasks.findMany({

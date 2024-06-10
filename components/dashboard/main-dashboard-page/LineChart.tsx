@@ -106,7 +106,7 @@ export const LineChart: React.FC<Props> = () => {
                 This year&apos;s statistics
             </h3>
 
-            <ResponsiveContainer height={300} className={"my-8"} width={600}>
+            <ResponsiveContainer height={300} className={"my-8"}>
                 <Chart width={600} height={300} data={mockData}>
                     <CartesianGrid stroke="#ddd" />
                     <XAxis dataKey="name" />

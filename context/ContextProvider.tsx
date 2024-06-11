@@ -2,15 +2,13 @@
 
 import React from "react";
 import { TeamContext } from "./context";
-import Dashboard from "@/components/dashboard/Dashboard";
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import { Team } from "@/types/models/team-model";
-import { MainCards } from "@/components/dashboard/main-dashboard-page/MainCards";
-import { LineChart } from "@/components/dashboard/main-dashboard-page/LineChart";
 
 interface Props {
     kindeUser: KindeUser;
     teams: Team[];
+    children: React.ReactNode;
 }
 
 export const ContextProvider: React.FC<Props> = (props) => {
@@ -26,13 +24,7 @@ export const ContextProvider: React.FC<Props> = (props) => {
                 setTeams,
             }}
         >
-            <MainCards
-                teamsLength={initialTeams.length}
-                projectsLength={10}
-                activeTasksLength={4}
-            />
-            <LineChart />
-            <Dashboard kindeUser={props.kindeUser} />
+            {props.children}
         </TeamContext.Provider>
     );
 };

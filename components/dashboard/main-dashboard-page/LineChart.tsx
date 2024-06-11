@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
     CartesianGrid,
@@ -99,10 +101,11 @@ const mockData = [
 
 export const LineChart: React.FC<Props> = () => {
     return (
-        <div className="border-2 border-muted rounded-2xl p-8">
+        <div className="border-2 border-muted rounded-2xl p-8 max-w-5xl">
             <h3 className="text-xl font-semibold">
                 This year&apos;s statistics
             </h3>
+
             <ResponsiveContainer height={300} className={"my-8"}>
                 <Chart width={600} height={300} data={mockData}>
                     <CartesianGrid stroke="#ddd" />

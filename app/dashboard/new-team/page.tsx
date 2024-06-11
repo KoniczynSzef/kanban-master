@@ -17,7 +17,7 @@ const page: FC<Props> = async () => {
     }
 
     const helpers = await createHelpers();
-    await helpers.getUserAndTeams.prefetch(kindeUser.id);
+    await helpers.getUserByKindeId.prefetch(kindeUser.id);
 
     return <ClientWrapper kindeUser={kindeUser} />;
 };

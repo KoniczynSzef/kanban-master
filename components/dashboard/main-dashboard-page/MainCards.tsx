@@ -16,7 +16,7 @@ interface MainCardProps {
 
 function MainCard(props: MainCardProps) {
     return (
-        <Card.Card className="w-[15rem]">
+        <Card.Card className="w-full md:w-[15rem]">
             <Card.CardHeader>
                 <Card.CardTitle>{props.title}</Card.CardTitle>
             </Card.CardHeader>
@@ -34,7 +34,7 @@ function MainCard(props: MainCardProps) {
 
 export const MainCards: React.FC<Props> = (props) => {
     return (
-        <div className="flex gap-16">
+        <div className="flex gap-4 md:gap-16 justify-between max-w-5xl flex-wrap">
             <MainCard
                 title="Teams"
                 value={props.teamsLength}

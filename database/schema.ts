@@ -102,6 +102,9 @@ export const kanbanTasks = pgTable("kanban_task", {
     boardId: text("board_id")
         .notNull()
         .references(() => kanbanBoards.id, { onDelete: "cascade" }),
+    status: text("status", {
+        enum: ["active", "completed", "on hold", "canceled"],
+    }).$default(() => "active"),
 
     deadline: date("deadline"),
     priority: text("priority", { enum: ["low", "medium", "high"] }).$default(
@@ -182,5 +185,36 @@ export const usersToTeams = pgTable(
     },
     (t) => ({
         pk: primaryKey({ columns: [t.userId, t.teamId] }),
+    })
+);
+
+export const usersToProjects = pgTable(
+    "user_to_project",
+    {
+        userId: text("user_id")
+            .notNull()
+            .references(() => users.id, { onDelete: "cascade" }),
+        projectId: text("project_id")
+            .notNull()
+            .references(() => projects.id, { onDelete: "cascade" }),
+        favourite: boolean("favourite").notNull().default(false),
+    },
+    (t) => ({
+        pk: primaryKey({ columns: [t.userId, t.projectId] }),
+    })
+);
+
+export const usersToTasks = pgTable(
+    "user_to_task",
+    {
+        userId: text("user_id")
+            .notNull()
+            .references(() => users.id, { onDelete: "cascade" }),
+        taskId: text("task_id")
+            .notNull()
+            .references(() => kanbanTasks.id, { onDelete: "cascade" }),
+    },
+    (t) => ({
+        pk: primaryKey({ columns: [t.userId, t.taskId] }),
     })
 );

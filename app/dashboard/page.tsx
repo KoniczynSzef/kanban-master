@@ -9,6 +9,7 @@ import { type Metadata } from "next";
 import { MainCards } from "@/components/dashboard/main-dashboard-page/MainCards";
 import { LineChart } from "@/components/dashboard/main-dashboard-page/LineChart";
 import Dashboard from "@/components/dashboard/Dashboard";
+import { Sidebar } from "@/components/dashboard/sidebar/Sidebar";
 
 interface Props {}
 
@@ -42,13 +43,18 @@ const page: FC<Props> = async () => {
     return (
         <Hydrate state={dehydrate(helpers.queryClient)}>
             <ContextProvider kindeUser={user} teams={teams}>
-                <MainCards
-                    teamsLength={teams.length}
-                    projectsLength={projects.length}
-                    activeTasksLength={tasks.length}
-                />
-                <LineChart />
-                <Dashboard kindeUser={user} />
+                <section className="flex gap-16 items-stretch h-full">
+                    <div className="wrapper flex flex-col gap-24">
+                        <MainCards
+                            teamsLength={teams.length}
+                            projectsLength={projects.length}
+                            activeTasksLength={tasks.length}
+                        />
+                        <LineChart />
+                        <Dashboard kindeUser={user} />
+                    </div>
+                    <Sidebar />
+                </section>
             </ContextProvider>
         </Hydrate>
     );

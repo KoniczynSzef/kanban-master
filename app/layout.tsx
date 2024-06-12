@@ -6,6 +6,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import ReactQueryProvider from "@/server/trpc/Provider";
 import Navbar from "@/components/navbar/Navbar";
+import { Sidebar } from "@/components/dashboard/sidebar/Sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,6 +29,7 @@ export default function RootLayout({
                         {children}
                     </main>
                     <Toaster />
+                    <Sidebar />
                 </body>
             </html>
         </ReactQueryProvider>

@@ -44,8 +44,6 @@ export function filterTeams(teams: Team[], query: string, sortingStrategy: Sorti
     if (!query) {
         const newTeams = sortTeams(teams, sortingStrategy);   
         
-        console.log("newTeams", newTeams, sortingStrategy);        
-
         return {
             teams: newTeams,
             hasChanged: compareTeamsArrays(newTeams, currentTeams),

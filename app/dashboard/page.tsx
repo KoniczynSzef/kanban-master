@@ -42,13 +42,15 @@ const page: FC<Props> = async () => {
     return (
         <Hydrate state={dehydrate(helpers.queryClient)}>
             <ContextProvider kindeUser={user} teams={teams}>
-                <MainCards
-                    teamsLength={teams.length}
-                    projectsLength={projects.length}
-                    activeTasksLength={tasks.length}
-                />
-                <LineChart />
-                <Dashboard kindeUser={user} />
+                <div className="wrapper flex flex-col gap-24">
+                    <MainCards
+                        teamsLength={teams.length}
+                        projectsLength={projects.length}
+                        activeTasksLength={tasks.length}
+                    />
+                    <LineChart />
+                    <Dashboard kindeUser={user} />
+                </div>
             </ContextProvider>
         </Hydrate>
     );

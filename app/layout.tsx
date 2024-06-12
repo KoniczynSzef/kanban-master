@@ -6,7 +6,6 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import ReactQueryProvider from "@/server/trpc/Provider";
 import Navbar from "@/components/navbar/Navbar";
-import { Sidebar } from "@/components/dashboard/sidebar/Sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,11 +24,10 @@ export default function RootLayout({
             <html lang="en">
                 <body className={`${inter.className} flex flex-col`}>
                     <Navbar />
-                    <main className="relative container mx-auto my-24 flex flex-col gap-24">
+                    <main className="container mx-auto my-24 flex flex-col gap-24">
                         {children}
                     </main>
                     <Toaster />
-                    <Sidebar />
                 </body>
             </html>
         </ReactQueryProvider>

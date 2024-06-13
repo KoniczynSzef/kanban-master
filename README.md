@@ -13,6 +13,7 @@ KanMaster is a a project management system proudly developed based on Kanban met
 -   [Vercel](https://vercel.com/)
 -   [Playwright](https://playwright.dev/)
 -   [Docker](https://www.docker.com/)
+- [Recharts](https://recharts.org/)
 
 ## Getting Started 🏗️
 

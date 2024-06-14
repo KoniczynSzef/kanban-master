@@ -1,19 +1,14 @@
 import { relations } from "drizzle-orm";
-import {
-    milestones,
-    projects,
-    teams,
-    users,
-    usersToProjects,
-    usersToTeams,
-} from "./schema";
+import { milestones, notes, projects, teams, users } from "./schema";
+import { usersToProjects, usersToTeams } from "./helper-tables";
 
 export const usersRelations = relations(users, ({ many }) => ({
-    projects: many(projects),
+    project: many(projects),
     usersToTeams: many(usersToTeams),
     usersToProjects: many(usersToProjects),
 
-    milestones: many(milestones),
+    milestone: many(milestones),
+    note: many(notes),
 }));
 
 export const projectsRelations = relations(projects, ({ one, many }) => ({
@@ -62,6 +57,13 @@ export const milestonesRelations = relations(milestones, ({ one }) => ({
 
     author: one(users, {
         fields: [milestones.authorId],
+        references: [users.id],
+    }),
+}));
+
+export const notesRelations = relations(notes, ({ one }) => ({
+    authorId: one(users, {
+        fields: [notes.authorId],
         references: [users.id],
     }),
 }));

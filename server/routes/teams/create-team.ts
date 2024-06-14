@@ -1,5 +1,6 @@
 import { db } from "@/database";
-import { teams, users, usersToTeams } from "@/database/schema";
+import { usersToTeams } from "@/database/helper-tables";
+import { teams, users } from "@/database/schema";
 import { CreateTeamSchema } from "@/types/schemas/teams/create-team-schema";
 import { eq } from "drizzle-orm";
 

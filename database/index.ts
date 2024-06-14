@@ -5,6 +5,7 @@ import { sql } from "@vercel/postgres";
 import postgres from "postgres";
 
 import * as schema from "./schema";
+import * as helperTables from "./helper-tables";
 import * as relations from "./relations";
 
 if (!process.env.DB_URL && !process.env.DATABASE_URL) {
@@ -15,6 +16,7 @@ export const vercelDb = vercelDrizzle(sql, {
     schema: {
         ...schema,
         ...relations,
+        ...helperTables,
     },
 });
 
@@ -22,6 +24,7 @@ export const devDb = devDrizzle(postgres(process.env.DATABASE_URL), {
     schema: {
         ...schema,
         ...relations,
+        ...helperTables,
     },
 });
 

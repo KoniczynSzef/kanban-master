@@ -34,7 +34,7 @@ function MainCard(props: MainCardProps) {
 
 export const MainCards: React.FC<Props> = (props) => {
     return (
-        <div className="flex gap-4 md:gap-16 justify-between flex-wrap">
+        <div className="flex gap-4 md:gap-16 justify-between flex-wrap max-w-5xl">
             <MainCard
                 title="Teams"
                 value={props.teamsLength}

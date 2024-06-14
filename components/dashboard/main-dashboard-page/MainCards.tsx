@@ -1,7 +1,6 @@
 import * as Card from "@/components/ui/card";
 import { CheckCircle2, FolderOpen, Users2 } from "lucide-react";
 import React from "react";
-import { PlanStatusCard } from "./PlanStatusCard";
 
 interface Props {
     teamsLength: number;
@@ -51,7 +50,6 @@ export const MainCards: React.FC<Props> = (props) => {
                 value={props.activeTasksLength}
                 icon={<CheckCircle2 />}
             />
-            <PlanStatusCard plan={Math.random() > 0.5 ? "free" : "pro"} />
         </div>
     );
 };

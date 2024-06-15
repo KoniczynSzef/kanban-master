@@ -1,6 +1,5 @@
 import { db } from "@/database";
-import { usersToTasks } from "@/database/helper-tables";
-import { kanbanTasks } from "@/database/schema";
+import { kanbanTasks, usersToTasks } from "@/database/schema";
 import { eq, inArray } from "drizzle-orm";
 
 export async function getAllTasks(userId: string) {

@@ -1,5 +1,5 @@
 import { db } from "@/database";
-import { usersToTeams } from "@/database/helper-tables";
+import { usersToTeams } from "@/database/schema";
 import { eq } from "drizzle-orm";
 
 export async function getMembersLength(teamId: string) {

@@ -1,5 +1,6 @@
 import { db } from "@/database";
-import { kanbanTasks, usersToTasks } from "@/database/schema";
+import { usersToTasks } from "@/database/helper-tables";
+import { kanbanTasks } from "@/database/schema";
 import { InferSelectModel, and, eq, inArray } from "drizzle-orm";
 
 export async function getTasksByStatus(

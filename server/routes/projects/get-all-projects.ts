@@ -1,5 +1,6 @@
 import { db } from "@/database";
-import { projects, usersToProjects } from "@/database/schema";
+import { usersToProjects } from "@/database/helper-tables";
+import { projects } from "@/database/schema";
 import { eq, inArray } from "drizzle-orm";
 
 export async function getAllProjects(userId: string) {

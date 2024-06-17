@@ -30,6 +30,7 @@ const page: FC<Props> = async () => {
     await helpers.getAllTeams.fetch(user.id);
     await helpers.getAllProjects.fetch(user.id);
     await helpers.getAllTasks.fetch(user.id);
+    await helpers.getAllNotes.fetch(user.id);
 
     const teams = await helpers.getAllTeams.fetch(user.id);
 
@@ -39,7 +40,7 @@ const page: FC<Props> = async () => {
                 <div className="wrapper flex flex-col gap-24">
                     <MainCards userId={user.id} />
                     <LineChart />
-                    <Notes />
+                    <Notes userId={user.id} />
                 </div>
             </ContextProvider>
         </Hydrate>

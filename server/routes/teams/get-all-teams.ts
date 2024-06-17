@@ -12,7 +12,7 @@ export async function getAllTeams(kindeId: string) {
     });
 
     if (!data) {
-        return null;
+        return [];
     }
 
     if (data.usersToTeams.length === 0) {

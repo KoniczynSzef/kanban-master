@@ -8,6 +8,8 @@ import WelcomeToDashboard from "./welcome-to-dashboard/WelcomeToDashboard";
 import { Teams } from "./teams/Teams";
 import { Searchbar } from "./searchbar/Searchbar";
 import { TeamContext } from "@/context/context";
+import Link from "next/link";
+import { linkStyle } from "@/lib/link-style";
 
 interface Props {
     kindeUser: KindeUser;
@@ -34,12 +36,9 @@ const Dashboard: FC<Props> = (props) => {
             <div className="border border-muted flex flex-col p-8 rounded-2xl gap-4">
                 Create your first team and invite your friends or colleagues to
                 join!
-                <Button
-                    className="self-center"
-                    onClick={() => console.log("Create team")}
-                >
-                    Create team
-                </Button>
+                <Link href="/dashboard/new-team" className={linkStyle}>
+                    <Button className="self-center">Create team</Button>
+                </Link>
             </div>
         );
     }

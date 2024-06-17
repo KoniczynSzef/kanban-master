@@ -31,23 +31,13 @@ const page: FC<Props> = async () => {
     await helpers.getAllProjects.fetch(user.id);
     await helpers.getAllTasks.fetch(user.id);
 
-    const teams = (await helpers.getAllTeams.fetch(user.id)) ?? [];
-    const projects = (await helpers.getAllProjects.fetch(user.id)) ?? [];
-    const tasks =
-        (await helpers.getTasksByStatus.fetch({
-            userId: user.id,
-            status: "active",
-        })) ?? [];
+    const teams = await helpers.getAllTeams.fetch(user.id);
 
     return (
         <Hydrate state={dehydrate(helpers.queryClient)}>
             <ContextProvider kindeUser={user} teams={teams}>
                 <div className="wrapper flex flex-col gap-24">
-                    <MainCards
-                        teamsLength={teams.length}
-                        projectsLength={projects.length}
-                        activeTasksLength={tasks.length}
-                    />
+                    <MainCards userId={user.id} />
                     <LineChart />
                     <Dashboard kindeUser={user} />
                 </div>

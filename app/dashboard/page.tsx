@@ -8,7 +8,7 @@ import React, { FC } from "react";
 import { type Metadata } from "next";
 import { MainCards } from "@/components/dashboard/main-dashboard-page/MainCards";
 import { LineChart } from "@/components/dashboard/main-dashboard-page/LineChart";
-import Dashboard from "@/components/dashboard/Dashboard";
+import { Notes } from "@/components/dashboard/main-dashboard-page/Notes";
 
 interface Props {}
 
@@ -39,7 +39,7 @@ const page: FC<Props> = async () => {
                 <div className="wrapper flex flex-col gap-24">
                     <MainCards userId={user.id} />
                     <LineChart />
-                    <Dashboard kindeUser={user} />
+                    <Notes />
                 </div>
             </ContextProvider>
         </Hydrate>

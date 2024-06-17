@@ -2,7 +2,7 @@
 
 import * as Card from "@/components/ui/card";
 import { trpc } from "@/server/trpc";
-import { CheckCircle2, FolderOpen, Users2 } from "lucide-react";
+import { CheckCircle2, FolderOpen, Loader, Users2 } from "lucide-react";
 import React from "react";
 
 interface Props {
@@ -13,6 +13,7 @@ interface MainCardProps {
     title: string;
     value: number;
     icon: React.ReactNode;
+    isLoading?: boolean;
 }
 
 function MainCard(props: MainCardProps) {
@@ -26,7 +27,16 @@ function MainCard(props: MainCardProps) {
                 <div className="flex items-center gap-4 text-muted-foreground">
                     <span>{props.icon}</span>
 
-                    <span className="font-semibold">{props.value}</span>
+                    <span className="font-semibold flex gap-2">
+                        {props.isLoading ? (
+                            <>
+                                <Loader className="animate-spin" />
+                                Loading...
+                            </>
+                        ) : (
+                            props.value
+                        )}
+                    </span>
                 </div>
             </Card.CardContent>
         </Card.Card>
@@ -47,16 +57,21 @@ export const MainCards: React.FC<Props> = (props) => {
                 title="Teams"
                 value={teams.data?.length ?? 0}
                 icon={<Users2 />}
+                isLoading={teams.isFetching}
             />
+
             <MainCard
                 title="Projects"
                 value={projects.data?.length ?? 0}
                 icon={<FolderOpen />}
+                isLoading={projects.isFetching}
             />
+
             <MainCard
                 title="Active tasks"
                 value={tasks.data?.length ?? 0}
                 icon={<CheckCircle2 />}
+                isLoading={tasks.isFetching}
             />
         </div>
     );

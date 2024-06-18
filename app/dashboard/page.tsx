@@ -8,7 +8,7 @@ import React, { FC } from "react";
 import { type Metadata } from "next";
 import { MainCards } from "@/components/dashboard/main-dashboard-page/MainCards";
 import { LineChart } from "@/components/dashboard/main-dashboard-page/LineChart";
-import { Notes } from "@/components/dashboard/main-dashboard-page/Notes";
+import { Notes } from "@/components/dashboard/main-dashboard-page/notes/Notes";
 
 interface Props {}
 

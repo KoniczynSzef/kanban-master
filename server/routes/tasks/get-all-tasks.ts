@@ -1,6 +1,7 @@
 import { db } from "@/database";
 import { kanbanTasks, usersToTasks } from "@/database/schema";
-import { eq, inArray } from "drizzle-orm";
+import { KanbanTask } from "@/types/models/task-model";
+import { eq } from "drizzle-orm";
 
 export async function getAllTasks(userId: string) {
     const res = await db.query.usersToTasks.findMany({
@@ -11,11 +12,17 @@ export async function getAllTasks(userId: string) {
         return [];
     }
 
-    const taskIds = res.map((r) => r.taskId);
+    const fetchedTasks: KanbanTask[] = [];
 
-    const taskArr = await db.query.kanbanTasks.findMany({
-        where: inArray(kanbanTasks.id, taskIds),
-    });
+    for (const userToTask of res) {
+        const task = await db.query.kanbanTasks.findFirst({
+            where: eq(kanbanTasks.id, userToTask.taskId),
+        });
 
-    return taskArr;
+        if (task) {
+            fetchedTasks.push(task);
+        }
+    }
+
+    return fetchedTasks;
 }

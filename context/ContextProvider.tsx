@@ -2,11 +2,9 @@
 
 import React from "react";
 import { TeamContext } from "./context";
-import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import { Team } from "@/types/models/team-model";
 
 interface Props {
-    kindeUser: KindeUser;
     teams: Team[];
     children: React.ReactNode;
 }

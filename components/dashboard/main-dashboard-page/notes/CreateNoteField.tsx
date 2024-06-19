@@ -1,6 +1,6 @@
 import * as Form from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { CreateNoteSchema } from "@/server/routes/notes/create-note";
+import { CreateNoteSchema } from "@/types/schemas/note/create-note-schema";
 import React from "react";
 import { UseFormReturn } from "react-hook-form";
 

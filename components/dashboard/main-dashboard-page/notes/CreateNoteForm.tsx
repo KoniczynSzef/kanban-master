@@ -1,15 +1,15 @@
 "use client";
 
 import * as Form from "@/components/ui/form";
-import {
-    CreateNoteSchema,
-    createNoteSchema,
-} from "@/server/routes/notes/create-note";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { CreateNoteField } from "./CreateNoteField";
 import { Button } from "@/components/ui/button";
+import {
+    CreateNoteSchema,
+    createNoteSchema,
+} from "@/types/schemas/note/create-note-schema";
+import { CreateNoteField } from "./CreateNoteField";
 
 interface Props {}
 

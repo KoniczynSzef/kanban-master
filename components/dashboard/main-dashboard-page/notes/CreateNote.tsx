@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import * as Dialog from "@/components/ui/dialog";
 import React from "react";
@@ -20,9 +22,8 @@ export const CreateNote: React.FC<Props> = () => {
                         and a detailed content.
                     </Dialog.DialogDescription>
                 </Dialog.DialogHeader>
-                <CreateNoteForm />
 
-                <Button type="submit">Create Note</Button>
+                <CreateNoteForm />
             </Dialog.DialogContent>
         </Dialog.Dialog>
     );

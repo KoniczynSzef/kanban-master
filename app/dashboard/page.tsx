@@ -47,7 +47,7 @@ const page: FC<Props> = async () => {
                 <div className="wrapper flex flex-col gap-24">
                     <MainCards userId={user.id} />
                     <LineChart />
-                    <Notes userId={user.id} />
+                    <Notes user={user} />
                 </div>
             </ContextProvider>
         </Hydrate>

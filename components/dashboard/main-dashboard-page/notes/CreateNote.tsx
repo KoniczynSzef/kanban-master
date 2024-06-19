@@ -4,10 +4,14 @@ import { Button } from "@/components/ui/button";
 import * as Dialog from "@/components/ui/dialog";
 import React from "react";
 import { CreateNoteForm } from "./CreateNoteForm";
+import { User } from "@/types/models/user-model";
 
-interface Props {}
+interface Props {
+    user: User;
+    refetchNotes: () => Promise<void>;
+}
 
-export const CreateNote: React.FC<Props> = () => {
+export const CreateNote: React.FC<Props> = (props) => {
     return (
         <Dialog.Dialog>
             <Dialog.DialogTrigger asChild>
@@ -23,7 +27,10 @@ export const CreateNote: React.FC<Props> = () => {
                     </Dialog.DialogDescription>
                 </Dialog.DialogHeader>
 
-                <CreateNoteForm />
+                <CreateNoteForm
+                    user={props.user}
+                    refetchNotes={props.refetchNotes}
+                />
             </Dialog.DialogContent>
         </Dialog.Dialog>
     );

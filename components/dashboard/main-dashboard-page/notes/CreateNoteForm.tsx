@@ -10,10 +10,24 @@ import {
     createNoteSchema,
 } from "@/types/schemas/note/create-note-schema";
 import { CreateNoteField } from "./CreateNoteField";
+import { trpc } from "@/server/trpc";
+import { toast } from "sonner";
+import { Loader } from "lucide-react";
+import { User } from "@/types/models/user-model";
 
-interface Props {}
+interface Props {
+    user: User;
+    refetchNotes: () => Promise<void>;
+}
 
-export const CreateNoteForm: React.FC<Props> = () => {
+export const CreateNoteForm: React.FC<Props> = (props) => {
+    const { mutate: createNote, isLoading } = trpc.createNote.useMutation({
+        onSettled: async () => {
+            toast.success("Note created successfully!");
+            await props.refetchNotes();
+        },
+    });
+
     const form = useForm<CreateNoteSchema>({
         defaultValues: {
             title: "",
@@ -23,13 +37,30 @@ export const CreateNoteForm: React.FC<Props> = () => {
         resolver: zodResolver(createNoteSchema),
     });
 
+    async function handleSubmit(data: CreateNoteSchema) {
+        createNote({
+            userId: props.user.id,
+            ...data,
+        });
+    }
+
     return (
         <Form.Form {...form}>
-            <form action="">
+            <form
+                action=""
+                className="flex flex-col gap-8"
+                onSubmit={form.handleSubmit(handleSubmit)}
+            >
                 <CreateNoteField form={form} name="title" label="Title" />
                 <CreateNoteField form={form} name="content" label="Content" />
 
-                <Button type="submit">Create Note</Button>
+                <Button type="submit" className="mt-4" disabled={isLoading}>
+                    {isLoading ? (
+                        <Loader className="animate-spin" />
+                    ) : (
+                        "Create Note"
+                    )}
+                </Button>
             </form>
         </Form.Form>
     );

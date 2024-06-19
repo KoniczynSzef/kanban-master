@@ -1,13 +1,7 @@
 import { publicProcedure, router } from "@/server/trpc/server";
 import { z } from "zod";
 import { getAllNotes } from "./get-all-notes";
-import { createNote } from "./create-note";
-
-const createNoteSchema = z.object({
-    userId: z.string(),
-    title: z.string(),
-    content: z.string().nullable(),
-});
+import { createNote, createNoteSchemaWithUserId } from "./create-note";
 
 export const notesRouter = router({
     getAllNotes: publicProcedure.input(z.string()).query(async ({ input }) => {
@@ -15,7 +9,7 @@ export const notesRouter = router({
     }),
 
     createNote: publicProcedure
-        .input(createNoteSchema)
+        .input(createNoteSchemaWithUserId)
         .mutation(async ({ input }) => {
             await createNote(input.userId, input.title, input.content);
         }),

@@ -5,6 +5,7 @@ import * as Dialog from "@/components/ui/dialog";
 import React from "react";
 import { CreateNoteForm } from "./CreateNoteForm";
 import { User } from "@/types/models/user-model";
+import { ModalContext } from "@/context/modal/modal-context";
 
 interface Props {
     user: User;
@@ -12,8 +13,10 @@ interface Props {
 }
 
 export const CreateNote: React.FC<Props> = (props) => {
+    const { isOpened, toggleOpen } = React.useContext(ModalContext);
+
     return (
-        <Dialog.Dialog>
+        <Dialog.Dialog open={isOpened} onOpenChange={toggleOpen}>
             <Dialog.DialogTrigger asChild>
                 <Button>Create Note</Button>
             </Dialog.DialogTrigger>

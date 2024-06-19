@@ -1,4 +1,4 @@
-import { ContextProvider } from "@/context/ContextProvider";
+import { ContextProvider } from "@/context/teams/ContextProvider";
 import { getKindeUser } from "@/lib/auth/get-kinde-user";
 import Hydrate from "@/lib/query/HydrateClient";
 import { createHelpers } from "@/utils/helpers";

@@ -14,6 +14,7 @@ import { trpc } from "@/server/trpc";
 import { toast } from "sonner";
 import { Loader } from "lucide-react";
 import { User } from "@/types/models/user-model";
+import { ModalContext } from "@/context/modal/modal-context";
 
 interface Props {
     user: User;
@@ -21,10 +22,13 @@ interface Props {
 }
 
 export const CreateNoteForm: React.FC<Props> = (props) => {
+    const { toggleOpen } = React.useContext(ModalContext);
+
     const { mutate: createNote, isLoading } = trpc.createNote.useMutation({
         onSettled: async () => {
             toast.success("Note created successfully!");
             await props.refetchNotes();
+            toggleOpen(false);
         },
     });
 

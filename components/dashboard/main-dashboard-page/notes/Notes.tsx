@@ -5,6 +5,7 @@ import React from "react";
 import { CreateNote } from "./CreateNote";
 import { User } from "@/types/models/user-model";
 import { ModalContext } from "@/context/modal/modal-context";
+import { SingleNote } from "./SingleNote";
 
 interface Props {
     user: User;
@@ -21,8 +22,13 @@ export const Notes: React.FC<Props> = (props) => {
 
     return (
         <div>
-            <p>Notes</p>
-            <pre>{JSON.stringify(notes, null, 2)}</pre>
+            <div className="flex flex-col gap-8 border border-muted p-8 rounded-2xl">
+                <h3 className="text-xl font-semibold">Latest notes:</h3>
+
+                {notes.data?.map((note) => (
+                    <SingleNote key={note.id} note={note} />
+                ))}
+            </div>
 
             <ModalContext.Provider
                 value={{

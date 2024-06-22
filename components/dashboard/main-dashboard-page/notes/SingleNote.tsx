@@ -19,7 +19,7 @@ function getUserById(id: string) {
 }
 
 export const SingleNote: React.FC<Props> = (props) => {
-    const time = new Date(props.note.createdAt);
+    const time = new Date(props.note.createdInMS ?? "");
 
     console.log(time);
 
@@ -27,7 +27,7 @@ export const SingleNote: React.FC<Props> = (props) => {
 
     if (user === "User not found") {
         toast.error("User not found");
-        return null;
+        return "User not found";
     }
 
     return (

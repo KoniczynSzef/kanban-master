@@ -1,4 +1,5 @@
 import {
+    bigint,
     boolean,
     date,
     pgTable,
@@ -182,8 +183,9 @@ export const notes = pgTable("note", {
         .notNull()
         .references(() => users.id, { onDelete: "cascade" }),
 
-    createdAt: date("created_at").notNull().default(new Date().toISOString()),
-    updatedAt: date("updated_at").notNull().default(new Date().toISOString()),
+    createdInMS: bigint("created_in_ms", { mode: "number" }).$default(() =>
+        new Date().getTime()
+    ),
 });
 
 export const usersToTeams = pgTable(

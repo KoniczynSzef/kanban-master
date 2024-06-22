@@ -1,6 +1,6 @@
 import { db } from "@/database";
 import { notes } from "@/database/schema";
-import { InferInsertModel } from "drizzle-orm";
+import { NoteInsert } from "@/types/models/note-model";
 import { z } from "zod";
 
 export const createNoteSchemaWithUserId = z.object({
@@ -20,7 +20,7 @@ export async function createNote(
     title: string,
     content: string | null
 ) {
-    const note: InferInsertModel<typeof notes> = {
+    const note: NoteInsert = {
         title: title,
         content: content,
         authorId: userId,

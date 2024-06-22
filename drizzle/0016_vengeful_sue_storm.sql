@@ -1,0 +1,1 @@
+ALTER TABLE "note" ALTER COLUMN "created_in_ms" SET DATA TYPE bigint;

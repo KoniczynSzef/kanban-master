@@ -22,9 +22,7 @@ export const Notes: React.FC<Props> = (props) => {
 
     return (
         <div>
-            <div className="flex flex-col gap-8 border border-muted p-8 rounded-2xl">
-                <h3 className="text-xl font-semibold">Latest notes:</h3>
-
+            <div className="grid grid-cols-4 justify-between">
                 {notes.data?.map((note) => (
                     <SingleNote key={note.id} note={note} />
                 ))}

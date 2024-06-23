@@ -2,8 +2,7 @@ import { z } from "zod";
 
 export const createNoteSchemaWithUserId = z.object({
     userId: z.string(),
-    title: z.string(),
-    content: z.string().nullable(),
+    content: z.string(),
 });
 
 export const createNoteSchema = createNoteSchemaWithUserId.omit({

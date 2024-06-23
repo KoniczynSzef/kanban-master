@@ -34,9 +34,9 @@ export const CreateNoteForm: React.FC<Props> = (props) => {
 
     const form = useForm<CreateNoteSchema>({
         defaultValues: {
-            title: "",
             content: "",
         },
+
         mode: "onChange",
         resolver: zodResolver(createNoteSchema),
     });
@@ -55,7 +55,6 @@ export const CreateNoteForm: React.FC<Props> = (props) => {
                 className="flex flex-col gap-8"
                 onSubmit={form.handleSubmit(handleSubmit)}
             >
-                <CreateNoteField form={form} name="title" label="Title" />
                 <CreateNoteField form={form} name="content" label="Content" />
 
                 <Button type="submit" className="mt-4" disabled={isLoading}>

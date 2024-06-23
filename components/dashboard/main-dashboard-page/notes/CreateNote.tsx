@@ -25,8 +25,7 @@ export const CreateNote: React.FC<Props> = (props) => {
                 <Dialog.DialogHeader>
                     <Dialog.DialogTitle>New Note</Dialog.DialogTitle>
                     <Dialog.DialogDescription>
-                        Create your new note here. Provide a descriptive title
-                        and a detailed content.
+                        Create your new note here. Provide a detailed content.
                     </Dialog.DialogDescription>
                 </Dialog.DialogHeader>
 

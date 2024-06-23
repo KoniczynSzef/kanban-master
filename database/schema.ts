@@ -177,8 +177,7 @@ export const notes = pgTable("note", {
     id: text("id")
         .primaryKey()
         .$defaultFn(() => crypto.randomUUID()),
-    title: text("title").notNull(),
-    content: text("content"),
+    content: text("content").notNull(),
     authorId: text("author_id")
         .notNull()
         .references(() => users.id, { onDelete: "cascade" }),

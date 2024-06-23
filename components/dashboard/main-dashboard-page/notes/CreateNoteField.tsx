@@ -1,5 +1,4 @@
 import * as Form from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { CreateNoteSchema } from "@/types/schemas/note/create-note-schema";
 import React from "react";
@@ -18,30 +17,17 @@ export const CreateNoteField: React.FC<Props> = (props) => {
             name={props.name}
             render={({ field }) => (
                 <Form.FormItem>
-                    <div className="flex items-center gap-3">
-                        <Form.FormLabel className="mx-auto">
-                            {props.label}
-                        </Form.FormLabel>
-                        <Form.FormControl>
-                            {props.name === "content" ? (
-                                <Textarea
-                                    cols={30}
-                                    rows={3}
-                                    {...field}
-                                    placeholder={`${props.label}...`}
-                                    value={field.value as string}
-                                    className="w-[75%] ml-auto"
-                                />
-                            ) : (
-                                <Input
-                                    {...field}
-                                    placeholder={`${props.label}...`}
-                                    value={field.value as string}
-                                    className="w-[75%] ml-auto"
-                                />
-                            )}
-                        </Form.FormControl>
-                    </div>
+                    <Form.FormLabel className="mx-auto sr-only">
+                        {props.label}
+                    </Form.FormLabel>
+                    <Form.FormControl>
+                        <Textarea
+                            cols={30}
+                            rows={3}
+                            {...field}
+                            placeholder={`${props.label}...`}
+                        />
+                    </Form.FormControl>
                     <Form.FormMessage />
                 </Form.FormItem>
             )}

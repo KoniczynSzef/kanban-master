@@ -1,11 +1,10 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import * as Card from "@/components/ui/card";
 import { trpc } from "@/server/trpc";
 import { Note } from "@/types/models/note-model";
-import { Menu } from "lucide-react";
 import React from "react";
 import { toast } from "sonner";
+import { NoteMenu } from "./NoteMenu";
 
 interface Props {
     note: Note;
@@ -24,7 +23,7 @@ export const NoteHeader: React.FC<Props> = (props) => {
 
     if (res === "User not found") {
         toast.error("User not found");
-        return "User not found";
+        return null;
     }
 
     const user = res.data;
@@ -33,6 +32,7 @@ export const NoteHeader: React.FC<Props> = (props) => {
         return null;
     }
 
+    // ? This is just for making sure user has a team role for the sake of this example
     user.teamRole = "Backend Developer";
 
     return (
@@ -49,9 +49,7 @@ export const NoteHeader: React.FC<Props> = (props) => {
             </div>
 
             <div className="ml-auto">
-                <Button size={"icon"}>
-                    <Menu />
-                </Button>
+                <NoteMenu />
             </div>
         </Card.CardHeader>
     );

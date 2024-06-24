@@ -5,7 +5,7 @@ import React from "react";
 import { CreateNote } from "./CreateNote";
 import { User } from "@/types/models/user-model";
 import { ModalContext } from "@/context/modal/modal-context";
-import { SingleNote } from "./SingleNote";
+import { SingleNote } from "./note/SingleNote";
 
 interface Props {
     user: User;

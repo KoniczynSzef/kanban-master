@@ -21,8 +21,21 @@ export const Notes: React.FC<Props> = (props) => {
     }
 
     return (
-        <div>
-            <div className="grid grid-cols-4 justify-between">
+        <div className="border-2 border-muted p-8 px-16 rounded-2xl flex flex-col">
+            <h3 className="text-xl font-semibold">Your latest notes</h3>
+
+            {(notes.error || !notes.data) && (
+                <p className="text-red-500 my-8">Error fetching notes</p>
+            )}
+
+            {notes.data?.length === 0 ? (
+                <p className="text-muted-foreground my-8">
+                    No notes found.{" "}
+                    <span className="font-bold">Create one now!</span>
+                </p>
+            ) : null}
+
+            <div className="grid grid-cols-4 justify-between my-16">
                 {notes.data?.map((note) => (
                     <SingleNote
                         key={note.id}

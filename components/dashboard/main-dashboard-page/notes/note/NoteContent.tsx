@@ -22,5 +22,5 @@ export const NoteContent: React.FC<Props> = (props) => {
         </React.Fragment>
     ));
 
-    return <>{textWithBreaks}</>;
+    return <div className="p-4">{textWithBreaks}</div>;
 };

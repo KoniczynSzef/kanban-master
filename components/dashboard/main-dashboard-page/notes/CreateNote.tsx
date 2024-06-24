@@ -18,7 +18,7 @@ export const CreateNote: React.FC<Props> = (props) => {
     return (
         <Dialog.Dialog open={isOpened} onOpenChange={toggleOpen}>
             <Dialog.DialogTrigger asChild>
-                <Button>Create Note</Button>
+                <Button className="self-end">Create Note</Button>
             </Dialog.DialogTrigger>
 
             <Dialog.DialogContent>

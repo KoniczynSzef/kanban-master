@@ -17,7 +17,7 @@ export const SingleNote: React.FC<Props> = (props) => {
 
     return (
         <ModeProvider>
-            <Card.Card className="rounded-2xl h-64 w-[32rem] flex flex-col">
+            <Card.Card className="rounded-2xl w-[32rem] flex flex-col">
                 <NoteHeader note={props.note} />
 
                 <Separator className="w-[28rem] self-center" />

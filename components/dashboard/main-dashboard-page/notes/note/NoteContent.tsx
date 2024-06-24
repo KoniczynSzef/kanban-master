@@ -1,12 +1,16 @@
+import { ModeContext } from "@/context/notes/mode-context";
 import React from "react";
+import { EditNote } from "./EditNote";
 
 interface Props {
-    content: string | null;
+    content: string;
 }
 
 export const NoteContent: React.FC<Props> = (props) => {
-    if (!props.content) {
-        return null;
+    const { mode } = React.useContext(ModeContext);
+
+    if (mode === "Edit") {
+        return <EditNote content={props.content} />;
     }
 
     const textWithBreaks = props.content.split("\n").map((text, index) => (

@@ -3,6 +3,7 @@ import { z } from "zod";
 import { getAllNotes } from "./get-all-notes";
 import { createNote } from "./create-note";
 import { createNoteSchemaWithUserId } from "@/types/schemas/note/create-note-schema";
+import { updateNote } from "./update-note";
 
 export const notesRouter = router({
     getAllNotes: publicProcedure.input(z.string()).query(async ({ input }) => {
@@ -13,5 +14,11 @@ export const notesRouter = router({
         .input(createNoteSchemaWithUserId)
         .mutation(async ({ input }) => {
             await createNote(input.userId, input.content);
+        }),
+
+    updateNote: publicProcedure
+        .input(z.object({ id: z.string(), content: z.string() }))
+        .mutation(async ({ input }) => {
+            await updateNote(input.id, input.content);
         }),
 });

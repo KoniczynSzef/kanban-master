@@ -34,7 +34,7 @@ export const SingleNote: React.FC<Props> = (props) => {
                         />
                     </Card.CardDescription>
                 </Card.CardContent>
-                <Card.CardFooter>
+                <Card.CardFooter className="mt-auto">
                     <span className="text-muted-foreground flex ml-auto gap-2">
                         <Globe /> {time}
                     </span>

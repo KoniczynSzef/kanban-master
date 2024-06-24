@@ -7,9 +7,9 @@ import { Button } from "../ui/button";
 import WelcomeToDashboard from "./welcome-to-dashboard/WelcomeToDashboard";
 import { Teams } from "./teams/Teams";
 import { Searchbar } from "./searchbar/Searchbar";
-import { TeamContext } from "@/context/context";
 import Link from "next/link";
 import { linkStyle } from "@/lib/link-style";
+import { TeamContext } from "@/context/teams/context";
 
 interface Props {
     kindeUser: KindeUser;

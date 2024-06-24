@@ -21,7 +21,7 @@ export const Notes: React.FC<Props> = (props) => {
     }
 
     return (
-        <div className="border-2 border-muted p-8 px-16 rounded-2xl flex flex-col">
+        <div className="border-2 border-muted p-8 rounded-2xl flex flex-col">
             <h3 className="text-xl font-semibold">Your latest notes</h3>
 
             {(notes.error || !notes.data) && (
@@ -35,7 +35,7 @@ export const Notes: React.FC<Props> = (props) => {
                 </p>
             ) : null}
 
-            <div className="grid grid-cols-4 justify-between my-16">
+            <div className="flex flex-wrap my-16 justify-evenly gap-8">
                 {notes.data?.map((note) => (
                     <SingleNote
                         key={note.id}

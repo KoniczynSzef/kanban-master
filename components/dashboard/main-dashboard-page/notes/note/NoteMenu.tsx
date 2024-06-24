@@ -1,10 +1,15 @@
 import { Button } from "@/components/ui/button";
 import * as DropdownMenu from "@/components/ui/dropdown-menu";
 import { Mode, ModeContext } from "@/context/notes/mode-context";
-import { Edit, Eye, Menu, Trash } from "lucide-react";
+import { Note } from "@/types/models/note-model";
+import { Edit, Eye, Menu } from "lucide-react";
 import React from "react";
+import { DismissNote } from "./DismissNote";
 
-interface Props {}
+interface Props {
+    note: Note;
+    refetchNotes: () => Promise<void>;
+}
 
 function ModeInfo(props: { handleChooseMode(mode: Mode): void }) {
     const { mode } = React.useContext(ModeContext);
@@ -30,7 +35,7 @@ function ModeInfo(props: { handleChooseMode(mode: Mode): void }) {
     );
 }
 
-export const NoteMenu: React.FC<Props> = () => {
+export const NoteMenu: React.FC<Props> = (props) => {
     const { setMode } = React.useContext(ModeContext);
 
     function handleChooseMode(mode: Mode) {
@@ -48,10 +53,10 @@ export const NoteMenu: React.FC<Props> = () => {
             <DropdownMenu.DropdownMenuContent>
                 <DropdownMenu.DropdownMenuGroup>
                     <ModeInfo handleChooseMode={handleChooseMode} />
-                    <DropdownMenu.DropdownMenuItem>
-                        <Trash className="mr-2 size-4 text-destructive" />
-                        <span>Dismiss</span>
-                    </DropdownMenu.DropdownMenuItem>
+                    <DismissNote
+                        note={props.note}
+                        refetchNotes={props.refetchNotes}
+                    />
                 </DropdownMenu.DropdownMenuGroup>
             </DropdownMenu.DropdownMenuContent>
         </DropdownMenu.DropdownMenu>

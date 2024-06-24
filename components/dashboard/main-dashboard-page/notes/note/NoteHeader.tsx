@@ -8,6 +8,7 @@ import { NoteMenu } from "./NoteMenu";
 
 interface Props {
     note: Note;
+    refetchNotes: () => Promise<void>;
 }
 
 function getUserById(id: string) {
@@ -49,7 +50,7 @@ export const NoteHeader: React.FC<Props> = (props) => {
             </div>
 
             <div className="ml-auto">
-                <NoteMenu />
+                <NoteMenu note={props.note} refetchNotes={props.refetchNotes} />
             </div>
         </Card.CardHeader>
     );

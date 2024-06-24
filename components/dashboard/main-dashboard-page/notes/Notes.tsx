@@ -24,7 +24,11 @@ export const Notes: React.FC<Props> = (props) => {
         <div>
             <div className="grid grid-cols-4 justify-between">
                 {notes.data?.map((note) => (
-                    <SingleNote key={note.id} note={note} />
+                    <SingleNote
+                        key={note.id}
+                        note={note}
+                        refetchNotes={refetchNotes}
+                    />
                 ))}
             </div>
 

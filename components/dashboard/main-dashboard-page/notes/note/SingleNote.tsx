@@ -10,6 +10,7 @@ import { ModeProvider } from "./ModeProvider";
 
 interface Props {
     note: Note;
+    refetchNotes: () => Promise<void>;
 }
 
 export const SingleNote: React.FC<Props> = (props) => {
@@ -24,7 +25,10 @@ export const SingleNote: React.FC<Props> = (props) => {
 
                 <Card.CardContent className="my-4">
                     <Card.CardDescription>
-                        <NoteContent content={props.note.content} />
+                        <NoteContent
+                            note={props.note}
+                            refetchNotes={props.refetchNotes}
+                        />
                     </Card.CardDescription>
                 </Card.CardContent>
                 <Card.CardFooter>

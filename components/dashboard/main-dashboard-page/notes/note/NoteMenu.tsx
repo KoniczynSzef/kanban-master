@@ -11,8 +11,6 @@ function ModeInfo(props: { handleChooseMode(mode: Mode): void }) {
 
     const isEdit = mode === "Edit";
 
-    console.log("isEdit", isEdit);
-
     return (
         <DropdownMenu.DropdownMenuItem
             onClick={() => props.handleChooseMode(isEdit ? "View" : "Edit")}

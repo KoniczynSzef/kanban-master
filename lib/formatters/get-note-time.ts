@@ -32,8 +32,12 @@ export function getNoteTime(timeInMS: number) {
         return `${difference} hours ago`;
     }
 
-    if (difference < 24) {
+    if (difference < 12) {
         return `Few hours ago`;
+    }
+
+    if (difference < 24) {
+        return `Less than a day ago`;
     }
 
     difference = Math.floor(difference / 24); // * This will give the difference in days

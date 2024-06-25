@@ -18,13 +18,13 @@ export const SingleNote: React.FC<Props> = (props) => {
 
     return (
         <ModeProvider>
-            <Card.Card className="rounded-2xl w-[32rem] flex flex-col">
+            <Card.Card className="rounded-2xl max-w-[32rem] w-full flex flex-col">
                 <NoteHeader
                     note={props.note}
                     refetchNotes={props.refetchNotes}
                 />
 
-                <Separator className="w-[28rem] self-center" />
+                <Separator className="mx-2 md:mx-0 max-w-[28rem] w-full self-center" />
 
                 <Card.CardContent className="my-4">
                     <Card.CardDescription>

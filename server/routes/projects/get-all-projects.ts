@@ -1,21 +1,28 @@
 import { db } from "@/database";
 import { projects, usersToProjects } from "@/database/schema";
-import { eq, inArray } from "drizzle-orm";
+import { Project } from "@/types/models/project-model";
+import { eq } from "drizzle-orm";
 
 export async function getAllProjects(userId: string) {
-    const res = await db.query.usersToProjects.findMany({
+    const data = await db.query.usersToProjects.findMany({
         where: eq(usersToProjects.userId, userId),
     });
 
-    if (res.length === 0) {
+    if (data.length === 0) {
         return [];
     }
 
-    const projectIds = res.map((r) => r.projectId);
+    const fetchedProjects: Project[] = [];
 
-    const projectArr = await db.query.projects.findMany({
-        where: inArray(projects.id, projectIds),
-    });
+    for (const userToProject of data) {
+        const project = await db.query.projects.findFirst({
+            where: eq(projects.id, userToProject.projectId),
+        });
 
-    return projectArr;
+        if (project) {
+            fetchedProjects.push(project);
+        }
+    }
+
+    return fetchedProjects;
 }

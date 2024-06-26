@@ -1,27 +1,24 @@
 import { db } from "@/database";
 import { eq } from "drizzle-orm";
-import { teams, users } from "@/database/schema";
+import { teams, usersToTeams } from "@/database/schema";
 import { Team } from "@/types/models/team-model";
 
-export async function getAllTeams(kindeId: string) {
-    const data = await db.query.users.findFirst({
-        where: eq(users.kindeId, kindeId),
-        with: {
-            usersToTeams: true,
-        },
+export async function getAllTeams(userId: string) {
+    const data = await db.query.usersToTeams.findMany({
+        where: eq(usersToTeams.userId, userId),
     });
 
     if (!data) {
-        return null;
+        return [];
     }
 
-    if (data.usersToTeams.length === 0) {
+    if (data.length === 0) {
         return [];
     }
 
     const newTeams: Team[] = [];
 
-    for (const userToTeam of data.usersToTeams) {
+    for (const userToTeam of data) {
         const team = await db.query.teams.findFirst({
             where: eq(teams.id, userToTeam.teamId),
         });

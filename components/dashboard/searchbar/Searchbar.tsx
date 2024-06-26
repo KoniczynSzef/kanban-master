@@ -12,7 +12,7 @@ import { SortTeams } from "./SortTeams";
 import Link from "next/link";
 import { linkStyle } from "@/lib/link-style";
 import { filterTeams } from "@/utils/dashboard/filter-teams";
-import { TeamContext } from "@/context/context";
+import { TeamContext } from "@/context/teams/context";
 
 interface Props {
     typedValueRef: React.MutableRefObject<string>;

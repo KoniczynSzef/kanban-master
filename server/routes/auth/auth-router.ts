@@ -3,10 +3,9 @@ import { getUserByKindeId } from "./get-user-by-kinde-id";
 import { z } from "zod";
 import { CreateUserSchema } from "@/types/schemas/create-user.schema";
 import { validateAccount } from "./validate-account";
-import {
-    hasVisitedDashboard
-} from "./has-visited-dashboard";
+import { hasVisitedDashboard } from "./has-visited-dashboard";
 import { visitDashboard } from "./visit-dashboard";
+import { getAmountOfPossibleProductsByPlan } from "./get-amount-of-possible-products-by-plan";
 
 export const authRouter = router({
     getUserByKindeId: publicProcedure
@@ -36,5 +35,11 @@ export const authRouter = router({
         .input(z.string())
         .mutation(async ({ input: kindeId }) => {
             return await visitDashboard(kindeId);
+        }),
+
+    getAmountOfPossibleProductsByPlan: publicProcedure
+        .input(z.enum(["free", "pro", "enterprise"]))
+        .query(async ({ input: plan }) => {
+            return getAmountOfPossibleProductsByPlan(plan);
         }),
 });

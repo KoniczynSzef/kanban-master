@@ -5,6 +5,7 @@ import { Note } from "@/types/models/note-model";
 import React from "react";
 import { toast } from "sonner";
 import { NoteMenu } from "./NoteMenu";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface Props {
     note: Note;
@@ -27,7 +28,24 @@ export const NoteHeader: React.FC<Props> = (props) => {
         return null;
     }
 
-    const user = res.data;
+    const { data: user, isLoading } = res;
+
+    if (isLoading) {
+        return (
+            <>
+                <Skeleton className="w-10 h-10 rounded-full" />
+
+                <div className="flex flex-col">
+                    <Skeleton className="w-28 h-4" />
+                    <Skeleton className="w-28 h-4 mt-4" />
+                </div>
+
+                <div className="ml-auto">
+                    <Skeleton className="w-10 h-10 rounded-2xl" />
+                </div>
+            </>
+        );
+    }
 
     if (!user) {
         return null;
@@ -37,7 +55,7 @@ export const NoteHeader: React.FC<Props> = (props) => {
     user.teamRole = "Backend Developer";
 
     return (
-        <Card.CardHeader className="items-start flex-row gap-8">
+        <>
             <Avatar className="bg-purple-200">
                 <AvatarFallback>{user.name[0]}</AvatarFallback>
                 <AvatarImage src={user.picture} alt={user?.name} />
@@ -52,6 +70,6 @@ export const NoteHeader: React.FC<Props> = (props) => {
             <div className="ml-auto">
                 <NoteMenu note={props.note} refetchNotes={props.refetchNotes} />
             </div>
-        </Card.CardHeader>
+        </>
     );
 };

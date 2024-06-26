@@ -2,6 +2,7 @@ import { ModeContext } from "@/context/notes/mode-context";
 import React from "react";
 import { EditNote } from "./EditNote";
 import { Note } from "@/types/models/note-model";
+import { CardDescription } from "@/components/ui/card";
 
 interface Props {
     note: Note;
@@ -22,5 +23,5 @@ export const NoteContent: React.FC<Props> = (props) => {
         </React.Fragment>
     ));
 
-    return <div className="p-4">{textWithBreaks}</div>;
+    return <CardDescription className="p-4">{textWithBreaks}</CardDescription>;
 };

@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 import React, { FC } from "react";
 import { type Metadata } from "next";
 import { MainCards } from "@/components/dashboard/main-dashboard-page/MainCards";
-import { LineChart } from "@/components/dashboard/main-dashboard-page/LineChart";
+// import { LineChart } from "@/components/dashboard/main-dashboard-page/LineChart";
 import { Notes } from "@/components/dashboard/main-dashboard-page/notes/Notes";
 import { getUserByKindeId } from "@/server/routes/auth/get-user-by-kinde-id";
 
@@ -46,7 +46,7 @@ const page: FC<Props> = async () => {
             <ContextProvider teams={teams}>
                 <div className="wrapper flex flex-col gap-24">
                     <MainCards userId={user.id} />
-                    <LineChart />
+                    {/* <LineChart /> */}
                     <Notes user={user} />
                 </div>
             </ContextProvider>

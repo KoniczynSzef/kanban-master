@@ -49,6 +49,10 @@ export const EditNote: React.FC<Props> = (props) => {
         });
     });
 
+    function handleCancel() {
+        setMode("View");
+    }
+
     return (
         <Form.Form {...form}>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -65,9 +69,27 @@ export const EditNote: React.FC<Props> = (props) => {
                     )}
                 />
 
-                <Button type="submit" disabled={isLoading}>
-                    {isLoading ? <Loader className="animate-spin" /> : "Save"}
-                </Button>
+                <div className="flex gap-8">
+                    <Button
+                        type="button"
+                        variant={"secondary"}
+                        className="w-full"
+                        onClick={handleCancel}
+                    >
+                        Cancel
+                    </Button>
+                    <Button
+                        type="submit"
+                        disabled={isLoading}
+                        className="w-full"
+                    >
+                        {isLoading ? (
+                            <Loader className="animate-spin" />
+                        ) : (
+                            "Save"
+                        )}
+                    </Button>
+                </div>
             </form>
         </Form.Form>
     );

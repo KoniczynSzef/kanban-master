@@ -4,9 +4,8 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React, { FC } from "react";
 import FeaturesGrid from "./FeaturesGrid";
-import Image from "next/image";
-
-import arrow from "@/images/arrow.svg";
+import { Github } from "lucide-react";
+import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
 
 interface Props {}
 
@@ -14,18 +13,22 @@ const LayoutGrid: FC<Props> = () => {
     return (
         <section className="flex flex-col gap-32 items-center">
             <div className="flex gap-8 relative">
-                <h2 className="text-3xl font-medium text-primary">
-                    Explore power of Kanban
-                </h2>
-                <Link href="/features" className={cn(linkStyle, "flex w-min")}>
-                    <Button tabIndex={-1}>Learn More</Button>
+                <LoginLink className={cn(linkStyle, "flex w-min")}>
+                    <Button tabIndex={-1}>Get Started</Button>
+                </LoginLink>
+                <Link
+                    href="https://github.com/koniczynszef/kanban-master"
+                    className={cn(linkStyle, "flex w-min focus:ring-secondary")}
+                    target="_blank"
+                >
+                    <Button
+                        tabIndex={-1}
+                        className="flex items-center gap-1"
+                        variant={"outline"}
+                    >
+                        <Github /> GitHub
+                    </Button>
                 </Link>
-
-                <Image
-                    src={arrow}
-                    alt="Arrow just for UI"
-                    className="absolute right-1/4 top-1/2 translate-y-1/4"
-                />
             </div>
 
             <FeaturesGrid />

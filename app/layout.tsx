@@ -7,6 +7,8 @@ import { Toaster } from "@/components/ui/sonner";
 import ReactQueryProvider from "@/server/trpc/Provider";
 import Navbar from "@/components/navbar/Navbar";
 
+import NextTopLoader from "nextjs-toploader";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -25,6 +27,7 @@ export default function RootLayout({
                 <body
                     className={`${inter.className} flex flex-col bg-[#020617]`}
                 >
+                    <NextTopLoader color="#7936EC" showSpinner={false} />
                     <Navbar />
                     <main className="my-24 flex flex-col gap-48 items-center ">
                         {children}

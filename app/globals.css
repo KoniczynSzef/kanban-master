@@ -65,3 +65,15 @@
     border: none;
     border-radius: 1rem;
 }
+
+.overlay__gradient {
+    background: linear-gradient(
+        to bottom,
+        white 95%,
+        rgba(221, 214, 254, 0.05)
+    );
+}
+
+.dark .overlay__gradient {
+    background: linear-gradient(to bottom, #020617 75%, rgba(15, 15, 45, 0.1));
+}

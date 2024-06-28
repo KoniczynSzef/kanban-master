@@ -1,4 +1,4 @@
-import { Feature } from "@/types/homepage/Feature";
+import { Feature } from "@/types/homepage/feature";
 import { Activity, Cog, PersonStanding, User } from "lucide-react";
 import React from "react";
 import { FeatureCard } from "./FeatureCard";

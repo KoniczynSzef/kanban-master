@@ -9,7 +9,7 @@ const HomeLink: FC<Props> = (props) => {
         <Link
             href={"/"}
             className={cn(
-                "px-4 py-2 rounded-2xl hover:bg-slate-900 transition duration-300 focus:ring-2 focus:ring-primary focus:outline-0 text-2xl",
+                "px-4 py-2 rounded-2xl hover:bg-secondary transition duration-300 focus:ring-2 focus:ring-primary focus:outline-0 text-2xl",
                 props.className
             )}
         >

@@ -11,7 +11,7 @@ export const ContributeBadge: React.FC<Props> = () => {
             href={"https://github.com/koniczynszef/kanban-master/contribute"}
             className={cn(
                 linkStyle,
-                "bg-secondary text-white px-4 py-1 rounded-full focus:ring-secondary-foreground hover:bg-secondary/85"
+                "bg-violet-700 hover:bg-violet-700/85 text-white px-4 py-1 rounded-full focus:ring-secondary-foreground "
             )}
         >
             Feel free to contribute!

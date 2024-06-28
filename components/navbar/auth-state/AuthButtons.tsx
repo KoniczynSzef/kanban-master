@@ -6,6 +6,7 @@ import {
     RegisterLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
 import React, { FC } from "react";
+import { ToggleMode } from "../mode/ToggleMode";
 
 interface Props {}
 
@@ -30,6 +31,8 @@ const AuthButtons: FC<Props> = () => {
                     Log in
                 </Button>
             </LoginLink>
+
+            <ToggleMode />
         </>
     );
 };

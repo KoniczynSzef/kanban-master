@@ -1,5 +1,5 @@
 import * as Card from "@/components/ui/card";
-import { type Feature } from "@/types/homepage/Feature";
+import { Feature } from "@/types/home/feature";
 import React from "react";
 
 interface Props {

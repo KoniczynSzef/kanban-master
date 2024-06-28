@@ -11,14 +11,16 @@ const Navbar: FC<Props> = async () => {
     const user = await getKindeUser();
 
     return (
-        <header className="py-4 flex justify-around items-center">
-            <HomeLink />
+        <header className="py-4 relative w-full">
+            <nav className="flex justify-between items-center container">
+                <HomeLink />
 
-            <NavigationMenu className="hidden md:block" />
+                <NavigationMenu className="hidden md:block" />
 
-            <AuthSection user={user} className="hidden md:flex gap-4" />
+                <AuthSection user={user} className="hidden md:flex gap-4" />
 
-            <HamburgerMenu className="block md:hidden" user={user} />
+                <HamburgerMenu className="block md:hidden" user={user} />
+            </nav>
         </header>
     );
 };

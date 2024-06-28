@@ -1,0 +1,1 @@
+ALTER TABLE "kanban_task" ADD COLUMN "status" text;

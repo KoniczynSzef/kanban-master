@@ -1,8 +1,7 @@
-import { StaticImageData } from "next/image";
+import React from "react";
 
 export type Feature = {
     title: string;
     description: string;
-    imageImport: StaticImageData;
-    imageAlt: string;
+    icon: React.ReactElement;
 };

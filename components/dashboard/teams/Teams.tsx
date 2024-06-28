@@ -2,9 +2,9 @@ import React from "react";
 import { TeamThumbnail } from "./TeamThumbnail";
 
 import { type User } from "@/types/models/user-model";
-import { TeamContext } from "@/context/context";
 
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { TeamContext } from "@/context/teams/context";
 
 interface Props {
     user: User;

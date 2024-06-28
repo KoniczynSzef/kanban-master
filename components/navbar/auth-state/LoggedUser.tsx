@@ -3,6 +3,7 @@ import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import React, { FC } from "react";
 import LoggedUserAvatar from "./LoggedUserAvatar";
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
+import { ToggleMode } from "../mode/ToggleMode";
 
 interface Props {
     user: KindeUser;
@@ -20,6 +21,8 @@ const LoggedUser: FC<Props> = (props) => {
                     Sign out
                 </Button>
             </LogoutLink>
+
+            <ToggleMode />
         </div>
     );
 };

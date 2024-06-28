@@ -56,7 +56,7 @@ export const NoteHeader: React.FC<Props> = (props) => {
 
     return (
         <>
-            <Avatar className="bg-purple-200">
+            <Avatar className="border-secondary border">
                 <AvatarFallback>{user.name[0]}</AvatarFallback>
                 <AvatarImage src={user.picture} alt={user?.name} />
             </Avatar>

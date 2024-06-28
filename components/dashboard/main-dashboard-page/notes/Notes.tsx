@@ -21,7 +21,7 @@ export const Notes: React.FC<Props> = (props) => {
     }
 
     return (
-        <div className="border-2 border-muted p-8 rounded-2xl flex flex-col">
+        <div className="border border-muted p-8 rounded-2xl flex flex-col w-full">
             <h3 className="text-xl font-semibold">Your latest notes</h3>
 
             {(notes.error || !notes.data) && (

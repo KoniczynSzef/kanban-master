@@ -11,8 +11,8 @@ const Navbar: FC<Props> = async () => {
     const user = await getKindeUser();
 
     return (
-        <header className="py-4 container relative mx-auto">
-            <nav className="flex justify-between items-center">
+        <header className="py-4 relative w-full">
+            <nav className="flex justify-between items-center container">
                 <HomeLink />
 
                 <NavigationMenu className="hidden md:block" />

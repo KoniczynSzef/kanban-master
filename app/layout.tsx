@@ -21,10 +21,12 @@ export default function RootLayout({
 }>) {
     return (
         <ReactQueryProvider>
-            <html lang="en">
-                <body className={`${inter.className} flex flex-col`}>
+            <html lang="en" className="dark">
+                <body
+                    className={`${inter.className} flex flex-col bg-[#020617]`}
+                >
                     <Navbar />
-                    <main className="container mx-auto my-40 flex flex-col gap-24">
+                    <main className="my-24 flex flex-col gap-48 items-center ">
                         {children}
                     </main>
                     <Toaster />

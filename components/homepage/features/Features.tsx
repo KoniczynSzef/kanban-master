@@ -1,9 +1,19 @@
-import { Feature } from "@/types/homepage/feature";
-import { Activity, Cog, PersonStanding, User } from "lucide-react";
 import React from "react";
 import { FeatureCard } from "./FeatureCard";
+import { Activity, Cog, PersonStanding, User } from "lucide-react";
+import { Feature } from "@/types/home/feature";
 
 interface Props {}
+
+export const Features: React.FC<Props> = () => {
+    return (
+        <div className="w-full my-16 flex justify-evenly flex-wrap gap-4">
+            {features.map((feature, index) => (
+                <FeatureCard key={index} feature={feature} />
+            ))}
+        </div>
+    );
+};
 
 const features: Feature[] = [
     {
@@ -32,14 +42,4 @@ const features: Feature[] = [
             "Automate your workflow with rules and integrations. Save time and focus on your work.",
         icon: <Cog className="text-red-700 dark:text-red-400" />,
     },
-] as const;
-
-export const Features: React.FC<Props> = () => {
-    return (
-        <div className="w-full my-16 flex justify-evenly flex-wrap gap-4">
-            {features.map((feature, index) => (
-                <FeatureCard key={index} feature={feature} />
-            ))}
-        </div>
-    );
-};
+];

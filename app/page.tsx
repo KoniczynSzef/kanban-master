@@ -1,4 +1,4 @@
-import LayoutGrid from "@/components/homepage/feature-cards/LayoutGrid";
+import LayoutGrid from "@/components/homepage/features/LayoutGrid";
 import HeroSection from "@/components/homepage/hero-section/HeroSection";
 import { Metadata } from "next";
 import React, { FC } from "react";

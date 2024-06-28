@@ -7,6 +7,9 @@ import { Toaster } from "@/components/ui/sonner";
 import ReactQueryProvider from "@/server/trpc/Provider";
 import Navbar from "@/components/navbar/Navbar";
 
+import NextTopLoader from "nextjs-toploader";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -21,13 +24,22 @@ export default function RootLayout({
 }>) {
     return (
         <ReactQueryProvider>
-            <html lang="en">
-                <body className={`${inter.className} flex flex-col`}>
-                    <Navbar />
-                    <main className="container mx-auto my-24 flex flex-col gap-24">
-                        {children}
-                    </main>
-                    <Toaster />
+            <html lang="en" className="dark">
+                <body
+                    className={`${inter.className} flex flex-col bg-white dark:bg-[#020617]`}
+                >
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="system"
+                        enableSystem
+                    >
+                        <NextTopLoader color="#7936EC" showSpinner={false} />
+                        <Navbar />
+                        <main className="my-24 flex flex-col gap-48 items-center">
+                            {children}
+                        </main>
+                        <Toaster />
+                    </ThemeProvider>
                 </body>
             </html>
         </ReactQueryProvider>

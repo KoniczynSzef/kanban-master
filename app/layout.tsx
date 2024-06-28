@@ -9,6 +9,7 @@ import Navbar from "@/components/navbar/Navbar";
 
 import NextTopLoader from "nextjs-toploader";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { Overlay } from "@/components/homepage/overlay/Overlay";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +27,7 @@ export default function RootLayout({
         <ReactQueryProvider>
             <html lang="en" className="dark">
                 <body
-                    className={`${inter.className} flex flex-col bg-white dark:bg-[#020617]`}
+                    className={`${inter.className} flex flex-col bg-white dark:bg-[#020617] relative`}
                 >
                     <ThemeProvider
                         attribute="class"
@@ -34,6 +35,7 @@ export default function RootLayout({
                         enableSystem
                     >
                         <NextTopLoader color="#7936EC" showSpinner={false} />
+                        <Overlay />
                         <Navbar />
                         <main className="my-24 flex flex-col gap-48 items-center">
                             {children}

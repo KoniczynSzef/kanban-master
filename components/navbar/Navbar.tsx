@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import NavigationMenu from "./menu/NavigationMenuWrapper";
+import { Nav } from "./menu/Nav";
 import HamburgerMenu from "./HamburgerMenu";
 import HomeLink from "./HomeLink";
 import AuthSection from "./auth-state/AuthSection";
@@ -11,11 +11,12 @@ const Navbar: FC<Props> = async () => {
     const user = await getKindeUser();
 
     return (
-        <header className="py-4 relative w-full">
+        <header className="py-6 relative w-full">
             <nav className="flex justify-between items-center container">
                 <HomeLink />
 
-                <NavigationMenu className="hidden md:block" />
+                {/* <NavigationMenu className="hidden md:block" /> */}
+                <Nav />
 
                 <AuthSection user={user} className="hidden md:flex gap-4" />
 

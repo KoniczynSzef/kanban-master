@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { linkStyle } from "@/lib/link-style";
 import { cn } from "@/lib/utils";
 import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { Github } from "lucide-react";
@@ -11,12 +10,15 @@ interface Props {}
 export const CTAButtons: React.FC<Props> = () => {
     return (
         <div className="flex gap-8 relative mt-8">
-            <LoginLink className={cn(linkStyle, "flex w-min")}>
+            <LoginLink className={cn("hovered__link", "flex w-min")}>
                 <Button tabIndex={-1}>Get Started</Button>
             </LoginLink>
             <Link
                 href="https://github.com/koniczynszef/kanban-master"
-                className={cn(linkStyle, "flex w-min focus:ring-secondary")}
+                className={cn(
+                    "hovered__link",
+                    "flex w-min focus:ring-secondary"
+                )}
                 target="_blank"
             >
                 <Button

@@ -8,8 +8,6 @@ interface Props {}
 export const Overlay: React.FC<Props> = () => {
     const path = usePathname();
 
-    console.log(path);
-
     if (path === "/dashboard") {
         return null;
     }

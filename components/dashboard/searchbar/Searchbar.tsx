@@ -10,7 +10,6 @@ import { useForm } from "react-hook-form";
 import { SearchbarField } from "./SearchbarField";
 import { SortTeams } from "./SortTeams";
 import Link from "next/link";
-import { linkStyle } from "@/lib/link-style";
 import { filterTeams } from "@/utils/dashboard/filter-teams";
 import { TeamContext } from "@/context/teams/context";
 
@@ -51,7 +50,7 @@ export const Searchbar: React.FC<Props> = (props) => {
                     <SearchbarField form={form} {...props} />
                     <SortTeams form={form} />
 
-                    <Link href="/dashboard/new-team" className={linkStyle}>
+                    <Link href="/dashboard/new-team" className="hovered__link">
                         <Button className="self-start" tabIndex={-1}>
                             Create a team
                         </Button>

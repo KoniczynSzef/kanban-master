@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 // import * as NavigationMenu from "@/components/ui/navigation-menu";
 // import React, { FC } from "react";
 // import NavMenuItem from "./NavMenuItem";
@@ -62,7 +63,10 @@ function NavItem(props: NavItemProps) {
     return (
         <Link
             href={props.href}
-            className="px-4 py-3 hover:underline underline-offset-2 transition-all"
+            className={cn(
+                "hovered__link",
+                "hover:underline underline-offset-2 p-3"
+            )}
         >
             {props.title}
         </Link>

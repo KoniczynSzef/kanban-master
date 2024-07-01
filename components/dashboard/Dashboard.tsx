@@ -8,7 +8,6 @@ import WelcomeToDashboard from "./welcome-to-dashboard/WelcomeToDashboard";
 import { Teams } from "./teams/Teams";
 import { Searchbar } from "./searchbar/Searchbar";
 import Link from "next/link";
-import { linkStyle } from "@/lib/link-style";
 import { TeamContext } from "@/context/teams/context";
 
 interface Props {
@@ -36,7 +35,7 @@ const Dashboard: FC<Props> = (props) => {
             <div className="border border-muted flex flex-col p-8 rounded-2xl gap-4">
                 Create your first team and invite your friends or colleagues to
                 join!
-                <Link href="/dashboard/new-team" className={linkStyle}>
+                <Link href="/dashboard/new-team" className="hovered__link">
                     <Button className="self-center">Create team</Button>
                 </Link>
             </div>

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { FC } from "react";
 import * as Sheet from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
@@ -12,9 +14,11 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const HamburgerMenu: FC<Props> = (props) => {
+    const [isOpen, setIsOpen] = React.useState(false);
+
     return (
         <div className={props.className}>
-            <Sheet.Sheet>
+            <Sheet.Sheet open={isOpen} onOpenChange={setIsOpen}>
                 <Sheet.SheetTrigger asChild>
                     <Button size={"icon"}>
                         <Menu />
@@ -24,7 +28,7 @@ const HamburgerMenu: FC<Props> = (props) => {
                 <Sheet.SheetContent className="flex flex-col items-center">
                     <HomeLink className="" />
 
-                    <Nav className="flex flex-col" />
+                    <Nav className="flex flex-col" setIsOpen={setIsOpen} />
 
                     <AuthSection
                         user={props.user}

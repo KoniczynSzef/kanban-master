@@ -7,11 +7,23 @@ interface Props {}
 
 export const Features: React.FC<Props> = () => {
     return (
-        <div className="w-full my-16 flex justify-evenly flex-wrap gap-4">
-            {features.map((feature, index) => (
-                <FeatureCard key={index} feature={feature} />
-            ))}
-        </div>
+        <section
+            className="flex flex-col items-center w-full px-8"
+            id="features"
+        >
+            <h2 className="text-5xl font-bold text-center text-header">
+                KanMaster Features
+            </h2>
+            <p className="text-center text-muted-foreground text-lg mt-4">
+                What makes KanMaster the best choice for your project?
+            </p>
+
+            <div className="w-full my-16 flex justify-evenly flex-wrap gap-4">
+                {features.map((feature, index) => (
+                    <FeatureCard key={index} feature={feature} />
+                ))}
+            </div>
+        </section>
     );
 };
 

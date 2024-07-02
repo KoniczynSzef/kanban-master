@@ -6,7 +6,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {}
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
+    setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 export const Nav: React.FC<Props> = (props) => {
     return (
@@ -16,10 +18,29 @@ export const Nav: React.FC<Props> = (props) => {
                 "text-muted-foreground font-medium items-center gap-4 text-sm lg:text-base"
             )}
         >
-            <NavItem title="Overview" href="#overview" />
-            <NavItem title="Features" href="#features" />
-            <NavItem title="Pricing" href="#pricing" />
-            <NavItem title="Dashboard" href="/dashboard" />
+            <NavItem
+                title="Overview"
+                href="#overview"
+                setIsOpen={props.setIsOpen}
+            />
+
+            <NavItem
+                title="Features"
+                href="#features"
+                setIsOpen={props.setIsOpen}
+            />
+
+            <NavItem
+                title="Pricing"
+                href="#pricing"
+                setIsOpen={props.setIsOpen}
+            />
+
+            <NavItem
+                title="Dashboard"
+                href="/dashboard"
+                setIsOpen={props.setIsOpen}
+            />
         </div>
     );
 };
@@ -27,6 +48,7 @@ export const Nav: React.FC<Props> = (props) => {
 interface NavItemProps {
     title: string;
     href: string;
+    setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function NavItem(props: NavItemProps) {
@@ -40,6 +62,12 @@ function NavItem(props: NavItemProps) {
         return `/${props.href}`;
     }, [path]);
 
+    function handleClick() {
+        if (props.setIsOpen) {
+            props.setIsOpen(false);
+        }
+    }
+
     return (
         <Link
             href={href}
@@ -47,6 +75,7 @@ function NavItem(props: NavItemProps) {
                 "hovered__link",
                 "hover:text-primary dark:hover:text-purple-200/90 p-3"
             )}
+            onClick={handleClick}
         >
             {props.title}
         </Link>

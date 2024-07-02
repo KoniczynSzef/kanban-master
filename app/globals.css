@@ -26,6 +26,7 @@
         --radius: 1rem;
 
         --dark-primary: 262.06 83.61% 47.84%;
+        --header: #6b21a8;
     }
 
     .dark {
@@ -48,6 +49,8 @@
         --border: 215 27.9% 16.9%;
         --input: 215 27.9% 16.9%;
         --ring: 263.4 70% 50.4%;
+
+        --header: #ddd6fe;
     }
 }
 
@@ -70,7 +73,7 @@
     background: linear-gradient(
         to bottom,
         white 95%,
-        rgba(221, 214, 254, 0.05)
+        rgba(221, 214, 254, 0.01)
     );
 }
 

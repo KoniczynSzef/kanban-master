@@ -35,12 +35,13 @@ function NavItem(props: NavItemProps) {
         return `/${props.href}`;
     }, [path]);
 
-    console.log(href);
-
     return (
         <Link
             href={href}
-            className={cn("hovered__link", "hover:text-purple-200/90 p-3")}
+            className={cn(
+                "hovered__link",
+                "hover:text-primary dark:hover:text-purple-200/90 p-3"
+            )}
         >
             {props.title}
         </Link>

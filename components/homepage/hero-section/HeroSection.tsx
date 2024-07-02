@@ -9,7 +9,7 @@ const HeroSection: FC<Props> = () => {
     return (
         <div className="relative text-center flex flex-col items-center gap-4">
             <ContributeBadge />
-            <h1 className="text-7xl font-bold text-violet-600 dark:text-purple-200">
+            <h1 className="text-7xl font-bold text-purple-800 dark:text-purple-200">
                 Manage your workflow
             </h1>
 

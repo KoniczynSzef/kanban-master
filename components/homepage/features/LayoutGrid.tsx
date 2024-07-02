@@ -6,7 +6,7 @@ interface Props {}
 const LayoutGrid: FC<Props> = () => {
     return (
         <section className="flex flex-col items-center w-full px-8">
-            <h2 className="text-5xl font-bold text-center text-violet-600 dark:text-violet-200">
+            <h2 className="text-5xl font-bold text-center text-header">
                 KanMaster Features
             </h2>
             <p className="text-center text-muted-foreground text-lg mt-4">

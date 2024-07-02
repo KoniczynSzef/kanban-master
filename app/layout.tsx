@@ -5,7 +5,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import ReactQueryProvider from "@/server/trpc/Provider";
-import Navbar from "@/components/navbar/Navbar";
 
 import NextTopLoader from "nextjs-toploader";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
@@ -36,8 +35,7 @@ export default function RootLayout({
                     >
                         <NextTopLoader color="#7936EC" showSpinner={false} />
                         <Overlay />
-                        <Navbar />
-                        <main className="my-24 flex flex-col gap-48 items-center">
+                        <main className="flex flex-col gap-48 items-center">
                             {children}
                         </main>
                         <Toaster />

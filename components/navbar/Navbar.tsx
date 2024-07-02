@@ -15,7 +15,7 @@ const Navbar: FC<Props> = async () => {
             <nav className="flex justify-between items-center container">
                 <HomeLink />
 
-                <Nav />
+                <Nav className="hidden md:flex" />
 
                 <AuthSection user={user} className="hidden md:flex gap-4" />
 

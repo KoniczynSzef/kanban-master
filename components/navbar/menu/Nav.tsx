@@ -6,11 +6,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
-interface Props {}
+interface Props extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const Nav: React.FC<Props> = () => {
+export const Nav: React.FC<Props> = (props) => {
     return (
-        <div className="text-muted-foreground font-medium flex items-center gap-4">
+        <div
+            className={cn(
+                props.className,
+                "text-muted-foreground font-medium items-center gap-4 text-sm lg:text-base"
+            )}
+        >
             <NavItem title="Overview" href="#overview" />
             <NavItem title="Features" href="#features" />
             <NavItem title="Pricing" href="#pricing" />

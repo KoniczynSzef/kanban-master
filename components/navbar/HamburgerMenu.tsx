@@ -5,6 +5,7 @@ import { Menu } from "lucide-react";
 import HomeLink from "./HomeLink";
 import AuthSection from "./auth-state/AuthSection";
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
+import { Nav } from "./menu/Nav";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
     user: KindeUser | null;
@@ -20,10 +21,15 @@ const HamburgerMenu: FC<Props> = (props) => {
                     </Button>
                 </Sheet.SheetTrigger>
 
-                <Sheet.SheetContent className="">
+                <Sheet.SheetContent className="flex flex-col items-center">
                     <HomeLink className="" />
 
-                    <AuthSection user={props.user} />
+                    <Nav className="flex flex-col" />
+
+                    <AuthSection
+                        user={props.user}
+                        className="flex flex-col items-center gap-4"
+                    />
                 </Sheet.SheetContent>
             </Sheet.Sheet>
         </div>

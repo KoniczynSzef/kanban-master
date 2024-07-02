@@ -1,4 +1,4 @@
-import LayoutGrid from "@/components/homepage/features/LayoutGrid";
+import { Features } from "@/components/homepage/features/Features";
 import HeroSection from "@/components/homepage/hero-section/HeroSection";
 import { Metadata } from "next";
 import React, { FC } from "react";
@@ -15,7 +15,7 @@ const page: FC<Props> = async () => {
     return (
         <>
             <HeroSection />
-            <LayoutGrid />
+            <Features />
         </>
     );
 };

@@ -1,4 +1,3 @@
-import { linkStyle } from "@/lib/link-style";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
@@ -10,8 +9,8 @@ export const ContributeBadge: React.FC<Props> = () => {
         <Link
             href={"https://github.com/koniczynszef/kanban-master/contribute"}
             className={cn(
-                linkStyle,
-                "bg-violet-700 hover:bg-violet-700/85 text-white px-4 py-1 rounded-full focus:ring-secondary-foreground "
+                "hovered__link",
+                "bg-violet-700 hover:bg-violet-700/85 text-white px-4 py-1 rounded-full"
             )}
         >
             Feel free to contribute!

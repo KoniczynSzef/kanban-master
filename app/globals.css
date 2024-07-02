@@ -26,6 +26,7 @@
         --radius: 1rem;
 
         --dark-primary: 262.06 83.61% 47.84%;
+        --header: #6b21a8;
     }
 
     .dark {
@@ -48,6 +49,8 @@
         --border: 215 27.9% 16.9%;
         --input: 215 27.9% 16.9%;
         --ring: 263.4 70% 50.4%;
+
+        --header: #ddd6fe;
     }
 }
 
@@ -70,10 +73,19 @@
     background: linear-gradient(
         to bottom,
         white 95%,
-        rgba(221, 214, 254, 0.05)
+        rgba(221, 214, 254, 0.01)
     );
 }
 
 .dark .overlay__gradient {
     background: linear-gradient(to bottom, #020617 75%, rgba(15, 15, 45, 0.1));
+}
+
+.hovered__link {
+    @apply focus:ring-2 focus:ring-offset-4 focus:ring-primary rounded-2xl focus:outline-0 transition duration-300 focus:ring-offset-white dark:focus:ring-offset-slate-950;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
 }

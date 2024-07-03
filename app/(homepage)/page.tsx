@@ -1,5 +1,6 @@
 import { Features } from "@/components/homepage/features/Features";
 import HeroSection from "@/components/homepage/hero-section/HeroSection";
+import { Overlay } from "@/components/homepage/overlay/Overlay";
 import { Metadata } from "next";
 import React, { FC } from "react";
 
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 const page: FC<Props> = async () => {
     return (
         <>
+            <Overlay />
             <HeroSection />
             <Features />
         </>

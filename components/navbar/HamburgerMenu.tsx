@@ -8,6 +8,7 @@ import HomeLink from "./HomeLink";
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import { Nav } from "./menu/Nav";
 import AuthNavigation from "./auth/AuthNavigation";
+import { cn } from "@/lib/utils";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
     user: KindeUser | null;
@@ -17,7 +18,7 @@ const HamburgerMenu: FC<Props> = (props) => {
     const [isOpen, setIsOpen] = React.useState(false);
 
     return (
-        <div className={props.className}>
+        <div className={cn(props.className, "block md:hidden")}>
             <Sheet.Sheet open={isOpen} onOpenChange={setIsOpen}>
                 <Sheet.SheetTrigger asChild>
                     <Button size={"icon"}>

@@ -2,8 +2,8 @@ import React, { FC } from "react";
 import { Nav } from "./menu/Nav";
 import HamburgerMenu from "./HamburgerMenu";
 import HomeLink from "./HomeLink";
-import AuthSection from "./auth-state/AuthSection";
 import { getKindeUser } from "@/lib/auth/get-kinde-user";
+import AuthNavigation from "./auth/AuthNavigation";
 
 interface Props {}
 
@@ -17,7 +17,7 @@ const Navbar: FC<Props> = async () => {
 
                 <Nav className="hidden md:flex" />
 
-                <AuthSection user={user} className="hidden md:flex gap-4" />
+                <AuthNavigation user={user} className="hidden md:flex gap-4" />
 
                 <HamburgerMenu className="block md:hidden" user={user} />
             </nav>

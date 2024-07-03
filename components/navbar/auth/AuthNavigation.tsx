@@ -1,16 +1,17 @@
 import React, { FC } from "react";
-import AuthButtons from "./AuthButtons";
 import { cn } from "@/lib/utils";
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { Button } from "@/components/ui/button";
 import { ToggleMode } from "../mode/ToggleMode";
+import { RegisterButton } from "./RegisterButton";
+import { LoginButton } from "./LoginButton";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
     user: KindeUser | null;
 }
 
-const AuthSection: FC<Props> = (props) => {
+const AuthNavigation: FC<Props> = (props) => {
     return (
         <div className={cn("mt-16 md:mt-0", props.className)}>
             {props.user ? (
@@ -23,11 +24,15 @@ const AuthSection: FC<Props> = (props) => {
                     </Button>
                 </LogoutLink>
             ) : (
-                <AuthButtons />
+                <>
+                    <RegisterButton />
+                    <LoginButton />
+                </>
             )}
+
             <ToggleMode />
         </div>
     );
 };
 
-export default AuthSection;
+export default AuthNavigation;

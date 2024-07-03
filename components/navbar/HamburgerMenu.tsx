@@ -5,9 +5,9 @@ import * as Sheet from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import HomeLink from "./HomeLink";
-import AuthSection from "./auth-state/AuthSection";
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import { Nav } from "./menu/Nav";
+import AuthNavigation from "./auth/AuthNavigation";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
     user: KindeUser | null;
@@ -30,7 +30,7 @@ const HamburgerMenu: FC<Props> = (props) => {
 
                     <Nav className="flex flex-col" setIsOpen={setIsOpen} />
 
-                    <AuthSection
+                    <AuthNavigation
                         user={props.user}
                         className="flex flex-col items-center gap-4"
                     />

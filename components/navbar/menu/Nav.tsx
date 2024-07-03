@@ -1,5 +1,6 @@
 "use client";
 
+import { HOMEPAGE_LINKS } from "@/constants/homepage-links";
 import { cn } from "@/lib/utils";
 
 import Link from "next/link";
@@ -18,29 +19,14 @@ export const Nav: React.FC<Props> = (props) => {
                 "text-muted-foreground font-medium items-center gap-4 text-sm lg:text-base"
             )}
         >
-            <NavItem
-                title="Overview"
-                href="#overview"
-                setIsOpen={props.setIsOpen}
-            />
-
-            <NavItem
-                title="Features"
-                href="#features"
-                setIsOpen={props.setIsOpen}
-            />
-
-            <NavItem
-                title="Pricing"
-                href="#pricing"
-                setIsOpen={props.setIsOpen}
-            />
-
-            <NavItem
-                title="Dashboard"
-                href="/dashboard"
-                setIsOpen={props.setIsOpen}
-            />
+            {HOMEPAGE_LINKS.map((link) => (
+                <NavItem
+                    key={crypto.randomUUID()}
+                    title={link.title}
+                    href={link.href}
+                    setIsOpen={props.setIsOpen}
+                />
+            ))}
         </div>
     );
 };

@@ -7,11 +7,9 @@ interface Props {
 
 const Layout: React.FC<Props> = (props) => {
     return (
-        <div className="flex items-stretch justify-between w-full">
+        <div className="flex w-full">
             <Sidebar />
-            <div className="w-full container relative my-24">
-                {props.children}
-            </div>
+            <div className="my-24 container md:mr-8">{props.children}</div>
         </div>
     );
 };

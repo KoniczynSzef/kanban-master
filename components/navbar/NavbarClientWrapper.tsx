@@ -11,8 +11,6 @@ export const NavbarClientWrapper: React.FC<Props> = (props) => {
     const path = usePathname();
 
     if (path === "/dashboard") {
-        console.log("Dashboard");
-
         return null;
     }
 

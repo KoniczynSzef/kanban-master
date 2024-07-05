@@ -10,6 +10,8 @@ import { SkipLink } from "@/components/navbar/SkipLink";
 import { SidebarContext } from "@/context/sidebar/sidebar-context";
 import { ToggleExpanded } from "./ToggleExpanded";
 
+import { motion } from "framer-motion";
+
 interface Props {}
 
 export const Sidebar: React.FC<Props> = () => {
@@ -17,10 +19,19 @@ export const Sidebar: React.FC<Props> = () => {
 
     return (
         <SidebarContext.Provider value={{ isExpanded, setIsExpanded }}>
-            <aside className="w-[16rem] top-0 bottom-0 fixed bg-slate-50/25 dark:bg-slate-900/25 flex flex-col p-8">
-                <SkipLink />
-                <HomeLink className="text-center" />
+            <motion.aside
+                className="top-0 bottom-0 fixed bg-slate-50/25 dark:bg-slate-900/25 flex flex-col py-16 px-12"
+                initial={{ width: "20rem", padding: "4rem 3rem" }}
+                animate={{
+                    width: isExpanded ? "20rem" : "5rem",
+                    padding: isExpanded ? "4rem 3rem" : "4rem 1rem",
+                }}
+                transition={{ duration: 0.2 }}
+            >
                 <ToggleExpanded />
+                <SkipLink />
+
+                {isExpanded && <HomeLink className="text-center" />}
 
                 <ul className="my-16 flex flex-col gap-3">
                     {SIDEBAR_LINKS.map((link) => (
@@ -32,7 +43,7 @@ export const Sidebar: React.FC<Props> = () => {
                     <ToggleMode />
                     <LogoutButton />
                 </div>
-            </aside>
+            </motion.aside>
         </SidebarContext.Provider>
     );
 };

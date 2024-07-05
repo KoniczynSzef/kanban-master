@@ -11,13 +11,11 @@ import { SidebarContext } from "@/context/sidebar/sidebar-context";
 import { ToggleExpanded } from "./ToggleExpanded";
 
 import { motion } from "framer-motion";
-import { useStoredSidebarState } from "@/hooks/use-stored-sidebar-state";
 
 interface Props {}
 
 export const Sidebar: React.FC<Props> = () => {
-    const storedSidebarState = useStoredSidebarState();
-    const [isExpanded, setIsExpanded] = React.useState(storedSidebarState);
+    const [isExpanded, setIsExpanded] = React.useState(true);
 
     return (
         <SidebarContext.Provider value={{ isExpanded, setIsExpanded }}>

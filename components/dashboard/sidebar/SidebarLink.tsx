@@ -27,6 +27,7 @@ export const SidebarLink: React.FC<Props> = (props) => {
                     `flex items-end gap-2.5 px-4 py-3 !rounded-[8px] transition duration-300 ${isActiveClassName} focus-visible:ring-foreground/25`,
                     isExpanded ? " px-4 py-3" : "p-3"
                 )}
+                title={props.text}
             >
                 {isExpanded ? (
                     <>

@@ -19,6 +19,7 @@ export const Sidebar: React.FC<Props> = () => {
 
     return (
         <SidebarContext.Provider value={{ isExpanded, setIsExpanded }}>
+            <SkipLink />
             <motion.aside
                 className="top-0 bottom-0 fixed bg-slate-50/25 dark:bg-slate-900/25 flex flex-col py-16 px-12"
                 initial={{ width: "20rem", padding: "4rem 3rem" }}
@@ -29,7 +30,6 @@ export const Sidebar: React.FC<Props> = () => {
                 transition={{ duration: 0.2 }}
             >
                 <ToggleExpanded />
-                <SkipLink />
 
                 {isExpanded && <HomeLink className="text-center" />}
 

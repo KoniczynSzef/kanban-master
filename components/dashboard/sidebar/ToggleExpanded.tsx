@@ -22,6 +22,9 @@ export const ToggleExpanded: React.FC<Props> = () => {
             className={`size-8 absolute top-2 ${
                 isExpanded ? "right-2" : "right-6"
             } z-10 hover:scale-100`}
+            aria-description={
+                isExpanded ? "Collapse sidebar" : "Expand sidebar"
+            }
         >
             {isExpanded ? <X /> : <PanelLeftOpen />}
         </Button>

@@ -41,7 +41,7 @@ export const Sidebar: React.FC<Props> = () => {
 
                 <div className="flex flex-col items-center gap-4 mt-auto">
                     <ToggleMode />
-                    <LogoutButton />
+                    <LogoutButton isSidebarExpanded={isExpanded} />
                 </div>
             </motion.aside>
         </SidebarContext.Provider>

@@ -17,6 +17,8 @@ interface Props {}
 export const Sidebar: React.FC<Props> = () => {
     const [isExpanded, setIsExpanded] = React.useState(true);
 
+    const [isHovering, setIsHovering] = React.useState(false);
+
     return (
         <SidebarContext.Provider value={{ isExpanded, setIsExpanded }}>
             <SkipLink />
@@ -28,8 +30,13 @@ export const Sidebar: React.FC<Props> = () => {
                     padding: isExpanded ? "4rem 3rem" : "4rem 1rem",
                 }}
                 transition={{ duration: 0.2 }}
+                onHoverStart={() => setIsHovering(true)}
+                onHoverEnd={() => setIsHovering(false)}
             >
-                <ToggleExpanded />
+                <ToggleExpanded
+                    isHovering={isHovering}
+                    setIsHovering={setIsHovering}
+                />
 
                 {isExpanded && <HomeLink className="text-center" />}
 

@@ -1,3 +1,5 @@
+import { AnimatedWrapper } from "@/components/dashboard/AnimatedWrapper";
+import { SidebarContextWrapper } from "@/components/dashboard/helpers/SidebarContextWrapper";
 import { Sidebar } from "@/components/dashboard/sidebar/Sidebar";
 import React from "react";
 
@@ -8,8 +10,10 @@ interface Props {
 const Layout: React.FC<Props> = (props) => {
     return (
         <div className="flex w-full">
-            <Sidebar />
-            <div className="ml-[24rem] mr-[8rem] w-full">{props.children}</div>
+            <SidebarContextWrapper>
+                <Sidebar />
+                <AnimatedWrapper>{props.children}</AnimatedWrapper>
+            </SidebarContextWrapper>
         </div>
     );
 };

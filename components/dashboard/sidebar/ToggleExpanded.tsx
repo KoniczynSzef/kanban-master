@@ -6,13 +6,11 @@ import { motion } from "framer-motion";
 import { PanelLeftOpen, X } from "lucide-react";
 import React from "react";
 
-interface Props {
-    isHovering: boolean;
-    setIsHovering: React.Dispatch<React.SetStateAction<boolean>>;
-}
+interface Props {}
 
-export const ToggleExpanded: React.FC<Props> = (props) => {
-    const { setIsExpanded, isExpanded } = React.useContext(SidebarContext);
+export const ToggleExpanded: React.FC<Props> = () => {
+    const { setIsExpanded, isExpanded, isHovered, setIsHovered } =
+        React.useContext(SidebarContext);
 
     function handleExpandOrCollapse() {
         setIsExpanded(!isExpanded);
@@ -21,9 +19,9 @@ export const ToggleExpanded: React.FC<Props> = (props) => {
     return (
         <motion.div
             initial={{ opacity: 0 }}
-            animate={props.isHovering ? { opacity: 1 } : { opacity: 0 }}
-            onFocus={() => props.setIsHovering(true)}
-            onBlur={() => props.setIsHovering(false)}
+            animate={isHovered ? { opacity: 1 } : { opacity: 0 }}
+            onFocus={() => setIsHovered(true)}
+            onBlur={() => setIsHovered(false)}
         >
             <Button
                 variant={"ghost"}

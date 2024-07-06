@@ -15,12 +15,10 @@ import { motion } from "framer-motion";
 interface Props {}
 
 export const Sidebar: React.FC<Props> = () => {
-    const [isExpanded, setIsExpanded] = React.useState(true);
-
-    const [isHovering, setIsHovering] = React.useState(false);
+    const { setIsHovered, isExpanded } = React.useContext(SidebarContext);
 
     return (
-        <SidebarContext.Provider value={{ isExpanded, setIsExpanded }}>
+        <>
             <SkipLink />
             <motion.aside
                 className="top-0 bottom-0 fixed bg-slate-50/25 dark:bg-slate-900/25 flex flex-col py-16 px-12"
@@ -30,13 +28,10 @@ export const Sidebar: React.FC<Props> = () => {
                     padding: isExpanded ? "4rem 3rem" : "4rem 1rem",
                 }}
                 transition={{ duration: 0.2 }}
-                onHoverStart={() => setIsHovering(true)}
-                onHoverEnd={() => setIsHovering(false)}
+                onHoverStart={() => setIsHovered(true)}
+                onHoverEnd={() => setIsHovered(false)}
             >
-                <ToggleExpanded
-                    isHovering={isHovering}
-                    setIsHovering={setIsHovering}
-                />
+                <ToggleExpanded />
 
                 {isExpanded && <HomeLink className="text-center" />}
 
@@ -51,6 +46,6 @@ export const Sidebar: React.FC<Props> = () => {
                     <LogoutButton isSidebarExpanded={isExpanded} />
                 </div>
             </motion.aside>
-        </SidebarContext.Provider>
+        </>
     );
 };

@@ -10,6 +10,7 @@ import { MainCards } from "@/components/dashboard/main-dashboard-page/MainCards"
 // import { LineChart } from "@/components/dashboard/main-dashboard-page/LineChart";
 import { Notes } from "@/components/dashboard/main-dashboard-page/notes/Notes";
 import { getUserByKindeId } from "@/server/routes/auth/get-user-by-kinde-id";
+import { Header } from "@/components/dashboard/helpers/Header";
 
 interface Props {}
 
@@ -45,13 +46,10 @@ const page: FC<Props> = async () => {
         <Hydrate state={dehydrate(helpers.queryClient)}>
             <ContextProvider teams={teams}>
                 <div className="wrapper flex flex-col gap-24">
-                    <header>
-                        <h1>Dashboard</h1>
-                        <p>
-                            Welcome back, {user.name}! Here&apos;s a quick
-                            overview of your last tasks and projects.
-                        </p>
-                    </header>
+                    <Header
+                        pageTitle="Dashboard"
+                        description="Monitor and analyze key metrics to optimize your business performance"
+                    />
                     <MainCards userId={user.id} />
                     {/* <LineChart /> */}
                     <Notes user={user} />

@@ -1,4 +1,4 @@
-import { AnimatedWrapper } from "@/components/dashboard/AnimatedWrapper";
+import { AnimatedWrapper } from "@/components/dashboard/helpers/AnimatedWrapper";
 import { SidebarContextWrapper } from "@/components/dashboard/helpers/SidebarContextWrapper";
 import { Sidebar } from "@/components/dashboard/sidebar/Sidebar";
 import React from "react";

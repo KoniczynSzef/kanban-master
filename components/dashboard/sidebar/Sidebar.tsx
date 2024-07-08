@@ -35,7 +35,7 @@ export const Sidebar: React.FC<Props> = () => {
 
                 {isExpanded && <HomeLink className="text-center" />}
 
-                <ul className="my-16 flex flex-col gap-3">
+                <ul className="my-16 flex flex-col gap-2">
                     {SIDEBAR_LINKS.map((link) => (
                         <SidebarLink key={crypto.randomUUID()} {...link} />
                     ))}

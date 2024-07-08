@@ -9,6 +9,7 @@ import ReactQueryProvider from "@/server/trpc/Provider";
 import NextTopLoader from "nextjs-toploader";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import Navbar from "@/components/navbar/Navbar";
+import { Main } from "@/components/helpers/Main";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,12 +36,7 @@ export default function RootLayout({
                     >
                         <NextTopLoader color="#7936EC" showSpinner={false} />
                         <Navbar />
-                        <main
-                            className="flex flex-col gap-48 items-center my-36"
-                            id="main-content"
-                        >
-                            {children}
-                        </main>
+                        <Main>{children}</Main>
                         <Toaster />
                     </ThemeProvider>
                 </body>

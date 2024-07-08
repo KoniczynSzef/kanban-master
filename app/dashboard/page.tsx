@@ -45,6 +45,13 @@ const page: FC<Props> = async () => {
         <Hydrate state={dehydrate(helpers.queryClient)}>
             <ContextProvider teams={teams}>
                 <div className="wrapper flex flex-col gap-24">
+                    <header>
+                        <h1>Dashboard</h1>
+                        <p>
+                            Welcome back, {user.name}! Here&apos;s a quick
+                            overview of your last tasks and projects.
+                        </p>
+                    </header>
                     <MainCards userId={user.id} />
                     {/* <LineChart /> */}
                     <Notes user={user} />

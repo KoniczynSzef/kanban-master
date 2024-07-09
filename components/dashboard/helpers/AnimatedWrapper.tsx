@@ -13,7 +13,7 @@ export const AnimatedWrapper: React.FC<Props> = (props) => {
 
     return (
         <motion.div
-            className="w-full mr-32"
+            className="w-full mr-32 mb-64"
             initial={{
                 y: -25,
                 opacity: 0,
@@ -24,6 +24,7 @@ export const AnimatedWrapper: React.FC<Props> = (props) => {
                 opacity: 1,
                 marginLeft: isExpanded ? "24rem" : "8rem",
             }}
+            // id="page"
         >
             {props.children}
         </motion.div>

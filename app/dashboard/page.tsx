@@ -45,7 +45,7 @@ const page: FC<Props> = async () => {
     return (
         <Hydrate state={dehydrate(helpers.queryClient)}>
             <ContextProvider teams={teams}>
-                <div className="wrapper flex flex-col gap-24">
+                <section className="wrapper flex flex-col gap-24">
                     <Header
                         pageTitle="Dashboard"
                         description="Monitor and analyze key metrics to optimize your business performance"
@@ -53,7 +53,7 @@ const page: FC<Props> = async () => {
                     <MainCards userId={user.id} />
                     {/* <LineChart /> */}
                     <Notes user={user} />
-                </div>
+                </section>
             </ContextProvider>
         </Hydrate>
     );

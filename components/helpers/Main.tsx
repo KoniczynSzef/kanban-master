@@ -10,11 +10,13 @@ interface Props {
 export const Main: React.FC<Props> = (props) => {
     const path = usePathname();
 
+    const isDashboard = path.startsWith("/dashboard");
+
     return (
         <main
-            id="main-content"
+            id={"main-content"}
             className={`flex flex-col gap-48 items-center ${
-                !path.startsWith("/dashboard") ? "my-36" : "my-12"
+                isDashboard ? "my-12" : "my-36"
             }`}
         >
             {props.children}

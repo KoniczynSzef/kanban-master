@@ -9,6 +9,7 @@ import { SidebarContext } from "@/context/sidebar/sidebar-context";
 import { ToggleExpanded } from "./ToggleExpanded";
 
 import { motion } from "framer-motion";
+import { Settings } from "lucide-react";
 
 interface Props {}
 
@@ -38,6 +39,13 @@ export const Sidebar: React.FC<Props> = () => {
                         <SidebarLink key={crypto.randomUUID()} {...link} />
                     ))}
                 </ul>
+
+                <SidebarLink
+                    text="Settings"
+                    href="/dashboard/settings"
+                    icon={<Settings />}
+                    className="mt-auto"
+                />
             </motion.aside>
         </>
     );

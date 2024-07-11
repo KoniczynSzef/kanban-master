@@ -7,7 +7,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
-interface Props extends SidebarLinkProps {}
+interface Props extends SidebarLinkProps {
+    className?: string;
+}
 
 export const SidebarLink: React.FC<Props> = (props) => {
     const { isExpanded } = React.useContext(SidebarContext);
@@ -19,7 +21,7 @@ export const SidebarLink: React.FC<Props> = (props) => {
             : "text-muted-foreground hover:bg-secondary hover:text-foreground";
 
     return (
-        <li>
+        <li className={`list-none ${props.className}`}>
             <Link
                 href={props.href}
                 className={cn(

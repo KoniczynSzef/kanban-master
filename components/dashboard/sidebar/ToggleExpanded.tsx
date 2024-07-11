@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { SidebarContext } from "@/context/sidebar/sidebar-context";
 import { motion } from "framer-motion";
-import { PanelLeftOpen, X } from "lucide-react";
+import { PanelLeftOpen, PanelRightOpen } from "lucide-react";
 import React from "react";
 
 interface Props {}
@@ -34,7 +34,7 @@ export const ToggleExpanded: React.FC<Props> = () => {
                     isExpanded ? "Collapse sidebar" : "Expand sidebar"
                 }
             >
-                {isExpanded ? <X /> : <PanelLeftOpen />}
+                {isExpanded ? <PanelRightOpen /> : <PanelLeftOpen />}
             </Button>
         </motion.div>
     );

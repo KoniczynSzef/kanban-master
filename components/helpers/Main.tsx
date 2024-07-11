@@ -16,7 +16,7 @@ export const Main: React.FC<Props> = (props) => {
         <main
             id={"main-content"}
             className={`flex flex-col gap-48 items-center ${
-                isDashboard ? "my-12" : "my-36"
+                isDashboard ? "my-0" : "my-36"
             }`}
         >
             {props.children}

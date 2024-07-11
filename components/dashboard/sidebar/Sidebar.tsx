@@ -1,8 +1,6 @@
 "use client";
 
 import HomeLink from "@/components/navbar/HomeLink";
-import { LogoutButton } from "@/components/navbar/auth/LogoutButton";
-import { ToggleMode } from "@/components/navbar/mode/ToggleMode";
 import React from "react";
 import { SidebarLink } from "./SidebarLink";
 import { SIDEBAR_LINKS } from "@/constants/sidebar-links";
@@ -40,11 +38,6 @@ export const Sidebar: React.FC<Props> = () => {
                         <SidebarLink key={crypto.randomUUID()} {...link} />
                     ))}
                 </ul>
-
-                <div className="flex flex-col items-center gap-4 mt-auto">
-                    <ToggleMode />
-                    <LogoutButton isSidebarExpanded={isExpanded} />
-                </div>
             </motion.aside>
         </>
     );

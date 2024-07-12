@@ -2,15 +2,17 @@ import { publicProcedure, router } from "@/server/trpc/server";
 import { z } from "zod";
 import { createTeam } from "./create-team";
 import { createTeamSchema } from "@/types/schemas/teams/create-team-schema";
-import { getAllTeams } from "./get-all-teams";
+import { getTeamsByUserId } from "./get-teams-by-user-id";
 import { getMembersLength } from "./get-members-length";
 import { getTeam } from "./get-team";
 import { removeTeam } from "./remove-team";
 
 export const teamRouter = router({
-    getAllTeams: publicProcedure.input(z.string()).query(async ({ input }) => {
-        return await getAllTeams(input);
-    }),
+    getTeamsByUserId: publicProcedure
+        .input(z.string())
+        .query(async ({ input }) => {
+            return await getTeamsByUserId(input);
+        }),
 
     createTeam: publicProcedure
         .input(

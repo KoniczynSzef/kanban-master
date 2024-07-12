@@ -35,12 +35,12 @@ const page: FC<Props> = async () => {
     const helpers = await createHelpers();
 
     await helpers.getUserByKindeId.fetch(kindeUser.id);
-    await helpers.getAllTeams.fetch(user.id);
-    await helpers.getAllProjects.fetch(user.id);
-    await helpers.getAllTasks.fetch(user.id);
+    await helpers.getTeamsByUserId.fetch(user.id);
+    await helpers.getProjectsByUserId.fetch(user.id);
+    await helpers.getTasksByUserId.fetch(user.id);
     await helpers.getAllNotes.fetch(user.id);
 
-    const teams = await helpers.getAllTeams.fetch(user.id);
+    const teams = await helpers.getTeamsByUserId.fetch(user.id);
 
     return (
         <Hydrate state={dehydrate(helpers.queryClient)}>

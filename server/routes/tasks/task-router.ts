@@ -1,13 +1,13 @@
 import { publicProcedure, router } from "@/server/trpc/server";
 import { z } from "zod";
-import { getAllTasks } from "./get-all-tasks";
+import { getTasksByUserId } from "./get-tasks-by-user-id";
 import { getTasksByStatus } from "./get-tasks-by-status";
 
 export const taskRouter = router({
-    getAllTasks: publicProcedure
+    getTasksByUserId: publicProcedure
         .input(z.string())
         .query(async ({ input: userId }) => {
-            return getAllTasks(userId);
+            return getTasksByUserId(userId);
         }),
 
     getTasksByStatus: publicProcedure

@@ -3,7 +3,7 @@ import { projects, usersToProjects } from "@/database/schema";
 import { Project } from "@/types/models/project-model";
 import { eq } from "drizzle-orm";
 
-export async function getAllProjects(userId: string) {
+export async function getProjectsByUserId(userId: string) {
     const data = await db.query.usersToProjects.findMany({
         where: eq(usersToProjects.userId, userId),
     });

@@ -3,7 +3,7 @@ import { kanbanTasks, usersToTasks } from "@/database/schema";
 import { KanbanTask } from "@/types/models/task-model";
 import { eq } from "drizzle-orm";
 
-export async function getAllTasks(userId: string) {
+export async function getTasksByUserId(userId: string) {
     const res = await db.query.usersToTasks.findMany({
         where: eq(usersToTasks.userId, userId),
     });

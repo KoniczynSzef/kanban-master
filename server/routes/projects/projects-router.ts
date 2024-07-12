@@ -1,11 +1,11 @@
 import { publicProcedure, router } from "@/server/trpc/server";
 import { z } from "zod";
-import { getAllProjects } from "./get-all-projects";
+import { getProjectsByUserId } from "./get-projects-by-user-id";
 
 export const projectsRouter = router({
-    getAllProjects: publicProcedure
+    getProjectsByUserId: publicProcedure
         .input(z.string())
         .query(async ({ input }) => {
-            return await getAllProjects(input);
+            return await getProjectsByUserId(input);
         }),
 });

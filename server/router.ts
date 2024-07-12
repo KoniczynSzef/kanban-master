@@ -7,6 +7,7 @@ import { teamRouter } from "./routes/teams/team-router";
 import { projectsRouter } from "./routes/projects/projects-router";
 import { taskRouter } from "./routes/tasks/task-router";
 import { notesRouter } from "./routes/notes/notes-router";
+import { dataRouter } from "./routes/data/data-router";
 
 export const appRouter = mergeRouters(
     authRouter,
@@ -14,7 +15,8 @@ export const appRouter = mergeRouters(
     userRouter,
     projectsRouter,
     taskRouter,
-    notesRouter
+    notesRouter,
+    dataRouter
 );
 
 export const createSSRHelper = () => {

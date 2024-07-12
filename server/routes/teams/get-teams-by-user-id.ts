@@ -3,7 +3,7 @@ import { eq } from "drizzle-orm";
 import { teams, usersToTeams } from "@/database/schema";
 import { Team } from "@/types/models/team-model";
 
-export async function getAllTeams(userId: string) {
+export async function getTeamsByUserId(userId: string) {
     const data = await db.query.usersToTeams.findMany({
         where: eq(usersToTeams.userId, userId),
     });

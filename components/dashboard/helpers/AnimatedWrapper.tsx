@@ -13,7 +13,7 @@ export const AnimatedWrapper: React.FC<Props> = (props) => {
 
     return (
         <motion.div
-            className="w-full mr-32 my-8"
+            className="w-full mr-32 my-16"
             initial={{
                 y: -25,
                 opacity: 0,
